@@ -17,13 +17,13 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/")
-public class LoginController {
+public class UserController {
     private final UserService userService;
     private final UserRoleService userRoleService;
     private final RoleService roleService;
     private final PasswordEncoder passwordEncoder;
 
-    public LoginController(UserService userService, UserRoleService userRoleService, RoleService roleService, PasswordEncoder passwordEncoder) {
+    public UserController(UserService userService, UserRoleService userRoleService, RoleService roleService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.userRoleService = userRoleService;
         this.roleService = roleService;

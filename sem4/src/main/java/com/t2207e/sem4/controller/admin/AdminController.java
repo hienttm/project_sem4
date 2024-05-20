@@ -1,4 +1,4 @@
-package com.t2207e.sem4.controller;
+package com.t2207e.sem4.controller.admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
