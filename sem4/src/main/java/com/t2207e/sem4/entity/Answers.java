@@ -14,7 +14,7 @@ import org.aspectj.weaver.patterns.TypePatternQuestions;
 public class Answers {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int answerId;
+    private int answer_id;
 
     @Column(nullable = false)
     private String answerContent;
@@ -24,6 +24,6 @@ public class Answers {
 
     @ManyToOne
     @JoinColumn(name = "question_id", nullable = false)
-    private Question question;
+    private TypePatternQuestions.Question question;
 
 }
