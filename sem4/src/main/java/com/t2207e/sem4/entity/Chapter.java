@@ -35,7 +35,8 @@ public class Chapter {
 
     @Column(name = "createAt")
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    private Date createAt;
+    @NotNull(message = "CreateAt cannot be null")
+    private Date createAt = new Date(System.currentTimeMillis());
 
     @Column(name = "status")
     @NotNull(message = "Status cannot be null")

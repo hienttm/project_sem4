@@ -44,7 +44,7 @@ public class Course {
 
     @Column(name = "status")
     @NotNull(message = "FreeNumbers cannot be null")
-    private int status;
+    private int status=1;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)

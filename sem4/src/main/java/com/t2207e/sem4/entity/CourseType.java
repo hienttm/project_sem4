@@ -30,7 +30,6 @@ public class CourseType {
     private Date createAt=new Date(System.currentTimeMillis());
 
     @Column(name = "description",columnDefinition = "TEXT")
-
     private String description;
 
     // Getters and Setters
