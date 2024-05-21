@@ -39,4 +39,9 @@ public class RoleService implements IRoleService{
     public Boolean existsByRoleName(String roleName) {
         return roleRepository.existsByRoleName(roleName);
     }
+
+    @Override
+    public Optional<Role> getRoleByRoleName(String roleName) {
+        return roleRepository.getRoleByRoleName(roleName);
+    }
 }

@@ -84,7 +84,7 @@ public class UserController {
         //Add USER_ROLE
         UserRole userRole = new UserRole();
         userRole.setUser(userService.getUserByUsername(user.getUsername()).get());
-        userRole.setRole(roleService.getRoleById(1).get());
+        userRole.setRole(roleService.getRoleByRoleName("ROLE_USER").get());
         userRoleService.add(userRole);
 
         return "redirect:/login";
