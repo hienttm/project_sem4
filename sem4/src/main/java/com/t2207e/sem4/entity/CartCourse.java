@@ -9,7 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 @Entity
-@Table(name = "cart_course")
+@Table(name = "cart_courses")
 @Getter
 @Setter
 @NoArgsConstructor
