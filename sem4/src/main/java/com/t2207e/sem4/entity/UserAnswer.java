@@ -22,5 +22,5 @@ public class UserAnswer {
 
     @ManyToOne
     @JoinColumn(name = "answer_id", nullable = false)
-    private Answers answer;
+    private Answer answer;
 }

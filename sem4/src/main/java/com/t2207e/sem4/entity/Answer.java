@@ -4,14 +4,13 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.aspectj.weaver.patterns.TypePatternQuestions;
 
 @Entity
 @Table(name = "answers")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Answers {
+public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int answer_id;
@@ -24,6 +23,6 @@ public class Answers {
 
     @ManyToOne
     @JoinColumn(name = "question_id", nullable = false)
-    private TypePatternQuestions.Question question;
+    private Question question;
 
 }

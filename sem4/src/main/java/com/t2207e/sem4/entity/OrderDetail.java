@@ -11,7 +11,7 @@ import org.springframework.core.annotation.Order;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderDetails {
+public class OrderDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int orderDetailId;
