@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -30,8 +31,9 @@ public class Category {
     private int status=1;
 
     @Column(name="updateAt")
-
-    private Date updateAt;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    @NotNull(message = "createAt cannot be null")
+    private Date createAt = new Date(System.currentTimeMillis());
 
     @Column(name = "description",columnDefinition = "TEXT")
     private String description;
