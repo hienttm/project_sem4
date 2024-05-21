@@ -1,26 +1,27 @@
 package com.t2207e.sem4.entity;
 
 import jakarta.persistence.*;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "payment_methods")
+@Table
 @Getter
 @Setter
 @NoArgsConstructor
-public class PaymentMethod {
 
+public class RequestType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int paymentMethodId;
+    private int requestTypeId;
 
     @Column(nullable = false)
-    private String paymentMethodName;
+    private String requestTypeName;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(nullable = false)
+    private int status;
+
     private String description;
-
 }
-

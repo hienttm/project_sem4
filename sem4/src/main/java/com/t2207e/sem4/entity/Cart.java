@@ -6,21 +6,17 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "payment_methods")
+@Table(name = "carts")
 @Getter
 @Setter
 @NoArgsConstructor
-public class PaymentMethod {
 
+public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int paymentMethodId;
+    private int cartId;
 
-    @Column(nullable = false)
-    private String paymentMethodName;
-
-    @Column(columnDefinition = "TEXT")
-    private String description;
-
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 }
-
