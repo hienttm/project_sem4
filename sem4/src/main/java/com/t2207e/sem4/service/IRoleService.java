@@ -10,4 +10,5 @@ public interface IRoleService {
     Optional<Role> getRoleById(Integer id);
     void add(Role role);
     void deleteById(Integer id);
+    Boolean existsByRoleName(String roleName);
 }

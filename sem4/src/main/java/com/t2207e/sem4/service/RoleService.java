@@ -34,4 +34,9 @@ public class RoleService implements IRoleService{
     public void deleteById(Integer id) {
         roleRepository.deleteById(id);
     }
+
+    @Override
+    public Boolean existsByRoleName(String roleName) {
+        return roleRepository.existsByRoleName(roleName);
+    }
 }

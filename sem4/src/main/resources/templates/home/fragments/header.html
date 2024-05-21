@@ -130,6 +130,14 @@
                                     <li><a href="contact-2.html">Contact Two</a></li>
                                 </ul>
                             </li>
+
+                            <div sec:authorize="hasAnyRole('ROLE_ADMIN')">
+                                <li class="tl-nav-item tl-dropdown">
+                                    <a class="text-danger" th:href="@{/admin/dashboard}" role="button">
+                                        Admin
+                                    </a>
+                                </li>
+                            </div>
                         </ul>
                     </div>
                 </div>
