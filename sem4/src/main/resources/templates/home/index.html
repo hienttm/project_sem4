@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
+<!-- Mirrored from codebasket.xyz/template/talim/light/index-13.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 07:56:29 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talim - School University & Online Education Template</title>
+    <link rel="shortcut icon" href="home/images/logo/favicon.ico" type="image/x-icon">
+
+    <!-- STYLESHEETS -->
+    <link rel="stylesheet" th:href="@{home/vendor/bootstrap/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{home/vendor/owl-carousel/owl.carousel.min.css}">
+    <link rel="stylesheet" th:href="@{home/css/icofont.min.css}">
+    <link rel="stylesheet" th:href="@{home/vendor/font-awesome/all.min.css}">
+    <link rel="stylesheet" th:href="@{home/vendor/font-awesome/sharp-regular.min.css}">
+    <link rel="stylesheet" th:href="@{home/vendor/font-awesome/sharp-solid.min.css}">
+    <link rel="stylesheet" th:href="@{home/vendor/mean-menu/meanmenu.min.css}">
+    <link rel="stylesheet" th:href="@{home/vendor/eocjs-newsticker/eocjs-newsticker.css}">
+    <link rel="stylesheet" th:href="@{home/vendor/flag-icons/flag-icons.min.css}">
+    <link rel="stylesheet" th:href="@{home/vendor/swiper-js/swiper-bundle.min.css}">
+    <link rel="stylesheet" th:href="@{home/vendor/slick-slider/slick.css}">
+    <link rel="stylesheet" th:href="@{home/css/style.css}">
+
+    <!-- dark version css -->
+    <link rel="stylesheet" href="home/css/dark-v.css">
+</head>
+
+<body>
+<!--HEADER HOME-->
+<div th:insert="~{home/fragments/header}"></div>
+
+
+<!-- BANNER SECTION STARTS HERE 👇-->
+<section class="tl-13-banner" data-background="home/images/tl-13/banner-bg.png" data-bg-color="#f2efe8">
+    <div class="container">
+        <div class="row gy-5 align-items-center">
+            <div class="col-lg-7">
+                <div class="tl-13-banner-txt">
+                    <h1 class="tl-13-banner-title">Learn Tech Embracing Technology Education Excellence.</h1>
+                    <p class="tl-13-banner-descr">Through a combination of lectures, readings, and discussions, students will gain a solid foundation in educational psychology.</p>
+                    <form action="#" class="tl-13-banner-search-form">
+                        <input type="search" name="search" id="tl-13-banner-search-input" placeholder="Search your course">
+                        <button type="submit">Find course</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="tl-13-banner-img text-center text-lg-end">
+                    <img src="home/images/tl-13/banner-img.jpg" alt="Banner Image">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- BANNER SECTION ENDS HERE 👆-->
+
+<!-- ABOUT SECTION STARTS HERE 👇-->
+<section class="tl-13-about pt-120 pb-60">
+    <div class="container">
+        <div class="row gx-0 gy-4 gy-md-5 align-items-center justify-content-between">
+            <div class="col-xxl-7 col-lg-6">
+                <div class="tl-13-about-img">
+                    <img src="home/images/tl-13/about-img.jpg" alt="Image">
+
+                    <div class="tl-13-about-stat">
+                        <img src="home/images/tl-13/stat-icon.png" alt="Image" class="tl-13-about-stat-icon">
+                        <span class="tl-13-about-stat-number">28+</span>
+                        <span class="tl-13-about-stat-name">years of experience</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="tl-13-about-txt">
+                    <h6 class="tl-13-about-sub-title">Next Level Learning</h6>
+                    <h2 class="tl-13-section-title">Take The World Best Course <span class="last-word">Online</span> For Free.</h2>
+                    <p class="tl-13-about-descr">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected randomised words which don't look even slightly believable.</p>
+                    <a href="#" class="tl-13-about-btn">Read More <i class="fa-regular fa-arrow-right-long"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tl-13-about-features">
+        <span class="tl-13-about-feature">Continuing </span>
+        <span class="tl-13-about-feature">Academy </span>
+        <span class="tl-13-about-feature">Learning management </span>
+        <span class="tl-13-about-feature">teaching </span>
+        <span class="tl-13-about-feature">Learning </span>
+    </div>
+</section>
+<!-- ABOUT SECTION ENDS HERE 👆-->
+
+
+<!-- POPULAR CATEGORIES SECTION STARTS HERE 👇-->
+<section class="tl-13-categories pt-60 pb-120">
+    <div class="container">
+        <h2 class="tl-13-section-title">Popular <span class="last-word">Categories</span></h2>
+
+        <div class="row tl-13-categories-row">
+            <div class="col-lg-3 col-md-4 col-6 col-xxs-12">
+                <a href="#" class="tl-3-single-program">
+                    <div class="tl-3-single-program-icon">
+                        <img src="home/images/tl-12/sub-5.png" alt="icon">
+                    </div>
+                    <h5 class="tl-3-single-program-title">Product Design</h5>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 col-xxs-12">
+                <a href="#" class="tl-3-single-program">
+                    <div class="tl-3-single-program-icon">
+                        <img src="home/images/tl-12/sub-3.png" alt="icon">
+                    </div>
+                    <h5 class="tl-3-single-program-title">App Development</h5>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 col-xxs-12">
+                <a href="#" class="tl-3-single-program">
+                    <div class="tl-3-single-program-icon">
+                        <img src="home/images/tl-12/sub-7.png" alt="icon">
+                    </div>
+                    <h5 class="tl-3-single-program-title">Data Engineering</h5>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 col-xxs-12">
+                <a href="#" class="tl-3-single-program">
+                    <div class="tl-3-single-program-icon">
+                        <img src="home/images/tl-13/cate-4.png" alt="icon">
+                    </div>
+                    <h5 class="tl-3-single-program-title">Language</h5>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 col-xxs-12">
+                <a href="#" class="tl-3-single-program">
+                    <div class="tl-3-single-program-icon">
+                        <img src="home/images/tl-13/cate-2.png" alt="icon">
+                    </div>
+                    <h5 class="tl-3-single-program-title">Rocket Science</h5>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 col-xxs-12">
+                <a href="#" class="tl-3-single-program">
+                    <div class="tl-3-single-program-icon">
+                        <img src="home/images/tl-13/cate-1.png" alt="icon">
+                    </div>
+                    <h5 class="tl-3-single-program-title">Literature</h5>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 col-xxs-12">
+                <a href="#" class="tl-3-single-program">
+                    <div class="tl-3-single-program-icon">
+                        <img src="home/images/tl-12/sub-2.png" alt="icon">
+                    </div>
+                    <h5 class="tl-3-single-program-title">Advanced Skills</h5>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 col-xxs-12">
+                <a href="#" class="tl-3-single-program">
+                    <div class="tl-3-single-program-icon">
+                        <img src="home/images/tl-12/sub-1.png" alt="icon">
+                    </div>
+                    <h5 class="tl-3-single-program-title">Higher Study</h5>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- POPULAR CATEGORIES SECTION ENDS HERE 👆-->
+
+
+<!-- POPULAR COURSES SECTION STARTS HERE 👇-->
+<section class="tl-13-courses pt-120 pb-120" data-bg-color="#F2EFE8">
+    <div class="container">
+        <div class="tl-13-section-heading">
+            <h2 class="tl-13-section-title">Explore Popular <span class="last-word">Courses</span></h2>
+            <div class="tl-13-courses-slider-nav"></div>
+        </div>
+
+        <div class="tl-13-courses-slider owl-carousel">
+            <div class="tl-9-class tl-13-course">
+                <span class="tl-9-class-tag">$300</span>
+                <img src="home/images/tl-4/admission-bg.jpg" alt="class image" class="tl-9-class-img">
+                <div class="tl-9-class-infos">
+                    <span class="tl-9-class-category">Courses</span>
+                </div>
+                <h3 class="tl-13-course-title"><a href="#">Create an LMS Website With us.</a></h3>
+                <div class="tl-12-course-stats">
+                    <div class="tl-12-course-stat">
+                        <span class="tl-12-course-stat-icon"><i class="fa-regular fa-book-blank"></i></span>
+                        <span class="tl-12-course-stat-txt">14 Lessons</span>
+                    </div>
+                    <div class="tl-12-course-stat">
+                        <span class="tl-12-course-stat-icon"><i class="fa-regular fa-user-group"></i></span>
+                        <span class="tl-12-course-stat-txt">64 Students</span>
+                    </div>
+                </div>
+                <div class="tl-13-course-actions">
+                    <a href="#" class="tl-9-program-btn">Teaching Online <i class="fa-regular fa-arrow-right"></i></a>
+                    <span class="tl-12-course-stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </span>
+                </div>
+            </div>
+
+            <div class="tl-9-class tl-13-course">
+                <span class="tl-9-class-tag">$450</span>
+                <img src="home/images/tl-5/blog-1.jpg" alt="class image" class="tl-9-class-img">
+                <div class="tl-9-class-infos">
+                    <span class="tl-9-class-category">Courses</span>
+                </div>
+                <h3 class="tl-13-course-title"><a href="#">Essential Skills for Online Learning.</a></h3>
+                <div class="tl-12-course-stats">
+                    <div class="tl-12-course-stat">
+                        <span class="tl-12-course-stat-icon"><i class="fa-regular fa-book-blank"></i></span>
+                        <span class="tl-12-course-stat-txt">30 Lessons</span>
+                    </div>
+                    <div class="tl-12-course-stat">
+                        <span class="tl-12-course-stat-icon"><i class="fa-regular fa-user-group"></i></span>
+                        <span class="tl-12-course-stat-txt">34 Students</span>
+                    </div>
+                </div>
+                <div class="tl-13-course-actions">
+                    <a href="#" class="tl-9-program-btn">Teaching Online <i class="fa-regular fa-arrow-right"></i></a>
+                    <span class="tl-12-course-stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </span>
+                </div>
+            </div>
+
+            <div class="tl-9-class tl-13-course">
+                <span class="tl-9-class-tag">$675</span>
+                <img src="home/images/tl-5/blog-3.jpg" alt="class image" class="tl-9-class-img">
+                <div class="tl-9-class-infos">
+                    <span class="tl-9-class-category">Courses</span>
+                </div>
+                <h3 class="tl-13-course-title"><a href="#">Engaging Learners on the Go.</a></h3>
+                <div class="tl-12-course-stats">
+                    <div class="tl-12-course-stat">
+                        <span class="tl-12-course-stat-icon"><i class="fa-regular fa-book-blank"></i></span>
+                        <span class="tl-12-course-stat-txt">34 Lessons</span>
+                    </div>
+                    <div class="tl-12-course-stat">
+                        <span class="tl-12-course-stat-icon"><i class="fa-regular fa-user-group"></i></span>
+                        <span class="tl-12-course-stat-txt">20 Students</span>
+                    </div>
+                </div>
+                <div class="tl-13-course-actions">
+                    <a href="#" class="tl-9-program-btn">Teaching Online <i class="fa-regular fa-arrow-right"></i></a>
+                    <span class="tl-12-course-stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </span>
+                </div>
+            </div>
+
+            <div class="tl-9-class tl-13-course">
+                <span class="tl-9-class-tag">$675</span>
+                <img src="home/images/tl-5/blog-3.jpg" alt="class image" class="tl-9-class-img">
+                <div class="tl-9-class-infos">
+                    <span class="tl-9-class-category">Courses</span>
+                </div>
+                <h3 class="tl-13-course-title"><a href="#">Engaging Learners on the Go.</a></h3>
+                <div class="tl-12-course-stats">
+                    <div class="tl-12-course-stat">
+                        <span class="tl-12-course-stat-icon"><i class="fa-regular fa-book-blank"></i></span>
+                        <span class="tl-12-course-stat-txt">34 Lessons</span>
+                    </div>
+                    <div class="tl-12-course-stat">
+                        <span class="tl-12-course-stat-icon"><i class="fa-regular fa-user-group"></i></span>
+                        <span class="tl-12-course-stat-txt">20 Students</span>
+                    </div>
+                </div>
+                <div class="tl-13-course-actions">
+                    <a href="#" class="tl-9-program-btn">Teaching Online <i class="fa-regular fa-arrow-right"></i></a>
+                    <span class="tl-12-course-stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- POPULAR COURSES SECTION ENDS HERE 👆-->
+
+
+<!-- TESTIMONIAL SECTION STARTS HERE 👇-->
+<section class="tl-13-testimonial pt-120 pb-120 bg-defaults" data-background="home/images/tl-13/testimonial-bg.png">
+    <div class="container">
+        <h2 class="tl-13-section-title">What <span class="last-word">Student</span> Says?</h2>
+        <div class="row gy-4 align-items-center justify-content-center">
+            <div class="col-lg-5">
+                <div class="tl-13-testimonial-img">
+                    <div class="tl-13-testimonial-user-slider">
+                        <img src="home/images/tl-4/testimony-1.jpg" alt="User Image">
+                        <img src="home/images/tl-4/testimony-2.jpg" alt="User Image">
+                    </div>
+
+                    <img src="home/images/tl-13/quote-icon.png" alt="icon" class="tl-13-testimonial-quote-icon">
+                </div>
+            </div>
+
+            <div class="col-lg-7">
+                <div class="tl-13-testimonial-slider">
+                    <div class="tl-4-testimony-txt">
+                        <p class="tl-4-testimony-review">Morbi consectetur elementum purus mattis cursus purus vel metus iaculis sagittis. Vestibulum molestie bibendum turpis luctus sem lacinia quis. Quisque amet velit sit amet dui hendrerit ultricies a id ipsum Mauris sit amet lacinia est, vitae tristique metus tempor nibh ultricies.</p>
+
+                        <div class="tl-4-reviewer">
+                            <img src="home/images/tl-4/user-1.jpg" alt="User Image" class="tl-4-reviewer-img">
+
+                            <div class="tl-4-reviewer-txt">
+                                <h6 class="tl-4-reviewer-name">Russell Sprout</h6>
+                                <span class="tl-4-reviewer-label">Student, CSE</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tl-4-testimony-txt">
+                        <p class="tl-4-testimony-review">Morbi consectetur elementum purus mattis cursus purus vel metus iaculis sagittis. Vestibulum molestie bibendum turpis luctus sem lacinia quis. Quisque amet velit sit amet dui hendrerit ultricies a id ipsum Mauris sit amet lacinia est, vitae tristique metus tempor nibh ultricies.</p>
+
+                        <div class="tl-4-reviewer">
+                            <img src="home/images/tl-4/user-2.jpg" alt="User Image" class="tl-4-reviewer-img">
+
+                            <div class="tl-4-reviewer-txt">
+                                <h6 class="tl-4-reviewer-name">Thomas R. Toe</h6>
+                                <span class="tl-4-reviewer-label">B.Tech (CSE) , 2018-2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+<!-- TESTIMONIAL SECTION ENDS HERE 👆-->
+
+
+<!-- EVENTS SECTION STARTS HERE 👇-->
+<section class="tl-13-events pt-120 pb-120" data-bg-color="#F2EFE8">
+    <div class="container">
+        <h2 class="tl-13-section-title">Upcoming <span class="last-word">Events</span></h2>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-4 col-md-6">
+                <div class="tl-9-event tl-13-event">
+                    <div class="tl-11-latest-article-img">
+                        <img src="home/images/tl-12/event-1.jpg" alt="Article Image">
+                    </div>
+
+                    <div class="tl-11-latest-article-txt">
+                        <div class="tl-3-single-event-info">
+                            <h6 class="tl-3-single-event-location">
+                                <i class="fa-regular fa-location-dot"></i> London, UK
+                            </h6>
+                            <h6 class="tl-3-single-event-time">
+                                <i class="fa-regular fa-clock"></i> 6.00 am - 8.00 pm
+                            </h6>
+                        </div>
+                        <h3 class="tl-11-latest-article-title"><a href="#">Bridging Platforms Seamless Learning Experiences.</a></h3>
+                        <a href="#" class="tl-13-event-btn">Get Ticket <i class="fa-regular fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="tl-9-event tl-13-event">
+                    <div class="tl-11-latest-article-img">
+                        <img src="home/images/tl-12/event-2.jpg" alt="Article Image">
+                    </div>
+
+                    <div class="tl-11-latest-article-txt">
+                        <div class="tl-3-single-event-info">
+                            <h6 class="tl-3-single-event-location">
+                                <i class="fa-regular fa-location-dot"></i> London, UK
+                            </h6>
+                            <h6 class="tl-3-single-event-time">
+                                <i class="fa-regular fa-clock"></i> 6.00 am - 8.00 pm
+                            </h6>
+                        </div>
+                        <h3 class="tl-11-latest-article-title"><a href="#">Empowering Administrators in Driving Online Education.</a></h3>
+                        <a href="#" class="tl-13-event-btn">Get Ticket <i class="fa-regular fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="tl-9-event tl-13-event">
+                    <div class="tl-11-latest-article-img">
+                        <img src="home/images/tl-12/event-3.jpg" alt="Article Image">
+                    </div>
+
+                    <div class="tl-11-latest-article-txt">
+                        <div class="tl-3-single-event-info">
+                            <h6 class="tl-3-single-event-location">
+                                <i class="fa-regular fa-location-dot"></i> London, UK
+                            </h6>
+                            <h6 class="tl-3-single-event-time">
+                                <i class="fa-regular fa-clock"></i> 6.00 am - 8.00 pm
+                            </h6>
+                        </div>
+                        <h3 class="tl-11-latest-article-title"><a href="#">Optimizing Employee Learning and Development.</a></h3>
+                        <a href="#" class="tl-13-event-btn">Get Ticket <i class="fa-regular fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- EVENTS SECTION ENDS HERE 👆-->
+
+
+<!-- MEMBERSHIP SECTION STARTS HERE -->
+<section class="tl-6-membership tl-11-section-spacing">
+    <div class="container">
+        <div class="tl-6-members tl-13-members owl-carousel">
+            <div class="tl-6-member">
+                <img src="home/images/tl-11/member-1.png" alt="Member logo">
+            </div>
+            <div class="tl-6-member">
+                <img src="home/images/tl-11/member-2.png" alt="Member logo">
+            </div>
+            <div class="tl-6-member">
+                <img src="home/images/tl-11/member-3.png" alt="Member logo">
+            </div>
+            <div class="tl-6-member">
+                <img src="home/images/tl-11/member-4.png" alt="Member logo">
+            </div>
+            <div class="tl-6-member">
+                <img src="home/images/tl-11/member-5.png" alt="Member logo">
+            </div>
+            <div class="tl-6-member">
+                <img src="home/images/tl-11/member-3.png" alt="Member logo">
+            </div>
+        </div>
+    </div>
+</section>
+<!-- MEMBERSHIP SECTION ENDS HERE -->
+
+
+<!-- BLOGS SECTION STARTS HERE 👇-->
+<section class="tl-13-blogs pb-120">
+    <div class="container">
+        <div class="tl-13-section-heading">
+            <h2 class="tl-13-section-title">Latest <span class="last-word">Blog</span> & News</h2>
+            <div class="tl-13-blogs-slider-nav"></div>
+        </div>
+
+        <div class="tl-13-blogs-slider owl-carousel">
+            <div class="tl-9-class tl-13-course">
+                <span class="tl-9-class-tag">Education</span>
+                <img src="home/images/tl-4/admission-bg.jpg" alt="class image" class="tl-9-class-img">
+                <div class="tl-9-class-infos">
+                    <span class="tl-9-class-category">March 18, 2023</span>
+                </div>
+                <h3 class="tl-13-course-title"><a href="#">Strategies for Maximizing Engagement and Achievement.</a></h3>
+                <a href="#" class="tl-9-program-btn"><i class="fa-regular fa-arrow-right-long"></i></a>
+            </div>
+
+            <div class="tl-9-class tl-13-course">
+                <span class="tl-9-class-tag">Education</span>
+                <img src="home/images/tl-13/blog-1.jpg" alt="class image" class="tl-9-class-img">
+                <div class="tl-9-class-infos">
+                    <span class="tl-9-class-category">March 18, 2023</span>
+                </div>
+                <h3 class="tl-13-course-title"><a href="#">Strategies for Maximizing Engagement and Achievement.</a></h3>
+                <a href="#" class="tl-9-program-btn"><i class="fa-regular fa-arrow-right-long"></i></a>
+            </div>
+
+            <div class="tl-9-class tl-13-course">
+                <span class="tl-9-class-tag">Education</span>
+                <img src="home/images/tl-13/blog-2.jpg" alt="class image" class="tl-9-class-img">
+                <div class="tl-9-class-infos">
+                    <span class="tl-9-class-category">March 18, 2023</span>
+                </div>
+                <h3 class="tl-13-course-title"><a href="#">Strategies for Maximizing Engagement and Achievement.</a></h3>
+                <a href="#" class="tl-9-program-btn"><i class="fa-regular fa-arrow-right-long"></i></a>
+            </div>
+
+            <div class="tl-9-class tl-13-course">
+                <span class="tl-9-class-tag">Education</span>
+                <img src="home/images/tl-13/blog-1.jpg" alt="class image" class="tl-9-class-img">
+                <div class="tl-9-class-infos">
+                    <span class="tl-9-class-category">March 18, 2023</span>
+                </div>
+                <h3 class="tl-13-course-title"><a href="#">Strategies for Maximizing Engagement and Achievement.</a></h3>
+                <a href="#" class="tl-9-program-btn"><i class="fa-regular fa-arrow-right-long"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- BLOGS SECTION ENDS HERE 👆-->
+
+
+<!-- CTA SECTION STARTS HERE -->
+<div class="tl-7-cta">
+    <div class="tl-7-cta-bg container">
+        <div class="row align-items-center justify-content-between">
+            <div class="col-xxl-4">
+                <h2 class="tl-7-cta-title">Ready to <span class="last-word">Shine?</span> Enroll Today!</h2>
+            </div>
+
+            <div class="col-xxl-5 col-md-7">
+                <p class="tl-7-cta-descr">Morbi consectetur elementum purus mattis cursus purus vel metus iaculis sagittis.</p>
+            </div>
+
+            <div class="col-xxl-3 col-5 text-start text-md-end">
+                <a href="#" class="tl-7-def-btn">Join Membership</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- CTA SECTION ENDS HERE -->
+
+<!--FOOTER HOME-->
+<div th:insert="~{home/fragments/footer}"></div>
+
+<!-- JS FILES ↓ -->
+<script src="home/vendor/jquery/jquery-3.7.0.min.js"></script>
+<script src="home/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="home/vendor/owl-carousel/owl.carousel.min.js"></script>
+<script src="home/vendor/fs-lightbox/fslightbox.js"></script>
+<script src="home/vendor/eocjs-newsticker/eocjs-newsticker.js"></script>
+<script src="home/vendor/mean-menu/jquery.meanmenu.min.js"></script>
+<script src="home/vendor/swiper-js/swiper-bundle.min.js"></script>
+<script src="home/vendor/slick-slider/slick.min.js"></script>
+<script src="home/vendor/bx-slider/jquery.bxslider.min.js"></script>
+<script src="home/vendor/eocjs-newsticker/eocjs-newsticker.js"></script>
+<script src="home/vendor/syotimer/jquery.syotimer.min.js"></script>
+<script src="home/vendor/mixitup/mixitup.min.js"></script>
+<script src="home/js/main.js"></script>
+</body>
+
+
+<!-- Mirrored from codebasket.xyz/template/talim/light/index-13.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 07:56:39 GMT -->
+</html>
