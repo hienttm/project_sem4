@@ -183,25 +183,25 @@
         </div>
 
         <div class="tl-13-courses-slider owl-carousel">
-            <div class="tl-9-class tl-13-course">
-                <span class="tl-9-class-tag">$300</span>
+            <div class="tl-9-class tl-13-course" th:each="courseDTO: ${courseDTOs}">
+                <span class="tl-9-class-tag">$ <span th:text="${courseDTO.price}"></span></span>
                 <img src="home/images/tl-4/admission-bg.jpg" alt="class image" class="tl-9-class-img">
                 <div class="tl-9-class-infos">
-                    <span class="tl-9-class-category">Courses</span>
+                    <span class="tl-9-class-category" th:text="${courseDTO.courseTypeName}"></span>
                 </div>
-                <h3 class="tl-13-course-title"><a href="#">Create an LMS Website With us.</a></h3>
+                <h3 class="tl-13-course-title"><a th:href="'/courses/detail/' + ${courseDTO.courseId}" th:text="${courseDTO.courseName}"></a></h3>
                 <div class="tl-12-course-stats">
                     <div class="tl-12-course-stat">
                         <span class="tl-12-course-stat-icon"><i class="fa-regular fa-book-blank"></i></span>
-                        <span class="tl-12-course-stat-txt">14 Lessons</span>
+                        <span class="tl-12-course-stat-txt"><span th:text="${courseDTO.freeNumbers}"></span> Free Lessons</span>
                     </div>
                     <div class="tl-12-course-stat">
                         <span class="tl-12-course-stat-icon"><i class="fa-regular fa-user-group"></i></span>
-                        <span class="tl-12-course-stat-txt">64 Students</span>
+                        <span class="tl-12-course-stat-txt">Teacher: <span th:text="${courseDTO.username}"></span></span>
                     </div>
                 </div>
                 <div class="tl-13-course-actions">
-                    <a href="#" class="tl-9-program-btn">Teaching Online <i class="fa-regular fa-arrow-right"></i></a>
+                    <span href="#" class="tl-9-program-btn" th:text="${courseDTO.categoryName}"></span>
                     <span class="tl-12-course-stars">
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
@@ -212,92 +212,6 @@
                 </div>
             </div>
 
-            <div class="tl-9-class tl-13-course">
-                <span class="tl-9-class-tag">$450</span>
-                <img src="home/images/tl-5/blog-1.jpg" alt="class image" class="tl-9-class-img">
-                <div class="tl-9-class-infos">
-                    <span class="tl-9-class-category">Courses</span>
-                </div>
-                <h3 class="tl-13-course-title"><a href="#">Essential Skills for Online Learning.</a></h3>
-                <div class="tl-12-course-stats">
-                    <div class="tl-12-course-stat">
-                        <span class="tl-12-course-stat-icon"><i class="fa-regular fa-book-blank"></i></span>
-                        <span class="tl-12-course-stat-txt">30 Lessons</span>
-                    </div>
-                    <div class="tl-12-course-stat">
-                        <span class="tl-12-course-stat-icon"><i class="fa-regular fa-user-group"></i></span>
-                        <span class="tl-12-course-stat-txt">34 Students</span>
-                    </div>
-                </div>
-                <div class="tl-13-course-actions">
-                    <a href="#" class="tl-9-program-btn">Teaching Online <i class="fa-regular fa-arrow-right"></i></a>
-                    <span class="tl-12-course-stars">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </span>
-                </div>
-            </div>
-
-            <div class="tl-9-class tl-13-course">
-                <span class="tl-9-class-tag">$675</span>
-                <img src="home/images/tl-5/blog-3.jpg" alt="class image" class="tl-9-class-img">
-                <div class="tl-9-class-infos">
-                    <span class="tl-9-class-category">Courses</span>
-                </div>
-                <h3 class="tl-13-course-title"><a href="#">Engaging Learners on the Go.</a></h3>
-                <div class="tl-12-course-stats">
-                    <div class="tl-12-course-stat">
-                        <span class="tl-12-course-stat-icon"><i class="fa-regular fa-book-blank"></i></span>
-                        <span class="tl-12-course-stat-txt">34 Lessons</span>
-                    </div>
-                    <div class="tl-12-course-stat">
-                        <span class="tl-12-course-stat-icon"><i class="fa-regular fa-user-group"></i></span>
-                        <span class="tl-12-course-stat-txt">20 Students</span>
-                    </div>
-                </div>
-                <div class="tl-13-course-actions">
-                    <a href="#" class="tl-9-program-btn">Teaching Online <i class="fa-regular fa-arrow-right"></i></a>
-                    <span class="tl-12-course-stars">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </span>
-                </div>
-            </div>
-
-            <div class="tl-9-class tl-13-course">
-                <span class="tl-9-class-tag">$675</span>
-                <img src="home/images/tl-5/blog-3.jpg" alt="class image" class="tl-9-class-img">
-                <div class="tl-9-class-infos">
-                    <span class="tl-9-class-category">Courses</span>
-                </div>
-                <h3 class="tl-13-course-title"><a href="#">Engaging Learners on the Go.</a></h3>
-                <div class="tl-12-course-stats">
-                    <div class="tl-12-course-stat">
-                        <span class="tl-12-course-stat-icon"><i class="fa-regular fa-book-blank"></i></span>
-                        <span class="tl-12-course-stat-txt">34 Lessons</span>
-                    </div>
-                    <div class="tl-12-course-stat">
-                        <span class="tl-12-course-stat-icon"><i class="fa-regular fa-user-group"></i></span>
-                        <span class="tl-12-course-stat-txt">20 Students</span>
-                    </div>
-                </div>
-                <div class="tl-13-course-actions">
-                    <a href="#" class="tl-9-program-btn">Teaching Online <i class="fa-regular fa-arrow-right"></i></a>
-                    <span class="tl-12-course-stars">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </span>
-                </div>
-            </div>
         </div>
     </div>
 </section>
