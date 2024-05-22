@@ -20,7 +20,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model){
-        List<CourseDTO> courseDTOs = courseService.GetAllCourseProcedure();
+        List<CourseDTO> courseDTOs = courseService.GetAllCourseProcedure("");
         model.addAttribute("courseDTOs", courseDTOs);
         return "home/index";
     }

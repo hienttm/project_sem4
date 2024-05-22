@@ -11,5 +11,5 @@ public interface ICourseService {
     Optional<Course> getCourseById(Integer id);
     void add(Course course);
     void deleteById(Integer id);
-    List<CourseDTO> GetAllCourseProcedure();
+    List<CourseDTO> GetAllCourseProcedure(String searchName);
 }

@@ -44,8 +44,8 @@ public class CourseService implements  ICourseService{
 
     @Override
     @Transactional
-    public List<CourseDTO> GetAllCourseProcedure() {
-        List<Object[]> resultList = courseRepository.GetAllCourseProcedure();
+    public List<CourseDTO> GetAllCourseProcedure(String searchName) {
+        List<Object[]> resultList = courseRepository.GetAllCourseProcedure(searchName);
         return resultList.stream()
                 .map(result -> {
                     CourseDTO courseDTO = new CourseDTO();

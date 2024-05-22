@@ -42,6 +42,10 @@ public class Course {
     @NotNull(message = "FreeNumbers cannot be null")
     private int freeNumbers;
 
+    @Column(name = "image")
+    @NotNull(message = "image cannot be null")
+    private String image;
+
     @Column(name = "status")
     @NotNull(message = "FreeNumbers cannot be null")
     private int status=1;

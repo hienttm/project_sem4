@@ -12,12 +12,12 @@ BEGIN
     SELECT username, password, status FROM users WHERE username = usernametk;
 END
 
-CREATE DEFINER=`root`@`%` PROCEDURE  GetAllCourseProcedure ()
+CREATE DEFINER=`root`@`%` PROCEDURE GetAllCourseProcedure (IN searchName VARCHAR(255))
 BEGIN
   SELECT c.course_id, c.course_file, c.course_name, c.course_video, c.free_numbers, c.price, c.status, u1.username, censor.username as censor_name, cate.category_name, ct.type_name  FROM courses AS c
   LEFT JOIN users AS u1 ON c.user_id = u1.user_id
   LEFT JOIN users AS censor ON c.censor_id = censor.user_id
   LEFT JOIN categories as cate ON c.category_id = cate.category_id
   LEFT JOIN course_types as ct ON c.course_type_id = ct.course_type_id
-  WHERE c.status = 1;
+  WHERE c.status = 1 AND c.course_name LIKE CONCAT('%', searchName, '%');
 END
