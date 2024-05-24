@@ -1,5 +1,6 @@
 package com.t2207e.sem4.service;
 
+import com.t2207e.sem4.entity.Token;
 import com.t2207e.sem4.entity.User;
 import com.t2207e.sem4.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,4 +54,13 @@ public class UserService implements IUserService{
     public void deleteById(Integer id) {
         userRepository.deleteById(id);
     }
+
+    @Override
+    public Optional<User> findFirstByEmail(String email) {
+        return userRepository.findFirstByEmail(email);
+    }
+
+
+
+
 }

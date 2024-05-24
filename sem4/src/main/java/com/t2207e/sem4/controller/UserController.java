@@ -1,10 +1,9 @@
 package com.t2207e.sem4.controller;
 
+import com.t2207e.sem4.entity.Token;
 import com.t2207e.sem4.entity.User;
 import com.t2207e.sem4.entity.UserRole;
-import com.t2207e.sem4.service.RoleService;
-import com.t2207e.sem4.service.UserRoleService;
-import com.t2207e.sem4.service.UserService;
+import com.t2207e.sem4.service.*;
 import jakarta.validation.Valid;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -12,8 +11,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 @RequestMapping("/")
@@ -22,12 +26,16 @@ public class UserController {
     private final UserRoleService userRoleService;
     private final RoleService roleService;
     private final PasswordEncoder passwordEncoder;
+    private final TokenService tokenService;
+    private final EmailService emailService;
 
-    public UserController(UserService userService, UserRoleService userRoleService, RoleService roleService, PasswordEncoder passwordEncoder) {
+    public UserController(UserService userService, UserRoleService userRoleService, RoleService roleService, PasswordEncoder passwordEncoder, TokenService tokenService, EmailService emailService) {
         this.userService = userService;
         this.userRoleService = userRoleService;
         this.roleService = roleService;
         this.passwordEncoder = passwordEncoder;
+        this.tokenService = tokenService;
+        this.emailService = emailService;
     }
 
     @GetMapping("login")
@@ -90,4 +98,122 @@ public class UserController {
         return "redirect:/login";
     }
 
+//    forgotPassword
+    @GetMapping("forgotPassword")
+    public String ForgotPassword(){
+        return "forgotPassword";
+    }
+    @PostMapping("checkExistMail")
+    public String checkExitMail(@RequestParam("email") String email,Model model){
+
+        Optional<User> userCheckOptional = userService.findFirstByEmail(email);
+        if(userCheckOptional.isPresent()){
+            //nếu tồn lại:tạo Token, gửi mail
+            //tạo Token:
+            String token= UUID.randomUUID().toString();
+            Token token1 = new Token();
+            token1.setToken(token);
+            token1.setUser(userCheckOptional.get());
+            tokenService.add(token1);
+
+            //gửi mail:
+            emailService.sendEmail(userCheckOptional.get().getEmail(), token);
+
+            String message_checkmail="Hãy Click vào đường link được gửi vào Email để Reset lại mật khẩu";
+            model.addAttribute("message_checkmail", message_checkmail);
+        }else {
+            //không tồn tại: nhập lại email
+            String message_checkmail="Email không tồn lại. Vui lòng nhập lại Email";
+            model.addAttribute("message_checkmail", message_checkmail);
+        }
+        return "/forgotPassword";
+    }
+    @GetMapping("resetPassworUrl/{token}")
+    public String resetPassworUrl(@PathVariable String token, Model model){
+        if (token==null || token.isEmpty()){
+            //token rỗng
+            System.out.println("token is null or empty");
+
+            String message_checkToken="Đường link không hợp lệ, quý khách vui lòng kiểm tra lại";
+            model.addAttribute("message_checkToken",message_checkToken);
+            return "redirect:/forgotPassword";
+        }
+        // kiểm tra token
+        Optional<Token> checkToken=tokenService.findByToken(token);
+        if(checkToken.isPresent()){
+            Token tokenEntity = checkToken.get();
+
+            // Lấy thời gian tạo token
+            Date tokenCreationTime = tokenEntity.getCreateAt();
+
+            // Lấy thời gian hiện tại
+            Date currentTime = new Date(System.currentTimeMillis());
+
+            // Tính toán thời gian đã trôi qua từ khi tạo token
+            long durationMillis = currentTime.getTime() - tokenCreationTime.getTime();
+            long minutesPassed = TimeUnit.MILLISECONDS.toMinutes(durationMillis);
+            System.out.println("minutesPassed: " + minutesPassed);
+
+            // Kiểm tra nếu thời gian đã trôi qua vượt quá 2 phút
+            if (minutesPassed > 2) {
+                // Token hết hạn
+                String message_checkToken="Đường link đã hết hạn, quý khách vui lòng thao tác lại";
+                model.addAttribute("message_checkToken",message_checkToken);
+                return "/forgotPassword";
+                // Xử lý logic khi token hết hạn
+            } else {
+                // Token còn hiệu lực
+                Integer userId=tokenEntity.getUser().getUserId();
+                model.addAttribute("userId", userId);
+                return "/resetForgotPassword";
+                // Xử lý logic khi token còn hiệu lực
+            }
+
+
+        }else{
+            //token sai
+            System.out.println("Token sai");
+            String message_checkToken="Đường link không hợp lệ, quý khách vui lòng kiểm tra lại";
+            model.addAttribute("message_checkToken",message_checkToken);
+            return "/forgotPassword";
+        }
+    }
+    @GetMapping("resetForgotPassword")
+    public String resetForgotPassword(Model model){
+        return "resetForgotPassword";
+    }
+    @PostMapping("checkResetForgotPassword")
+    public String checkResetForgotPassword(@RequestParam("password") String password, Model model, @RequestParam("rePassword") String rePassword,@RequestParam("userId") Integer userId ) {
+        System.out.println("userId: " + userId);
+        if (!Objects.equals(rePassword, password)) {
+            String message_checkpassword = "Password and Re-Password are different!";
+            model.addAttribute("message_checkpassword", message_checkpassword);
+            return "resetForgotPassword";
+        }
+        String encodedPassword = passwordEncoder.encode(password);
+
+        Optional<User> userCheckOptional = userService.getUserById(userId);
+        if (userCheckOptional.isPresent()) {
+            User user = userCheckOptional.get();
+            user.setPassword(encodedPassword);
+            System.out.println(encodedPassword);
+            String message_checkpassword = "Đổi mật khẩu thành công, Vui lòng đăng nhập lại!";
+            System.out.println("Đổi mật khẩu thành công, Vui lòng đăng nhập lại");
+            model.addAttribute("message_checkpassword", message_checkpassword);
+            userService.add(user);
+            System.out.println(user.getPassword());
+            System.out.println(user.getUserId());
+            System.out.println(user.getAddress());
+
+            return "/loginPage";
+            // Cập nhật mật khẩu của người dùng
+        } else {
+            System.out.println("không tìm thấy người dùng");
+            return "redirect:/loginPage";
+
+            // Xử lý trường hợp không tìm thấy người dùng với userId cung cấp
+        }
+
+
+    }
 }

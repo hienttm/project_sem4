@@ -13,4 +13,6 @@ public interface IUserService {
     public List<User> getUsersByPageNumber(Integer pageNumber, Integer pageSize, String tableName);
     void add(User user);
     void deleteById(Integer id);
+    Optional<User> findFirstByEmail(String email);
+
 }
