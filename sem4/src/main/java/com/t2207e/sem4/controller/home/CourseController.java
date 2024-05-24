@@ -38,8 +38,8 @@ public class CourseController {
         return "home/courses/list";
     }
 
-    @GetMapping("/detail")
-    public String Detail(){
+    @GetMapping("/detail/{id}")
+    public String Detail(@PathVariable Integer id, Model model){
         return "home/courses/detail";
     }
 }

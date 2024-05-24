@@ -66,5 +66,5 @@ public class Course {
     @JoinColumn(name = "censor_id", nullable = false)
     private User censor;
 
-    // Getters and Setters
+    private String description;
 }
