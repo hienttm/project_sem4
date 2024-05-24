@@ -1,0 +1,6 @@
+<li th:each="searchCourseDTO: ${searchCourseDTOs}" class="align-middle">
+    <a th:href="'/course/detail/' + ${searchCourseDTO.courseId}">
+        <span th:text="${searchCourseDTO.courseName}"></span>
+        <span th:text="${searchCourseDTO.categoryName}" class="categoryCourse-search"></span>
+    </a>
+</li>

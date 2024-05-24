@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from codebasket.xyz/template/talim/light/course-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 07:56:54 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talim - School University & Online Education Template</title>
+    <link rel="shortcut icon" th:href="@{/home/images/logo/favicon.ico}" type="image/x-icon">
+
+    <!-- STYLESHEETS -->
+    <link rel="stylesheet" th:href="@{/home/vendor/bootstrap/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/home/vendor/owl-carousel/owl.carousel.min.css}">
+    <link rel="stylesheet" th:href="@{/home/css/icofont.min.css}">
+    <link rel="stylesheet" th:href="@{/home/vendor/font-awesome/all.min.css}">
+    <link rel="stylesheet" th:href="@{/home/vendor/font-awesome/sharp-regular.min.css}">
+    <link rel="stylesheet" th:href="@{/home/vendor/font-awesome/sharp-solid.min.css}">
+    <link rel="stylesheet" th:href="@{/home/vendor/mean-menu/meanmenu.min.css}">
+    <link rel="stylesheet" th:href="@{/home/vendor/slick-slider/slick.css}">
+    <link rel="stylesheet" th:href="@{/home/vendor/eocjs-newsticker/eocjs-newsticker.css}">
+    <link rel="stylesheet" th:href="@{/home/css/style.css}">
+
+    <!-- dark version css -->
+    <link rel="stylesheet" th:href="@{/home/css/dark-v.css}">
+</head>
+
+<body class="tl-inner-courses-body">
+<!--HEADER HOME-->
+<div th:insert="~{home/fragments/header}"></div>
+
+
+<!-- BREADCRUMB STARTS HERE -->
+<div class="tl-breadcrumb pt-120 pb-120">
+    <div class="container">
+        <div class="row align-items-end">
+            <div class="col-md-6">
+                <div class="banner-txt">
+                    <h1 class="tl-breadcrumb-title">Course Details</h1>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <ul class="tl-breadcrumb-nav d-flex">
+                    <li><a th:href="@{/course/}">Course</a></li>
+                    <li class="current-page">
+                        <span class="dvdr"><i class="icofont-simple-right"></i></span>
+                        <span>Detail</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- BREADCRUMB ENDS HERE -->
+
+<!-- COURSE DETAILS START -->
+<div class="tl-event-details-container pt-120 pb-120">
+    <div class="container">
+        <div class="row g-0 tl-event-details-row">
+            <div class="col-lg-8">
+                <div class="tl-event-details-left">
+                    <div class="tl-event-details-video">
+                        <iframe src="https://www.youtube.com/embed/VqhDnaqhnd4?si=LL6xoZfjSJkMNNLJ" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+                        <h2 class="tl-event-details-title">Mastering English Speaking</h2>
+                    </div>
+
+                    <div class="tl-course-details-infos">
+                        <div class="tl-course-details-info">
+                            <h6 class="tl-course-details-info-name"><i class="fa-regular fa-user"></i>instructor</h6>
+                            <h5 class="tl-course-details-info-value">Brian Cumin</h5>
+                        </div>
+                        <div class="tl-course-details-info">
+                            <h6 class="tl-course-details-info-name"><i class="fa-regular fa-layer-group"></i>Category</h6>
+                            <h5 class="tl-course-details-info-value">Language</h5>
+                        </div>
+                        <div class="tl-course-details-info">
+                            <h6 class="tl-course-details-info-name"><i class="fa-regular fa-user-graduate"></i>Students</h6>
+                            <h5 class="tl-course-details-info-value">245+</h5>
+                        </div>
+                        <div class="tl-course-details-info">
+                            <h6 class="tl-course-details-info-name"><i class="fa-solid fa-sharp fa-star"></i>Ratings</h6>
+                            <div class="tl-course-details-stars tl-course-details-info-value">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <ul class="nav nav-tabs tl-course-details-navs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview-tab-pane" type="button" role="tab" aria-controls="overview-tab-pane" aria-selected="true">overview</button>
+                        </li>
+
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="curriculum-tab" data-bs-toggle="tab" data-bs-target="#curriculum-tab-pane" type="button" role="tab" aria-controls="curriculum-tab-pane" aria-selected="false">curriculum</button>
+                        </li>
+
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="instructor-tab" data-bs-toggle="tab" data-bs-target="#instructor-tab-pane" type="button" role="tab" aria-controls="instructor-tab-pane" aria-selected="false">instructor</button>
+                        </li>
+
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews-tab-pane" type="button" role="tab" aria-controls="reviews-tab-pane" aria-selected="false">reviews</button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content" id="tl-course-tab-content">
+                        <div class="tab-pane fade show active" id="overview-tab-pane" role="tabpanel" aria-labelledby="overview-tab" tabindex="0">
+                            <div class="tl-event-details-descr tl-event-details-area">
+                                <h3 class="tl-event-details-area-title">About The Course</h3>
+
+                                <p class="tl-event-details-descr-txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente ducimus possimus porro expedita itaque, praesentium illum aspernatur? Porro amet labore, aspernatur voluptates laudantium quas unde cupiditate repudiandae quos eius neque.</p>
+
+                                <p class="tl-event-details-descr-txt">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque quo deleniti quae, dolorum aperiam aliquid aliquam, nihil cupiditate officiis ex ipsa? Molestias provident incidunt autem debitis ex, esse sed veritatis!</p>
+                            </div>
+
+                            <div class="tl-event-details-faq tl-event-details-area">
+                                <h3 class="tl-event-details-area-title">Things you'll get to learn from this course</h3>
+
+                                <div class="tl-8-accordion">
+                                    <div class="tl-8-accordion-item open">
+                                        <div class="tl-8-accordion-item-header">
+                                            <h6 class="tl-8-accordion-item-title">Foundational Language Skills</h6>
+                                            <span class="tl-8-accordion-item-expand-icon"></span>
+                                        </div>
+
+                                        <p class="tl-8-accordion-item-body">
+                                            Build a solid linguistic foundation as you master pronunciation, vocabulary, and sentence structure, setting the stage for effective English communication.
+                                        </p>
+                                    </div>
+
+                                    <div class="tl-8-accordion-item">
+                                        <div class="tl-8-accordion-item-header">
+                                            <h6 class="tl-8-accordion-item-title">Fluency in Real-Life Situations</h6>
+                                            <span class="tl-8-accordion-item-expand-icon"></span>
+                                        </div>
+
+                                        <p class="tl-8-accordion-item-body">
+                                            Navigate everyday scenarios like travel, dining, and socializing with ease as you practice practical language skills in context.
+                                        </p>
+                                    </div>
+
+                                    <div class="tl-8-accordion-item">
+                                        <div class="tl-8-accordion-item-header">
+                                            <h6 class="tl-8-accordion-item-title">Confident Conversations</h6>
+                                            <span class="tl-8-accordion-item-expand-icon"></span>
+                                        </div>
+
+                                        <p class="tl-8-accordion-item-body">
+                                            Develop the ability to initiate and sustain engaging conversations, becoming an active and attentive listener while expressing yourself clearly.
+                                        </p>
+                                    </div>
+
+                                    <div class="tl-8-accordion-item">
+                                        <div class="tl-8-accordion-item-header">
+                                            <h6 class="tl-8-accordion-item-title">Cultural Awareness in Communication</h6>
+                                            <span class="tl-8-accordion-item-expand-icon"></span>
+                                        </div>
+
+                                        <p class="tl-8-accordion-item-body">
+                                            Gain insights into cross-cultural communication, enhancing your understanding of idiomatic expressions and cultural nuances.
+                                        </p>
+                                    </div>
+
+                                    <div class="tl-8-accordion-item">
+                                        <div class="tl-8-accordion-item-header">
+                                            <h6 class="tl-8-accordion-item-title">Advanced Speaking Techniques</h6>
+                                            <span class="tl-8-accordion-item-expand-icon"></span>
+                                        </div>
+
+                                        <p class="tl-8-accordion-item-body">
+                                            Elevate your language proficiency by articulating complex ideas, participating in group discussions, and conveying emotions effectively.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="curriculum-tab-pane" role="tabpanel" aria-labelledby="curriculum-tab" tabindex="0">
+                            <div class="accordion" id="accordionExample">
+                                <div class="tl-event-details-area tl-course-details-curriculum">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            Foundations of Fluent English Speaking
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <a th:href="@{#}" class="tl-course-details-content">
+                                                    <span class="tl-course-details-content-left">
+                                                        <i class="fa-regular fa-video"></i> Mastering Pronunciation and Intonation
+                                                    </span>
+
+                                                <span class="tl-course-details-content-right">
+                                                        <span class="tl-course-details-duration">43:28m</span>
+                                                        <span class="tl-course-details-availability"><i class="fa-regular fa-lock-open"></i></span>
+                                                    </span>
+                                            </a>
+
+                                            <a th:href="@{#}" class="tl-course-details-content">
+                                                    <span class="tl-course-details-content-left">
+                                                        <i class="fa-regular fa-video"></i> Building a Strong Vocabulary for Everyday Communication
+                                                    </span>
+
+                                                <span class="tl-course-details-content-right">
+                                                        <span class="tl-course-details-duration">01:05hrs</span>
+                                                        <span class="tl-course-details-availability"><i class="fa-regular fa-lock"></i></span>
+                                                    </span>
+                                            </a>
+
+                                            <a th:href="@{#}" class="tl-course-details-content">
+                                                <span class="tl-course-details-content-left"><i class="fa-regular fa-file-contract"></i> Understanding Basic Sentence Structure and Grammar</span>
+
+                                                <span class="tl-course-details-content-right">
+                                                        <span class="tl-course-details-duration">01:05h</span>
+                                                        <span class="tl-course-details-availability"><i class="fa-regular fa-lock"></i></span>
+                                                    </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tl-event-details-area tl-course-details-curriculum">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Conversational Skills and Strategies
+                                        </button>
+                                    </h2>
+                                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <a th:href="@{#}" class="tl-course-details-content">
+                                                    <span class="tl-course-details-content-left">
+                                                        <i class="fa-regular fa-video"></i> Mastering Pronunciation and Intonation
+                                                    </span>
+
+                                                <span class="tl-course-details-content-right">
+                                                        <span class="tl-course-details-duration">43:28m</span>
+                                                        <span class="tl-course-details-availability"><i class="fa-regular fa-lock"></i></span>
+                                                    </span>
+                                            </a>
+
+                                            <a th:href="@{#}" class="tl-course-details-content">
+                                                    <span class="tl-course-details-content-left">
+                                                        <i class="fa-regular fa-video"></i> Building a Strong Vocabulary for Everyday Communication
+                                                    </span>
+
+                                                <span class="tl-course-details-content-right">
+                                                        <span class="tl-course-details-duration">01:05hrs</span>
+                                                        <span class="tl-course-details-availability"><i class="fa-regular fa-lock"></i></span>
+                                                    </span>
+                                            </a>
+
+                                            <a th:href="@{#}" class="tl-course-details-content">
+                                                <span class="tl-course-details-content-left"><i class="fa-regular fa-file-contract"></i> Understanding Basic Sentence Structure and Grammar</span>
+
+                                                <span class="tl-course-details-content-right">
+                                                        <span class="tl-course-details-duration">01:05h</span>
+                                                        <span class="tl-course-details-availability"><i class="fa-regular fa-lock"></i></span>
+                                                    </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tl-event-details-area tl-course-details-curriculum">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            Fluency Development through Real-world Scenarios
+                                        </button>
+                                    </h2>
+                                    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <a th:href="@{#}" class="tl-course-details-content">
+                                                    <span class="tl-course-details-content-left">
+                                                        <i class="fa-regular fa-video"></i> Mastering Pronunciation and Intonation
+                                                    </span>
+
+                                                <span class="tl-course-details-content-right">
+                                                        <span class="tl-course-details-duration">43:28m</span>
+                                                        <span class="tl-course-details-availability"><i class="fa-regular fa-lock"></i></span>
+                                                    </span>
+                                            </a>
+
+                                            <a th:href="@{#}" class="tl-course-details-content">
+                                                    <span class="tl-course-details-content-left">
+                                                        <i class="fa-regular fa-video"></i> Building a Strong Vocabulary for Everyday Communication
+                                                    </span>
+
+                                                <span class="tl-course-details-content-right">
+                                                        <span class="tl-course-details-duration">01:05hrs</span>
+                                                        <span class="tl-course-details-availability"><i class="fa-regular fa-lock"></i></span>
+                                                    </span>
+                                            </a>
+
+                                            <a th:href="@{#}" class="tl-course-details-content">
+                                                <span class="tl-course-details-content-left"><i class="fa-regular fa-file-contract"></i> Understanding Basic Sentence Structure and Grammar</span>
+
+                                                <span class="tl-course-details-content-right">
+                                                        <span class="tl-course-details-duration">01:05h</span>
+                                                        <span class="tl-course-details-availability"><i class="fa-regular fa-lock"></i></span>
+                                                    </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tl-event-details-area tl-course-details-curriculum">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                            Cultural Nuances and Cross-cultural Communication
+                                        </button>
+                                    </h2>
+                                    <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <a th:href="@{#}" class="tl-course-details-content">
+                                                    <span class="tl-course-details-content-left">
+                                                        <i class="fa-regular fa-video"></i> Mastering Pronunciation and Intonation
+                                                    </span>
+
+                                                <span class="tl-course-details-content-right">
+                                                        <span class="tl-course-details-duration">43:28m</span>
+                                                        <span class="tl-course-details-availability"><i class="fa-regular fa-lock"></i></span>
+                                                    </span>
+                                            </a>
+
+                                            <a th:href="@{#}" class="tl-course-details-content">
+                                                    <span class="tl-course-details-content-left">
+                                                        <i class="fa-regular fa-video"></i> Building a Strong Vocabulary for Everyday Communication
+                                                    </span>
+
+                                                <span class="tl-course-details-content-right">
+                                                        <span class="tl-course-details-duration">01:05hrs</span>
+                                                        <span class="tl-course-details-availability"><i class="fa-regular fa-lock"></i></span>
+                                                    </span>
+                                            </a>
+
+                                            <a th:href="@{#}" class="tl-course-details-content">
+                                                <span class="tl-course-details-content-left"><i class="fa-regular fa-file-contract"></i> Understanding Basic Sentence Structure and Grammar</span>
+
+                                                <span class="tl-course-details-content-right">
+                                                        <span class="tl-course-details-duration">01:05h</span>
+                                                        <span class="tl-course-details-availability"><i class="fa-regular fa-lock"></i></span>
+                                                    </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="instructor-tab-pane" role="tabpanel" aria-labelledby="instructor-tab" tabindex="0">
+                            <div class="tl-course-details-instructor tl-event-details-area">
+                                <div class="tl-course-details-instructor-heading">
+                                    <img class="tl-course-details-instructor-img" th:src="@{/home/images/tl-2/teacher-1.jpg}" alt="instructor Image">
+
+                                    <div class="tl-course-details-instructor-info">
+                                        <h5 class="tl-course-details-instructor-name"><a th:href="@{staff-profile.html}">Brian Cumin</a></h5>
+                                        <h6 class="tl-staff-profile-role">Sr. Instructor at Talim</h6>
+                                        <ul class="tl-course-details-instructor-socials">
+                                            <li><a th:href="@{#}"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                                            <li><a th:href="@{#}"><i class="fa-brands fa-facebook-f"></i></a></li>
+                                            <li><a th:href="@{#}"><i class="fa-brands fa-twitter"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="tl-course-details-instructor-txt">
+                                    <p class="tl-course-details-instructor-intro">Hello! I'm Brian Cumin, your guide in the "Mastering English Speaking" course. As a seasoned language enthusiast with 03+ years of experience, I'm here to help you unlock the world of fluent English communication. Get ready to embark on an exciting journey where we'll build essential skills, explore diverse topics, and boost your confidence in speaking English. Let's make this learning experience impactful and enjoyable together. Ready to get started? Let's dive in!</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="reviews-tab-pane" role="tabpanel" aria-labelledby="reviews-tab" tabindex="0">
+                            <div class="tl-event-details-area tl-course-details-review">
+                                <div class="tl-course-details-stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+
+                                <p class="tl-2-testimony-txt">
+                                    It was my immense luck and fortune to be a part of Educlab University where I can grow. The entire faculty & department leaves no stone unturned to shape one's future in my four years.
+                                </p>
+
+                                <div class="tl-2-testimony-reviewer">
+                                    <img th:src="@{/home/images/tl-2/reviewer-2.jpg}" alt="Person" class="tl-2-testimony-reviewer-img">
+                                    <div class="tl-2-testimony-reviewer-info">
+                                        <h6 class="tl-2-testimony-reviewer-name">Alan Corey</h6>
+                                        <p class="tl-2-testimony-reviewer-label">B.Tech - Civil, 2015 - 2020</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tl-event-details-area tl-course-details-review">
+                                <div class="tl-course-details-stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                </div>
+
+                                <p class="tl-2-testimony-txt">
+                                    It was my immense luck and fortune to be a part of Educlab University where I can grow. The entire faculty & department leaves no stone unturned to shape one's future in my four years.
+                                </p>
+
+                                <div class="tl-2-testimony-reviewer">
+                                    <img th:src="@{/home/images/tl-2/reviewer-1.jpg}" alt="Person" class="tl-2-testimony-reviewer-img">
+                                    <div class="tl-2-testimony-reviewer-info">
+                                        <h6 class="tl-2-testimony-reviewer-name">Brian Cumin</h6>
+                                        <p class="tl-2-testimony-reviewer-label">B.Tech - Civil, 2015 - 2020</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- top courses -->
+                <div class="tl-event-details-left mt-30">
+                    <div class="tl-course-details-top-courses tl-event-details-area mt-0">
+                        <h3 class="tl-event-details-area-title">Top Courses from the same instructor</h3>
+
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="tl-1-course">
+                                    <div class="tl-1-course-img">
+                                        <img th:src="@{/home/images/tl-13/about-img.jpg}" alt="Course Image">
+                                        <span class="tl-1-course-price">$53.00</span>
+                                    </div>
+
+                                    <div class="tl-1-course-txt">
+                                        <span class="tl-1-course-author">By <a th:href="@{#}">Brian Cumin</a></span>
+                                        <h4 class="tl-1-course-title"><a th:href="@{#}">Teaching Math and Science Inquiry-Based Approaches</a></h4>
+                                        <div class="tl-1-course-stats">
+                                            <div class="tl-1-course-stat">
+                                                <span class="tl-1-course-stat-icon"><i class="fa-regular fa-book-blank"></i></span>
+                                                <span class="tl-1-course-stat-txt">6 Lessons</span>
+                                            </div>
+
+                                            <div class="tl-1-course-stat">
+                                                <span class="tl-1-course-stat-icon"><i class="fa-regular fa-user-group"></i></span>
+                                                <span class="tl-1-course-stat-txt">32 Students</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="tl-1-course">
+                                    <div class="tl-1-course-img">
+                                        <img th:src="@{/home/images/tl-12/event-2.jpg}" alt="Course Image">
+                                        <span class="tl-1-course-price">$53.00</span>
+                                    </div>
+
+                                    <div class="tl-1-course-txt">
+                                        <span class="tl-1-course-author">By <a th:href="@{#}">Brian Cumin</a></span>
+                                        <h4 class="tl-1-course-title"><a th:href="@{#}">Teaching Math and Science Inquiry-Based Approaches</a></h4>
+                                        <div class="tl-1-course-stats">
+                                            <div class="tl-1-course-stat">
+                                                <span class="tl-1-course-stat-icon"><i class="fa-regular fa-book-blank"></i></span>
+                                                <span class="tl-1-course-stat-txt">6 Lessons</span>
+                                            </div>
+
+                                            <div class="tl-1-course-stat">
+                                                <span class="tl-1-course-stat-icon"><i class="fa-regular fa-user-group"></i></span>
+                                                <span class="tl-1-course-stat-txt">32 Students</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT SIDEBAR -->
+            <div class="col-lg-4">
+                <div class="tl-event-details-right">
+                    <div class="tl-course-details-sidebar-heading">
+                        <h3 class="tl-course-details-price">$160
+<!--                            <span class="prev-price text-decoration-line-through">$200</span>-->
+                        </h3>
+                    </div>
+
+                    <ul class="tl-event-details-infos">
+                        <li class="tl-event-details-info">
+                            <span class="key"><i class="fa-regular fa-clock"></i> Duration:</span>
+                            <span class="value">4hrs 17mins</span>
+                        </li>
+                        <li class="tl-event-details-info">
+                            <span class="key"><i class="fa-regular fa-video"></i> Video Lectures:</span>
+                            <span class="value">90+</span>
+                        </li>
+                        <li class="tl-event-details-info">
+                            <span class="key"><i class="fa-regular fa-tv"></i> live Class</span>
+                            <span class="value">10+</span>
+                        </li>
+                        <li class="tl-event-details-info">
+                            <span class="key"><i class="fa-regular fa-file-contract"></i> Quizzes:</span>
+                            <span class="value">10+</span>
+                        </li>
+                        <li class="tl-event-details-info">
+                            <span class="key"><i class="fa-regular fa-user"></i> Enrolled:</span>
+                            <span class="value">30+</span>
+                        </li>
+                        <li class="tl-event-details-info">
+                            <span class="key"><i class="fa-regular fa-bars-progress"></i> Level:</span>
+                            <span class="value">Basic</span>
+                        </li>
+                        <li class="tl-event-details-info">
+                            <span class="key"><i class="fa-regular fa-globe"></i> Language:</span>
+                            <span class="value">English</span>
+                        </li>
+                    </ul>
+
+                    <img class="tl-course-details-payment-methods" th:src="@{/home/images/card.png}" alt="">
+
+                    <a th:href="@{#}" class="tl-def-btn tl-3-def-btn tl-event-details-book-btn">Enroll Now</a>
+                </div>
+
+                <div class="tl-event-details-right tl-upcoming-events">
+                    <h3 class="tl-upcoming-events-title">Popular Courses</h3>
+                    <div class="tl-upcoming-event tl-pop-course">
+                        <img class="tl-upcoming-event-img" th:src="@{/home/images/tl-6/news-1.jpg}" alt="event image">
+                        <div class="tl-upcoming-event-txt">
+                            <h4 class="tl-upcoming-event-title"><a th:href="@{event-details.html}">Education Foster Inclusivity and Understanding.</a></h4>
+                            <ul class="tl-2-blog-infos">
+                                <li>By <a th:href="@{#}">Dora max</a></li>
+                                <li>$89.00</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tl-upcoming-event tl-pop-course">
+                        <img class="tl-upcoming-event-img" th:src="@{/home/images/tl-6/news-3.jpg}" alt="event image">
+                        <div class="tl-upcoming-event-txt">
+                            <h4 class="tl-upcoming-event-title"><a th:href="@{event-details.html}">Education Foster Inclusivity and Understanding.</a></h4>
+                            <ul class="tl-2-blog-infos">
+                                <li>By <a th:href="@{#}">Les Migaro</a></li>
+                                <li>Free</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tl-upcoming-event tl-pop-course">
+                        <img class="tl-upcoming-event-img" th:src="@{/home/images/tl-6/news-2.jpg}" alt="event image">
+                        <div class="tl-upcoming-event-txt">
+                            <h4 class="tl-upcoming-event-title"><a th:href="@{event-details.html}">Sducation Foster Inclusivity and Understanding.</a></h4>
+                            <ul class="tl-2-blog-infos">
+                                <li>By <a th:href="@{#}">Alex jane</a></li>
+                                <li>$29.99</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- COURSE DETAILS END -->
+
+
+<!--FOOTER HOME-->
+<div th:insert="~{/home/fragments/footer}"></div>
+
+
+<!-- JS FILES ↓ -->
+<script th:src="@{/home/vendor/jquery/jquery-3.7.0.min.js}"></script>
+<script th:src="@{/home/vendor/bootstrap/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/home/vendor/owl-carousel/owl.carousel.min.js}"></script>
+<script th:src="@{/home/vendor/fs-lightbox/fslightbox.js}"></script>
+<script th:src="@{/home/vendor/mean-menu/jquery.meanmenu.min.js}"></script>
+<script th:src="@{/home/vendor/swiper-js/swiper-bundle.min.js}"></script>
+<script th:src="@{/home/vendor/slick-slider/slick.min.js}"></script>
+<script th:src="@{/home/vendor/bx-slider/jquery.bxslider.min.js}"></script>
+<script th:src="@{/home/vendor/eocjs-newsticker/eocjs-newsticker.js}"></script>
+<script th:src="@{/home/vendor/syotimer/jquery.syotimer.min.js}"></script>
+<script th:src="@{/home/js/main.js}"></script>
+</body>
+
+
+<!-- Mirrored from codebasket.xyz/template/talim/light/course-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 07:56:55 GMT -->
+</html>

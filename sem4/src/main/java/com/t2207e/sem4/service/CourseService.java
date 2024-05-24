@@ -46,6 +46,22 @@ public class CourseService implements  ICourseService{
     @Transactional
     public List<CourseDTO> GetAllCourseProcedure(String searchName) {
         List<Object[]> resultList = courseRepository.GetAllCourseProcedure(searchName);
+        return getCourseDTOS(resultList);
+    }
+
+    @Override
+    @Transactional
+    public List<CourseDTO> GetAllCourseProcedurePaging(String searchName, Integer page, Integer pageSize) {
+        List<Object[]> resultList = courseRepository.GetAllCourseProcedurePaging(searchName, page, pageSize);
+        return getCourseDTOS(resultList);
+    }
+
+    @Override
+    public Integer countCoursesByCourseNameContainingAndStatus(String courseName, Integer status) {
+        return courseRepository.countCoursesByCourseNameContainingAndStatus(courseName, status);
+    }
+
+    private List<CourseDTO> getCourseDTOS(List<Object[]> resultList) {
         return resultList.stream()
                 .map(result -> {
                     CourseDTO courseDTO = new CourseDTO();
@@ -54,12 +70,13 @@ public class CourseService implements  ICourseService{
                     courseDTO.setCourseName((String) result[2]);
                     courseDTO.setCourseVideo((String) result[3]);
                     courseDTO.setFreeNumbers((Integer) result[4]);
-                    courseDTO.setPrice((Double) result[5]);
-                    courseDTO.setStatus((Integer) result[6]);
-                    courseDTO.setUsername((String) result[7]);
-                    courseDTO.setCensorName((String) result[8]);
-                    courseDTO.setCategoryName((String) result[9]);
-                    courseDTO.setCourseTypeName((String) result[10]);
+                    courseDTO.setImage((String) result[5]);
+                    courseDTO.setPrice((Double) result[6]);
+                    courseDTO.setStatus((Integer) result[7]);
+                    courseDTO.setUsername((String) result[8]);
+                    courseDTO.setCensorName((String) result[9]);
+                    courseDTO.setCategoryName((String) result[10]);
+                    courseDTO.setCourseTypeName((String) result[11]);
                     return courseDTO;
                 })
                 .collect(Collectors.toList());

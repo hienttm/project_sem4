@@ -9,9 +9,9 @@
         <div id="loading-center">
             <div id="loading-center-absolute">
                 <div class="loading-content">
-                    <img class="loading-logo-text" src="home/images/logo/logo-text.png" alt="Kidba">
+                    <img class="loading-logo-text" th:src="@{/home/images/logo/logo-text.png}" alt="Kidba">
                     <div class="loading-stroke">
-                        <img class="loading-logo-icon" src="home/images/logo/logo-icon.png" alt="Pen">
+                        <img class="loading-logo-icon" th:src="@{/home/images/logo/logo-icon.png}" alt="Pen">
                     </div>
                 </div>
             </div>
@@ -27,8 +27,8 @@
                     <div class="row align-items-center">
                         <div class="col-lg-12 col-6">
                             <div class="logo">
-                                <a href="index.html">
-                                    <img src="home/images/logos/tl-13-logo.png" alt="KIDBA">
+                                <a th:href="@{/}">
+                                    <img th:src="@{/home/images/logos/tl-13-logo.png}" alt="KIDBA">
                                 </a>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                             </li>
 
                             <li class="tl-nav-item tl-dropdown">
-                                <a href="#" role="button">
+                                <a th:href="@{/course/list/1}" role="button">
                                     Courses
                                 </a>
                             </li>

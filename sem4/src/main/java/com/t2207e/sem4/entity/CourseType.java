@@ -2,12 +2,18 @@ package com.t2207e.sem4.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
 @Entity
 @Table(name = "CourseTypes")
+@Getter
+@Setter
+@NoArgsConstructor
 
 public class CourseType {
 

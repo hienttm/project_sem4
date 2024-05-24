@@ -12,4 +12,6 @@ public interface ICourseService {
     void add(Course course);
     void deleteById(Integer id);
     List<CourseDTO> GetAllCourseProcedure(String searchName);
+    List<CourseDTO> GetAllCourseProcedurePaging(String searchName, Integer page, Integer pageSize);
+    Integer countCoursesByCourseNameContainingAndStatus(String courseName, Integer status);
 }

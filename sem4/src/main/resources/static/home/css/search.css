@@ -1,0 +1,57 @@
+.tl-13-banner-search-form{
+    position: relative;
+}
+
+.header-info-search{
+    position: absolute;
+    top: 70px;
+    width: max-content;
+    z-index: 1000;
+    max-height: 250px;
+    overflow: auto;
+    border-radius: 10px;
+}
+
+.align-middle{
+    padding: 10px 30px 10px 10px;
+    font-weight: 700;
+    background-color: #fff;
+}
+
+.align-middle:hover{
+    background-color: #F5F5F5;
+}
+
+.categoryCourse-search{
+    padding-left: 30px;
+    font-weight: 300;
+}
+
+.searching {
+    margin-left: 51.5px;
+    margin-right: 51.5px;
+    padding-top: 100px;
+}
+
+.searching-inner{
+    padding-left: 12px;
+    padding-right: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.searching-text{
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 600;
+    color: var(--black-3);
+}
+.searching-left{
+    flex: 1 1;
+}
+
+.searching-right{
+    flex: 1 1;
+    display: flex;
+    justify-content: right;
+}

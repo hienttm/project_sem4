@@ -23,6 +23,8 @@ public class CourseDTO {
 
     private int freeNumbers;
 
+    private String image;
+
     private int status;
 
     private String username;

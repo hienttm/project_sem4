@@ -10,4 +10,9 @@ import java.util.List;
 public interface ICourseRepository extends JpaRepository<Course, Integer> {
     @Procedure(name = "GetAllCourseProcedure")
     List<Object[]> GetAllCourseProcedure(@Param("searchName") String searchName);
+
+    @Procedure(name = "GetAllCourseProcedurePaging")
+    List<Object[]> GetAllCourseProcedurePaging(@Param("searchName") String searchName, @Param("page") Integer page, @Param("pageSize") Integer pageSize);
+
+    Integer countCoursesByCourseNameContainingAndStatus(String courseName, Integer status);
 }

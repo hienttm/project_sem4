@@ -13,21 +13,22 @@
     <link rel="shortcut icon" href="home/images/logo/favicon.ico" type="image/x-icon">
 
     <!-- STYLESHEETS -->
-    <link rel="stylesheet" th:href="@{home/vendor/bootstrap/bootstrap.min.css}">
-    <link rel="stylesheet" th:href="@{home/vendor/owl-carousel/owl.carousel.min.css}">
-    <link rel="stylesheet" th:href="@{home/css/icofont.min.css}">
-    <link rel="stylesheet" th:href="@{home/vendor/font-awesome/all.min.css}">
-    <link rel="stylesheet" th:href="@{home/vendor/font-awesome/sharp-regular.min.css}">
-    <link rel="stylesheet" th:href="@{home/vendor/font-awesome/sharp-solid.min.css}">
-    <link rel="stylesheet" th:href="@{home/vendor/mean-menu/meanmenu.min.css}">
-    <link rel="stylesheet" th:href="@{home/vendor/eocjs-newsticker/eocjs-newsticker.css}">
-    <link rel="stylesheet" th:href="@{home/vendor/flag-icons/flag-icons.min.css}">
-    <link rel="stylesheet" th:href="@{home/vendor/swiper-js/swiper-bundle.min.css}">
-    <link rel="stylesheet" th:href="@{home/vendor/slick-slider/slick.css}">
-    <link rel="stylesheet" th:href="@{home/css/style.css}">
+    <link rel="stylesheet" th:href="@{/home/vendor/bootstrap/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/home/vendor/owl-carousel/owl.carousel.min.css}">
+    <link rel="stylesheet" th:href="@{/home/css/icofont.min.css}">
+    <link rel="stylesheet" th:href="@{/home/vendor/font-awesome/all.min.css}">
+    <link rel="stylesheet" th:href="@{/home/vendor/font-awesome/sharp-regular.min.css}">
+    <link rel="stylesheet" th:href="@{/home/vendor/font-awesome/sharp-solid.min.css}">
+    <link rel="stylesheet" th:href="@{/home/vendor/mean-menu/meanmenu.min.css}">
+    <link rel="stylesheet" th:href="@{/home/vendor/eocjs-newsticker/eocjs-newsticker.css}">
+    <link rel="stylesheet" th:href="@{/home/vendor/flag-icons/flag-icons.min.css}">
+    <link rel="stylesheet" th:href="@{/home/vendor/swiper-js/swiper-bundle.min.css}">
+    <link rel="stylesheet" th:href="@{/home/vendor/slick-slider/slick.css}">
+    <link rel="stylesheet" th:href="@{/home/css/style.css}">
+    <link rel="stylesheet" th:href="@{/home/css/search.css}">
 
     <!-- dark version css -->
-    <link rel="stylesheet" href="home/css/dark-v.css">
+    <link rel="stylesheet" th:href="@{/home/css/dark-v.css}">
 </head>
 
 <body>
@@ -43,9 +44,10 @@
                 <div class="tl-13-banner-txt">
                     <h1 class="tl-13-banner-title">Learn Tech Embracing Technology Education Excellence.</h1>
                     <p class="tl-13-banner-descr">Through a combination of lectures, readings, and discussions, students will gain a solid foundation in educational psychology.</p>
-                    <form action="#" class="tl-13-banner-search-form">
-                        <input type="search" name="search" id="tl-13-banner-search-input" placeholder="Search your course">
+                    <form th:action="@{/course/list/1}" class="tl-13-banner-search-form" method="get">
+                        <input type="search" onkeyup="search()" name="searchInput" id="searchInput" placeholder="Search your course">
                         <button type="submit">Find course</button>
+                        <ul id="searchResults" class="header-info-search"></ul>
                     </form>
                 </div>
             </div>
@@ -101,71 +103,12 @@
 <!-- POPULAR CATEGORIES SECTION STARTS HERE 👇-->
 <section class="tl-13-categories pt-60 pb-120">
     <div class="container">
-        <h2 class="tl-13-section-title">Popular <span class="last-word">Categories</span></h2>
+        <h2 class="tl-13-section-title"><span class="last-word">Course' Type</span></h2>
 
         <div class="row tl-13-categories-row">
-            <div class="col-lg-3 col-md-4 col-6 col-xxs-12">
+            <div class="col-lg-3 col-md-4 col-6 col-xxs-12" th:each="courseType: ${courseTypes}">
                 <a href="#" class="tl-3-single-program">
-                    <div class="tl-3-single-program-icon">
-                        <img src="home/images/tl-12/sub-5.png" alt="icon">
-                    </div>
-                    <h5 class="tl-3-single-program-title">Product Design</h5>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6 col-xxs-12">
-                <a href="#" class="tl-3-single-program">
-                    <div class="tl-3-single-program-icon">
-                        <img src="home/images/tl-12/sub-3.png" alt="icon">
-                    </div>
-                    <h5 class="tl-3-single-program-title">App Development</h5>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6 col-xxs-12">
-                <a href="#" class="tl-3-single-program">
-                    <div class="tl-3-single-program-icon">
-                        <img src="home/images/tl-12/sub-7.png" alt="icon">
-                    </div>
-                    <h5 class="tl-3-single-program-title">Data Engineering</h5>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6 col-xxs-12">
-                <a href="#" class="tl-3-single-program">
-                    <div class="tl-3-single-program-icon">
-                        <img src="home/images/tl-13/cate-4.png" alt="icon">
-                    </div>
-                    <h5 class="tl-3-single-program-title">Language</h5>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6 col-xxs-12">
-                <a href="#" class="tl-3-single-program">
-                    <div class="tl-3-single-program-icon">
-                        <img src="home/images/tl-13/cate-2.png" alt="icon">
-                    </div>
-                    <h5 class="tl-3-single-program-title">Rocket Science</h5>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6 col-xxs-12">
-                <a href="#" class="tl-3-single-program">
-                    <div class="tl-3-single-program-icon">
-                        <img src="home/images/tl-13/cate-1.png" alt="icon">
-                    </div>
-                    <h5 class="tl-3-single-program-title">Literature</h5>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6 col-xxs-12">
-                <a href="#" class="tl-3-single-program">
-                    <div class="tl-3-single-program-icon">
-                        <img src="home/images/tl-12/sub-2.png" alt="icon">
-                    </div>
-                    <h5 class="tl-3-single-program-title">Advanced Skills</h5>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6 col-xxs-12">
-                <a href="#" class="tl-3-single-program">
-                    <div class="tl-3-single-program-icon">
-                        <img src="home/images/tl-12/sub-1.png" alt="icon">
-                    </div>
-                    <h5 class="tl-3-single-program-title">Higher Study</h5>
+                    <h4 class="tl-3-single-program-title" th:text="${courseType.typeName}"></h4>
                 </a>
             </div>
         </div>
@@ -185,7 +128,7 @@
         <div class="tl-13-courses-slider owl-carousel">
             <div class="tl-9-class tl-13-course" th:each="courseDTO: ${courseDTOs}">
                 <span class="tl-9-class-tag">$ <span th:text="${courseDTO.price}"></span></span>
-                <img src="home/images/tl-4/admission-bg.jpg" alt="class image" class="tl-9-class-img">
+                <img th:src="'home/images/' + ${courseDTO.image}" alt="class image" class="tl-9-class-img">
                 <div class="tl-9-class-infos">
                     <span class="tl-9-class-category" th:text="${courseDTO.courseTypeName}"></span>
                 </div>
@@ -447,22 +390,23 @@
 <!-- CTA SECTION ENDS HERE -->
 
 <!--FOOTER HOME-->
-<div th:insert="~{home/fragments/footer}"></div>
+<div th:insert="~{/home/fragments/footer}"></div>
 
 <!-- JS FILES ↓ -->
-<script src="home/vendor/jquery/jquery-3.7.0.min.js"></script>
-<script src="home/vendor/bootstrap/bootstrap.bundle.min.js"></script>
-<script src="home/vendor/owl-carousel/owl.carousel.min.js"></script>
-<script src="home/vendor/fs-lightbox/fslightbox.js"></script>
-<script src="home/vendor/eocjs-newsticker/eocjs-newsticker.js"></script>
-<script src="home/vendor/mean-menu/jquery.meanmenu.min.js"></script>
-<script src="home/vendor/swiper-js/swiper-bundle.min.js"></script>
-<script src="home/vendor/slick-slider/slick.min.js"></script>
-<script src="home/vendor/bx-slider/jquery.bxslider.min.js"></script>
-<script src="home/vendor/eocjs-newsticker/eocjs-newsticker.js"></script>
-<script src="home/vendor/syotimer/jquery.syotimer.min.js"></script>
-<script src="home/vendor/mixitup/mixitup.min.js"></script>
-<script src="home/js/main.js"></script>
+<script th:src="@{/home/vendor/jquery/jquery-3.7.0.min.js}"></script>
+<script th:src="@{/home/vendor/bootstrap/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/home/vendor/owl-carousel/owl.carousel.min.js}"></script>
+<script th:src="@{/home/vendor/fs-lightbox/fslightbox.js}"></script>
+<script th:src="@{/home/vendor/eocjs-newsticker/eocjs-newsticker.js}"></script>
+<script th:src="@{/home/vendor/mean-menu/jquery.meanmenu.min.js}"></script>
+<script th:src="@{/home/vendor/swiper-js/swiper-bundle.min.js}"></script>
+<script th:src="@{/home/vendor/slick-slider/slick.min.js}"></script>
+<script th:src="@{/home/vendor/bx-slider/jquery.bxslider.min.js}"></script>
+<script th:src="@{/home/vendor/eocjs-newsticker/eocjs-newsticker.js}"></script>
+<script th:src="@{/home/vendor/syotimer/jquery.syotimer.min.js}"></script>
+<script th:src="@{/home/vendor/mixitup/mixitup.min.js}"></script>
+<script th:src="@{/home/js/main.js}"></script>
+<script th:src="@{/home/js/search.js}"></script>
 </body>
 
 
