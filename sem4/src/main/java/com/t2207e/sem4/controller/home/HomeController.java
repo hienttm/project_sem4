@@ -42,4 +42,8 @@ public class HomeController {
         }
         return "home/search";
     }
+    @GetMapping("contactus")
+    public String contactus(Model model){
+        return "home/contactus";
+    }
 }

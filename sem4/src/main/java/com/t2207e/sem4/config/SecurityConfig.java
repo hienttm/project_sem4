@@ -27,7 +27,8 @@ public class SecurityConfig {
         httpSecurity
                 .authorizeHttpRequests(configuration ->{configuration
                         .requestMatchers("/css/**", "/js/**", "/images/**", "/webfonts/**", "/home/**").permitAll()
-                        .requestMatchers("/register", "/forgotPassword/**","/checkExistMail/**","resetPassworUrl/**","resetForgotPassword","checkResetForgotPassword").permitAll()
+                        .requestMatchers("/register","/", "/forgotPassword/**","/checkExistMail/**","resetPassworUrl/**","resetForgotPassword","checkResetForgotPassword").permitAll()
+                        .requestMatchers("/contactus/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest()
                         .authenticated();

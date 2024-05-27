@@ -1,8 +1,7 @@
 package com.t2207e.sem4.service;
 
 import com.t2207e.sem4.entity.Token;
-import com.t2207e.sem4.repository.ITokenReponsitory;
-import lombok.NoArgsConstructor;
+import com.t2207e.sem4.repository.ITokenRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -10,9 +9,9 @@ import java.util.Optional;
 @Service
 public class TokenService implements ITokenService {
 
-    private ITokenReponsitory tokenReponsitory;
+    private ITokenRepository tokenReponsitory;
 
-    public TokenService(ITokenReponsitory tokenReponsitory) {
+    public TokenService(ITokenRepository tokenReponsitory) {
         this.tokenReponsitory = tokenReponsitory;
     }
 

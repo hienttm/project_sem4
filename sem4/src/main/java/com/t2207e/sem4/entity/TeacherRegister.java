@@ -1,6 +1,7 @@
 package com.t2207e.sem4.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,11 +19,11 @@ public class TeacherRegister {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    @NotNull(message = "bankNumber cannot null")
     private String bankNumber;
-
+    @NotNull(message = "bankName cannot null")
     private String bankName;
-
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
@@ -31,7 +32,7 @@ public class TeacherRegister {
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private Date updateAt = new Date(System.currentTimeMillis());
 
-    private Integer status;
+    private Integer status=2;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
