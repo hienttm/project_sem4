@@ -63,22 +63,23 @@
                 <div class="tl-event-details-left">
                     <div class="tl-event-details-video">
                         <iframe src="https://www.youtube.com/embed/VqhDnaqhnd4?si=LL6xoZfjSJkMNNLJ" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<!--                        <iframe th:src="${course.courseVideo}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>-->
 
-                        <h2 class="tl-event-details-title">Mastering English Speaking</h2>
+                        <h2 class="tl-event-details-title" th:text="${course.courseName}"></h2>
                     </div>
 
                     <div class="tl-course-details-infos">
                         <div class="tl-course-details-info">
-                            <h6 class="tl-course-details-info-name"><i class="fa-regular fa-user"></i>instructor</h6>
-                            <h5 class="tl-course-details-info-value">Brian Cumin</h5>
+                            <h6 class="tl-course-details-info-name"><i class="fa-regular fa-user-graduate"></i>Teacher</h6>
+                            <h5 class="tl-course-details-info-value" th:text="${course.user.fullname}"></h5>
                         </div>
                         <div class="tl-course-details-info">
-                            <h6 class="tl-course-details-info-name"><i class="fa-regular fa-layer-group"></i>Category</h6>
-                            <h5 class="tl-course-details-info-value">Language</h5>
+                            <h6 class="tl-course-details-info-name"><i class="fa-regular fa-layer-group"></i>Course Type</h6>
+                            <h5 class="tl-course-details-info-value" th:text="${course.courseType.typeName}"></h5>
                         </div>
                         <div class="tl-course-details-info">
-                            <h6 class="tl-course-details-info-name"><i class="fa-regular fa-user-graduate"></i>Students</h6>
-                            <h5 class="tl-course-details-info-value">245+</h5>
+                            <h6 class="tl-course-details-info-name"><i class="fa-regular fa-tv"></i></i>Category</h6>
+                            <h5 class="tl-course-details-info-value" th:text="${course.category.categoryName}"></h5>
                         </div>
                         <div class="tl-course-details-info">
                             <h6 class="tl-course-details-info-name"><i class="fa-solid fa-sharp fa-star"></i>Ratings</h6>
@@ -102,7 +103,7 @@
                         </li>
 
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="instructor-tab" data-bs-toggle="tab" data-bs-target="#instructor-tab-pane" type="button" role="tab" aria-controls="instructor-tab-pane" aria-selected="false">instructor</button>
+                            <button class="nav-link" id="instructor-tab" data-bs-toggle="tab" data-bs-target="#instructor-tab-pane" type="button" role="tab" aria-controls="instructor-tab-pane" aria-selected="false">teacher</button>
                         </li>
 
                         <li class="nav-item" role="presentation">
@@ -115,70 +116,9 @@
                             <div class="tl-event-details-descr tl-event-details-area">
                                 <h3 class="tl-event-details-area-title">About The Course</h3>
 
-                                <p class="tl-event-details-descr-txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente ducimus possimus porro expedita itaque, praesentium illum aspernatur? Porro amet labore, aspernatur voluptates laudantium quas unde cupiditate repudiandae quos eius neque.</p>
+<!--                                <p class="tl-event-details-descr-txt" th:text="${course.description}"></p>-->
 
                                 <p class="tl-event-details-descr-txt">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque quo deleniti quae, dolorum aperiam aliquid aliquam, nihil cupiditate officiis ex ipsa? Molestias provident incidunt autem debitis ex, esse sed veritatis!</p>
-                            </div>
-
-                            <div class="tl-event-details-faq tl-event-details-area">
-                                <h3 class="tl-event-details-area-title">Things you'll get to learn from this course</h3>
-
-                                <div class="tl-8-accordion">
-                                    <div class="tl-8-accordion-item open">
-                                        <div class="tl-8-accordion-item-header">
-                                            <h6 class="tl-8-accordion-item-title">Foundational Language Skills</h6>
-                                            <span class="tl-8-accordion-item-expand-icon"></span>
-                                        </div>
-
-                                        <p class="tl-8-accordion-item-body">
-                                            Build a solid linguistic foundation as you master pronunciation, vocabulary, and sentence structure, setting the stage for effective English communication.
-                                        </p>
-                                    </div>
-
-                                    <div class="tl-8-accordion-item">
-                                        <div class="tl-8-accordion-item-header">
-                                            <h6 class="tl-8-accordion-item-title">Fluency in Real-Life Situations</h6>
-                                            <span class="tl-8-accordion-item-expand-icon"></span>
-                                        </div>
-
-                                        <p class="tl-8-accordion-item-body">
-                                            Navigate everyday scenarios like travel, dining, and socializing with ease as you practice practical language skills in context.
-                                        </p>
-                                    </div>
-
-                                    <div class="tl-8-accordion-item">
-                                        <div class="tl-8-accordion-item-header">
-                                            <h6 class="tl-8-accordion-item-title">Confident Conversations</h6>
-                                            <span class="tl-8-accordion-item-expand-icon"></span>
-                                        </div>
-
-                                        <p class="tl-8-accordion-item-body">
-                                            Develop the ability to initiate and sustain engaging conversations, becoming an active and attentive listener while expressing yourself clearly.
-                                        </p>
-                                    </div>
-
-                                    <div class="tl-8-accordion-item">
-                                        <div class="tl-8-accordion-item-header">
-                                            <h6 class="tl-8-accordion-item-title">Cultural Awareness in Communication</h6>
-                                            <span class="tl-8-accordion-item-expand-icon"></span>
-                                        </div>
-
-                                        <p class="tl-8-accordion-item-body">
-                                            Gain insights into cross-cultural communication, enhancing your understanding of idiomatic expressions and cultural nuances.
-                                        </p>
-                                    </div>
-
-                                    <div class="tl-8-accordion-item">
-                                        <div class="tl-8-accordion-item-header">
-                                            <h6 class="tl-8-accordion-item-title">Advanced Speaking Techniques</h6>
-                                            <span class="tl-8-accordion-item-expand-icon"></span>
-                                        </div>
-
-                                        <p class="tl-8-accordion-item-body">
-                                            Elevate your language proficiency by articulating complex ideas, participating in group discussions, and conveying emotions effectively.
-                                        </p>
-                                    </div>
-                                </div>
                             </div>
                         </div>
 
@@ -360,7 +300,7 @@
                                     <img class="tl-course-details-instructor-img" th:src="@{/home/images/tl-2/teacher-1.jpg}" alt="instructor Image">
 
                                     <div class="tl-course-details-instructor-info">
-                                        <h5 class="tl-course-details-instructor-name"><a th:href="@{staff-profile.html}">Brian Cumin</a></h5>
+                                        <h5 class="tl-course-details-instructor-name"><a th:href="@{staff-profile.html}" th:text="${course.user.fullname}"></a></h5>
                                         <h6 class="tl-staff-profile-role">Sr. Instructor at Talim</h6>
                                         <ul class="tl-course-details-instructor-socials">
                                             <li><a th:href="@{#}"><i class="fa-brands fa-linkedin-in"></i></a></li>

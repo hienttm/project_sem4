@@ -1,12 +1,14 @@
 package com.t2207e.sem4.controller.home;
 
 import com.t2207e.sem4.dto.CourseDTO;
+import com.t2207e.sem4.entity.Course;
 import com.t2207e.sem4.service.CourseService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/course")
@@ -40,6 +42,15 @@ public class CourseController {
 
     @GetMapping("/detail/{id}")
     public String Detail(@PathVariable Integer id, Model model){
-        return "home/courses/detail";
+
+        Optional<Course> courseOptional = courseService.getCourseById(id);
+        if(courseOptional.isPresent()){
+            Course course = courseOptional.get();
+            model.addAttribute("course", course);
+            return "home/courses/detail";
+        }
+        else {
+            return "redirect:course/list/1";
+        }
     }
 }
