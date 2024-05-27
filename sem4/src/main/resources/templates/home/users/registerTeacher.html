@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register Teacher</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/fontawesome-all.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/iofrm-style.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/iofrm-theme30.css}" />
+    <style>
+        #description {
+            height: 120px; /* hoặc điều chỉnh chiều cao theo ý muốn */
+        }
+    </style>
+</head>
+
+<body>
+<div class="form-body on-top-mobile">
+    <div class="website-logo">
+        <a href="index.html">
+            <div class="logo">
+
+            </div>
+        </a>
+    </div>
+    <div class="row">
+        <div class="img-holder">
+            <div class="bg"></div>
+            <div class="info-holder simple-info">
+                <div class="mb-5">
+                    <div class="type-animation">
+                        <h2 class="mb-2 animated">Group 3 Online Courses</h2>
+                    </div>
+                    <h3 class="mb-4">
+                        <i class="font-weight-light">Take care of you!</i>
+                    </h3>
+                </div>
+                <div>
+                    <p>
+                        Completely fill out the form below to register your new account.
+                    </p>
+                </div>
+            </div>
+            <div class="bottom-view">
+                <p>
+                    <small class="font-weight-light">Group4 - 2023</small>
+                </p>
+            </div>
+        </div>
+        <div class="form-holder">
+            <div class="form-content">
+                <div class="form-items">
+                    <h3>Register To Become A Teacher</h3>
+
+<!--                    thông tin cá nhân-->
+                    <form class="container-custom-padding" th:action="@{/updateUser}" method="post" th:object="${user}">
+                        <p class="text-black">
+                            Thông tin cá nhân
+                        </p>
+                        <input type="hidden" th:field="*{userId}">
+                        <input type="hidden" th:field="*{status}">
+                        <input type="hidden" th:field="*{image}">
+                        <input type="hidden" th:field="*{createAt}">
+                        <input type="hidden" th:field="*{updateAt}">
+                        <input type="hidden" th:field="*{description}">
+
+                        <div class="row">
+                            <div class="col-12 col-sm-12">
+                                <input th:field="*{fullname}" id="fullname" name="fullname" type="text" class="form-control" placeholder="Full Name" readonly/>
+                            </div>
+                        </div>
+                        <div style="color: red" th:if="${exceptionP != null and !exceptionP.isEmpty()}" th:text="${exceptionP}" class="error"></div>
+                        <div class="row">
+                            <div class="col-12 col-sm-6">
+                                <input th:field="*{phoneNumber}" id="phone" name="phone" type="text" class="form-control" placeholder="Phone Number" readonly/>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <input th:field="*{email}" id="email" name="email" type="email" class="form-control" placeholder="E-mail Address" readonly/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-sm-6">
+                                <div style="color: red" th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="error"></div>
+                                <input th:field="*{address}" id="address" name="address" type="text" class="form-control" placeholder="Address" readonly/>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <div style="color: red" th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}" class="error"></div>
+                                <input th:field="*{birthday}" id="birthday" name="birthday" type="date" class="form-control" placeholder="E-mail Address" readonly/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-sm-12">
+                                <select th:field="*{gender}" id="gender" name="gender" class="form-control" readonly>
+                                    <option value="0">Male</option>
+                                    <option value="1">Female</option>
+                                </select>
+                            </div>
+                        </div>
+                        <hr>
+                        <div style="color: red" th:if="${exception != null and !exception.isEmpty()}" th:text="${exception}" class="error"></div>
+
+
+                        <div style="color: red" th:if="${exceptionRP != null and !exceptionRP.isEmpty()}" th:text="${exceptionRP}" class="error"></div>
+
+
+                        <div class="row top-padding">
+                            <div class="col-12">
+                                <div class="form-button text-right">
+                                    <button id="submit" type="submit" class="ibtn less-padding">
+                                        Cập nhật tài khoản
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+
+                    <!--                    Thông tin tài khoản ngân hàng-->
+                    <form class="container-custom-padding" th:action="@{/registerTeacher}" method="post" th:object="${teacherRegister}">
+                        <p class="text-black">
+                            Thông tin tài khoản ngân hàng
+                        </p>
+                        <input type="hidden" name="username" th:value="*{#authentication.getName()}">
+
+                        <div class="row">
+                            <div class="col-12 col-sm-12">
+                                <input th:field="*{bankName}" id="bankName" name="bankName" type="text" class="form-control" placeholder="Bank Name..." />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-sm-12">
+                                <input th:field="*{bankNumber}" id="bankNumber" name="bankNumber" type="text" class="form-control" placeholder="Bank Number..." />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-sm-12">
+                                <input th:field="*{description}" id="description" name="description" type="text" class="form-control" placeholder="Description..."  />
+                            </div>
+                        </div>
+                        <div style="color: red" th:if="${#fields.hasErrors('bankName')}" th:errors="*{bankName}" class="error"></div>
+                        <div style="color: red" th:if="${#fields.hasErrors('bankNumber')}" th:errors="*{bankNumber}" class="error"></div>
+
+
+                        <div class="row top-padding">
+                            <div class="col-12">
+                                <div class="form-button text-right">
+                                    <button id="submit" type="submit" class="ibtn less-padding">
+                                        Register Teacher
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+</body>
+
+</html>

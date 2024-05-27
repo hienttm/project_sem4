@@ -1,14 +1,19 @@
 package com.t2207e.sem4.controller;
 
+import com.t2207e.sem4.entity.TeacherRegister;
 import com.t2207e.sem4.entity.Token;
 import com.t2207e.sem4.entity.User;
 import com.t2207e.sem4.entity.UserRole;
 import com.t2207e.sem4.service.*;
 import jakarta.validation.Valid;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Duration;
@@ -28,18 +33,26 @@ public class UserController {
     private final PasswordEncoder passwordEncoder;
     private final TokenService tokenService;
     private final EmailService emailService;
+    private final TeacherRegisterService teacherRegisterService;
 
-    public UserController(UserService userService, UserRoleService userRoleService, RoleService roleService, PasswordEncoder passwordEncoder, TokenService tokenService, EmailService emailService) {
+    public UserController(UserService userService, UserRoleService userRoleService, RoleService roleService, PasswordEncoder passwordEncoder, TokenService tokenService, EmailService emailService, TeacherRegisterService teacherRegisterService) {
         this.userService = userService;
         this.userRoleService = userRoleService;
         this.roleService = roleService;
         this.passwordEncoder = passwordEncoder;
         this.tokenService = tokenService;
         this.emailService = emailService;
+        this.teacherRegisterService = teacherRegisterService;
+    }
+    @InitBinder
+    public void initBinder(WebDataBinder dataBinder){
+        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+        dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
 
     @GetMapping("login")
     public String Login(){
+
         return "loginPage";
     }
 
@@ -132,7 +145,6 @@ public class UserController {
     public String resetPassworUrl(@PathVariable String token, Model model){
         if (token==null || token.isEmpty()){
             //token rỗng
-            System.out.println("token is null or empty");
 
             String message_checkToken="Đường link không hợp lệ, quý khách vui lòng kiểm tra lại";
             model.addAttribute("message_checkToken",message_checkToken);
@@ -196,24 +208,54 @@ public class UserController {
         if (userCheckOptional.isPresent()) {
             User user = userCheckOptional.get();
             user.setPassword(encodedPassword);
-            System.out.println(encodedPassword);
             String message_checkpassword = "Đổi mật khẩu thành công, Vui lòng đăng nhập lại!";
-            System.out.println("Đổi mật khẩu thành công, Vui lòng đăng nhập lại");
             model.addAttribute("message_checkpassword", message_checkpassword);
             userService.add(user);
-            System.out.println(user.getPassword());
-            System.out.println(user.getUserId());
-            System.out.println(user.getAddress());
 
             return "/loginPage";
-            // Cập nhật mật khẩu của người dùng
         } else {
-            System.out.println("không tìm thấy người dùng");
             return "redirect:/loginPage";
 
             // Xử lý trường hợp không tìm thấy người dùng với userId cung cấp
         }
 
+    }
 
+    //Register Teacher
+    @GetMapping("registerTeacher")
+    public String registerTeacher(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication == null || !authentication.isAuthenticated() || authentication.getPrincipal().equals("anonymousUser")) {
+            // Người dùng chưa đăng nhập
+            return "redirect:/login";
+        }
+        //lấy thông tin user
+        Optional<User> user1 = userService.getUserByUsername(authentication.getName());
+        User user = user1.get();
+        model.addAttribute("user", user);
+        //
+        TeacherRegister teacherRegister=new TeacherRegister();
+        model.addAttribute("teacherRegister", teacherRegister);
+        return "/home/users/registerTeacher";
+    }
+    @PostMapping("registerTeacher")
+    public String registerTeacher(@Valid @ModelAttribute TeacherRegister teacherRegister, BindingResult bindingResult, Model model, @RequestParam("username") String username) {
+        if(bindingResult.hasErrors()){
+            System.out.println("BBBB");
+            return "/home/users/registerTeacher";
+        }
+        Optional<User>user1 = userService.getUserByUsername(username);
+        teacherRegister.setUser(user1.get());
+        teacherRegisterService.save(teacherRegister);
+
+        //gửi mail thông báo
+        emailService.sendMailNotiRegisterTeacherStatus(user1.get().getEmail());
+        return "redirect:/";
+    }
+    @PostMapping("updateUser")
+    public String Update(User user, Model model) {
+        userService.add(user);
+        return "redirect:/registerTeacher";
     }
 }
