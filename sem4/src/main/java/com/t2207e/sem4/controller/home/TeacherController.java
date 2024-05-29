@@ -30,7 +30,7 @@ public class TeacherController {
 
     @GetMapping("list")
     public String List(Model model){
-        List<UserRole> ur = teacherRoleService.getAllTeacher(roleService.getRoleByRoleName("ROLE_USER").get());
+        List<UserRole> ur = teacherRoleService.getAllTeacher(roleService.getRoleByRoleName("ROLE_TEACHER").get());
         model.addAttribute("ur", ur);
         return "home/teacher/index";
     }
