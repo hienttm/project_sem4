@@ -28,13 +28,31 @@ public class EmailService {
         mailSender.send(message);
     }
     public void sendMailNotiRegisterTeacherStatus(String to){
-        String subject = "RESET PASSWORD";
 
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(to);
         message.setSubject("Thông báo");
         message.setText("Chúng tôi đã nhận được yêu cầu đăng ký trở thành giáo viên của bạn. Vui lòng chờ kết quả đăng ký. Chúng tôi sẽ phản hồi qua Email này trong 2 ngày làm việc.");
         ;
+
+        mailSender.send(message);
+    }
+    public void sendMailNotiContactUsStatus(String to){
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(to);
+        message.setSubject("Thông báo");
+        message.setText("Chúng tôi đã nhận được tin nhắn từ bạn. Chúng tôi sẽ phản hồi qua Email này trong 2 ngày làm việc.");
+        ;
+
+        mailSender.send(message);
+
+    }
+    public void getMailNotiContactEmail(String email, String messageFromUser,String name){
+        String body="Tên khách hàng: " + name +", email: " +email+", nội dung tin nhắn: "+messageFromUser;
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo("hienttm.aof@gmail.com");
+        message.setSubject("Tin nhắn Contact Us");
+        message.setText(body);
 
         mailSender.send(message);
     }
