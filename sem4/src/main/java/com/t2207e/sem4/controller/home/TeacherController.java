@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/teacher")
 public class TeacherController {
     private final TeacherRoleService teacherRoleService;
     private final RoleService roleService;
@@ -23,10 +23,10 @@ public class TeacherController {
         this.roleService = roleService;
     }
 
-    @GetMapping("teacher")
-    public String teacher(){
-        return "home/teacher/index";
-    }
+//    @GetMapping("teacher")
+//    public String teacher(){
+//        return "home/teacher/index";
+//    }
 
     @GetMapping("list")
     public String List(Model model){
