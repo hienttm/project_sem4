@@ -258,4 +258,5 @@ public class UserController {
         userService.add(user);
         return "redirect:/registerTeacher";
     }
+
 }

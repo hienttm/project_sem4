@@ -157,6 +157,7 @@
                                         Admin
                                     </a>
                                 </li>
+
                             </div>
                         </ul>
                     </div>
@@ -168,10 +169,28 @@
                         <a th:href="@{/login}" class="tl-def-btn"><i class="fa-regular fa-user"></i> Login</a>
                     </div>
                     <div sec:authorize="isAuthenticated()" class="tl-header-actions tl-13-header-actions d-flex justify-content-end align-items-center">
-                        <form th:action="@{/logout}" method="post">
-                            <button type="submit">Log Out</button>
-                        </form>
-                        <a th:href="@{#}" class="tl-def-btn"><i class="fa-regular fa-user"></i> <span th:text="${#authentication.name}"></span> </a>
+                        <i class="fa-regular fa-bag-shopping"></i>
+                        <div class="tl-nav-menu "  >
+                            <ul class="justify-content-center ">
+                        <li class="tl-nav-item tl-dropdown">
+                            <div role="button" class="tl-def-btn">
+                                <i class="fa-regular fa-user"></i>
+                                <span th:text="${#authentication.name}"></span>
+                                <span> </span> <span> </span>
+                                <i class="fa-regular fa-angle-down"></i>
+                            </div>
+                            <ul class="tl-submenu">
+
+                                <li><a th:href="@{/home/account/detail}">My Account</a></li>
+                                <li><a href="blog-details.html">My Courses</a></li>
+                                <li><form th:action="@{/logout}" method="post">
+                                    <button type="submit">Log Out</button>
+                                </form></li>
+
+                            </ul>
+                        </li>
+                        </ul>
+                        </div>
                     </div>
                 </div>
             </div>
