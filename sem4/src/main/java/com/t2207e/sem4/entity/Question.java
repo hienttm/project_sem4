@@ -16,7 +16,7 @@ public class Question {
     private int questionId;
 
     @Column(nullable = false)
-    private int question;
+    private String question;
 
     @ManyToOne
     @JoinColumn(name = "exam_id", nullable = false)

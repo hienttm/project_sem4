@@ -9,12 +9,12 @@ import lombok.Setter;
 import java.util.Date;
 
 @Entity
-@Table(name = "status_codes")
+@Table(name = "status_courses")
 @Getter
 @Setter
 @NoArgsConstructor
 
-public class StatusCode {
+public class StatusCourse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int statusId;

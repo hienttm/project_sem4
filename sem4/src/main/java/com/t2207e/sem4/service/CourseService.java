@@ -1,7 +1,10 @@
 package com.t2207e.sem4.service;
 
 import com.t2207e.sem4.dto.CourseDTO;
+import com.t2207e.sem4.dto.OrderDetailByUserDTO;
 import com.t2207e.sem4.entity.Course;
+import com.t2207e.sem4.entity.CourseType;
+import com.t2207e.sem4.entity.User;
 import com.t2207e.sem4.repository.ICourseRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,15 +54,38 @@ public class CourseService implements  ICourseService{
 
     @Override
     @Transactional
-    public List<CourseDTO> GetAllCourseProcedurePaging(String searchName, Integer page, Integer pageSize) {
-        List<Object[]> resultList = courseRepository.GetAllCourseProcedurePaging(searchName, page, pageSize);
+    public List<CourseDTO> GetAllCourseProcedurePaging(String searchName, Integer page, Integer pageSize,String course_type_name) {
+        List<Object[]> resultList = courseRepository.GetAllCourseProcedurePaging(searchName, page, pageSize, course_type_name);
         return getCourseDTOS(resultList);
     }
 
     @Override
-    public Integer countCoursesByCourseNameContainingAndStatus(String courseName, Integer status) {
-        return courseRepository.countCoursesByCourseNameContainingAndStatus(courseName, status);
+    public Integer countCoursesByCourseNameContainingAndStatusAndCourseType_TypeNameContaining(String courseName, Integer status, String courseTypeName) {
+        return courseRepository.countCoursesByCourseNameContainingAndStatusAndCourseType_TypeNameContaining(courseName, status, courseTypeName);
     }
+
+    @Override
+    public List<Course> getCoursesByUser(User user) {
+        return courseRepository.getCoursesByUser(user);
+    }
+
+    @Override
+    @Transactional
+    public List<OrderDetailByUserDTO> GetOrderDetailByUserIdProcedure(Integer userIdSearch) {
+        List<Object[]> resultList = courseRepository.GetOrderDetailByUserIdProcedure(userIdSearch);
+        return resultList.stream()
+                .map(result -> {
+                    OrderDetailByUserDTO orderDetailByUserDTO = new OrderDetailByUserDTO();
+                    orderDetailByUserDTO.setUserId((Integer) result[0]);
+                    orderDetailByUserDTO.setUsername((String) result[1]);
+                    orderDetailByUserDTO.setDescription((String) result[2]);
+                    orderDetailByUserDTO.setCourseName((String) result[3]);
+                    orderDetailByUserDTO.setCourseId(result[4]!=null?(Integer) result[4]:-1);
+                    return orderDetailByUserDTO;
+                })
+                .collect(Collectors.toList());
+    }
+
 
     private List<CourseDTO> getCourseDTOS(List<Object[]> resultList) {
         return resultList.stream()

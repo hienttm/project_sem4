@@ -1,6 +1,8 @@
 package com.t2207e.sem4.repository;
 
 import com.t2207e.sem4.entity.Course;
+import com.t2207e.sem4.entity.CourseType;
+import com.t2207e.sem4.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
@@ -12,7 +14,12 @@ public interface ICourseRepository extends JpaRepository<Course, Integer> {
     List<Object[]> GetAllCourseProcedure(@Param("searchName") String searchName);
 
     @Procedure(name = "GetAllCourseProcedurePaging")
-    List<Object[]> GetAllCourseProcedurePaging(@Param("searchName") String searchName, @Param("page") Integer page, @Param("pageSize") Integer pageSize);
+    List<Object[]> GetAllCourseProcedurePaging(@Param("searchName") String searchName, @Param("page") Integer page, @Param("pageSize") Integer pageSize, @Param("course_type_name") String course_type_name);
 
-    Integer countCoursesByCourseNameContainingAndStatus(String courseName, Integer status);
+    Integer countCoursesByCourseNameContainingAndStatusAndCourseType_TypeNameContaining(String courseName, Integer status, String courseTypeName);
+
+    List<Course> getCoursesByUser(User user);
+
+    @Procedure(name = "GetOrderDetailByUserIdProcedure")
+    List<Object[]> GetOrderDetailByUserIdProcedure(@Param("user_id_search") Integer userIdSearch);
 }

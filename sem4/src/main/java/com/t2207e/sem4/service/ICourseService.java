@@ -1,7 +1,10 @@
 package com.t2207e.sem4.service;
 
 import com.t2207e.sem4.dto.CourseDTO;
+import com.t2207e.sem4.dto.OrderDetailByUserDTO;
 import com.t2207e.sem4.entity.Course;
+import com.t2207e.sem4.entity.CourseType;
+import com.t2207e.sem4.entity.User;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +15,8 @@ public interface ICourseService {
     void add(Course course);
     void deleteById(Integer id);
     List<CourseDTO> GetAllCourseProcedure(String searchName);
-    List<CourseDTO> GetAllCourseProcedurePaging(String searchName, Integer page, Integer pageSize);
-    Integer countCoursesByCourseNameContainingAndStatus(String courseName, Integer status);
+    List<CourseDTO> GetAllCourseProcedurePaging(String searchName, Integer page, Integer pageSize, String course_type_name);
+    Integer countCoursesByCourseNameContainingAndStatusAndCourseType_TypeNameContaining(String courseName, Integer status, String courseTypeName);
+    List<Course> getCoursesByUser(User user);
+    List<OrderDetailByUserDTO> GetOrderDetailByUserIdProcedure(Integer userIdSearch);
 }
