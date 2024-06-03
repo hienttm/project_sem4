@@ -12,5 +12,9 @@ public class AccountController {
     public String detail(Model model) {
         return "/home/users/account/detail";
     }
+    @GetMapping("detail2")
+    public String detail2(Model model) {
+        return "/home/users/account/detail2";
+    }
 
 }
