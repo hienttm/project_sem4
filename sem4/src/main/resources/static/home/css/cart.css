@@ -1,0 +1,64 @@
+.cart-hover{
+    padding: 0 20px;
+    position: relative;
+}
+
+.number-items-cart{
+    background-color: red;
+    color: white;
+    font-size: 9px;
+    padding: 5px;
+    line-height: 10px;
+    width: 20px;
+    text-align: center;
+    border-radius: 50%;
+    position: absolute;
+    top: -10px;
+    right: 0px;
+}
+
+.li-2-cart{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+}
+
+.image-cart{
+    width: 40px;
+    height: 40px;
+    flex: 1 1;
+}
+
+.cart-item-main-info{
+    flex: 3 1;
+}
+
+.name-course-cart{
+    font-weight: 600;
+    max-width: 170px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.price-course-cart{
+    margin-bottom: 0px;
+    font-size: 12px;
+}
+
+.quantity-course-cart{
+    display: flex;
+    justify-items: end;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+.fa-bag-shopping{
+    font-size: 30px;
+}
+
+#cartResult{
+    max-height: 300px;
+    overflow: auto;
+}

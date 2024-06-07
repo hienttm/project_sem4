@@ -1,21 +1,17 @@
 package com.t2207e.sem4.controller.home;
 
 import com.t2207e.sem4.dto.CourseDTO;
+import com.t2207e.sem4.dto.ExamUserDTO;
 import com.t2207e.sem4.dto.OrderDetailByUserDTO;
-import com.t2207e.sem4.entity.Chapter;
-import com.t2207e.sem4.entity.Course;
-import com.t2207e.sem4.entity.CourseType;
-import com.t2207e.sem4.entity.User;
-import com.t2207e.sem4.service.ChapterService;
-import com.t2207e.sem4.service.CourseService;
-import com.t2207e.sem4.service.CourseTypeService;
-import com.t2207e.sem4.service.UserService;
+import com.t2207e.sem4.entity.*;
+import com.t2207e.sem4.service.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,14 +21,18 @@ public class CourseController {
     private final CourseService courseService;
     private final ChapterService chapterService;
     private final UserService userService;
-    private final CourseTypeService courseTypeService;
+    private final ExamService examService;
+    private final UserAnswerService userAnswerService;
+    private final OrderDetailService orderDetailService;
 
 
-    public CourseController(CourseService courseService, ChapterService chapterService, UserService userService, CourseTypeService courseTypeService) {
+    public CourseController(CourseService courseService, ChapterService chapterService, UserService userService, ExamService examService, UserAnswerService userAnswerService, OrderDetailService orderDetailService) {
         this.courseService = courseService;
         this.chapterService = chapterService;
         this.userService = userService;
-        this.courseTypeService = courseTypeService;
+        this.examService = examService;
+        this.userAnswerService = userAnswerService;
+        this.orderDetailService = orderDetailService;
     }
 
     @GetMapping("/list/{page}")
@@ -72,6 +72,9 @@ public class CourseController {
             List<Chapter> chapters = chapterService.getChaptersByCourse(course);
             model.addAttribute("chapters", chapters);
 
+            Integer countUserBuyCourse = orderDetailService.countOrderDetailsByCourse_CourseId(course.getCourseId());
+            model.addAttribute("countUserBuyCourse", countUserBuyCourse);
+
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             if (authentication != null && authentication.isAuthenticated()) {
                 String username = authentication.getName();
@@ -83,6 +86,35 @@ public class CourseController {
                     boolean checkBuy = orderDetailByUserDTOs.stream().anyMatch(dto -> dto.getCourseId() == course.getCourseId());
 
                     model.addAttribute("checkBuy", checkBuy);
+
+                    List<Exam> exams = examService.getExamsByCourse(course);
+
+                    List<ExamUserDTO> examUserDTOs = new ArrayList<>();
+                    for (Exam exam : exams) {
+                        ExamUserDTO examUserDTO = new ExamUserDTO();
+                        examUserDTO.setExam(exam);
+                        List<UserAnswer> userAnswerByUserAndExamId = userAnswerService.getUserAnswersByUserAndExam_ExamId(user, exam.getExamId());
+                        if(userAnswerByUserAndExamId.isEmpty()){
+                            examUserDTO.setCountAnswers(-1);
+                            examUserDTO.setCountTrueAnswers(-1);
+                        }
+                        else {
+                            final int[] countTrueAnswer = {0};
+                            userAnswerByUserAndExamId.forEach(userAnswer -> {
+                                if(userAnswer.getAnswer()!=null){
+                                    if(userAnswer.getAnswer().isTof()){
+                                        countTrueAnswer[0]++;
+                                    }
+                                }
+                            });
+                            examUserDTO.setCountAnswers(userAnswerByUserAndExamId.size());
+                            examUserDTO.setCountTrueAnswers(countTrueAnswer[0]);
+                        }
+
+                        examUserDTOs.add(examUserDTO);
+                    }
+
+                    model.addAttribute("examUserDTOs", examUserDTOs);
                 }
             }
 

@@ -1,14 +1,14 @@
 package com.t2207e.sem4.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "questions")
-@Data
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
 public class Question {
     @Id
@@ -22,4 +22,6 @@ public class Question {
     @JoinColumn(name = "exam_id", nullable = false)
     private Exam exam;
 
+    @OneToMany(mappedBy = "question")
+    private List<Answer> answers;
 }

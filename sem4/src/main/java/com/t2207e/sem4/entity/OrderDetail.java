@@ -23,10 +23,6 @@ public class OrderDetail {
     @JoinColumn(name = "order_id", nullable = false)
     private Order order;
 
-    @ManyToOne
-    @JoinColumn(name = "sale_id", nullable = false)
-    private Sale sale;
-
     @Column(nullable = false)
     private double price;
 }

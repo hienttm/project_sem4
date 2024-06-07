@@ -10,6 +10,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -52,5 +53,8 @@ public class User {
     private Date updateAt = new Date(System.currentTimeMillis());
 
     private String description = "Người dùng";
+
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
 
 }

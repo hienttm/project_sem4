@@ -3,6 +3,12 @@ package com.t2207e.sem4.controller.home;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.t2207e.sem4.dto.OrderDetailByUserDTO;
+import com.t2207e.sem4.dto.TestSubmissionDTO;
+import com.t2207e.sem4.dto.UserAnswerDTO;
+import com.t2207e.sem4.entity.Exam;
+import com.t2207e.sem4.entity.User;
+import com.t2207e.sem4.entity.UserAnswer;
 import com.t2207e.sem4.service.*;
 import org.apache.hc.client5.http.classic.HttpClient;
 import org.apache.hc.client5.http.classic.methods.HttpPatch;
@@ -15,6 +21,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.*;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
@@ -40,6 +48,8 @@ public class ExamController {
     private final UserAnswerService userAnswerService;
     private final VimeoApiService vimeoApiService;
 
+    private final UserService userService;
+
     private final RestTemplate restTemplate;
 
     @Value("${vimeo.access.token}")
@@ -48,18 +58,69 @@ public class ExamController {
     private final String uploadUrl = "https://api.vimeo.com/me/videos";
     private String uploadLink; // URL được trả về từ phản hồi POST
 
-    public ExamController(ExamService examService, QuestionService questionService, AnswerService answerService, UserAnswerService userAnswerService, VimeoApiService vimeoApiService, RestTemplate restTemplate) {
+    public ExamController(ExamService examService, QuestionService questionService, AnswerService answerService, UserAnswerService userAnswerService, VimeoApiService vimeoApiService, UserService userService, RestTemplate restTemplate) {
         this.examService = examService;
         this.questionService = questionService;
         this.answerService = answerService;
         this.userAnswerService = userAnswerService;
         this.vimeoApiService = vimeoApiService;
+        this.userService = userService;
         this.restTemplate = restTemplate;
     }
 
-    @GetMapping("exam")
-    public String exam(Model model){
-        return "home/exams/exam";
+    @GetMapping("exam/{id}")
+    public String exam(@PathVariable Integer id, Model model){
+//        Kiểm tra người dùng đã từng làm bài kiểm tra hay chưa
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()) {
+            String username = authentication.getName();
+            Optional<User> userOptional = userService.getUserByUsername(username);
+            if(userOptional.isPresent()){
+                User user = userOptional.get();
+                Integer countUserAnswerByUserAndExamId = userAnswerService.countUserAnswerByUserAndExam_ExamId(user, id);
+                if(countUserAnswerByUserAndExamId > 0){
+                    return "redirect:/";
+                }
+            }
+
+            Optional<Exam> examOptional = examService.getExamById(id);
+            if(examOptional.isPresent()){
+                Exam exam = examOptional.get();
+                model.addAttribute("exam", exam);
+            }
+            return "home/exams/exam";
+        }
+        else {
+            return "redirect:/login";
+        }
+    }
+
+    @PostMapping("exam/submit")
+    public String submitTest(@ModelAttribute TestSubmissionDTO submission) {
+
+        for (UserAnswerDTO userAnswerDTO : submission.getUserAnswerDTOs()) {
+            UserAnswer userAnswer = new UserAnswer();
+            userAnswer.setExam(examService.getExamById(submission.getExamId()).get());
+            if(userAnswerDTO.getAnswerId()!=null){
+                userAnswer.setAnswer(answerService.getAnswerById(userAnswerDTO.getAnswerId()).get());
+            }
+            else {
+                userAnswer.setAnswer(null);
+            }
+
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            if (authentication != null && authentication.isAuthenticated()) {
+                String username = authentication.getName();
+                Optional<User> userOptional = userService.getUserByUsername(username);
+                if(userOptional.isPresent()){
+                    User user = userOptional.get();
+                    userAnswer.setUser(user);
+                }
+            }
+
+            userAnswerService.add(userAnswer);
+        }
+        return "redirect:/";
     }
 
 //    @GetMapping("exam")

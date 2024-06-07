@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -40,4 +41,7 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "event_id")
     private Event event;
+
+    @OneToMany(mappedBy = "order")
+    private List<OrderDetail> orderDetails;
 }

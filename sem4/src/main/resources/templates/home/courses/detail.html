@@ -48,8 +48,7 @@
             <div class="col-lg-8">
                 <div class="tl-event-details-left">
                     <div class="tl-event-details-video">
-                        <iframe src="https://www.youtube.com/embed/VqhDnaqhnd4?si=LL6xoZfjSJkMNNLJ" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-<!--                        <iframe th:src="${course.courseVideo}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>-->
+                        <iframe th:src="${course.courseVideo}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
                         <h2 class="tl-event-details-title" th:text="${course.courseName}"></h2>
                     </div>
@@ -219,11 +218,18 @@
 
             <!-- RIGHT SIDEBAR -->
             <div class="col-lg-4">
-                <div class="tl-event-details-right" th:unless="${checkBuy}">
-                    <a th:href="${course.courseFile}" class="tl-def-btn tl-3-def-btn tl-event-details-book-btn">Get Study Materials</a>
-                    <a th:href="@{#}" class="tl-def-btn tl-3-def-btn tl-event-details-book-btn">Final Exams</a>
-                </div>
                 <div class="tl-event-details-right" th:if="${checkBuy}">
+                    <a th:href="${course.courseFile}" class="tl-def-btn tl-3-def-btn tl-event-details-book-btn" style="background-color: cornflowerblue">Get Study Materials</a>
+                    <span class="tl-event-details-book-btn" th:each="examUserDTO: ${examUserDTOs}">
+                        <a th:if="${examUserDTO.getCountTrueAnswers() == -1}" th:href="'/course/exam/'+${examUserDTO.exam.getExamId()}" class="tl-def-btn tl-3-def-btn tl-event-details-book-btn">
+                            <span th:text="${examUserDTO.exam.getExamName()}"></span>
+                        </a>
+                        <span th:unless="${examUserDTO.getCountTrueAnswers() == -1}" class="tl-def-btn tl-3-def-btn tl-event-details-book-btn" style="background-color: white">
+                            <span th:text="${examUserDTO.exam.getExamName()} + ': '"></span> <span th:text="${examUserDTO.getCountTrueAnswers()}"></span> / <span th:text="${examUserDTO.getCountAnswers()}"></span> Points
+                        </span>
+                    </span>
+                </div>
+                <div class="tl-event-details-right" th:unless="${checkBuy}">
                     <div class="tl-course-details-sidebar-heading">
                         <h3 class="tl-course-details-price">
                             <span th:text="${course.price}"></span> $
@@ -233,24 +239,33 @@
 
                     <ul class="tl-event-details-infos">
                         <li class="tl-event-details-info">
-                            <span class="key"><i class="fa-regular fa-video"></i> Videos:</span>
-                            <span class="value">90+</span>
+                            <span class="key"><i class="fa-regular fa-video"></i> Chapter:</span>
+                            <span class="value">
+                                <span th:text="${chapters.size()}"></span>
+                                    +
+                            </span>
                         </li>
-                        <li class="tl-event-details-info">
-                            <span class="key"><i class="fa-regular fa-tv"></i> live Class</span>
-                            <span class="value">10+</span>
-                        </li>
+<!--                        <li class="tl-event-details-info">-->
+<!--                            <span class="key"><i class="fa-regular fa-tv"></i> Live Class</span>-->
+<!--                            <span class="value">10+</span>-->
+<!--                        </li>-->
                         <li class="tl-event-details-info">
                             <span class="key"><i class="fa-regular fa-file-contract"></i> Exams:</span>
-                            <span class="value">10+</span>
+                            <span class="value">
+                                <span th:text="${examUserDTOs.size()}"></span>
+                                +
+                            </span>
                         </li>
                         <li class="tl-event-details-info">
                             <span class="key"><i class="fa-regular fa-user"></i> Students:</span>
-                            <span class="value">30+</span>
+                            <span class="value">
+                                <span th:text="${countUserBuyCourse}"></span>
+                                +
+                            </span>
                         </li>
                     </ul>
-
-                    <a th:href="@{#}" class="tl-def-btn tl-3-def-btn tl-event-details-book-btn">Buy Now</a>
+                    <input id="hidden-course-id" type="hidden" th:value="${course.courseId}">
+                    <button id="button-add-to-cart" class="tl-def-btn tl-3-def-btn tl-event-details-book-btn">Add To Cart</button>
                 </div>
 
                 <div class="tl-event-details-right tl-upcoming-events">

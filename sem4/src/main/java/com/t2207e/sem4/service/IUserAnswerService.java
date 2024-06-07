@@ -1,5 +1,6 @@
 package com.t2207e.sem4.service;
 
+import com.t2207e.sem4.entity.User;
 import com.t2207e.sem4.entity.UserAnswer;
 
 import java.util.List;
@@ -10,4 +11,8 @@ public interface IUserAnswerService {
     Optional<UserAnswer> getUserAnswerById(Integer id);
     void add(UserAnswer userAnswer);
     void deleteById(Integer id);
+
+    Integer countUserAnswerByUserAndExam_ExamId(User user, Integer examId);
+
+    List<UserAnswer> getUserAnswersByUserAndExam_ExamId(User user, Integer examId);
 }

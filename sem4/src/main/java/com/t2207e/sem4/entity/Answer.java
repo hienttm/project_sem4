@@ -1,15 +1,15 @@
 package com.t2207e.sem4.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "answers")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +22,9 @@ public class Answer {
     private boolean tof;
 
     @ManyToOne
-    @JoinColumn(name = "question_id", nullable = false)
+    @JoinColumn(name = "question_id")
     private Question question;
 
+    @OneToMany(mappedBy = "answer")
+    private List<UserAnswer> userAnswers;
 }

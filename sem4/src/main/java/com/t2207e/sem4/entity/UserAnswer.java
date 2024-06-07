@@ -21,6 +21,10 @@ public class UserAnswer {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "answer_id", nullable = false)
+    @JoinColumn(name = "answer_id")
     private Answer answer;
+
+    @ManyToOne
+    @JoinColumn(name = "exam_id")
+    private Exam exam;
 }
