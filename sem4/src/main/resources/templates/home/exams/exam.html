@@ -36,7 +36,7 @@
 
     <title>
 
-        BC IELTS listening test 1 - STUDY4
+        Exam
 
     </title>
     <link rel=dns-prefetch href=//fonts.googleapis.com>
@@ -53,16 +53,12 @@
     <meta property="og:url" content="https://study4.com/tests/1234/practice/?part=3229&amp;time_limit=55" />
     <meta property=”og:locale” content=”vi_VN” />
     <meta property="og:title" content="STUDY4" />
-    <meta property="og:description"
-          content="STUDY4 - học tiếng Anh và luyện thi online TOEIC, IELTS, SAT, ACT, GRE, GMAT." />
     <meta property="og:image" content="/exam/img/logo.png" />
 
 
     <meta property="og:type" content="article" />
 
 
-
-    <!-- <link rel=stylesheet id=flatsome-googlefonts-css  href='//fonts.googleapis.com/css?family=Roboto%3Aregular%2C700%2Cregular%2C700%2C500&#038;display=swap&#038;ver=3.9' type=text/css media=all> -->
 
     <link rel="preload" as="style" th:href="@{/home/exam/css/fontawesome.min.css?v=1717416173}" onload="this.rel='stylesheet'">
     <noscript>
@@ -113,6 +109,7 @@
                       method="POST" id="form-exam">
                     <input type="hidden" name="_csrf" th:value="${_csrf.token}">
                     <input type="hidden" name="examId" th:value="${exam.examId}">
+                    <input type="hidden" name="courseId" th:value="${exam.course.courseId}">
 
 
                     <input type='hidden' name='start_time' value='0' />

@@ -120,7 +120,7 @@ public class ExamController {
 
             userAnswerService.add(userAnswer);
         }
-        return "redirect:/";
+        return "redirect:/course/detail/" + submission.getCourseId();
     }
 
 //    @GetMapping("exam")

@@ -12,4 +12,5 @@ import java.util.List;
 public class TestSubmissionDTO {
     private List<UserAnswerDTO> userAnswerDTOs;
     private Integer examId;
+    private Integer courseId;
 }

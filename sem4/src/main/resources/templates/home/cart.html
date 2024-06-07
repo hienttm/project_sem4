@@ -1,7 +1,7 @@
 <li class="li-2-cart" th:each="cartCourse: ${cartCourses}">
     <img th:src="'/home/images/' + ${cartCourse.course.image}" alt="event image" class="image-cart">
     <div class="cart-item-main-info">
-        <a th:href="'course/detail/'+${cartCourse.course.courseId}"><span class="name-course-cart" th:text="${cartCourse.course.courseName}"></span></a>
+        <a th:href="'/course/detail/'+${cartCourse.course.courseId}"><span class="name-course-cart" th:text="${cartCourse.course.courseName}"></span></a>
         <p class="price-course-cart"><span th:text="${cartCourse.course.price}"></span>$</p>
     </div>
 <!--    <div class="quantity-course-cart">-->
