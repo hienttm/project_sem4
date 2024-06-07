@@ -23,11 +23,6 @@ public class TeacherController {
         this.roleService = roleService;
     }
 
-//    @GetMapping("teacher")
-//    public String teacher(){
-//        return "home/teacher/index";
-//    }
-
     @GetMapping("list")
     public String List(Model model){
         List<UserRole> ur = teacherRoleService.getAllTeacher(roleService.getRoleByRoleName("ROLE_TEACHER").get());
