@@ -1,7 +1,7 @@
 function getCart() {
     $.ajax({
         type: 'GET',
-        url: '/cart/getAll',
+        url: '/cart/getAllHeader',
         success: function (result) {
             displayCartResults(result);
         },
@@ -70,3 +70,23 @@ $("#button-add-to-cart").on("click", function () {
     addToCart(courseId);
 });
 
+function deleteFromCart(id) {
+
+    $.ajax({
+        type: 'Get',
+        url: '/api/cart/deleteFromCart/'+id,
+        success: function (result) {
+            console.log(result);
+            getCart();
+            getCountCart();
+        },
+        error: function (error) {
+            console.error('Error:', error);
+        }
+    });
+}
+
+$("").on("click", function () {
+    let courseId = document.getElementById("hidden-course-id").value;
+    addToCart(courseId);
+});

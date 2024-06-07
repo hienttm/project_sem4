@@ -9,10 +9,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Controller
 @RequestMapping("cart")
@@ -25,8 +27,8 @@ public class CartController {
         this.cartCourseService = cartCourseService;
     }
 
-    @GetMapping("/getAll")
-    public String getAllCourseInCart(Model model){
+    @GetMapping("/getAllHeader")
+    public String getAllCourseInCartHeader(Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.isAuthenticated()) {
             String username = authentication.getName();
@@ -36,13 +38,13 @@ public class CartController {
                 List<CartCourse> cartCourses = cartCourseService.getCartCoursesByUser(user);
                 model.addAttribute("cartCourses", cartCourses);
             }
-            return "home/cart";
+            return "home/carts/cartHeader";
         }
         return "redirect:/login";
     }
 
-    @GetMapping("/getCount")
-    public String getCountCourseInCart(){
+    @GetMapping("/list")
+    public String getAllCourseInCart(Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.isAuthenticated()) {
             String username = authentication.getName();
@@ -50,10 +52,24 @@ public class CartController {
             if(userOptional.isPresent()){
                 User user = userOptional.get();
                 List<CartCourse> cartCourses = cartCourseService.getCartCoursesByUser(user);
-                return String.valueOf(cartCourses.size());
+
+                AtomicReference<Double> total = new AtomicReference<>((double) 0);
+                cartCourses.forEach(cartCourse -> {
+                    total.updateAndGet(v -> v + cartCourse.getCourse().getPrice());
+                });
+
+                model.addAttribute("total", total);
+
+                model.addAttribute("cartCourses", cartCourses);
             }
-            return "0";
+            return "home/carts/cart";
         }
-        return "0";
+        return "redirect:/login";
+    }
+
+    @GetMapping("deleteFromCart/{id}")
+    public String deleteFromCart(@PathVariable int id){
+        cartCourseService.deleteById(id);
+        return "redirect:/cart/list";
     }
 }
