@@ -49,11 +49,10 @@ public class HomeController {
     }
     @PostMapping("sendcontactus")
     public String SendContactus( Model model,@RequestParam("name") String name,@RequestParam("email") String email, @RequestParam("message")String message){
-       System.out.println(email);
-       System.out.println(message);
-       System.out.println(name);
+
        emailService.getMailNotiContactEmail(email,message,name);
        emailService.sendMailNotiContactUsStatus(email);
+
         return "home/contactus";
     }
 }
