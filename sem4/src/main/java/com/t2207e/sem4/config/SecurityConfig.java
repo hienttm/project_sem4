@@ -46,6 +46,7 @@ public class SecurityConfig {
                 .rememberMe(rememberMe -> rememberMe.key("uniqueAndSecret").tokenValiditySeconds(86400))
                 .logout(logout ->logout
                         .logoutUrl("/logout")
+                        .deleteCookies("JSESSIONID", "remember-me")
                         .permitAll()
                 );
 

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Controller
 @RequestMapping("/course")
@@ -24,15 +25,17 @@ public class CourseController {
     private final ExamService examService;
     private final UserAnswerService userAnswerService;
     private final OrderDetailService orderDetailService;
+    private final ReviewService reviewService;
 
 
-    public CourseController(CourseService courseService, ChapterService chapterService, UserService userService, ExamService examService, UserAnswerService userAnswerService, OrderDetailService orderDetailService) {
+    public CourseController(CourseService courseService, ChapterService chapterService, UserService userService, ExamService examService, UserAnswerService userAnswerService, OrderDetailService orderDetailService, ReviewService reviewService) {
         this.courseService = courseService;
         this.chapterService = chapterService;
         this.userService = userService;
         this.examService = examService;
         this.userAnswerService = userAnswerService;
         this.orderDetailService = orderDetailService;
+        this.reviewService = reviewService;
     }
 
     @GetMapping("/list/{page}")
@@ -71,6 +74,18 @@ public class CourseController {
 
             List<Chapter> chapters = chapterService.getChaptersByCourse(course);
             model.addAttribute("chapters", chapters);
+
+            List<Review> reviews = reviewService.getReviewsByCourseId(course.getCourseId());
+            model.addAttribute("reviews", reviews);
+
+            final Double[] starTotal = new Double[1];
+            starTotal[0] = 0.0;
+            reviews.forEach(review -> {
+                starTotal[0] += review.getStarNumber();
+            });
+
+            Double averageStar = starTotal[0] / (reviews.size());
+            model.addAttribute("averageStar", averageStar);
 
             Integer countUserBuyCourse = orderDetailService.countOrderDetailsByCourse_CourseId(course.getCourseId());
             model.addAttribute("countUserBuyCourse", countUserBuyCourse);

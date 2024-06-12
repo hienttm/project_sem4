@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
+    <link rel="stylesheet" th:href="@{/home/cart/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/home/cart/css/venobox.min.css}" />
+    <link rel="stylesheet" th:href="@{/home/cart/css/aos.css}" />
+    <link rel="stylesheet" th:href="@{/home/cart/css/slick.css}" />
+    <link rel="stylesheet" th:href="@{/home/cart/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/home/cart/css/responsive.css}" />
+</head>
+<body>
+<!--HEADER HOME-->
+<div th:insert="~{home/fragments/header}"></div>
+
+<div class="body py-5">
+    <div class="container">
+        <div class="w-50 m-auto">
+            <h1 class="my-3 text-success text-center">Checkout Successful!!!</h1>
+
+            <table class="table table-bordered">
+                <tbody>
+                <tr>
+                    <td>Order Code:</td>
+                    <td><span th:text="${orderId}">[order ID]</span></td>
+                </tr>
+                <tr>
+                    <td>Total:</td>
+                    <td><span th:text="${totalPrice.substring(0, totalPrice.length() - 2)}">[total price]</span> VND</td>
+                </tr>
+                <tr>
+                    <td>Payment's Time:</td>
+                    <td><span th:text="${paymentTime}">[payment time]</span></td>
+                </tr>
+                <tr>
+                    <td>Payment Code:</td>
+                    <td><span th:text="${transactionId}">[transaction ID]</span></td>
+                </tr>
+                </tbody>
+            </table>
+            <a th:href="@{/}" class="btn btn-danger">Back to Home</a>
+        </div>
+    </div>
+</div>
+
+<!--FOOTER HOME-->
+<div th:insert="~{/home/fragments/footer}"></div>
+
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
+    <link rel="stylesheet" th:href="@{/home/cart/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/home/cart/css/venobox.min.css}" />
+    <link rel="stylesheet" th:href="@{/home/cart/css/aos.css}" />
+    <link rel="stylesheet" th:href="@{/home/cart/css/slick.css}" />
+    <link rel="stylesheet" th:href="@{/home/cart/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/home/cart/css/responsive.css}" />
+</head>
+<body>
+<!--HEADER HOME-->
+<div th:insert="~{home/fragments/header}"></div>
+
+<div class="tl-13-about tl-breadcrumb pt-120 pb-120">
+    <div class="container">
+        <div class="row align-items-end">
+            <div class="col-md-6">
+                <div class="banner-txt">
+                    <h1 class="tl-breadcrumb-title">Payment</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-0 tl-event-details-row">
+    <section class="shopping-cart-two shopping-cart-new-address">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="shopping-cart-new-address-top-item">
+                                <div class="shopping-cart-new-address-taitel">
+                                    <h4>Order's Information</h4>
+                                </div>
+
+                                <div class="shopping-cart-new-address-top-btn">
+                                    <a th:href="@{cart/list}">
+                      <span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M5 8H15C17.2091 8 19 9.79086 19 12V12C19 14.2091 17.2091 16 15 16H5M5 8L9 5M5 8L9 11"
+                                stroke="#394150" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                      </span>
+                                        Back
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="shopping-cart-new-address-from">
+                                <div class="shopping-cart-new-address-from-item">
+                                    <div class="shopping-cart-new-address-from-inner">
+                                        <label for="exampleFormControlInput9" class="form-label">First Name</label>
+                                        <input type="text" class="form-control" id="exampleFormControlInput9" placeholder="First Name" />
+                                    </div>
+                                    <div class="shopping-cart-new-address-from-inner">
+                                        <label for="exampleFormControlInput10" class="form-label">Last Name</label>
+                                        <input type="text" class="form-control" id="exampleFormControlInput10" placeholder="Last  Name" />
+                                    </div>
+                                </div>
+                                <div class="shopping-cart-new-address-from-item">
+                                    <div class="shopping-cart-new-address-from-inner">
+                                        <label for="exampleFormControlInput11" class="form-label">Country</label>
+                                        <select class="form-select" aria-label="Default select example" id="exampleFormControlInput11">
+                                            <option selected>Bangladesh</option>
+                                            <option value="2">India</option>
+                                            <option value="3">Usa</option>
+                                        </select>
+                                    </div>
+                                    <div class="shopping-cart-new-address-from-inner">
+                                        <label for="exampleFormControlInput12" class="form-label">State</label>
+                                        <select class="form-select" aria-label="Default select example" id="exampleFormControlInput12">
+                                            <option selected>State</option>
+
+                                            <option value="2">India</option>
+                                            <option value="3">Usa</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="shopping-cart-new-address-from-item">
+                                    <div class="shopping-cart-new-address-from-inner">
+                                        <label for="exampleFormControlInput13" class="form-label">City</label>
+                                        <select class="form-select" aria-label="Default select example" id="exampleFormControlInput13">
+                                            <option selected>City</option>
+                                            <option value="2">Dhaka</option>
+                                            <option value="3">Usa</option>
+                                        </select>
+                                    </div>
+                                    <div class="shopping-cart-new-address-from-inner">
+                                        <label for="exampleFormControlInput14" class="form-label">Address</label>
+                                        <input type="text" class="form-control" id="exampleFormControlInput14" placeholder="Address" />
+                                    </div>
+                                </div>
+
+                                <div class="shopping-cart-new-address-from-btn">
+                                    <div class="check-btn-two">
+                                        <a href="#" class="main-btn-four">Checkout</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6">
+                    <div class="cart-summary-box">
+                        <div class="cart-summary-box-text">
+                            <h3>Cart Summary</h3>
+                        </div>
+                        <div class="cart-summary-box-item-top">
+                            <div class="cart-summary-box-item" th:each="cartCourse: ${cartCourses}">
+                                <a href="#">
+                                    <div class="cart-summary-box-inner">
+                                        <div class="cart-summary-box-img">
+                                            <img th:src="'/home/images/' + ${cartCourse.course.image}" alt="img" width="80px"/>
+                                        </div>
+                                        <div class="cart-summary-box-text-two">
+                                            <h3 th:text="${cartCourse.course.courseName}"></h3>
+                                            <h6><span>Teacher :</span> <span th:text="${cartCourse.course.user.fullname}"></span></h6>
+                                            <h5><span>Course's Type :</span> <span th:text="${cartCourse.course.courseType.typeName}"></span></h5>
+                                            <p>Price: $<span th:text="${cartCourse.course.price}"></span></p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="apply-coupon">
+<!--                            <div class="apply-coupon-taitel">-->
+<!--                                <h4>Apply Coupon</h4>-->
+<!--                            </div>-->
+
+<!--                            <div class="apply-coupon-btn">-->
+<!--                                <div class="apply-coupon-form">-->
+<!--                                    <input type="email" class="form-control" id="" placeholder="Coupon" />-->
+<!--                                </div>-->
+<!--                                <div class="apply-coupon-btn-two">-->
+<!--                                    <a href="#">Apply</a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+
+                            <div class="apply-coupon-box">
+<!--                                <div class="shopping-cart-list">-->
+<!--                                    <div class="shopping-cart-list-text">-->
+<!--                                        <h4>Subtotal</h4>-->
+<!--                                        <h5 href="#">$120.0</h5>-->
+<!--                                    </div>-->
+<!--                                    <div class="shopping-cart-list-text">-->
+<!--                                        <h4>Discount</h4>-->
+<!--                                        <h5 href="#">-$0</h5>-->
+<!--                                    </div>-->
+<!--                                    <div class="shopping-cart-list-text">-->
+<!--                                        <h4>Delivery Charges</h4>-->
+<!--                                        <h5 href="#">+$0</h5>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+                                <div class="shopping-cart-list shopping-cart-list-btm">
+                                    <div class="shopping-cart-list-text">
+                                        <h4>Subtotal</h4>
+                                        <h5>$<span th:text="${total}"></span></h5>
+                                    </div>
+                                </div>
+
+                                <div class="shopping-cart-list-btn">
+                                    <a href="#" class="main-btn-six">
+                                        Place Order
+
+                                        <span>
+                        <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M9 9L13 5M13 5L9 1M13 5L1 5" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                      </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!--FOOTER HOME-->
+<div th:insert="~{/home/fragments/footer}"></div>
+
+</body>
+</html>

@@ -2,3 +2,30 @@
     max-height: 500px;
     overflow: auto;
 }
+
+.stars {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    white-space: nowrap;
+    width: fit-content;
+}
+.stars svg {
+    width: 20px;
+}
+
+.overlay {
+    background: #ffffff;
+    height: 100%;
+    overflow: hidden;
+    mix-blend-mode: color;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+svg {
+    fill: rgb(244, 184, 38);
+}

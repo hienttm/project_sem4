@@ -90,6 +90,14 @@ public class UserController {
             return "register";
         }
 
+        //Check EMAIL
+        Optional<User> userEmailOptional = userService.getUserByEmail(user.getEmail());
+        if(userEmailOptional.isPresent()){
+            String exception = "Email has been existed";
+            model.addAttribute("exceptionE", exception);
+            return "register";
+        }
+
         //Check rePassword
         if(!Objects.equals(rePassword, user.getPassword())){
             String exception = "Password and Re-Password are different!";

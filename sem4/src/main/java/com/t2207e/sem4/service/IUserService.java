@@ -10,6 +10,8 @@ public interface IUserService {
     Optional<User> getUserById(Integer id);
     Optional<User> getUserByUsername(String username);
     Optional<User> getUserByPhone(String phone);
+
+    Optional<User> getUserByEmail(String email);
     public List<User> getUsersByPageNumber(Integer pageNumber, Integer pageSize, String tableName);
     void add(User user);
     void deleteById(Integer id);

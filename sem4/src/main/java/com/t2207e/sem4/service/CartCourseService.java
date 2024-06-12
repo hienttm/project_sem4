@@ -44,4 +44,9 @@ public class CartCourseService implements ICartCourseService{
     public List<CartCourse> getCartCoursesByUser(User user) {
         return cartCourseRepository.getCartCoursesByUser(user);
     }
+
+    @Override
+    public void deleteAll() {
+        cartCourseRepository.deleteAll();
+    }
 }
