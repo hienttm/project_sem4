@@ -7,249 +7,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talim - School University & Online Education Template</title>
-    <link rel="shortcut icon" href="home/images/logo/favicon.ico" type="image/x-icon">
-
-    <!-- STYLESHEETS -->
-    <link rel="stylesheet" th:href="@{home/vendor/bootstrap/bootstrap.min.css}">
-    <link rel="stylesheet" th:href="@{home/vendor/owl-carousel/owl.carousel.min.css}">
-    <link rel="stylesheet" th:href="@{home/css/icofont.min.css}">
-    <link rel="stylesheet" th:href="@{home/vendor/font-awesome/all.min.css}">
-    <link rel="stylesheet" th:href="@{home/vendor/font-awesome/sharp-regular.min.css}">
-    <link rel="stylesheet" th:href="@{home/vendor/font-awesome/sharp-solid.min.css}">
-    <link rel="stylesheet" th:href="@{home/vendor/mean-menu/meanmenu.min.css}">
-    <link rel="stylesheet" th:href="@{home/vendor/slick-slider/slick.css}">
-    <link rel="stylesheet" th:href="@{home/vendor/eocjs-newsticker/eocjs-newsticker.css}">
-    <link rel="stylesheet" th:href="@{home/css/style.css}">
-
-    <!-- dark version css -->
-    <link rel="stylesheet" th:href="@{home/css/dark-v.css}">
+    <title>Teacher</title>
+    <link rel="shortcut icon" th:href="@{/home/images/logo/favicon.ico}" type="image/x-icon">
 </head>
 
 <body class="tl-inner-courses-body">
-<!-- preloader start -->
-<div id="loading">
-    <div id="loading-center">
-        <div id="loading-center-absolute">
-            <div class="loading-content">
-                <img class="loading-logo-text" src="home/images/logo/logo-text.png" alt="Kidba">
-                <div class="loading-stroke">
-                    <img class="loading-logo-icon" src="home/images/logo/logo-icon.png" alt="Pen">
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- preloader end -->
 
-
-<!-- sidebar area start -->
-<div class="kidba-menu-sidebar">
-    <div class="kidba-menu-sidebar-inner">
-        <div class="sidebar__close">
-            <button class="sidebar__close-btn" id="sidebar__close-btn">
-                <span><i class="icofont-brand-nexus"></i></span>
-                <span>close</span>
-            </button>
-        </div>
-        <div class="kidba-menu-sidebar-top mb-40">
-            <nav>
-                <div class="nav nav-tabs border-0" id="nav-tab" role="tablist">
-                    <button class="active " id="nav-menu-tab" data-bs-toggle="tab" data-bs-target="#nav-menu" type="button" role="tab" aria-controls="nav-menu" aria-selected="true">Menu</button>
-                    <button id="nav-info-tab" data-bs-toggle="tab" data-bs-target="#nav-info" type="button" role="tab" aria-controls="nav-info" aria-selected="false">Info</button>
-                </div>
-            </nav>
-        </div>
-        <div class="kidba-menu-sidebar-bottom">
-            <div class="logo mb-40">
-                <a href="index.html">
-                    <img src="home/images/logos/logo.png" alt="Logo">
-                </a>
-            </div>
-            <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-menu" role="tabpanel" aria-labelledby="nav-menu-tab">
-                    <div class="mobile-menu"></div>
-                </div>
-                <div class="tab-pane fade" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
-                    <div class="kidba-sidebar-info-content-331">
-                        <ul>
-                            <li><i class="icofont-clock-time"></i> 9:30am - 6:30pm, Mon - Sun</li>
-                            <li><a href="tel:http://80012345676587"><i class="icofont-phone"></i> +800-123-4567 6587</a></li>
-                            <li><i class="icofont-google-map"></i> Anmoore Road Brooklyn, NY 230</li>
-                        </ul>
-                    </div>
-                    <div class="kidba-sidebar-info-social-331">
-                        <a href="#" class="header-right-txt"><i class="icofont-facebook"></i></a>
-                        <a href="#" class="header-right-txt"><i class="icofont-twitter"></i></a>
-                        <a href="#" class="header-right-txt"><i class="icofont-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="offwrap"></div>
-<!-- sidebar area end -->
-
-
-<!-- HEADER SECTION STARTS HERE ↓ -->
-<div class="tl-header tl-1-header">
-    <div class="tl-1-header-top" data-bg-color="var(--yellow-2)">
-        <div class="container">
-            <p>Transform talent and your exclusive skills Global Skills Report 2023.</p>
-            <a href="#">Learn More</a>
-        </div>
-    </div>
-
-    <div class="tl-1-header-bottom pt-20 pb-20" data-bg-color="var(--black-5)">
-        <div class="container">
-            <div class="row g-0 align-items-center">
-                <div class="col-xl-2 col-lg-2">
-                    <div class="row align-items-center">
-                        <div class="col-lg-12 col-6">
-                            <div class="logo">
-                                <a href="index.html">
-                                    <img src="home/images/logos/logo.png" alt="Logo">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="d-lg-none d-flex justify-content-end col-6">
-                            <button class="tl-hamburger navbar-toggler">
-                                <i class="icofont-navigation-menu"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-7">
-                    <div class="tl-nav-menu tl-1-nav-menu">
-                        <ul class="justify-content-center">
-                            <li class="tl-nav-item tl-dropdown">
-                                <a href="#" role="button">
-                                    Home <i class="fa-regular fa-angle-down"></i>
-                                </a>
-                                <ul class="tl-submenu">
-                                    <li><a href="index.html">Online Education (LMS)</a></li>
-                                    <li><a href="index-2.html">Kindergarten</a></li>
-                                    <li><a href="index-3.html">School</a></li>
-                                    <li><a href="index-4.html">College</a></li>
-                                    <li><a href="index-5.html">University</a></li>
-                                    <li><a href="index-6.html">Magazine</a></li>
-                                    <li><a href="index-7.html">Dance School</a></li>
-                                    <li><a href="index-8.html">Driving School</a></li>
-                                    <li><a href="index-9.html">Music School</a></li>
-                                    <li><a href="index-10.html">University Two</a></li>
-                                    <li><a href="index-11.html">Magazine Two</a></li>
-                                    <li><a href="index-12.html">Live Class</a></li>
-                                    <li><a href="index-13.html">Online Course</a></li>
-                                    <li><a href="index-14.html">Language Club</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="tl-nav-item tl-dropdown">
-                                <a href="#" role="button">
-                                    Courses <i class="fa-regular fa-angle-down"></i>
-                                </a>
-                                <ul class="tl-submenu">
-                                    <li><a href="course.html">Course One</a></li>
-                                    <li><a href="course-2.html">Course Two</a></li>
-                                    <li><a href="course-3.html">Course Three</a></li>
-                                    <li><a href="course-4.html">Course Four</a></li>
-
-                                    <li><a href="course-details.html">Course Details</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="tl-nav-item tl-dropdown">
-                                <a href="#" role="button">
-                                    Pages <i class="fa-regular fa-angle-down"></i>
-                                </a>
-                                <ul class="tl-submenu">
-                                    <li class="tl-dropdown-2">
-                                        <a href="#">About <i class="fa-regular fa-angle-right"></i></a>
-
-                                        <ul class="tl-submenu tl-submenu-2">
-                                            <li><a href="about.html">About One</a></li>
-                                            <li><a href="about-2.html">About Two</a></li>
-                                            <li><a href="about-3.html">About Three</a></li>
-                                            <li><a href="about-4.html">About Four</a></li>
-                                            <li><a href="about-5.html">About Five</a></li>
-                                            <li><a href="about-6.html">About Six</a></li>
-                                            <li><a href="about-7.html">About Seven</a></li>
-                                            <li><a href="about-8.html">About Eight</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="tl-dropdown-2">
-                                        <a href="#">Staff <i class="fa-regular fa-angle-right"></i></a>
-
-                                        <ul class="tl-submenu tl-submenu-2">
-                                            <li><a href="staff.html">Staff One</a></li>
-                                            <li><a href="staff-2.html">Staff Two</a></li>
-                                            <li><a href="staff-3.html">Staff Three</a></li>
-                                            <li><a href="staff-4.html">Staff Four</a></li>
-                                            <li><a href="staff-5.html">Staff Five</a></li>
-                                            <li><a href="staff-6.html">Staff Six</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="staff-profile.html">Staff Profile</a></li>
-                                    <li class="tl-dropdown-2">
-                                        <a href="#">Event <i class="fa-regular fa-angle-right"></i></a>
-
-                                        <ul class="tl-submenu tl-submenu-2">
-                                            <li><a href="event.html">Event One</a></li>
-                                            <li><a href="event-2.html">Event Two</a></li>
-                                            <li><a href="event-3.html">Event Three</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="event-details.html">Event Details</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="tl-nav-item tl-dropdown">
-                                <a href="#" role="button">
-                                    Blog <i class="fa-regular fa-angle-down"></i>
-                                </a>
-                                <ul class="tl-submenu">
-                                    <li class="tl-dropdown-2">
-                                        <a href="#">Blog <i class="fa-regular fa-angle-right"></i></a>
-
-                                        <ul class="tl-submenu tl-submenu-2">
-                                            <li><a href="blog.html">Blog One</a></li>
-                                            <li><a href="blog-2.html">Blog Two</a></li>
-                                            <li><a href="blog-3.html">Blog Three</a></li>
-                                            <li><a href="blog-4.html">Blog Four</a></li>
-                                            <li><a href="blog-5.html">Blog Five</a></li>
-                                            <li><a href="blog-6.html">Blog Six</a></li>
-                                            <li><a href="blog-7.html">Blog Seven</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="blog-details.html">Blog Details</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="tl-nav-item tl-dropdown">
-                                <a href="#">Contact <i class="fa-regular fa-angle-down"></i></a>
-
-                                <ul class="tl-submenu">
-                                    <li><a href="contact.html">Contact One</a></li>
-                                    <li><a href="contact-2.html">Contact Two</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-3 d-lg-block d-none">
-                    <div class="tl-header-actions kb-16-header-actions d-flex justify-content-end align-items-center">
-                        <a href="signin.html"><i class="fa-regular fa-user"></i> Sign Up</a>
-                        <a href="signup.html" class="tl-def-btn tl-1-header-btn">Free Trial</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- HEADER SECTION ENDS HERE ↑ -->
+<!--HEADER HOME-->
+<div th:insert="~{home/fragments/header}"></div>
 
 
 <!-- BREADCRUMB STARTS HERE -->
@@ -264,7 +29,7 @@
 
             <div class="col-md-6">
                 <ul class="tl-breadcrumb-nav d-flex">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="/">Home</a></li>
                     <li class="current-page">
                         <span class="dvdr"><i class="icofont-simple-right"></i></span>
                         <span>Teacher</span>
@@ -281,9 +46,9 @@
 <section class="tl-1-teachers pt-60 pb-60">
     <div class="container">
         <div class="row g-3 g-lg-4">
-            <div class="col-lg-4 col-6 col-xxs-12" th:each="teacher: ${ur}">
+            <div class="col-lg-4 col-6" th:each="teacher: ${ur}">
                 <div class="tl-1-teacher">
-                    <img src="home/images/tl-2/teacher-1.jpg" alt="Teacher Image" class="tl-1-teacher-img">
+                    <img th:src="'/home/images/NoImage.png'" alt="Teacher Image" class="tl-1-teacher-img">
                     <ul class="tl-1-teacher-socials">
                         <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
                         <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
@@ -291,8 +56,8 @@
                     </ul>
                     <div class="tl-1-teacher-info">
                         <h5 class="tl-1-teacher-title"><a href="#" th:text="${teacher.user.getFullname()}"></a></h5>
-                        <h5 class="tl-1-teacher-title"><a href="#" th:text="${teacher.user.getPhoneNumber()}"></a></h5>
-                        <h6 class="tl-1-teacher-sub-title">Music Teacher</h6>
+                        <h6 class="tl-1-teacher-sub-title" th:text="${teacher.user.getPhoneNumber()}"></h6>
+                        <h6 class="tl-1-teacher-sub-title" th:text="${teacher.user.getEmail()}"></h6>
                     </div>
                 </div>
             </div>
@@ -301,124 +66,8 @@
 </section>
 <!-- TEACHERS END ↑ -->
 
-
-<!-- PAGINATION START -->
-<div class="container">
-    <div class="tl-pagination tl-pagination-2 pb-120">
-        <a href="#" class="tl-pagination-prev">
-            <i class="fa-arrow-left fa-regular"></i>
-        </a>
-
-        <ul class="page-numbers">
-            <li><a href="#">01</a></li>
-            <li><a href="#" class="active">02</a></li>
-            <li><span class="dots"><i class="fa-regular fa-ellipsis"></i></span></li>
-            <li><a href="#">06</a></li>
-            <li><a href="#">07</a></li>
-        </ul>
-
-        <a href="#" class="tl-pagination-prev">
-            <i class="fa-arrow-right fa-regular"></i>
-        </a>
-    </div>
-</div>
-<!-- PAGINATION END -->
-
-
-<!-- FOOTER SECTION STARTS HERE ↓ -->
-<footer class="tl-footer kb-10-footer tl-1-footer">
-    <div class="container">
-        <div class="tl-footer-top">
-            <div class="row gy-5 justify-content-between">
-                <div class="col-lg-3 col-sm-6 col-12">
-                    <div class="tl-footer-widget kb-10-footer-widget">
-                        <a href="index.html" class="logo tl-footer-widget-title">
-                            <img src="home/images/logos/logo.png" alt="Logo">
-                        </a>
-                        <p class="tl-1-footer-descr">Nullam nulla eget dui efficitur tempor sit amet quis magna, Suspendisse.</p>
-                        <div class="tl-1-footer-socials">
-                            <ul>
-                                <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 order-1 order-sm-2 order-lg-1">
-                    <div class="row gy-5">
-                        <div class="col-6 col-xxs-12">
-                            <div class="tl-footer-widget kb-10-footer-widget">
-                                <h5 class="tl-footer-widget-title">Our Campus</h5>
-                                <ul class="tl-footer-links">
-                                    <li><a href="#">About Us</a></li>
-                                    <li><a href="#">Courses</a></li>
-                                    <li><a href="#">Help Centre</a></li>
-                                    <li><a href="#">News</a></li>
-                                    <li><a href="#">Contact</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-6 col-xxs-12">
-                            <div class="tl-footer-widget kb-10-footer-widget">
-                                <h5 class="tl-footer-widget-title">Academics</h5>
-                                <ul class="tl-footer-links">
-                                    <li><a href="#">Programming</a></li>
-                                    <li><a href="#">Art &amp; Design</a></li>
-                                    <li><a href="#">Business</a></li>
-                                    <li><a href="#">Engineering</a></li>
-                                    <li><a href="#">Photography</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-sm-6 col-12 order-2 order-sm-1 order-lg-2">
-                    <div class="tl-footer-widget tl-3-footer-widget">
-                        <h5 class="tl-footer-widget-title">Subscribe</h5>
-                        <form action="#" class="tl-1-nwsltr-form">
-                            <input type="email" name="nwsltr-mail" id="tl-1-nwsltr-mail" class="tl-1-nwsltr-mail-input" placeholder="Get news & updates">
-                            <button class="tl-1-nwsltr-btn" id="tl-1-nwsltr-btn">@</button>
-                        </form>
-                        <p class="tl-1-nwsltr-txt">Register now to get latest updates on promotions & coupons.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="tl-footer-bottom kb-10-footer-bottom">
-            <div class="row gy-4 align-items-center">
-                <div class="col-md-6">
-                    <p class="tl-1-copyright-txt m-0">Copyright &copy; 2023 All Rights Reserved by Talim</p>
-                </div>
-
-                <div class="col-md-6">
-                    <ul class="tl-1-footer-bottom-actions">
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Term of Service</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-<!-- FOOTER SECTION ENDS HERE ↑ -->
-
-
-<!-- JS FILES ↓ -->
-<script src="home/vendor/jquery/jquery-3.7.0.min.js"></script>
-<script src="home/vendor/bootstrap/bootstrap.bundle.min.js"></script>
-<script src="home/vendor/owl-carousel/owl.carousel.min.js"></script>
-<script src="home/vendor/fs-lightbox/fslightbox.js"></script>
-<script src="home/vendor/mean-menu/jquery.meanmenu.min.js"></script>
-<script src="home/vendor/swiper-js/swiper-bundle.min.js"></script>
-<script src="home/vendor/slick-slider/slick.min.js"></script>
-<script src="home/vendor/bx-slider/jquery.bxslider.min.js"></script>
-<script src="home/vendor/eocjs-newsticker/eocjs-newsticker.js"></script>
-<script src="home/vendor/syotimer/jquery.syotimer.min.js"></script>
-<script src="home/js/main.js"></script>
+<!--FOOTER HOME-->
+<div th:insert="~{/home/fragments/footer}"></div>
 </body>
 
 

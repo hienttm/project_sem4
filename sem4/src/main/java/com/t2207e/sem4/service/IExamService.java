@@ -1,5 +1,6 @@
 package com.t2207e.sem4.service;
 
+import com.t2207e.sem4.entity.Course;
 import com.t2207e.sem4.entity.Exam;
 
 import java.util.List;
@@ -10,4 +11,5 @@ public interface IExamService {
     Optional<Exam> getExamById(Integer id);
     void add(Exam exam);
     void deleteById(Integer id);
+    List<Exam> getExamsByCourse(Course course);
 }

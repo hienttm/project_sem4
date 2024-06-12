@@ -1,5 +1,6 @@
 package com.t2207e.sem4.service;
 
+import com.t2207e.sem4.entity.Course;
 import com.t2207e.sem4.entity.Exam;
 import com.t2207e.sem4.repository.IExamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,4 +37,10 @@ public class ExamService implements IExamService{
     public void deleteById(Integer id) {
         examRepository.deleteById(id);
     }
+
+    @Override
+    public List<Exam> getExamsByCourse(Course course) {
+        return examRepository.getExamsByCourse(course);
+    }
+
 }

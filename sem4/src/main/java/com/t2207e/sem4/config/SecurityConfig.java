@@ -9,6 +9,8 @@ import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.sql.DataSource;
 
@@ -29,7 +31,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(configuration ->{configuration
                         .requestMatchers("/css/**", "/js/**", "/images/**", "/webfonts/**", "/home/**").permitAll()
                         .requestMatchers("/register","/", "/forgotPassword/**","/checkExistMail/**","resetPassworUrl/**","resetForgotPassword","checkResetForgotPassword").permitAll()
-                        .requestMatchers("/contactus/**","/sendcontactus/**").permitAll()
+                        .requestMatchers("/contactus/**","/sendcontactus/**", "/api/cart/addToCart", "/courseType/**").permitAll()
                         .requestMatchers("/home/account/**").hasRole("USER")
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest()
@@ -44,6 +46,7 @@ public class SecurityConfig {
                 .rememberMe(rememberMe -> rememberMe.key("uniqueAndSecret").tokenValiditySeconds(86400))
                 .logout(logout ->logout
                         .logoutUrl("/logout")
+                        .deleteCookies("JSESSIONID", "remember-me")
                         .permitAll()
                 );
 

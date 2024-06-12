@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "courses")
@@ -67,4 +67,7 @@ public class Course {
     private User censor;
 
     private String description;
+
+    @OneToMany(mappedBy = "course")
+    private List<Review> reviews;
 }

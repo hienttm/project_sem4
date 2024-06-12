@@ -607,8 +607,7 @@ body {
 .form-content input[type="checkbox"]:checked,
 .form-content input[type="radio"]:not(:checked),
 .form-content input[type="radio"]:checked {
-  position: absolute;
-  left: -9999px;
+  display: none;
 }
 
 .form-content input[type="checkbox"]:not(:checked) + label,
@@ -640,7 +639,11 @@ body {
 
 .form-content input[type="checkbox"]:checked + label:before,
 .form-content input[type="radio"]:checked + label:before {
-  content: "";
+  content: "✔";
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   left: 0;
   top: 2px;

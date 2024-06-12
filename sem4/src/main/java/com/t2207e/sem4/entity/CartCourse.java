@@ -24,10 +24,10 @@ public class CartCourse {
     private Course course;
 
     @ManyToOne
-    @JoinColumn(name = "cart_id", nullable = false)
-    private Cart cart;
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @Column(nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    private Date updateAt;
+    private Date updateAt = new Date(System.currentTimeMillis());
 }

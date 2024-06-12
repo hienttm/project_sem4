@@ -64,7 +64,9 @@
                                 <input th:field="*{fullname}" id="fullname" name="fullname" type="text" class="form-control" placeholder="Full Name" required/>
                             </div>
                         </div>
+                        <div style="color: red" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="error"></div>
                         <div style="color: red" th:if="${exceptionP != null and !exceptionP.isEmpty()}" th:text="${exceptionP}" class="error"></div>
+                        <div style="color: red" th:if="${exceptionE != null and !exceptionE.isEmpty()}" th:text="${exceptionE}" class="error"></div>
                         <div class="row">
                             <div class="col-12 col-sm-6">
                                 <input th:field="*{phoneNumber}" id="phone" name="phone" type="text" class="form-control" placeholder="Phone Number" required/>

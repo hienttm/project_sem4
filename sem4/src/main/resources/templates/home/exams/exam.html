@@ -1,108 +1,478 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='vi'>
+
 <head>
-    <meta charset="UTF-8">
-    <title>Exam</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-147622171-7"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'UA-147622171-7');
+
+        gtag('config', 'G-64Z8KN7V8D');
+
+
+
+        gtag('config', 'UA-147622171-7', {
+            'user_id': '1113842'
+        });
+
+
+        gtag('config', 'G-64Z8KN7V8D', {
+            'user_id': '1113842'
+        });
+
+
+        gtag('set', { 'user_id': '1113842' });
+        //ga('set', 'userId', '1113842');
+
+    </script>
+
+
+
+
+    <title>
+
+        Exam
+
+    </title>
+    <link rel=dns-prefetch href=//fonts.googleapis.com>
+    <meta charset="utf-8">
+    <meta name="description" CONTENT="STUDY4 - học tiếng Anh và luyện thi online TOEIC, IELTS, SAT, ACT, GRE, GMAT.">
+    <meta name="keywords"
+          content="toeic,ielts,online english learning,cambridge ielts,bc ielts,real ielts tests,toeic ets,test prep services,online tutor,luyện thi online,tiếng Anh online,tiếng Anh giao tiếp,tiếng Anh cơ bản,tiếng anh cho người mất gốc" />
+    <link rel="canonical" href="https://study4.com/tests/1234/practice/?part=3229&amp;time_limit=55" />
+    <link rel="icon" th:href="@{/home/exam/img/logo_sm.png}" />
+    <link rel="apple-touch-icon" th:href="@{/home/exam/img/logo_sm.png}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="turbolinks-cache-control" content="no-cache">
+    <meta property="fb:app_id" content="170677886335455" />
+    <meta property="og:url" content="https://study4.com/tests/1234/practice/?part=3229&amp;time_limit=55" />
+    <meta property=”og:locale” content=”vi_VN” />
+    <meta property="og:title" content="STUDY4" />
+    <meta property="og:image" content="/exam/img/logo.png" />
+
+
+    <meta property="og:type" content="article" />
+
+
+
+    <link rel="preload" as="style" th:href="@{/home/exam/css/fontawesome.min.css?v=1717416173}" onload="this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" th:href="@{/home/exam/css/fontawesome.min.css?v=1717416173}">
+    </noscript>
+
+
+    <link rel="preload" as="style" th:href="@{/home/exam/dist/vendor.ad60eb658fc650d75097.min.css?v=1717416173}"
+          onload="this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" th:href="@{/home/exam/dist/vendor.ad60eb658fc650d75097.min.css?v=1717416173}">
+    </noscript>
+
+    <link rel='stylesheet' th:href="@{/home/exam/dist/main.419494d3129dfcdda449.min.css?v=1717416173}" />
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/82192363" style="position:absolute; left:-9999px;" alt="" /></div>
+    </noscript>
+    <!-- /Yandex.Metrika counter -->
+
+
+    <script>
+        window.resizeIframe = function (obj) { obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px'; }
+    </script>
 </head>
-<body>
-    <h1>Thời gian: 40:00</h1>
-    <h3>Bài làm</h3>
-    <form>
-        <div>
-            <p>Question 1</p>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1_1">
-                <label class="form-check-label" for="flexRadioDefault1_1">
-                    Answer 1
-                </label>
+
+<body class='gray-bg'>
+
+<div class='site-wrapper'>
+    <div class='site-content-wrapper'>
+
+
+        <div class='content-wrapper'>
+
+
+            <div class='xl-container'>
+
+
+                <h1 class='h4 text-center' ><span th:text="${exam.examName}"></span>
+
+                    <a class='btn btn-sky btn-sm' th:href="@{/}">Thoát</a>
+
+
+                </h1>
+                <h3 th:text="${exam.description}"></h3>
+
+
+                <form class="test-form" autocomplete="off" th:action="@{submit}"
+                      method="POST" id="form-exam">
+                    <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+                    <input type="hidden" name="examId" th:value="${exam.examId}">
+                    <input type="hidden" name="courseId" th:value="${exam.course.courseId}">
+
+
+                    <input type='hidden' name='start_time' value='0' />
+                    <input type='hidden' name='end_time' value='0' />
+                    <input type="hidden" name="time_limit" th:value="${exam.time}" />
+                    <input type="hidden" name="timeleft_value" value="0" />
+
+
+                    <div class='test-wrapper'>
+                        <div class='test-content contentblock' id='test-content'>
+
+                            <div class="tab-content" id="pills-tabContent">
+
+
+                                <div class="tab-pane active show" id="partcontent-3229" role="tabpanel"
+                                     aria-labelledby="pills-tab">
+
+
+                                    <div class='test-questions-wrapper'>
+
+                                        <div class='question-set-wrapper'>
+
+
+
+                                            <div class='question-group-wrapper'>
+
+
+
+
+
+                                                <div class='context-wrapper'>
+
+
+
+
+
+
+                                                    <div class='context-content text-highlightable'>
+                                                        <div>
+                                                            <p>Choose the correct letter,&nbsp;<strong>A</strong>,&nbsp;<strong>B</strong>,&nbsp;<strong>C</strong>&nbsp;or&nbsp;<strong>D</strong>.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+
+
+                                                </div>
+
+
+                                                <div class='questions-wrapper two-cols'>
+
+
+
+                                                    <div th:each="question, questionIndex : ${exam.questions}" class='question-wrapper' th:data-qid="${questionIndex.count}"
+                                                         th:id="'question-wrapper-'+${questionIndex.count}">
+
+                                                        <div class='question-number' th:data-qid="${questionIndex.count}"
+                                                             data-markable="true">
+                                                            <strong th:text="${questionIndex.count}"></strong>
+                                                        </div>
+
+                                                        <input type="hidden" th:name="'userAnswerDTOs[' + ${questionIndex.index} + '].examId'" th:value="${question.exam.examId}">
+                                                        <input type="hidden" th:name="'userAnswerDTOs[' + ${questionIndex.index} + '].questionId'" th:value="${question.questionId}">
+
+
+                                                        <div class='question-content text-highlightable'>
+
+                                                            <div class='question-text ' th:text="${question.question}"></div>
+
+
+
+
+                                                            <div class='question-answers' th:each="answer, answerIndex : ${question.answers}">
+
+
+
+
+                                                                <div class="form-check">
+                                                                    <input data-type='question-answer'
+                                                                           class="form-check-input" th:data-qid="${questionIndex.count}" th:id="'answer-'+${questionIndex.count}+'-'+${answerIndex.count}"
+                                                                           type="radio" th:name="'userAnswerDTOs[' + ${questionIndex.index} + '].answerId'" th:value="${answer.answer_id}">
+                                                                    <label class="form-check-label"
+                                                                           th:for="'answer-'+${questionIndex.count}+'-'+${answerIndex.count}" th:text="${answer.answerContent}"></label>
+                                                                </div>
+
+                                                            </div>
+
+
+
+
+                                                        </div>
+
+
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+
+
+                                        </div>
+
+
+
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class='test-navigation' id='test-navigation'>
+                            <div class='test-navigation__inner' id='test-navigation__inner'>
+                                <div>
+                                    <div class='timeleft-wrapper mb-2'>
+
+                                        Thời gian còn lại:
+                                        <span th:data-totaltime="${exam.time}" th:data-timeleft-value="${exam.time}" id='timeleft' class='timeleft'></span>
+
+                                    </div>
+
+                                    <button type="submit" class='btn btn-outline-primary btn-block mb-3 mt-3' id='submit-test'>NỘP BÀI</button>
+
+                                    <p class="text-warning font-sm"><i><b>Chú ý: Bạn có thể click vào số thứ tự câu
+                                        hỏi trong bài để đánh dấu review</b></i></p>
+
+                                    <div class='test-questions-list'>
+
+
+                                        <div class='test-questions-list-part'>
+                                            <h6>Recording 4</h6>
+                                            <div class='test-questions-list-wrapper' >
+
+
+                                                    <span th:each="question, questionIndex : ${exam.questions}" class='test-questions-listitem ' th:data-qid="${questionIndex.count}"
+                                                          th:id="'test-questions-listitem-'+${questionIndex.count}" th:text="${questionIndex.count}"></span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
             </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1_2">
-                <label class="form-check-label" for="flexRadioDefault1_2">
-                    Answer 2
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1_3">
-                <label class="form-check-label" for="flexRadioDefault1_3">
-                    Answer 3
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1_4">
-                <label class="form-check-label" for="flexRadioDefault1_4">
-                    Answer 4
-                </label>
-            </div>
+
+
         </div>
 
-        <br>
-        <br>
+    </div>
 
-        <div>
-            <p>Question 2</p>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault2_1">
-                <label class="form-check-label" for="flexRadioDefault2_1">
-                    Answer 1
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault2_2">
-                <label class="form-check-label" for="flexRadioDefault2_2">
-                    Answer 2
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault2_3">
-                <label class="form-check-label" for="flexRadioDefault2_3">
-                    Answer 3
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadioDefault2_4">
-                <label class="form-check-label" for="flexRadioDefault2_4">
-                    Answer 4
-                </label>
-            </div>
-        </div>
 
-        <br>
-        <br>
 
-        <div>
-            <p>Question 3</p>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault3" id="flexRadioDefault3_1">
-                <label class="form-check-label" for="flexRadioDefault3_1">
-                    Answer 1
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault3" id="flexRadioDefault3_2">
-                <label class="form-check-label" for="flexRadioDefault3_2">
-                    Answer 2
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault3" id="flexRadioDefault3_3">
-                <label class="form-check-label" for="flexRadioDefault3_3">
-                    Answer 3
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault3" id="flexRadioDefault3_4">
-                <label class="form-check-label" for="flexRadioDefault3_4">
-                    Answer 4
-                </label>
-            </div>
+</div>
 
-            <br>
-            <br>
 
-            <button type="Submit">Submit</button>
-        </div>
-    </form>
+<script type='text/javascript' th:src="@{/home/exam/ckeditor/ckeditor-init-override.js?v=1717416173}"></script>
+<script type='text/javascript' th:src="@{/home/exam/ckeditor/ckeditor/ckeditor.js}"></script>
+<script type='text/javascript' th:src="@{/home/exam/js/webaudiorecorder/WebAudioRecorder.min.js}"></script>
+<script type='text/javascript' th:src="@{/home/exam/dist/vendor.ad60eb658fc650d75097.js?v=1717416173}"></script>
+<script type='text/javascript' th:src="@{/home/exam/dist/main.419494d3129dfcdda449.js?v=1717416173}"></script>
+
+<script type='text/javascript' th:src="@{/home/exam/js/formstorage.js}"></script>
+<script>
+    var test_key = 'study4test_' + window.location.href;
+
+    var test_storage = new FormStorage('.test-form', {
+        name: test_key,
+        ignores: [
+            "[name='csrfmiddlewaretoken']", "[name='uid']",
+            "[name='start_time']", "[name='end_time']", "[name='time_limit']"
+        ]
+    });
+
+    var $timeleft = $('#timeleft');
+    var $timeleft_value = $('input[name="timeleft_value"]');
+    var $timeelapsed = $('#timeelapsed');
+    var $start_time = $('input[name="start_time"]');
+    var $end_time = $('input[name="end_time"]');
+    var $submitbutton = $('#submit-test');
+    var $test = $('form');
+    var $nextpart = $('.nextpart');
+    var i_timer = null;
+    var i_stopwatch = null;
+    var totaltime = parseFloat($timeleft.attr('data-totaltime'));
+
+    // SET START TIME
+    if ($start_time.val() === '0') {
+        $start_time.val(Date.now() / 1000);
+    }
+
+    $nextpart.on('click', function (e) {
+        e.preventDefault();
+        var $this = $(this);
+        var part_id = $this.attr('data-nextpart_id');
+        var $nav = $(`.nav-link[href="#partcontent-${part_id}"]`);
+        $nav.tab('show');
+        window.topFunction();
+    });
+
+
+    $('#restore-test-btn').on('click', function () {
+        if (confirm('Are you sure?') == true) {
+            test_storage.apply();
+            $timeleft.attr('data-timeleft-value', $timeleft_value.val());
+
+            $('[data-type="question-answer"]').each(function (idx, el) {
+                var $this = $(el);
+                var qid = $this.attr('data-qid');
+                if (!$this.val() || ($this.attr('type') == 'radio' && !$this.prop('checked'))) {
+                    $(`.test-questions-listitem[data-qid=${qid}]`).removeClass('done');
+                    return false;
+                }
+                $(`.test-questions-listitem[data-qid=${qid}]`).removeClass('done').addClass('done');
+            });
+
+            if (i_timer) {
+                clearInterval(i_timer);
+                var restored_start_time = Date.now() / 1000 - (totaltime * 60 - parseFloat($timeleft.attr('data-timeleft-value')) * 60);
+                console.log(restored_start_time);
+                $start_time.val(restored_start_time);
+                start_test_timer();
+            }
+        }
+    });
+
+    $('#save-test-btn').on('click', function () {
+        save_test();
+        alert('Bài làm của bạn đã được lưu!');
+    });
+
+    $('.test-questions-listitem').on('click', function (e) {
+        var $this = $(this);
+        var qid = $this.attr('data-qid');
+        var $qinput = $(`[data-qid="${qid}"]`);
+        var $qwrapper = $(`#question-wrapper-${qid}`);
+        var part_content_id = $qinput.closest('.tab-pane')[0].id;
+        var $nav = $(`.nav-link[href="#${part_content_id}"]`);
+        $nav.tab('show');
+        setTimeout(function () {
+            $qwrapper[0].scrollIntoView({
+                block: 'center'
+            });
+            $qwrapper.css({ border: '1px solid #ffd700' })
+            setTimeout(function () {
+                $qwrapper.css({ border: '' });
+            }, 1000);
+        }, 150);
+        //window.topFunction();
+    });
+
+    $('[data-type="question-answer"]').on('change', function (e) {
+        var $this = $(this);
+        var qid = $this.attr('data-qid');
+        if (!$this.val()) {
+            $(`.test-questions-listitem[data-qid=${qid}]`).removeClass('done');
+            return false;
+        }
+        $(`.test-questions-listitem[data-qid=${qid}]`).removeClass('done').addClass('done');
+    });
+
+    $('[data-markable=true]').on('click', function (e) {
+        var $this = $(this);
+        var qid = $this.attr('data-qid');
+        var $listitem = $(`.test-questions-listitem[data-qid=${qid}]`);
+        if ($listitem.hasClass('marked')) {
+            $listitem.removeClass('marked');
+            $this.removeClass('marked');
+        } else {
+            $listitem.removeClass('marked').addClass('marked');
+            $this.addClass('marked');
+        }
+    })
+
+    function save_test() {
+
+        // remove old items except current one
+
+        for (key in localStorage) {
+            if (key.startsWith('study4test_') && key != test_key) {
+                localStorage.removeItem(key);
+            }
+        }
+
+        $timeleft_value.val(parseFloat($timeleft.attr('data-timeleft-value')));
+        test_storage.save();
+    }
+
+    function when_timesup() {
+        $('input[data-type="question-answer"]:radio:not(:checked)').attr('disabled', true);
+        $submitbutton.removeClass('btn-outline-primary').addClass('btn-primary');
+    }
+
+
+    function start_test_timer() {
+        var duration;
+        if ($timeleft.attr('data-timeleft-value') && parseInt($timeleft.attr('data-totaltime'))) {
+            duration = parseFloat($timeleft.attr('data-timeleft-value'));
+        } else {
+            duration = totaltime;
+        }
+
+        if (duration > 0) {
+            i_timer = window.startTimer(duration, $timeleft[0], when_timesup);
+        } else {
+            i_stopwatch = window.startStopwatch($timeelapsed[0]);
+        }
+    }
+
+    start_test_timer();
+
+    // SET END TIME ON SUBMIT
+    $test.submit(function (e) {
+        $end_time.val(Date.now() / 1000);
+        var $nonempty = $('input[name^=question-]').filter(function () {
+            var $el = $(this);
+            if ($el.is(':radio')) {
+                return $el.is(':checked');
+            } else {
+                return $el.val();
+            }
+        });
+        if ($nonempty.length) {
+            console.log('SAVING TEST DATA');
+            save_test();
+        }
+    });
+
+    var stickySidebar = new StickySidebar('#test-navigation', {
+        topSpacing: 80,
+        bottomSpacing: 0,
+        containerSelector: '.test-wrapper',
+        innerWrapperSelector: '.test-navigation__inner',
+        resizeSensor: true,
+        stickyClass: 'is-affixed',
+        minWidth: 768,
+    });
+
+    window.addEventListener("beforeunload", function (e) {
+        var confirmationMessage = "\o/";
+        (e || window.event).returnValue = confirmationMessage; //Gecko + IE
+        return confirmationMessage;                            //Webkit, Safari, Chrome
+    });
+</script>
+
+<script>
+    function updateTimeAndSubmit() {
+        const span = document.getElementById('timeleft');
+        const form = document.getElementById('form-exam');
+
+        let timeLeft = span.getAttribute('data-timeleft-value');
+
+        if (timeLeft <= 0) {
+            form.submit();
+        }
+    }
+    setInterval(updateTimeAndSubmit, 1000);
+</script>
+
 </body>
 </html>

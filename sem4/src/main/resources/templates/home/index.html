@@ -14,7 +14,7 @@
 
 
 <!-- BANNER SECTION STARTS HERE 👇-->
-<section class="tl-13-banner" data-background="home/images/tl-13/banner-bg.png" data-bg-color="#f2efe8">
+<section class="tl-13-banner" data-bg-color="#f2efe8">
     <div class="container">
         <div class="row gy-5 align-items-center">
             <div class="col-lg-7">
@@ -84,7 +84,7 @@
 
         <div class="row tl-13-categories-row">
             <div class="col-lg-3 col-md-4 col-6 col-xxs-12" th:each="courseType: ${courseTypes}">
-                <a href="#" class="tl-3-single-program">
+                <a th:href="'/course/list/1?course_type_name='+${courseType.typeName}" class="tl-3-single-program">
                     <h4 class="tl-3-single-program-title" th:text="${courseType.typeName}"></h4>
                 </a>
             </div>

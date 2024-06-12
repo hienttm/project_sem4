@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "exams")
@@ -38,6 +39,10 @@ public class Exam {
     @NotNull(message = "RatioPass cannot be null")
     private int ratioPass;
 
+    @Column(name = "time")
+    @NotNull(message = "Time cannot be null")
+    private int time;
+
     @Column(name = "status",nullable = false)
     private int status=1;
 
@@ -48,5 +53,7 @@ public class Exam {
     @JoinColumn(name = "course_id", nullable = false)
     private Course course;
 
+    @OneToMany(mappedBy = "exam")
+    private List<Question> questions;
     // Getters and Setters
 }
