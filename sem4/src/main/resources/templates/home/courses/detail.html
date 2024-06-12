@@ -63,7 +63,7 @@
                             <h5 class="tl-course-details-info-value" th:text="${course.courseType.typeName}"></h5>
                         </div>
                         <div class="tl-course-details-info">
-                            <h6 class="tl-course-details-info-name"><i class="fa-regular fa-tv"></i>Category</h6>
+                            <h6 class="tl-course-details-info-name"><i class="fa-regular fa-tv"></i></i>Category</h6>
                             <h5 class="tl-course-details-info-value" th:text="${course.category.categoryName}"></h5>
                         </div>
                         <div class="tl-course-details-info">
@@ -185,44 +185,6 @@
                         </div>
 
                         <div class="tab-pane fade" id="reviews-tab-pane" role="tabpanel" aria-labelledby="reviews-tab" tabindex="0">
-                            <div class="tl-event-details-area tl-course-details-review">
-                                <div class="card">
-                                    <div class="card-body p-4">
-                                        <div class="d-flex flex-start w-100">
-                                            <img class="rounded-circle shadow-1-strong me-3"
-                                                 th:src="'/home/images/' + ${user.image}" alt="avatar" width="65"
-                                                 height="65" />
-                                            <div class="w-100">
-                                                <h5 th:text="${user.fullname}"></h5>
-                                                <div data-mdb-rating-init class="rating mb-3" data-mdb-toggle="rating">
-                                                    <div class="star-rating">
-                                                        <input type="radio" id="5-stars" name="rating" value="5" />
-                                                        <label for="5-stars" class="star">&#9733;</label>
-                                                        <input type="radio" id="4-stars" name="rating" value="4" />
-                                                        <label for="4-stars" class="star">&#9733;</label>
-                                                        <input type="radio" id="3-stars" name="rating" value="3" />
-                                                        <label for="3-stars" class="star">&#9733;</label>
-                                                        <input type="radio" id="2-stars" name="rating" value="2" />
-                                                        <label for="2-stars" class="star">&#9733;</label>
-                                                        <input type="radio" id="1-star" name="rating" value="1" />
-                                                        <label for="1-star" class="star">&#9733;</label>
-                                                    </div>
-                                                </div>
-                                                <div data-mdb-input-init class="form-outline">
-                                                    <textarea class="form-control" id="textAreaExample" rows="4" placeholder="Comment Here"></textarea>
-                                                    <label class="form-label" for="textAreaExample">What is your Review?</label>
-                                                </div>
-                                                <div class="d-flex justify-content-end mt-3">
-                                                    <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn" style="background-color: rgb(244, 184, 38)">
-                                                        Send <i class="fas fa-long-arrow-alt-right ms-1"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                             <div class="tl-event-details-area tl-course-details-review" th:each="review: ${reviews}">
                                 <div class="tl-course-details-stars" >
                                     <span th:each="i : ${#numbers.sequence(1, 5)}">
@@ -241,7 +203,6 @@
                                     </div>
                                 </div>
                             </div>
-
 
                         </div>
                     </div>
@@ -321,8 +282,13 @@
 </div>
 <!-- COURSE DETAILS END -->
 
+
 <!--FOOTER HOME-->
 <div th:insert="~{/home/fragments/footer}"></div>
 
+
 </body>
+
+
+<!-- Mirrored from codebasket.xyz/template/talim/light/course-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 07:56:55 GMT -->
 </html>

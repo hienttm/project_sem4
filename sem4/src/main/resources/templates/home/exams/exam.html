@@ -461,16 +461,14 @@
 </script>
 
 <script>
-    let checkSubmit = 0;
     function updateTimeAndSubmit() {
         const span = document.getElementById('timeleft');
         const form = document.getElementById('form-exam');
 
         let timeLeft = span.getAttribute('data-timeleft-value');
 
-        if (timeLeft <= 0 && checkSubmit === 0) {
+        if (timeLeft <= 0) {
             form.submit();
-            checkSubmit = 1;
         }
     }
     setInterval(updateTimeAndSubmit, 1000);

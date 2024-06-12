@@ -96,7 +96,6 @@ public class CourseController {
                 Optional<User> userOptional = userService.getUserByUsername(username);
                 if(userOptional.isPresent()){
                     User user = userOptional.get();
-                    model.addAttribute("user", user);
                     List<OrderDetailByUserDTO> orderDetailByUserDTOs = courseService.GetOrderDetailByUserIdProcedure(user.getUserId());
 
                     boolean checkBuy = orderDetailByUserDTOs.stream().anyMatch(dto -> dto.getCourseId() == course.getCourseId());
