@@ -89,7 +89,6 @@ public class PaymentController {
                 orderDetailService.add(orderDetail);
             });
 
-            cartCourseService.deleteAll();
         }
 
         String baseUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
@@ -113,6 +112,8 @@ public class PaymentController {
                 Order order = orderOptional.get();
                 order.setStatus(1);
                 order.setPaymentCode(transactionId);
+
+                cartCourseService.deleteAll();
             }
         }
 

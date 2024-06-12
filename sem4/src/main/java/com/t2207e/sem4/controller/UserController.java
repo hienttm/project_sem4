@@ -267,4 +267,9 @@ public class UserController {
         return "redirect:/registerTeacher";
     }
 
+    @GetMapping("test")
+    public String Test(){
+        return "home/forgotPassFake";
+    }
+
 }
