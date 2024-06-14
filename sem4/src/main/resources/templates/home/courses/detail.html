@@ -63,17 +63,35 @@
                             <h5 class="tl-course-details-info-value" th:text="${course.courseType.typeName}"></h5>
                         </div>
                         <div class="tl-course-details-info">
-                            <h6 class="tl-course-details-info-name"><i class="fa-regular fa-tv"></i></i>Category</h6>
+                            <h6 class="tl-course-details-info-name"><i class="fa-regular fa-tv"></i>Category</h6>
                             <h5 class="tl-course-details-info-value" th:text="${course.category.categoryName}"></h5>
                         </div>
                         <div class="tl-course-details-info">
-                            <h6 class="tl-course-details-info-name"><i class="fa-solid fa-sharp fa-star"></i>Ratings</h6>
-                            <div class="tl-course-details-stars tl-course-details-info-value">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
+                            <h6 class="tl-course-details-info-name"><i class="fa-solid fa-sharp fa-star"></i>Ratings: <span th:text="${!averageStar.isNaN()?averageStar:0}"></span></h6>
+                            <div>
+                                <div class="stars">
+                                    <svg width="18" height="18" viewBox="0 0 940.688 940.688">
+                                        <path
+                                                d="M885.344,319.071l-258-3.8l-102.7-264.399c-19.8-48.801-88.899-48.801-108.6,0l-102.7,264.399l-258,3.8 c-53.4,3.101-75.1,70.2-33.7,103.9l209.2,181.4l-71.3,247.7c-14,50.899,41.1,92.899,86.5,65.899l224.3-122.7l224.3,122.601 c45.4,27,100.5-15,86.5-65.9l-71.3-247.7l209.2-181.399C960.443,389.172,938.744,322.071,885.344,319.071z" />
+                                    </svg>
+                                    <svg width="18" height="18" viewBox="0 0 940.688 940.688">
+                                        <path
+                                                d="M885.344,319.071l-258-3.8l-102.7-264.399c-19.8-48.801-88.899-48.801-108.6,0l-102.7,264.399l-258,3.8 c-53.4,3.101-75.1,70.2-33.7,103.9l209.2,181.4l-71.3,247.7c-14,50.899,41.1,92.899,86.5,65.899l224.3-122.7l224.3,122.601 c45.4,27,100.5-15,86.5-65.9l-71.3-247.7l209.2-181.399C960.443,389.172,938.744,322.071,885.344,319.071z" />
+                                    </svg>
+                                    <svg width="18" height="18" viewBox="0 0 940.688 940.688">
+                                        <path
+                                                d="M885.344,319.071l-258-3.8l-102.7-264.399c-19.8-48.801-88.899-48.801-108.6,0l-102.7,264.399l-258,3.8 c-53.4,3.101-75.1,70.2-33.7,103.9l209.2,181.4l-71.3,247.7c-14,50.899,41.1,92.899,86.5,65.899l224.3-122.7l224.3,122.601 c45.4,27,100.5-15,86.5-65.9l-71.3-247.7l209.2-181.399C960.443,389.172,938.744,322.071,885.344,319.071z" />
+                                    </svg>
+                                    <svg width="18" height="18" viewBox="0 0 940.688 940.688">
+                                        <path
+                                                d="M885.344,319.071l-258-3.8l-102.7-264.399c-19.8-48.801-88.899-48.801-108.6,0l-102.7,264.399l-258,3.8 c-53.4,3.101-75.1,70.2-33.7,103.9l209.2,181.4l-71.3,247.7c-14,50.899,41.1,92.899,86.5,65.899l224.3-122.7l224.3,122.601 c45.4,27,100.5-15,86.5-65.9l-71.3-247.7l209.2-181.399C960.443,389.172,938.744,322.071,885.344,319.071z" />
+                                    </svg>
+                                    <svg width="18" height="18" viewBox="0 0 940.688 940.688">
+                                        <path
+                                                d="M885.344,319.071l-258-3.8l-102.7-264.399c-19.8-48.801-88.899-48.801-108.6,0l-102.7,264.399l-258,3.8 c-53.4,3.101-75.1,70.2-33.7,103.9l209.2,181.4l-71.3,247.7c-14,50.899,41.1,92.899,86.5,65.899l224.3-122.7l224.3,122.601 c45.4,27,100.5-15,86.5-65.9l-71.3-247.7l209.2-181.399C960.443,389.172,938.744,322.071,885.344,319.071z" />
+                                    </svg>
+                                    <div class="overlay" th:style="'width: '+ ${100 - (!averageStar.isNaN()?averageStar*20:0)} + '%'"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -117,24 +135,24 @@
                                         <div class="accordion-body">
                                             <a th:href="${chapter_count.index<course.freeNumbers or !checkBuy?chapter.chapterVideo:'#'}" class="tl-course-details-content">
                                                     <span class="tl-course-details-content-left">
-                                                        <i class="fa-regular fa-video"></i> Mastering Pronunciation and Intonation
+                                                        <i class="fa-regular fa-video"></i> Video of Chapter
                                                     </span>
 
                                                 <span class="tl-course-details-content-right">
                                                         <span class="tl-course-details-availability">
-                                                            <i th:if="${chapter_count.index<course.freeNumbers or !checkBuy}" class="fa-regular fa-lock-open"></i>
-                                                            <i th:if="${chapter_count.index>=course.freeNumbers and checkBuy}" class="fa-regular fa-lock"></i>
+                                                            <i th:if="${chapter_count.index<course.freeNumbers or checkBuy}" class="fa-regular fa-lock-open"></i>
+                                                            <i th:if="${chapter_count.index>=course.freeNumbers and !checkBuy}" class="fa-regular fa-lock"></i>
                                                         </span>
                                                     </span>
                                             </a>
 
                                             <a th:href="${chapter_count.index<course.freeNumbers or !checkBuy?chapter.chapterFile:'#'}" class="tl-course-details-content">
-                                                <span class="tl-course-details-content-left"><i class="fa-regular fa-file-contract"></i> Understanding Basic Sentence Structure and Grammar</span>
+                                                <span class="tl-course-details-content-left"><i class="fa-regular fa-file-contract"></i> Document of Chapter</span>
 
                                                 <span class="tl-course-details-content-right">
                                                     <span class="tl-course-details-availability">
-                                                        <i th:if="${chapter_count.index<course.freeNumbers or !checkBuy}" class="fa-regular fa-lock-open"></i>
-                                                        <i th:if="${chapter_count.index>=course.freeNumbers and checkBuy}" class="fa-regular fa-lock"></i>
+                                                        <i th:if="${chapter_count.index<course.freeNumbers or checkBuy}" class="fa-regular fa-lock-open"></i>
+                                                        <i th:if="${chapter_count.index>=course.freeNumbers and !checkBuy}" class="fa-regular fa-lock"></i>
                                                     </span>
                                                 </span>
                                             </a>
@@ -168,48 +186,63 @@
 
                         <div class="tab-pane fade" id="reviews-tab-pane" role="tabpanel" aria-labelledby="reviews-tab" tabindex="0">
                             <div class="tl-event-details-area tl-course-details-review">
-                                <div class="tl-course-details-stars">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-regular fa-star"></i>
-                                </div>
-
-                                <p class="tl-2-testimony-txt">
-                                    It was my immense luck and fortune to be a part of Educlab University where I can grow. The entire faculty & department leaves no stone unturned to shape one's future in my four years.
-                                </p>
-
-                                <div class="tl-2-testimony-reviewer">
-                                    <img th:src="@{/home/images/tl-2/reviewer-2.jpg}" alt="Person" class="tl-2-testimony-reviewer-img">
-                                    <div class="tl-2-testimony-reviewer-info">
-                                        <h6 class="tl-2-testimony-reviewer-name">Alan Corey</h6>
-                                        <p class="tl-2-testimony-reviewer-label">B.Tech - Civil, 2015 - 2020</p>
+                                <div class="card">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex flex-start w-100">
+                                            <img class="rounded-circle shadow-1-strong me-3"
+                                                 th:src="'/home/images/' + ${user.image}" alt="avatar" width="65"
+                                                 height="65" />
+                                            <div class="w-100">
+                                                <h5 th:text="${user.fullname}"></h5>
+                                                <div data-mdb-rating-init class="rating mb-3" data-mdb-toggle="rating">
+                                                    <div class="star-rating">
+                                                        <input type="radio" id="5-stars" name="rating" value="5" />
+                                                        <label for="5-stars" class="star">&#9733;</label>
+                                                        <input type="radio" id="4-stars" name="rating" value="4" />
+                                                        <label for="4-stars" class="star">&#9733;</label>
+                                                        <input type="radio" id="3-stars" name="rating" value="3" />
+                                                        <label for="3-stars" class="star">&#9733;</label>
+                                                        <input type="radio" id="2-stars" name="rating" value="2" />
+                                                        <label for="2-stars" class="star">&#9733;</label>
+                                                        <input type="radio" id="1-star" name="rating" value="1" />
+                                                        <label for="1-star" class="star">&#9733;</label>
+                                                    </div>
+                                                </div>
+                                                <div data-mdb-input-init class="form-outline">
+                                                    <textarea class="form-control" id="textAreaExample" rows="4" placeholder="Comment Here"></textarea>
+                                                    <label class="form-label" for="textAreaExample">What is your Review?</label>
+                                                </div>
+                                                <div class="d-flex justify-content-end mt-3">
+                                                    <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn" style="background-color: rgb(244, 184, 38)">
+                                                        Send <i class="fas fa-long-arrow-alt-right ms-1"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="tl-event-details-area tl-course-details-review">
-                                <div class="tl-course-details-stars">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-regular fa-star"></i>
+                            <div class="tl-event-details-area tl-course-details-review" th:each="review: ${reviews}">
+                                <div class="tl-course-details-stars" >
+                                    <span th:each="i : ${#numbers.sequence(1, 5)}">
+                                        <i th:if="${i<=review.starNumber}" class="fa-solid fa-star"></i>
+                                        <i th:if="${i>review.starNumber}" class="fa-regular fa-star"></i>
+                                    </span>
                                 </div>
 
-                                <p class="tl-2-testimony-txt">
-                                    It was my immense luck and fortune to be a part of Educlab University where I can grow. The entire faculty & department leaves no stone unturned to shape one's future in my four years.
-                                </p>
+                                <p class="tl-2-testimony-txt" th:text="${review.comment}"></p>
 
                                 <div class="tl-2-testimony-reviewer">
-                                    <img th:src="@{/home/images/tl-2/reviewer-1.jpg}" alt="Person" class="tl-2-testimony-reviewer-img">
+                                    <img th:src="'/home/images/' + ${review.user.image}" alt="Person" class="tl-2-testimony-reviewer-img" width="40px">
                                     <div class="tl-2-testimony-reviewer-info">
-                                        <h6 class="tl-2-testimony-reviewer-name">Brian Cumin</h6>
-                                        <p class="tl-2-testimony-reviewer-label">B.Tech - Civil, 2015 - 2020</p>
+                                        <h6 class="tl-2-testimony-reviewer-name" th:text="${review.user.fullname}"></h6>
+                                        <p class="tl-2-testimony-reviewer-label" th:text="${review.updateAt}">B.Tech - Civil, 2015 - 2020</p>
                                     </div>
                                 </div>
                             </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -288,13 +321,8 @@
 </div>
 <!-- COURSE DETAILS END -->
 
-
 <!--FOOTER HOME-->
 <div th:insert="~{/home/fragments/footer}"></div>
 
-
 </body>
-
-
-<!-- Mirrored from codebasket.xyz/template/talim/light/course-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 14 May 2024 07:56:55 GMT -->
 </html>

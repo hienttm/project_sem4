@@ -40,6 +40,11 @@ public class UserService implements IUserService{
     }
 
     @Override
+    public Optional<User> getUserByEmail(String email) {
+        return userRepository.getUserByEmail(email);
+    }
+
+    @Override
     @Procedure("CALL GetPaginatedData(?,?,?)")
     public List<User> getUsersByPageNumber(Integer pageNumber, Integer pageSize, String tableName) {
         return null;

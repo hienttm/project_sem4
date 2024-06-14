@@ -12,4 +12,6 @@ public interface ICartCourseService {
     void add(CartCourse cartCourse);
     void deleteById(Integer id);
     List<CartCourse> getCartCoursesByUser(User user);
+
+    void deleteAll();
 }

@@ -9971,8 +9971,8 @@ textarea::placeholder {
 }
 .tl-1-course-price {
   position: absolute;
-  right: 20px;
-  top: 20px;
+  right: 0px;
+  top: 0px;
   padding: 1.5px 15px;
   font-weight: 600;
   font-size: 14px;

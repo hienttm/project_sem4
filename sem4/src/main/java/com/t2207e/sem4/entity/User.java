@@ -3,6 +3,7 @@ package com.t2207e.sem4.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,12 +36,14 @@ public class User {
     @NotNull(message = "address cannot be null")
     private String address;
     @NotNull(message = "phoneNumber cannot be null")
+    @Size(min = 10, max = 10, message = "phoneNumber must have 10 characters")
+    @Pattern(regexp = "0[0-9]{9}", message = "phoneNumber can only have numeric characters")
     private String phoneNumber;
     @NotNull(message = "Email cannot be null")
     @Email
     private String email;
     @NotNull(message = "image cannot be null")
-    private String image = "NoAvatar.png";
+    private String image = "NoImage.png";
     @NotNull(message = "Gender cannot be null")
     private Integer gender;
     @NotNull(message = "Status cannot be null")

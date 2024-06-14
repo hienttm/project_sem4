@@ -63,7 +63,9 @@
         </div>
     </div>
 </section>
+<div th:if="${message!= null and !message.isEmpty()}" th:text="${message}"> </div>
 <div th:insert="~{home/fragments/footer}"></div>
 <!-- CONTACT SECTION ENDS HERE -->
 </body>
 </html>
+

@@ -2,3 +2,60 @@
     max-height: 500px;
     overflow: auto;
 }
+
+.stars {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    white-space: nowrap;
+    width: fit-content;
+}
+.stars svg {
+    width: 20px;
+}
+
+.overlay {
+    background: #ffffff;
+    height: 100%;
+    overflow: hidden;
+    mix-blend-mode: color;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+svg {
+    fill: rgb(244, 184, 38);
+}
+
+.star-rating {
+    display: flex;
+    justify-content: left;
+    flex-direction: row-reverse;
+}
+
+.star {
+    font-size: 2em;
+    color: lightgray;
+    cursor: pointer;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked ~ label {
+    color: rgb(244, 184, 38);
+}
+
+.star:hover,
+.star:hover ~ label {
+    color: rgb(244, 184, 38);
+}
+
+input[type="radio"]:checked ~ label:hover,
+input[type="radio"]:checked ~ label:hover ~ label {
+    color: darkorange;
+}
