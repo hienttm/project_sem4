@@ -29,9 +29,10 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .authorizeHttpRequests(configuration ->{configuration
-                        .requestMatchers("/css/**", "/js/**", "/images/**", "/webfonts/**", "/home/**").permitAll()
+                        .requestMatchers("/css/**", "/js/**", "/images/**", "/webfonts/**", "/home/**","/assets/**").permitAll()
                         .requestMatchers("/register","/", "/forgotPassword/**","/checkExistMail/**","resetPassworUrl/**","resetForgotPassword","checkResetForgotPassword").permitAll()
                         .requestMatchers("/contactus/**","/sendcontactus/**", "/api/cart/addToCart", "/courseType/**").permitAll()
+                        .requestMatchers("/test").permitAll()
                         .requestMatchers("/home/account/**").hasRole("USER")
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest()

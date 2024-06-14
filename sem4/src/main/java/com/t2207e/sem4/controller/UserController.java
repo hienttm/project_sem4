@@ -66,11 +66,10 @@ public class UserController {
     @PostMapping("register")
     public String Register(@Valid @ModelAttribute User user, BindingResult bindingResult, Model model, @RequestParam String rePassword){
 
-        System.out.println("SAAAA");
 
         //Validated
         if(bindingResult.hasErrors()){
-            System.out.println("BBBB");
+
             return "register";
         }
 
@@ -140,12 +139,15 @@ public class UserController {
             //gửi mail:
             emailService.sendEmail(userCheckOptional.get().getEmail(), token);
 
-            String message_checkmail="Hãy Click vào đường link được gửi vào Email để Reset lại mật khẩu";
-            model.addAttribute("message_checkmail", message_checkmail);
+            String message_success="Hãy Click vào đường link được gửi vào Email để Reset lại mật khẩu";
+            model.addAttribute("message", message_success);
+            model.addAttribute("statusMessage", "success");
         }else {
             //không tồn tại: nhập lại email
-            String message_checkmail="Email không tồn lại. Vui lòng nhập lại Email";
-            model.addAttribute("message_checkmail", message_checkmail);
+            String message_error="Email không tồn lại. Vui lòng nhập lại Email";
+            model.addAttribute("message", message_error);
+            model.addAttribute("statusMessage", "error");
+
         }
         return "/forgotPassword";
     }
@@ -154,8 +156,9 @@ public class UserController {
         if (token==null || token.isEmpty()){
             //token rỗng
 
-            String message_checkToken="Đường link không hợp lệ, quý khách vui lòng kiểm tra lại";
-            model.addAttribute("message_checkToken",message_checkToken);
+            String message_error="Đường link không hợp lệ, quý khách vui lòng kiểm tra lại";
+            model.addAttribute("message",message_error);
+            model.addAttribute("statusMessage", "error");
             return "redirect:/forgotPassword";
         }
         // kiểm tra token
@@ -177,8 +180,9 @@ public class UserController {
             // Kiểm tra nếu thời gian đã trôi qua vượt quá 2 phút
             if (minutesPassed > 2) {
                 // Token hết hạn
-                String message_checkToken="Đường link đã hết hạn, quý khách vui lòng thao tác lại";
-                model.addAttribute("message_checkToken",message_checkToken);
+                String message_error="Đường link đã hết hạn, quý khách vui lòng thao tác lại";
+                model.addAttribute("message",message_error);
+                model.addAttribute("statusMessage", "error");
                 return "/forgotPassword";
                 // Xử lý logic khi token hết hạn
             } else {
@@ -193,8 +197,9 @@ public class UserController {
         }else{
             //token sai
             System.out.println("Token sai");
-            String message_checkToken="Đường link không hợp lệ, quý khách vui lòng kiểm tra lại";
-            model.addAttribute("message_checkToken",message_checkToken);
+            String message_error="Đường link không hợp lệ, quý khách vui lòng kiểm tra lại";
+            model.addAttribute("message",message_error);
+            model.addAttribute("statusMessage", "error");
             return "/forgotPassword";
         }
     }
@@ -206,8 +211,9 @@ public class UserController {
     public String checkResetForgotPassword(@RequestParam("password") String password, Model model, @RequestParam("rePassword") String rePassword,@RequestParam("userId") Integer userId ) {
         System.out.println("userId: " + userId);
         if (!Objects.equals(rePassword, password)) {
-            String message_checkpassword = "Password and Re-Password are different!";
-            model.addAttribute("message_checkpassword", message_checkpassword);
+            String message_error = "Password and Re-Password are different!";
+            model.addAttribute("message", message_error);
+            model.addAttribute("statusMessage", "error");
             return "resetForgotPassword";
         }
         String encodedPassword = passwordEncoder.encode(password);
@@ -216,8 +222,9 @@ public class UserController {
         if (userCheckOptional.isPresent()) {
             User user = userCheckOptional.get();
             user.setPassword(encodedPassword);
-            String message_checkpassword = "Đổi mật khẩu thành công, Vui lòng đăng nhập lại!";
-            model.addAttribute("message_checkpassword", message_checkpassword);
+            String message_success = "Đổi mật khẩu thành công, Vui lòng đăng nhập lại!";
+            model.addAttribute("message_success", message_success);
+            model.addAttribute("statusMessage", "success");
             userService.add(user);
 
             return "/loginPage";
