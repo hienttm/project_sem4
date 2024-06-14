@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Contact Us</title>
+
 </head>
-<body>
+<body style="background-color: #f1f1f1;">
 <div th:insert="~{home/fragments/header}"></div>
 <!-- BREADCRUMB STARTS HERE -->
 <div class="tl-breadcrumb border-0 pt-120 pb-120">
@@ -13,7 +14,7 @@
         <div class="row align-items-end">
             <div class="col-md-6">
                 <div class="banner-txt">
-                    <h1 class="tl-breadcrumb-title">Contact One</h1>
+                    <h1 class="tl-breadcrumb-title">My Account</h1>
                 </div>
             </div>
 
@@ -22,7 +23,7 @@
                     <li><a href="index.html">Home</a></li>
                     <li class="current-page">
                         <span class="dvdr"><i class="icofont-simple-right"></i></span>
-                        <span>Contact</span>
+                        <span>My Accout</span>
                     </li>
                 </ul>
             </div>
@@ -31,19 +32,34 @@
 </div>
 <!-- BREADCRUMB ENDS HERE -->
 <!-- CONTACT SECTION STARTS HERE -->
-<section class="tl-7-contact">
+<section class="tl-7-contact"
+         style="padding: 76px 0;"
+>
     <div class="container">
-        <div class="row gy-4 gy-md-5 justify-content-between align-items-center">
-            <div class="col-lg-3 d-flex align-items-start">
+        <div class="row"
+             style="justify-content: space-between;"
+        >
+            <div class="col-md-3"
+                 style="background-color: #ffffff;
+    padding-top: 30px;
+    border: 1px solid #ffffff;
+    border-radius: 10px;"
+            >
                 <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <button class="nav-link active" id="v-pills-personal-detail-tab" data-bs-toggle="pill" data-bs-target="#v-pills-personal-detail" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Account Detail</button>
-                    <button class="nav-link" id="v-pills-change-password-tab" data-bs-toggle="pill" data-bs-target="#v-pills-change-password" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Change Password</button>
-                    <button class="nav-link" id="v-pills-my-orders-tab" data-bs-toggle="pill" data-bs-target="#v-pills-my-orders" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">My Orders</button>
-                    <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</button>
+                    <button class="detail2 active " id="v-pills-personal-detail-tab" data-bs-toggle="pill" data-bs-target="#v-pills-personal-detail" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Account Detail</button>
+                    <button class=" detail2" id="v-pills-change-password-tab" data-bs-toggle="pill" data-bs-target="#v-pills-change-password" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Change Password</button>
+                    <button class=" detail2" id="v-pills-my-orders-tab" data-bs-toggle="pill" data-bs-target="#v-pills-my-orders" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">My Orders</button>
+                    <button class=" detail2" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</button>
                 </div>
             </div>
 
-            <div class="col-lg-9 d-flex align-items-start">
+            <div class="col-md-8"
+                 style="    background-color: #ffffff;
+    padding: 30px;
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    width: 71.666667%;"
+            >
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="v-pills-personal-detail" role="tabpanel" aria-labelledby="v-pills-personal-detail-tab">
                         <form action="javascript:void(0);">
@@ -159,10 +175,10 @@ Hi I'm Anna Adame,It will be as simple as Occidental; in fact, it will be Occide
                                 <!--end col-->
                                 <div class="col-lg-12">
                                     <div class="hstack gap-2 justify-content-end">
-                                        <button type="submit" class="btn btn-primary">
+                                        <button type="submit" class="btn btn-warning">
                                             Updates
                                         </button>
-                                        <button type="button" class="btn btn-soft-success">
+                                        <button type="button" class="btn btn-outline-warning">
                                             Cancel
                                         </button>
                                     </div>
@@ -208,7 +224,7 @@ Hi I'm Anna Adame,It will be as simple as Occidental; in fact, it will be Occide
                                 <!--end col-->
                                 <div class="col-lg-12">
                                     <div class="text-end">
-                                        <button type="submit" class="btn btn-success">
+                                        <button type="submit" class="btn btn-warning">
                                             Change Password
                                         </button>
                                     </div>

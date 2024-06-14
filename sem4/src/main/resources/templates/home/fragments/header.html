@@ -23,10 +23,15 @@
     <link rel="stylesheet" th:href="@{/home/css/style.css}">
     <link rel="stylesheet" th:href="@{/home/css/search.css}">
     <link rel="stylesheet" th:href="@{/home/css/course-detail.css}">
-    <link rel="stylesheet" th:href="@{/home/css/cart.css}">
 
     <!-- dark version css -->
     <link rel="stylesheet" th:href="@{/home/css/dark-v.css}">
+
+    <!--    acount-->
+    <link rel="shortcut icon" th:href="@{/assets/images/favicon.ico}" />
+    <link rel="stylesheet" th:href="@{/home/css/detail2.css}">
+
+
 </head>
 <body>
 <div th:fragment="header">
@@ -46,7 +51,7 @@
     <!-- preloader end 👆-->
 
     <!-- HEADER SECTION STARTS HERE 👇-->
-    <div class="tl-header tl-13-header" data-bg-color="#F2EFE8" style="background-color: rgb(242, 239, 232);">
+    <div class="tl-header tl-13-header" data-bg-color="#F2EFE8">
         <div class="container">
             <div class="row g-0 align-items-center">
                 <div class="col-xl-2 col-lg-2">
@@ -77,11 +82,8 @@
 
                             <li class="tl-nav-item tl-dropdown">
                                 <a th:href="@{/course/list/1}" role="button">
-                                    Courses <i class="fa-regular fa-angle-down"></i>
+                                    Courses
                                 </a>
-                                <ul class="tl-submenu" id="courseTypeResult">
-
-                                </ul>
                             </li>
 
                             <li class="tl-nav-item tl-dropdown">
@@ -174,19 +176,7 @@
                         <a th:href="@{/login}" class="tl-def-btn"><i class="fa-regular fa-user"></i> Login</a>
                     </div>
                     <div sec:authorize="isAuthenticated()" class="tl-header-actions tl-13-header-actions d-flex justify-content-end align-items-center">
-                        <div class="tl-nav-menu " >
-                            <ul class="justify-content-center ">
-                                <li class="tl-nav-item tl-dropdown">
-                                    <div class="cart-hover">
-                                        <a th:href="@{/cart/list}"><i class="fa-regular fa-bag-shopping"></i></a>
-                                        <span class="number-items-cart" id="countCart">0</span>
-                                    </div>
-                                    <ul class="tl-submenu" id="cartResult">
-                                        <li class="cart-2-li"> Chưa có sản phẩm nào trong giỏ hàng! </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
+                        <i class="fa-regular fa-bag-shopping"></i>
                         <div class="tl-nav-menu "  >
                             <ul class="justify-content-center ">
                                 <li class="tl-nav-item tl-dropdown">
@@ -197,13 +187,14 @@
                                         <i class="fa-regular fa-angle-down"></i>
                                     </div>
                                     <ul class="tl-submenu">
+
                                         <li><a th:href="@{/home/account/detail}">My Account</a></li>
+                                        <li><a th:href="@{/home/account/detail2}">My Account 2</a></li>
                                         <li><a href="blog-details.html">My Courses</a></li>
-                                        <li>
-                                            <form th:action="@{/logout}" method="post">
-                                                <button type="submit">Log Out</button>
-                                            </form>
-                                        </li>
+                                        <li><form th:action="@{/logout}" method="post">
+                                            <button type="submit">Log Out</button>
+                                        </form></li>
+
                                     </ul>
                                 </li>
                             </ul>
@@ -214,7 +205,6 @@
         </div>
     </div>
     <!-- HEADER SECTION ENDS HERE 👆-->
-
 </div>
 </body>
 </html>
