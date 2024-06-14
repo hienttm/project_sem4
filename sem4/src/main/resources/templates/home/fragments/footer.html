@@ -107,7 +107,7 @@
 <script th:src="@{/home/js/cart.js}"></script>
 <script th:src="@{/home/js/courseTypeHeader.js}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script th:if="${message!= null and !message.isEmpty() and statusMessage!=null and !statusMessage.isEmpty}" th:inline="javascript">
+<script th:if="${message!= null and !message.isEmpty() and statusMessage!=null and !statusMessage.isEmpty()}" th:inline="javascript">
     Swal.fire({
         position: "center",
         icon: /*[[${statusMessage}]]*/ "",
