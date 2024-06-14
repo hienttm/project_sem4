@@ -52,9 +52,11 @@ public class HomeController {
         try{
             emailService.getMailNotiContactEmail(email,message,name);
             emailService.sendMailNotiContactUsStatus(email);
-            model.addAttribute("message", "Success!");
+            model.addAttribute("message", "Send Message Success!");
+            model.addAttribute("statusMessage", "success");
         }catch (Exception e){
             model.addAttribute("message", e.getMessage());
+            model.addAttribute("statusMessage", "error");
         }
         return "home/contactus";
     }
