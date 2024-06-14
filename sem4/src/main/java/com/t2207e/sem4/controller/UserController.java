@@ -139,12 +139,12 @@ public class UserController {
             //gửi mail:
             emailService.sendEmail(userCheckOptional.get().getEmail(), token);
 
-            String message_success="Hãy Click vào đường link được gửi vào Email để Reset lại mật khẩu";
+            String message_success="Please click on the link sent to your email to reset your password";
             model.addAttribute("message", message_success);
             model.addAttribute("statusMessage", "success");
         }else {
             //không tồn tại: nhập lại email
-            String message_error="Email không tồn lại. Vui lòng nhập lại Email";
+            String message_error="Email does not exist. Please re-enter Email";
             model.addAttribute("message", message_error);
             model.addAttribute("statusMessage", "error");
 
@@ -156,7 +156,7 @@ public class UserController {
         if (token==null || token.isEmpty()){
             //token rỗng
 
-            String message_error="Đường link không hợp lệ, quý khách vui lòng kiểm tra lại";
+            String message_error="The link is not valid, please check again";
             model.addAttribute("message",message_error);
             model.addAttribute("statusMessage", "error");
             return "redirect:/forgotPassword";
@@ -180,7 +180,7 @@ public class UserController {
             // Kiểm tra nếu thời gian đã trôi qua vượt quá 2 phút
             if (minutesPassed > 2) {
                 // Token hết hạn
-                String message_error="Đường link đã hết hạn, quý khách vui lòng thao tác lại";
+                String message_error="The link has expired, please try again";
                 model.addAttribute("message",message_error);
                 model.addAttribute("statusMessage", "error");
                 return "/forgotPassword";
@@ -197,7 +197,7 @@ public class UserController {
         }else{
             //token sai
             System.out.println("Token sai");
-            String message_error="Đường link không hợp lệ, quý khách vui lòng kiểm tra lại";
+            String message_error="The link is not valid, please check again";
             model.addAttribute("message",message_error);
             model.addAttribute("statusMessage", "error");
             return "/forgotPassword";
@@ -222,7 +222,7 @@ public class UserController {
         if (userCheckOptional.isPresent()) {
             User user = userCheckOptional.get();
             user.setPassword(encodedPassword);
-            String message_success = "Đổi mật khẩu thành công, Vui lòng đăng nhập lại!";
+            String message_success = "Password change successful, Please log in again!";
             model.addAttribute("message_success", message_success);
             model.addAttribute("statusMessage", "success");
             userService.add(user);
