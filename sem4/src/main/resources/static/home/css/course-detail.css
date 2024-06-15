@@ -29,3 +29,38 @@
 svg {
     fill: rgb(244, 184, 38);
 }
+
+.star-rating {
+    display: flex;
+    justify-content: left;
+    flex-direction: row-reverse;
+}
+
+.star {
+    font-size: 2em;
+    color: lightgray;
+    cursor: pointer;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked ~ label {
+    color: rgb(244, 184, 38);
+}
+
+.star:hover,
+.star:hover ~ label {
+    color: rgb(244, 184, 38);
+}
+
+input[type="radio"]:checked ~ label:hover,
+input[type="radio"]:checked ~ label:hover ~ label {
+    color: darkorange;
+}
+
+.modal-body iframe{
+    width: 100%;
+    aspect-ratio: 16 / 9;
+}

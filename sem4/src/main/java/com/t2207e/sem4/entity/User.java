@@ -43,7 +43,7 @@ public class User {
     @Email
     private String email;
     @NotNull(message = "image cannot be null")
-    private String image = "NoImage.png";
+    private String image = "/home/images/NoImage.png";
     @NotNull(message = "Gender cannot be null")
     private Integer gender;
     @NotNull(message = "Status cannot be null")

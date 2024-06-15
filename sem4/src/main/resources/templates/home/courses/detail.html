@@ -12,6 +12,12 @@
 
 </head>
 
+<style>
+    body {
+        padding-right: 0 !important;
+    }
+</style>
+
 <body class="tl-inner-courses-body">
 <!--HEADER HOME-->
 <div th:insert="~{home/fragments/header}"></div>
@@ -133,20 +139,31 @@
                                     </h2>
                                     <div th:id="'collapse'+${chapter.chapterId}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                         <div class="accordion-body">
-                                            <a th:href="${chapter_count.index<course.freeNumbers or !checkBuy?chapter.chapterVideo:'#'}" class="tl-course-details-content">
+<!--                                            <a th:href="${chapter_count.index<course.freeNumbers or !checkBuy?chapter.chapterVideo:'#'}" class="tl-course-details-content">-->
+                                            <a th:if="${chapter_count.index<course.freeNumbers or checkBuy}" href="#" data-bs-toggle="modal" data-bs-target="#ModalVideo" class="tl-course-details-content get-video-class" th:onclick="'getVideo('+${chapter.chapterId}+','+${chapter_count.index}+')'">
                                                     <span class="tl-course-details-content-left">
                                                         <i class="fa-regular fa-video"></i> Video of Chapter
                                                     </span>
 
                                                 <span class="tl-course-details-content-right">
                                                         <span class="tl-course-details-availability">
-                                                            <i th:if="${chapter_count.index<course.freeNumbers or checkBuy}" class="fa-regular fa-lock-open"></i>
-                                                            <i th:if="${chapter_count.index>=course.freeNumbers and !checkBuy}" class="fa-regular fa-lock"></i>
+                                                            <i class="fa-regular fa-lock-open"></i>
+                                                        </span>
+                                                    </span>
+                                            </a>
+                                            <a th:unless="${chapter_count.index<course.freeNumbers or checkBuy}" href="#"  class="tl-course-details-content">
+                                                    <span class="tl-course-details-content-left">
+                                                        <i class="fa-regular fa-video"></i> Video of Chapter
+                                                    </span>
+
+                                                <span class="tl-course-details-content-right">
+                                                        <span class="tl-course-details-availability">
+                                                            <i class="fa-regular fa-lock"></i>
                                                         </span>
                                                     </span>
                                             </a>
 
-                                            <a th:href="${chapter_count.index<course.freeNumbers or !checkBuy?chapter.chapterFile:'#'}" class="tl-course-details-content">
+                                            <a th:href="${chapter_count.index<course.freeNumbers or checkBuy?chapter.chapterFile:''}" th:target="${chapter_count.index<course.freeNumbers or checkBuy?'_blank':''}" class="tl-course-details-content">
                                                 <span class="tl-course-details-content-left"><i class="fa-regular fa-file-contract"></i> Document of Chapter</span>
 
                                                 <span class="tl-course-details-content-right">
@@ -185,6 +202,56 @@
                         </div>
 
                         <div class="tab-pane fade" id="reviews-tab-pane" role="tabpanel" aria-labelledby="reviews-tab" tabindex="0">
+                            <div class="tl-event-details-area tl-course-details-review" th:if="${checkBuy}">
+                                <div class="card">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex flex-start w-100">
+                                            <img class="rounded-circle shadow-1-strong me-3"
+                                                 th:src="${user.image}" alt="avatar" width="65"
+                                                 height="65" />
+                                            <div class="w-100">
+                                                <h5 th:text="${user.fullname}"></h5>
+                                                <div th:if="${reviewByUser!=null}">
+                                                    <div class="tl-course-details-stars" style="text-align: center; padding: 30px;">
+                                                        <span th:each="i : ${#numbers.sequence(1, 5)}">
+                                                            <i th:if="${i<=reviewByUser.starNumber}" class="fa-solid fa-star" style="font-size: 30px"></i>
+                                                            <i th:if="${i>reviewByUser.starNumber}" class="fa-regular fa-star" style="font-size: 30px"></i>
+                                                        </span>
+                                                    </div>
+
+                                                    <p class="tl-2-testimony-txt" th:text="${reviewByUser.comment}"></p>
+                                                </div>
+                                                <form th:if="${reviewByUser==null}" th:action="'/review/uploadReview/' + ${course.courseId}" method="get">
+                                                    <div data-mdb-rating-init class="rating mb-3" data-mdb-toggle="rating">
+                                                        <div class="star-rating">
+                                                            <input type="radio" id="5-stars" name="rating" value="5" />
+                                                            <label for="5-stars" class="star">&#9733;</label>
+                                                            <input type="radio" id="4-stars" name="rating" value="4" />
+                                                            <label for="4-stars" class="star">&#9733;</label>
+                                                            <input type="radio" id="3-stars" name="rating" value="3" />
+                                                            <label for="3-stars" class="star">&#9733;</label>
+                                                            <input type="radio" id="2-stars" name="rating" value="2" />
+                                                            <label for="2-stars" class="star">&#9733;</label>
+                                                            <input type="radio" id="1-star" name="rating" value="1" />
+                                                            <label for="1-star" class="star">&#9733;</label>
+                                                        </div>
+                                                    </div>
+                                                    <div data-mdb-input-init class="form-outline">
+                                                        <textarea class="form-control" name="comment" id="textAreaExample" rows="4" placeholder="Comment Here"></textarea>
+                                                        <label class="form-label" for="textAreaExample">What is your Review?</label>
+                                                    </div>
+                                                    <div class="d-flex justify-content-end mt-3">
+                                                        <button  type="submit" data-mdb-button-init data-mdb-ripple-init class="btn" style="background-color: rgb(244, 184, 38)">
+                                                            Send <i class="fas fa-long-arrow-alt-right ms-1"></i>
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="tl-event-details-area tl-course-details-review" th:each="review: ${reviews}">
                                 <div class="tl-course-details-stars" >
                                     <span th:each="i : ${#numbers.sequence(1, 5)}">
@@ -196,7 +263,7 @@
                                 <p class="tl-2-testimony-txt" th:text="${review.comment}"></p>
 
                                 <div class="tl-2-testimony-reviewer">
-                                    <img th:src="'/home/images/' + ${review.user.image}" alt="Person" class="tl-2-testimony-reviewer-img" width="40px">
+                                    <img th:src="${review.user.image}" alt="Person" class="tl-2-testimony-reviewer-img" width="40px">
                                     <div class="tl-2-testimony-reviewer-info">
                                         <h6 class="tl-2-testimony-reviewer-name" th:text="${review.user.fullname}"></h6>
                                         <p class="tl-2-testimony-reviewer-label" th:text="${review.updateAt}">B.Tech - Civil, 2015 - 2020</p>
@@ -265,7 +332,7 @@
                 <div class="tl-event-details-right tl-upcoming-events">
                     <h3 class="tl-upcoming-events-title">Courses Have Same Teacher </h3>
                     <div class="tl-upcoming-event tl-pop-course" th:each="courseHaveSameName: ${coursesHaveSameName}">
-                        <img class="tl-upcoming-event-img" th:src="'/home/images/' + ${courseHaveSameName.image}" alt="event image">
+                        <img class="tl-upcoming-event-img" th:src="${courseHaveSameName.image}" alt="event image">
                         <div class="tl-upcoming-event-txt">
                             <h4 class="tl-upcoming-event-title"><a th:href="'/course/detail/' + ${courseHaveSameName.courseId}" th:text="${courseHaveSameName.courseName}"></a></h4>
                             <ul class="tl-2-blog-infos">
@@ -282,11 +349,24 @@
 </div>
 <!-- COURSE DETAILS END -->
 
+<!-- Modal -->
+<div class="modal fade" id="ModalVideo" tabindex="-1" aria-labelledby="ModalVideoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalVideoLabel">Video's Chapter</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="display-video">
+                <iframe src="https://player.vimeo.com/video/952271629" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!--FOOTER HOME-->
 <div th:insert="~{/home/fragments/footer}"></div>
-
-
+<script th:src="@{/home/js/courseDetail.js}"></script>
 </body>
 
 

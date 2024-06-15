@@ -29,7 +29,7 @@
 
             <div class="col-md-6">
                 <ul class="tl-breadcrumb-nav d-flex">
-                    <li><a th:href="@{/course/}">Course</a></li>
+                    <li><a th:href="@{/course/list/1}">Course</a></li>
                     <li class="current-page">
                         <span class="dvdr"><i class="icofont-simple-right"></i></span>
                         <span>List</span>
@@ -66,7 +66,7 @@
             <div class="col-lg-4 col-sm-6" th:each="courseDTO: ${courseDTOs}">
                 <div class="tl-1-course">
                     <div class="tl-1-course-img">
-                        <img th:src="'/home/images/' + ${courseDTO.image}" alt="Course Image">
+                        <img th:src="${courseDTO.image}" alt="Course Image">
                         <span class="tl-1-course-price">$ <span th:text="${courseDTO.price}"></span></span>
                     </div>
 
@@ -84,14 +84,8 @@
                             </div>
                         </div>
                         <div class="tl-13-course-actions">
+                            <span href="#" class="tl-9-program-btn" th:text="${courseDTO.courseTypeName}"></span>
                             <span href="#" class="tl-9-program-btn" th:text="${courseDTO.categoryName}"></span>
-                            <span class="tl-12-course-stars">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </span>
                         </div>
                     </div>
                 </div>
