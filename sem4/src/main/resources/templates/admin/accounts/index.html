@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
+      data-sidebar-image="none" data-preloader="disable">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" th:href="@{assets/images/favicon.ico}" />
+</head>
+
+<body>
+<!-- Begin page -->
+<div id="layout-wrapper">
+    <div th:insert="~{admin/fragments/header}"></div>
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <!-- start page title -->
+                <!-- end page title -->
+
+                <div class="row">
+                    <div class="col-xxl-12">
+                        <a th:href="@{add}" class="btn btn-primary mb-2">Add</a>
+
+                        <table id="table1" class="table table-striped" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>USERNAME</th>
+                                <th>FULL NAME</th>
+                                <th>EMAIL</th>
+                                <th>PHONE</th>
+                                <th>STATUS</th>
+                                <th>BUTTON</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="user: ${users}">
+                                <td class="align-middle" th:text="${user.userId}"></td>
+                                <td class="align-middle" th:text="${user.username}"></td>
+                                <td class="align-middle" th:text="${user.fullname}"></td>
+                                <td class="align-middle" th:text="${user.email}"></td>
+                                <td class="align-middle" th:text="${user.phoneNumber}"></td>
+                                <td class="align-middle" th:text="${user.status}"></td>
+                                <td th:if="${user.status == 1}" class="align-middle text-black">OPEN</td>
+                                <td th:unless="${user.status == 1}" class="align-middle text-danger">LOCK</td>
+                                <td>
+                                    <a th:href="@{edit/{id}(id=${user.userId})}" class="btn btn-primary">Detail</a>
+                                    <a th:href="@{hidden/{id}(id=${user.userId})}" class="btn btn-danger" th:text="${user.status==1?'LOCK':'OPEN'}"></a>
+                                    <a th:href="@{hidden/{id}(id=${user.userId})}" class="btn btn-danger" th:text="${user.status==1?'LOCK':'OPEN'}"></a>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>ROLE NAME</th>
+                                <th>DESCRIPTION</th>
+                                <th>UPDATE AT</th>
+                                <th>STATUS</th>
+                                <th>BUTTON</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- end row -->
+            </div>
+            <!-- container-fluid -->
+        </div>
+        <!-- End Page-content -->
+    </div>
+    <!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+<!--start back-to-top-->
+<div th:insert="~{admin/fragments/footer}"></div>
+</body>
+
+</html>

@@ -1,7 +1,6 @@
 package com.t2207e.sem4.controller.admin;
 
 import com.t2207e.sem4.entity.CourseType;
-import com.t2207e.sem4.entity.Role;
 import com.t2207e.sem4.service.CourseTypeService;
 import jakarta.validation.Valid;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Controller
@@ -35,6 +35,13 @@ public class CourseTypeAdminController {
         List<CourseType> courseTypes = courseTypeService.getAllCourseType();
         model.addAttribute("courseTypes", courseTypes);
         return "admin/courseTypes/index";
+    }
+
+    @GetMapping("add")
+    public String add(Model model){
+        CourseType courseType = new CourseType();
+        model.addAttribute("courseType", courseType);
+        return "admin/courseTypes/add";
     }
 
     @PostMapping("add")
@@ -67,7 +74,8 @@ public class CourseTypeAdminController {
         if(bindingResult.hasErrors()){
             return "admin/courseTypes/edit";
         }
-        if(courseTypeService.existsByTypeName(courseType.getTypeName())){
+        System.out.println(courseTypeService.getCourseTypeById(courseType.getCourseTypeId()).get().getTypeName());
+        if(courseTypeService.existsByTypeName(courseType.getTypeName()) && !Objects.equals(courseType.getTypeName(), courseTypeService.getCourseTypeById(courseType.getCourseTypeId()).get().getTypeName())){
             String exception = "Type Name has been existed";
             model.addAttribute("exception", exception);
             return "admin/courseTypes/edit";

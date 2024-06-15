@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @RequestMapping("admin/role")
@@ -73,7 +74,7 @@ public class RoleAdminController {
         if(bindingResult.hasErrors()){
             return "admin/roles/edit";
         }
-        if(roleService.existsByRoleName(role.getRoleName())){
+        if(roleService.existsByRoleName(role.getRoleName()) && !Objects.equals(role.getRoleName(), roleService.getRoleById(role.getRoleId()).get().getRoleName())){
             String exception = "Role Name has been existed";
             model.addAttribute("exception", exception);
             return "admin/roles/add";
