@@ -16,10 +16,10 @@ import java.util.Optional;
 
 @RequestMapping("admin/role")
 @Controller
-public class RoleController {
+public class RoleAdminController {
     private final RoleService roleService;
 
-    public RoleController(RoleService roleService) {
+    public RoleAdminController(RoleService roleService) {
         this.roleService = roleService;
     }
 
@@ -86,6 +86,23 @@ public class RoleController {
     @GetMapping("delete/{id}")
     public String delete(@PathVariable int id){
         roleService.deleteById(id);
+        return "redirect:/admin/role/list";
+    }
+
+    @GetMapping("hidden/{id}")
+    public String hidden(@PathVariable int id){
+        Optional<Role> roleOptional = roleService.getRoleById(id);
+        if(roleOptional.isPresent()){
+            Role role = roleOptional.get();
+            if(role.getStatus() == 1){
+                role.setStatus(2);
+            }
+            else {
+                role.setStatus(1);
+            }
+            role.setUpdateAt(new Date(System.currentTimeMillis()));
+            roleService.add(role);
+        }
         return "redirect:/admin/role/list";
     }
 

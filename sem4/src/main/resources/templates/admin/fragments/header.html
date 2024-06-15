@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+
+<!-- Layout config Js -->
+<script src="/assets/js/layout.js"></script>
+<!-- Bootstrap Css -->
+<link th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
+<!-- Icons Css -->
+<link th:href="@{/assets/css/icons.min.css}" rel="stylesheet" type="text/css" />
+<!-- App Css-->
+<link th:href="@{/assets/css/app.min.css}" rel="stylesheet" type="text/css" />
+<!-- custom Css-->
+<link th:href="@{/assets/css/custom.min.css}" rel="stylesheet" type="text/css" />
+<!-- Data Table-->
+<link href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+
+
 <div th:fragment="header">
     <header id="page-topbar">
         <div class="layout-width">

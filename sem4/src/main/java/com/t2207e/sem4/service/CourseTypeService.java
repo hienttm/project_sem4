@@ -36,4 +36,9 @@ public class CourseTypeService implements ICourseTypeService{
     public void deleteById(Integer id) {
         courseTypeRepository.deleteById(id);
     }
+
+    @Override
+    public Boolean existsByTypeName(String typeName) {
+        return courseTypeRepository.existsByTypeName(typeName);
+    }
 }

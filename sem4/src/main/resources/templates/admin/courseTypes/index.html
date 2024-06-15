@@ -34,42 +34,35 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>CATEGORY NAME</th>
-                                <!--                                <th>COURSE VIDEO</th>-->
-                                <!--                                <th>COURSE FIlE</th>-->
-                                <th>STATUS</th>
-                                <th>CREATAt</th>
+                                <th>COURSE TYPE NAME</th>
                                 <th>DESCRIPTION</th>
-                                <th style="width: 130px">BUTTON</th>
+                                <th>CREATE AT</th>
+                                <th>STATUS</th>
+                                <th>BUTTON</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="categoryList: ${categoryList}">
-                                <td class="align-middle" th:text="${categoryList.categoryId}"></td>
-                                <td class="align-middle" th:text="${categoryList.categoryName}"></td>
-                                <!--                                <td class="align-middle" th:text="${course.courseVideo}"></td>-->
-                                <!--                                <td class="align-middle" th:text="${course.courseFile}"></td>-->
-<!--                                <td class="align-middle" th:text="${categoryList.status}"></td>-->
-                                <td class="align-middle" th:text="${categoryList.status == 1 ? 'LOCK' : 'OPEN'}"></td>
-                                <td class="align-middle" th:text="${categoryList.createAt}"></td>
-                                <td class="align-middle" th:text="${categoryList.description}"></td>
-
+                            <tr th:each="courseType: ${courseTypes}">
+                                <td class="align-middle" th:text="${courseType.courseTypeId}"></td>
+                                <td class="align-middle" th:text="${courseType.typeName}"></td>
+                                <td class="align-middle" th:text="${courseType.description}"></td>
+                                <td class="align-middle" th:text="${courseType.createAt}"></td>
+                                <td th:if="${courseType.status == 1}" class="align-middle text-black">OPEN</td>
+                                <td th:unless="${courseType.status == 1}" class="align-middle text-danger">LOCK</td>
                                 <td>
-                                    <a th:href="@{edit/{id}(id=${categoryList.categoryId})}" class="btn btn-primary">Edit</a>
-                                    <a th:href="@{hidden/{id}(id=${categoryList.categoryId})}" class="btn btn-danger" th:text="${categoryList.status == 2 ? 'LOCK' : 'OPEN'}"></a>
+                                    <a th:href="@{edit/{id}(id=${courseType.courseTypeId})}" class="btn btn-primary">Edit</a>
+                                    <a th:href="@{hidden/{id}(id=${courseType.courseTypeId})}" class="btn btn-danger" th:text="${courseType.status==1?'LOCK':'OPEN'}"></a>
                                 </td>
                             </tr>
                             </tbody>
                             <tfoot>
                             <tr>
                                 <th>ID</th>
-                                <th>CATEGORY NAME</th>
-                                <!--                                <th>COURSE VIDEO</th>-->
-                                <!--                                <th>COURSE FIlE</th>-->
-                                <th>STATUS</th>
-                                <th>CREATAt</th>
+                                <th>ROLE NAME</th>
                                 <th>DESCRIPTION</th>
-                                <th style="width: 130px">BUTTON</th>
+                                <th>UPDATE AT</th>
+                                <th>STATUS</th>
+                                <th>BUTTON</th>
                             </tr>
                             </tfoot>
                         </table>
@@ -88,7 +81,6 @@
 
 <!--start back-to-top-->
 <div th:insert="~{admin/fragments/footer}"></div>
-
 </body>
 
 </html>
