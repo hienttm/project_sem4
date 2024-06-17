@@ -105,10 +105,7 @@
         <div class="tl-13-courses-slider owl-carousel">
             <div class="tl-9-class tl-13-course" th:each="courseDTO: ${courseDTOs}">
                 <span class="tl-9-class-tag">$ <span th:text="${courseDTO.price}"></span></span>
-                <img th:src="'home/images/' + ${courseDTO.image}" alt="class image" class="tl-9-class-img">
-                <div class="tl-9-class-infos">
-                    <span class="tl-9-class-category" th:text="${courseDTO.courseTypeName}"></span>
-                </div>
+                <img th:src="${courseDTO.image}" alt="class image" class="tl-9-class-img">
                 <h3 class="tl-13-course-title"><a th:href="'/course/detail/' + ${courseDTO.courseId}" th:text="${courseDTO.courseName}"></a></h3>
                 <div class="tl-12-course-stats">
                     <div class="tl-12-course-stat">
@@ -121,14 +118,8 @@
                     </div>
                 </div>
                 <div class="tl-13-course-actions">
+                    <span href="#" class="tl-9-program-btn" th:text="${courseDTO.courseTypeName}"></span>
                     <span href="#" class="tl-9-program-btn" th:text="${courseDTO.categoryName}"></span>
-                    <span class="tl-12-course-stars">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </span>
                 </div>
             </div>
 

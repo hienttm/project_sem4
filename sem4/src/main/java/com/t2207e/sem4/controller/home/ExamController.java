@@ -52,8 +52,8 @@ public class ExamController {
 
     private final RestTemplate restTemplate;
 
-    @Value("${vimeo.access.token}")
-    private String vimeoAccessToken;
+//    @Value("${vimeo.access.token}")
+//    private String vimeoAccessToken;
 
     private final String uploadUrl = "https://api.vimeo.com/me/videos";
     private String uploadLink; // URL được trả về từ phản hồi POST
@@ -128,9 +128,9 @@ public class ExamController {
 //        String urlVideo = vimeoApiService.getVideo("951847436", vimeoAccessToken);
 //        System.out.println(urlVideo);
 //        model.addAttribute("uriVideo", urlVideo);
-//        return "home/exams/exam";
+//        return "home/exams/index";
 //    }
-
+//
 //    @PostMapping("test")
 //    public String testFile(@RequestParam MultipartFile file) throws IOException {
 //

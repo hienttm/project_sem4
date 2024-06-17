@@ -278,7 +278,6 @@ body {
 
 .img-holder .bg {
   position: absolute;
-  opacity: 0.23;
   left: 0;
   top: 0;
   width: 100%;
@@ -372,7 +371,7 @@ body {
 
 .form-content {
   position: relative;
-  background-color: black;
+  background-color: #2b2b2b;
 }
 
 .form-content .form-group {
@@ -531,6 +530,11 @@ body {
   border: 0;
   background-color: #ebeff8;
   color: #8d8d8d;
+}
+
+.form-content input::placeholder {
+  color: black;
+  font-weight: 400;
 }
 
 .form-content textarea {

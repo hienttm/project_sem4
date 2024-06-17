@@ -10,4 +10,5 @@ public interface ICourseTypeService {
     Optional<CourseType> getCourseTypeById(Integer id);
     void add(CourseType courseType);
     void deleteById(Integer id);
+    Boolean existsByTypeName(String typeName);
 }

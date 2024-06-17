@@ -34,13 +34,13 @@ public class Review {
     private String comment;
 
     @Column(nullable = false)
-    private int status;
+    private int status = 1;
 
     @Column(nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    private Date createAt;
+    private Date createAt = new Date(System.currentTimeMillis());
 
     @Column(nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    private Date updateAt;
+    private Date updateAt = new Date(System.currentTimeMillis());
 }

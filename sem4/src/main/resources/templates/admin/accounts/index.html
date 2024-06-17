@@ -28,48 +28,44 @@
 
                 <div class="row">
                     <div class="col-xxl-12">
-                        <a th:href="@{add}" class="btn btn-primary mb-2">Add</a>
 
                         <table id="table1" class="table table-striped" style="width:100%">
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>CATEGORY NAME</th>
-                                <!--                                <th>COURSE VIDEO</th>-->
-                                <!--                                <th>COURSE FIlE</th>-->
+                                <th>USERNAME</th>
+                                <th>FULL NAME</th>
+                                <th>EMAIL</th>
+                                <th>PHONE</th>
                                 <th>STATUS</th>
-                                <th>CREATAt</th>
-                                <th>DESCRIPTION</th>
-                                <th style="width: 130px">BUTTON</th>
+                                <th>BUTTON</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="categoryList: ${categoryList}">
-                                <td class="align-middle" th:text="${categoryList.categoryId}"></td>
-                                <td class="align-middle" th:text="${categoryList.categoryName}"></td>
-                                <!--                                <td class="align-middle" th:text="${course.courseVideo}"></td>-->
-                                <!--                                <td class="align-middle" th:text="${course.courseFile}"></td>-->
-<!--                                <td class="align-middle" th:text="${categoryList.status}"></td>-->
-                                <td class="align-middle" th:text="${categoryList.status == 1 ? 'LOCK' : 'OPEN'}"></td>
-                                <td class="align-middle" th:text="${categoryList.createAt}"></td>
-                                <td class="align-middle" th:text="${categoryList.description}"></td>
-
+                            <tr th:each="user: ${users}">
+                                <td class="align-middle" th:text="${user.userId}"></td>
+                                <td class="align-middle" th:text="${user.username}"></td>
+                                <td class="align-middle" th:text="${user.fullname}"></td>
+                                <td class="align-middle" th:text="${user.email}"></td>
+                                <td class="align-middle" th:text="${user.phoneNumber}"></td>
+                                <td th:if="${user.status == 1}" class="align-middle text-black">OPEN</td>
+                                <td th:unless="${user.status == 1}" class="align-middle text-danger">LOCK</td>
                                 <td>
-                                    <a th:href="@{edit/{id}(id=${categoryList.categoryId})}" class="btn btn-primary">Edit</a>
-                                    <a th:href="@{hidden/{id}(id=${categoryList.categoryId})}" class="btn btn-danger" th:text="${categoryList.status == 2 ? 'LOCK' : 'OPEN'}"></a>
+                                    <a th:href="@{detail/{id}(id=${user.userId})}" class="btn btn-primary">Detail</a>
+                                    <a th:href="@{hidden/{id}(id=${user.userId})}" class="btn btn-danger" th:text="${user.status==1?'LOCK':'OPEN'}"></a>
+                                    <a th:href="@{resetPassword/{id}(id=${user.userId})}" class="btn btn-warning">Reset Password</a>
                                 </td>
                             </tr>
                             </tbody>
                             <tfoot>
                             <tr>
                                 <th>ID</th>
-                                <th>CATEGORY NAME</th>
-                                <!--                                <th>COURSE VIDEO</th>-->
-                                <!--                                <th>COURSE FIlE</th>-->
+                                <th>USERNAME</th>
+                                <th>FULL NAME</th>
+                                <th>EMAIL</th>
+                                <th>PHONE</th>
                                 <th>STATUS</th>
-                                <th>CREATAt</th>
-                                <th>DESCRIPTION</th>
-                                <th style="width: 130px">BUTTON</th>
+                                <th>BUTTON</th>
                             </tr>
                             </tfoot>
                         </table>
@@ -88,7 +84,6 @@
 
 <!--start back-to-top-->
 <div th:insert="~{admin/fragments/footer}"></div>
-
 </body>
 
 </html>

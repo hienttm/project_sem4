@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "roles")
@@ -30,4 +31,6 @@ public class Role {
 
     private String description;
 
+    @OneToMany(mappedBy = "role")
+    private List<UserRole> userRoles;
 }

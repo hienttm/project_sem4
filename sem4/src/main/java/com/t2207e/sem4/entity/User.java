@@ -36,14 +36,13 @@ public class User {
     @NotNull(message = "address cannot be null")
     private String address;
     @NotNull(message = "phoneNumber cannot be null")
-    @Size(min = 10, max = 10, message = "phoneNumber must have 10 characters")
-    @Pattern(regexp = "0[0-9]{9}", message = "phoneNumber can only have numeric characters")
+    @Pattern(regexp = "0[0-9]{9}", message = "phoneNumber must only have numeric characters and must have 10 characters")
     private String phoneNumber;
     @NotNull(message = "Email cannot be null")
     @Email
     private String email;
     @NotNull(message = "image cannot be null")
-    private String image = "NoImage.png";
+    private String image = "/home/images/NoImage.png";
     @NotNull(message = "Gender cannot be null")
     private Integer gender;
     @NotNull(message = "Status cannot be null")
@@ -59,5 +58,8 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Order> orders;
+
+    @OneToMany(mappedBy = "user")
+    private List<UserRole> userRoles;
 
 }

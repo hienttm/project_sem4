@@ -24,15 +24,19 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xxl-12">
-                        <form th:action="@{/admin/course/add}" method="post" th:object="${courses}">
-                            <input type="hidden" th:field="*{courseId}">
+                        <form th:action="@{/admin/account/add}" method="post" th:object="${user}">
+                            <input type="hidden" th:field="*{userId}">
                             <div class="mb-3">
-                                <label for="courseName" class="form-label">Course Name</label>
-                                <input th:field="*{courseName}" type="text" class="form-control" id="courseName" name="courseName" placeholder="Course Name">
+                                <label for="username" class="form-label">Username</label>
+                                <input th:field="*{username}" type="text" class="form-control" id="username" name="username" placeholder="Username">
                             </div>
                             <div class="mb-3">
-                                <label for="price" class="form-label">Price</label>
-                                <input th:field="*{price}" type="text" class="form-control" id="price" name="price" placeholder="Course Price">
+                                <label for="password" class="form-label">Password</label>
+                                <input th:field="*{password}" type="password" class="form-control" id="password" name="username" placeholder="Password">
+                            </div>
+                            <div class="mb-3">
+                                <label for="fullname" class="form-label">Full Name</label>
+                                <input th:field="*{fullname}" type="text" class="form-control" id="fullname" name="fullname" placeholder="Full Name">
                             </div>
                             <div class="mb-3">
                                 <label for="freeNumbers" class="form-label">Free Number</label>

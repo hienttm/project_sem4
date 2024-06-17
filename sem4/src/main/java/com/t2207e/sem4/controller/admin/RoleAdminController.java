@@ -12,14 +12,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @RequestMapping("admin/role")
 @Controller
-public class RoleController {
+public class RoleAdminController {
     private final RoleService roleService;
 
-    public RoleController(RoleService roleService) {
+    public RoleAdminController(RoleService roleService) {
         this.roleService = roleService;
     }
 
@@ -73,7 +74,7 @@ public class RoleController {
         if(bindingResult.hasErrors()){
             return "admin/roles/edit";
         }
-        if(roleService.existsByRoleName(role.getRoleName())){
+        if(roleService.existsByRoleName(role.getRoleName()) && !Objects.equals(role.getRoleName(), roleService.getRoleById(role.getRoleId()).get().getRoleName())){
             String exception = "Role Name has been existed";
             model.addAttribute("exception", exception);
             return "admin/roles/add";
@@ -86,6 +87,23 @@ public class RoleController {
     @GetMapping("delete/{id}")
     public String delete(@PathVariable int id){
         roleService.deleteById(id);
+        return "redirect:/admin/role/list";
+    }
+
+    @GetMapping("hidden/{id}")
+    public String hidden(@PathVariable int id){
+        Optional<Role> roleOptional = roleService.getRoleById(id);
+        if(roleOptional.isPresent()){
+            Role role = roleOptional.get();
+            if(role.getStatus() == 1){
+                role.setStatus(2);
+            }
+            else {
+                role.setStatus(1);
+            }
+            role.setUpdateAt(new Date(System.currentTimeMillis()));
+            roleService.add(role);
+        }
         return "redirect:/admin/role/list";
     }
 

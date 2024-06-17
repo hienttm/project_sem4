@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" th:href="@{/assets/images/favicon.ico}" />
+</head>
+
+<body>
+<!-- Begin page -->
+<div id="layout-wrapper">
+    <div th:insert="~{admin/fragments/header}"></div>
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xxl-12">
+                        <form th:action="@{/admin/account/edit}" method="post" th:object="${user}" enctype="multipart/form-data">
+                            <input type="hidden" th:field="*{userId}">
+                            <input type="hidden" th:field="*{image}">
+                            <input type="hidden" th:field="*{password}">
+                            <div class="row">
+                                <div class="mb-3 col">
+                                    <label for="username" class="form-label">Username</label>
+                                    <input th:field="*{username}" type="text" class="form-control" id="username" name="username" placeholder="Username">
+                                    <div style="color: red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error"></div>
+                                </div>
+                                <div class="mb-3 col">
+                                    <label for="fullname" class="form-label">Full Name</label>
+                                    <input th:field="*{fullname}" type="text" class="form-control" id="fullname" name="fullname" placeholder="Full Name">
+                                    <div style="color: red" th:if="${#fields.hasErrors('fullname')}" th:errors="*{fullname}" class="error"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 col">
+                                    <label for="birthDay" class="form-label">Birthday</label>
+                                    <input th:field="*{birthday}" type="date" class="form-control" id="birthDay" name="birthDay" placeholder="Birthday">
+                                    <div style="color: red" th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}" class="error"></div>
+                                </div>
+                                <div class="mb-3 col">
+                                    <label for="address" class="form-label">Address</label>
+                                    <input th:field="*{address}" type="text" class="form-control" id="address" name="address" placeholder="Address">
+                                    <div style="color: red" th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="error"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 col">
+                                    <label for="phoneNumber" class="form-label">Phone Number</label>
+                                    <input th:field="*{phoneNumber}" type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Phone Number">
+                                    <div style="color: red" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="error"></div>
+                                </div>
+                                <div class="mb-3 col">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input th:field="*{email}" type="text" class="form-control" id="email" name="email" placeholder="Email">
+                                    <div style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="gender" class="form-label">Gender</label>
+                                        <select th:field="*{gender}" class="form-select" id="gender">
+                                            <option value="1">Male</option>
+                                            <option value="2">Female</option>
+                                        </select>
+                                        <div style="color: red" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}" class="error"></div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="sta" class="form-label">Status</label>
+                                        <select th:field="*{status}" class="form-select" id="sta">
+                                            <option value="1">OPEN</option>
+                                            <option value="2">LOCK</option>
+                                        </select>
+                                        <div style="color: red" th:if="${#fields.hasErrors('status')}" th:errors="*{status}" class="error"></div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="role" class="form-label">Role</label>
+                                        <select class="form-select" id="role" name="roleUpdate" data-placeholder="Choose anything" multiple>
+                                            <option th:each="role: ${roles}" th:text="${role.roleName}" th:selected="${#arrays.contains(rolesByUser, role)?'selected':'false'}" th:value="${role.roleName}"></option>
+                                        </select>
+                                        <div style="color: red" th:if="${exceptionRole != null and !exceptionRole.isEmpty()}" th:text="${exceptionRole}" class="error"></div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="fileImage" class="form-label">Image</label>
+                                        <input type="file" class="form-control" id="fileImage" name="fileImage" placeholder="Image">
+                                    </div>
+                                    <div class="mb-3 text-center">
+                                        <img th:src="${user.image}" style="width: 200px; height: 200px" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea th:field="*{description}" class="form-control" id="description" name="description" placeholder="Description"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-danger" style="margin-bottom: 30px">Submit Edit</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- container-fluid -->
+        </div>
+        <!-- End Page-content -->
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script>
+                        © Velzon.
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text-sm-end d-none d-sm-block">
+                            Design & Develop by Themesbrand
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+<!--start back-to-top-->
+<div th:insert="~{admin/fragments/footer}"></div>
+
+<script>
+    $( '#role' ).select2( {
+        theme: "bootstrap-5",
+        width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+        placeholder: $( this ).data( 'placeholder' ),
+        closeOnSelect: false,
+    } );
+</script>
+</body>
+
+</html>

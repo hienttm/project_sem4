@@ -1,6 +1,8 @@
 package com.t2207e.sem4.service;
 
+import com.t2207e.sem4.entity.Course;
 import com.t2207e.sem4.entity.Review;
+import com.t2207e.sem4.entity.User;
 import com.t2207e.sem4.repository.IReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,6 +41,11 @@ public class ReviewService implements IReviewService{
 
     @Override
     public List<Review> getReviewsByCourseId(int courseId) {
-        return reviewRepository.getReviewsByCourse_CourseId(courseId);
+        return reviewRepository.getReviewsByCourse_CourseIdOrderByCreateAtDesc(courseId);
+    }
+
+    @Override
+    public List<Review> getReviewsByUserAndCourse(User user, Course course) {
+        return reviewRepository.getReviewsByUserAndCourse(user, course);
     }
 }

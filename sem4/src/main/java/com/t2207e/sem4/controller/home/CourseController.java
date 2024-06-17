@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -64,6 +66,9 @@ public class CourseController {
     @GetMapping("/detail/{id}")
     public String Detail(@PathVariable Integer id, Model model){
 
+        String message = (String) model.getAttribute("message");
+        model.addAttribute("message", message);
+
         Optional<Course> courseOptional = courseService.getCourseById(id);
         if(courseOptional.isPresent()){
             Course course = courseOptional.get();
@@ -85,7 +90,14 @@ public class CourseController {
             });
 
             Double averageStar = starTotal[0] / (reviews.size());
-            model.addAttribute("averageStar", averageStar);
+            if(!averageStar.isNaN()){
+                BigDecimal bd = new BigDecimal(averageStar).setScale(1, RoundingMode.HALF_UP);
+                Double averageStarTrue = bd.doubleValue();
+                model.addAttribute("averageStar", averageStarTrue);
+            }
+            else {
+                model.addAttribute("averageStar", averageStar);
+            }
 
             Integer countUserBuyCourse = orderDetailService.countOrderDetailsByCourse_CourseId(course.getCourseId());
             model.addAttribute("countUserBuyCourse", countUserBuyCourse);
@@ -97,6 +109,12 @@ public class CourseController {
                 if(userOptional.isPresent()){
                     User user = userOptional.get();
                     model.addAttribute("user", user);
+
+                    List<Review> reviewsByUser = reviewService.getReviewsByUserAndCourse(user, course);
+                    if(!reviewsByUser.isEmpty()){
+                        model.addAttribute("reviewByUser", reviewsByUser.getFirst());
+                    }
+
                     List<OrderDetailByUserDTO> orderDetailByUserDTOs = courseService.GetOrderDetailByUserIdProcedure(user.getUserId());
 
                     boolean checkBuy = orderDetailByUserDTOs.stream().anyMatch(dto -> dto.getCourseId() == course.getCourseId());
