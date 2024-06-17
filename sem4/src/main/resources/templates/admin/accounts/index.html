@@ -28,7 +28,6 @@
 
                 <div class="row">
                     <div class="col-xxl-12">
-                        <a th:href="@{add}" class="btn btn-primary mb-2">Add</a>
 
                         <table id="table1" class="table table-striped" style="width:100%">
                             <thead>
@@ -49,22 +48,22 @@
                                 <td class="align-middle" th:text="${user.fullname}"></td>
                                 <td class="align-middle" th:text="${user.email}"></td>
                                 <td class="align-middle" th:text="${user.phoneNumber}"></td>
-                                <td class="align-middle" th:text="${user.status}"></td>
                                 <td th:if="${user.status == 1}" class="align-middle text-black">OPEN</td>
                                 <td th:unless="${user.status == 1}" class="align-middle text-danger">LOCK</td>
                                 <td>
-                                    <a th:href="@{edit/{id}(id=${user.userId})}" class="btn btn-primary">Detail</a>
+                                    <a th:href="@{detail/{id}(id=${user.userId})}" class="btn btn-primary">Detail</a>
                                     <a th:href="@{hidden/{id}(id=${user.userId})}" class="btn btn-danger" th:text="${user.status==1?'LOCK':'OPEN'}"></a>
-                                    <a th:href="@{hidden/{id}(id=${user.userId})}" class="btn btn-danger" th:text="${user.status==1?'LOCK':'OPEN'}"></a>
+                                    <a th:href="@{resetPassword/{id}(id=${user.userId})}" class="btn btn-warning">Reset Password</a>
                                 </td>
                             </tr>
                             </tbody>
                             <tfoot>
                             <tr>
                                 <th>ID</th>
-                                <th>ROLE NAME</th>
-                                <th>DESCRIPTION</th>
-                                <th>UPDATE AT</th>
+                                <th>USERNAME</th>
+                                <th>FULL NAME</th>
+                                <th>EMAIL</th>
+                                <th>PHONE</th>
                                 <th>STATUS</th>
                                 <th>BUTTON</th>
                             </tr>

@@ -36,8 +36,7 @@ public class User {
     @NotNull(message = "address cannot be null")
     private String address;
     @NotNull(message = "phoneNumber cannot be null")
-    @Size(min = 10, max = 10, message = "phoneNumber must have 10 characters")
-    @Pattern(regexp = "0[0-9]{9}", message = "phoneNumber can only have numeric characters")
+    @Pattern(regexp = "0[0-9]{9}", message = "phoneNumber must only have numeric characters and must have 10 characters")
     private String phoneNumber;
     @NotNull(message = "Email cannot be null")
     @Email
