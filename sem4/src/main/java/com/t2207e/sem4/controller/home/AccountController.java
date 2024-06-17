@@ -50,6 +50,7 @@ public class AccountController {
             return "/home/users/accountDetail";
         }
         user.setUpdateAt(new Date(System.currentTimeMillis()));
+
         userService.add(user);
         return "/home/users/accountDetail";
     }

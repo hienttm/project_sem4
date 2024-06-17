@@ -62,10 +62,16 @@
             >
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="v-pills-personal-detail" role="tabpanel" aria-labelledby="v-pills-personal-detail-tab">
-                        <form th:action="@{/home/account/updateAccount}" th:object="${user}" method="post" >
+                        <form th:action="@{/home/account/updateAccount}" th:object="${user}" method="post" enctype="multipart/form-data">
                             <input type="hidden" th:field="*{userId}" th:value="${user.getUserId()}">
 
                             <div class="row">
+                                <div class="col-lg-12 text-center">
+                                    <div class="mb-3">
+                                        <img src="/home/images/NoImage.png" style="width: 200px; height: 200px; margin-right: 30px"/>
+                                        <input type="file" placeholder="Input your File" th:field="*{image}"/>
+                                    </div>
+                                </div>
                                 <div class="col-lg-6">
                                     <div class="mb-3">
                                         <label for="username" class="form-label">Username</label>
