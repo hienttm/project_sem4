@@ -68,6 +68,7 @@ public class CategoryAdminController {
            } else {
                category.setStatus(1);
            }
+           category.setCreateAt(new Date(System.currentTimeMillis()));
            categoryService.addCategory(category);
        }
        return "redirect:/admin/category/list";

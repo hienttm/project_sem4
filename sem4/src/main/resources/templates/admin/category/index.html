@@ -38,7 +38,7 @@
                                 <!--                                <th>COURSE VIDEO</th>-->
                                 <!--                                <th>COURSE FIlE</th>-->
                                 <th>STATUS</th>
-                                <th>CREATAt</th>
+                                <th>CREATE AT</th>
                                 <th>DESCRIPTION</th>
                                 <th style="width: 130px">BUTTON</th>
                             </tr>
@@ -47,16 +47,14 @@
                             <tr th:each="categoryList: ${categoryList}">
                                 <td class="align-middle" th:text="${categoryList.categoryId}"></td>
                                 <td class="align-middle" th:text="${categoryList.categoryName}"></td>
-                                <!--                                <td class="align-middle" th:text="${course.courseVideo}"></td>-->
-                                <!--                                <td class="align-middle" th:text="${course.courseFile}"></td>-->
-<!--                                <td class="align-middle" th:text="${categoryList.status}"></td>-->
-                                <td class="align-middle" th:text="${categoryList.status == 1 ? 'LOCK' : 'OPEN'}"></td>
+                                <td th:if="${categoryList.status == 1}" class="align-middle text-black">OPEN</td>
+                                <td th:unless="${categoryList.status == 1}" class="align-middle text-danger">LOCK</td>
                                 <td class="align-middle" th:text="${categoryList.createAt}"></td>
                                 <td class="align-middle" th:text="${categoryList.description}"></td>
 
                                 <td>
                                     <a th:href="@{edit/{id}(id=${categoryList.categoryId})}" class="btn btn-primary">Edit</a>
-                                    <a th:href="@{hidden/{id}(id=${categoryList.categoryId})}" class="btn btn-danger" th:text="${categoryList.status == 2 ? 'LOCK' : 'OPEN'}"></a>
+                                    <a th:href="@{hidden/{id}(id=${categoryList.categoryId})}" class="btn btn-danger" th:text="${categoryList.status==1?'LOCK':'OPEN'}"></a>
                                 </td>
                             </tr>
                             </tbody>
@@ -64,10 +62,8 @@
                             <tr>
                                 <th>ID</th>
                                 <th>CATEGORY NAME</th>
-                                <!--                                <th>COURSE VIDEO</th>-->
-                                <!--                                <th>COURSE FIlE</th>-->
                                 <th>STATUS</th>
-                                <th>CREATAt</th>
+                                <th>CREATE AT</th>
                                 <th>DESCRIPTION</th>
                                 <th style="width: 130px">BUTTON</th>
                             </tr>

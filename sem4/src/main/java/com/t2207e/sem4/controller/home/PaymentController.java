@@ -113,6 +113,7 @@ public class PaymentController {
                 Order order = orderOptional.get();
                 order.setStatus(1);
                 order.setPaymentCode(transactionId);
+                orderService.add(order);
             }
         }
 

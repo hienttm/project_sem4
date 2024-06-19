@@ -48,14 +48,14 @@
         <div class="row g-3 g-lg-4">
             <div class="col-lg-4 col-6" th:each="teacher: ${ur}">
                 <div class="tl-1-teacher">
-                    <img th:src="${teacher.user.image}" alt="Teacher Image" class="tl-1-teacher-img">
+                    <img th:src="${teacher.user.image}" alt="Teacher Image" class="tl-1-teacher-img" style="width: 400px; height: 400px">
                     <ul class="tl-1-teacher-socials">
                         <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
                         <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
                         <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
                     </ul>
                     <div class="tl-1-teacher-info">
-                        <h5 class="tl-1-teacher-title"><a href="#" th:text="${teacher.user.getFullname()}"></a></h5>
+                        <h5 class="tl-1-teacher-title"><a th:href="'/teacher/detail/' + ${teacher.user.userId}" th:text="${teacher.user.getFullname()}"></a></h5>
                         <h6 class="tl-1-teacher-sub-title" th:text="${teacher.user.getPhoneNumber()}"></h6>
                         <h6 class="tl-1-teacher-sub-title" th:text="${teacher.user.getEmail()}"></h6>
                     </div>
