@@ -1,20 +1,57 @@
 package com.t2207e.sem4.controller.home;
 
-import ch.qos.logback.core.model.Model;
+import com.t2207e.sem4.entity.User;
+import com.t2207e.sem4.service.UserService;
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("home/account")
+
 public class AccountController {
-    @GetMapping("detail")
-    public String detail(Model model) {
-        return "/home/users/account/detail";
+    private final UserService userService;
+
+    public AccountController(UserService userService) {
+        this.userService = userService;
     }
-    @GetMapping("detail2")
-    public String detail2(Model model) {
-        return "/home/users/account/detail2";
+    @InitBinder
+    public void initBinder(WebDataBinder dataBinder){
+        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+        dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
 
+    @GetMapping("detail")
+    public String detail(Model model) {
+        Authentication authentication= SecurityContextHolder.getContext().getAuthentication();
+        if(authentication !=null && authentication.isAuthenticated()) {
+            String username = authentication.getName();
+            Optional<User> user=userService.getUserByUsername(username);
+            model.addAttribute("user", user.get());
+        }
+        return "/home/users/accountDetail";
+    }
+    @PostMapping("updateAccount")
+    public String update(Model model, @Valid @ModelAttribute User user, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            return "/home/users/accountDetail";
+        }
+        user.setUpdateAt(new Date(System.currentTimeMillis()));
+
+        userService.add(user);
+        return "/home/users/accountDetail";
+    }
 }
