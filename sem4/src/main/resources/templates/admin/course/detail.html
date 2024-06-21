@@ -239,7 +239,7 @@
                                                         <div class="card-body p-4">
                                                             <div class="d-flex align-items-center">
                                                                 <div class="flex-grow-1 text-muted overflow-hidden">
-                                                                    <h5 class="fs-14 text-truncate"><a href="#" class="text-body" th:text="${exam.examName}"></a></h5>
+                                                                    <h5 class="fs-14 text-truncate"><a th:href="'/admin/exam/detail/'+${exam.examId}" class="text-body" th:text="${exam.examName}"></a></h5>
                                                                     <p class="text-muted text-truncate mb-2">Last Update : <span class="fw-semibold text-body" th:text="${exam.createAt}"></span></p>
                                                                     <p class="text-muted text-truncate mb-0">Status : <span th:class="'badge bg-'+${exam.status==1?'success':'danger'}+'-subtle fs-15 text-'+${exam.status==1?'success':'danger'}" th:text="${exam.status==1?'OPEN':'LOCK'}"></span></p>
                                                                 </div>

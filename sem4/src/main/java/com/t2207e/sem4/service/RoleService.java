@@ -44,4 +44,9 @@ public class RoleService implements IRoleService{
     public Optional<Role> getRoleByRoleName(String roleName) {
         return roleRepository.getRoleByRoleName(roleName);
     }
+
+    @Override
+    public List<Role> getRolesByStatus(Integer status) {
+        return roleRepository.getRolesByStatus(status);
+    }
 }

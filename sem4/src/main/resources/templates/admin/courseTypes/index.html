@@ -47,8 +47,8 @@
                                 <td class="align-middle" th:text="${courseType.typeName}"></td>
                                 <td class="align-middle" th:text="${courseType.description}"></td>
                                 <td class="align-middle" th:text="${courseType.createAt}"></td>
-                                <td th:if="${courseType.status == 1}" class="align-middle text-black">OPEN</td>
-                                <td th:unless="${courseType.status == 1}" class="align-middle text-danger">LOCK</td>
+                                <td th:if="${courseType.status == 1}" class="align-middle text-success fw-bolder">OPEN</td>
+                                <td th:unless="${courseType.status == 1}" class="align-middle text-danger fw-bolder">LOCK</td>
                                 <td>
                                     <a th:href="@{edit/{id}(id=${courseType.courseTypeId})}" class="btn btn-primary">Edit</a>
                                     <a th:href="@{hidden/{id}(id=${courseType.courseTypeId})}" class="btn btn-danger" th:text="${courseType.status==1?'LOCK':'OPEN'}"></a>

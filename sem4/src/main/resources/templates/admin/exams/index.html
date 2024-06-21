@@ -28,39 +28,43 @@
 
                 <div class="row">
                     <div class="col-xxl-12">
-                        <a th:href="@{add}" class="btn btn-primary mb-2">Add</a>
-
                         <table id="table1" class="table table-striped" style="width:100%">
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>ROLE NAME</th>
+                                <th>EXAM NAME</th>
+                                <th>NUMBER QUESTION</th>
+                                <th>TIME</th>
+                                <th>UPDATED AT</th>
                                 <th>DESCRIPTION</th>
-                                <th>UPDATE AT</th>
                                 <th>STATUS</th>
                                 <th>BUTTON</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="role: ${roles}">
-                                <td class="align-middle" th:text="${role.roleId}"></td>
-                                <td class="align-middle" th:text="${role.roleName}"></td>
-                                <td class="align-middle" th:text="${role.description}"></td>
-                                <td class="align-middle" th:text="${role.updateAt}"></td>
-                                <td th:if="${role.status == 1}" class="align-middle text-success fw-bolder">OPEN</td>
-                                <td th:unless="${role.status == 1}" class="align-middle text-danger fw-bolder">LOCK</td>
+                            <tr th:each="exam: ${exams}">
+                                <td class="align-middle" th:text="${exam.examId}"></td>
+                                <td class="align-middle" th:text="${exam.examName}"></td>
+                                <td class="align-middle" th:text="${exam.numberQuestion}"></td>
+                                <td class="align-middle"><span th:text="${exam.time}"></span>'</td>
+                                <td class="align-middle" th:text="${exam.createAt}"></td>
+                                <td class="align-middle" th:text="${exam.description}"></td>
+                                <td th:if="${exam.status == 1}" class="align-middle text-success fw-bolder">OPEN</td>
+                                <td th:unless="${exam.status == 1}" class="align-middle text-danger fw-bolder">LOCK</td>
                                 <td>
-                                    <a th:href="@{edit/{id}(id=${role.roleId})}" class="btn btn-primary">Edit</a>
-                                    <a th:href="@{hidden/{id}(id=${role.roleId})}" class="btn btn-danger" th:text="${role.status==1?'LOCK':'OPEN'}"></a>
+                                    <a th:href="@{detail/{id}(id=${exam.examId})}" class="btn btn-primary">Detail</a>
+                                    <a th:href="@{hidden/{id}(id=${exam.examId})}" class="btn btn-danger" th:text="${exam.status==1?'LOCK':'OPEN'}"></a>
                                 </td>
                             </tr>
                             </tbody>
                             <tfoot>
                             <tr>
                                 <th>ID</th>
-                                <th>ROLE NAME</th>
+                                <th>EXAM NAME</th>
+                                <th>NUMBER QUESTION</th>
+                                <th>TIME</th>
+                                <th>UPDATED AT</th>
                                 <th>DESCRIPTION</th>
-                                <th>UPDATE AT</th>
                                 <th>STATUS</th>
                                 <th>BUTTON</th>
                             </tr>

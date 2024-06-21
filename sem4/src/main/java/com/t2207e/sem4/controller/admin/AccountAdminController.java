@@ -54,7 +54,7 @@ public class AccountAdminController {
             User user = userOptional.get();
             model.addAttribute("user", user);
 
-            List<Role> roles = roleService.getAllRole();
+            List<Role> roles = roleService.getRolesByStatus(1);
             model.addAttribute("roles", roles);
 
             List<UserRole> userRoles = userRoleService.getUserRolesByUser(user);

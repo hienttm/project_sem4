@@ -12,4 +12,5 @@ public interface IRoleService {
     void deleteById(Integer id);
     Boolean existsByRoleName(String roleName);
     Optional<Role> getRoleByRoleName(String roleName);
+    List<Role> getRolesByStatus(Integer status);
 }
