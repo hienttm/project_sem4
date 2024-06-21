@@ -43,4 +43,9 @@ public class ChapterService implements IChapterService{
     public List<Chapter> getChaptersByCourse(Course course) {
         return chapterRepository.getChaptersByCourse(course);
     }
+
+    @Override
+    public List<Chapter> getChaptersByCourseAndStatus(Course course, Integer status) {
+        return chapterRepository.getChaptersByCourseAndStatus(course, status);
+    }
 }

@@ -12,4 +12,6 @@ public interface IExamService {
     void add(Exam exam);
     void deleteById(Integer id);
     List<Exam> getExamsByCourse(Course course);
+
+    List<Exam> getExamsByCourseAndStatus(Course course, Integer status);
 }

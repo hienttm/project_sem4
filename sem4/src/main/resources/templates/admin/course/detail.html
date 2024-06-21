@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-layout="vertical" data-topbar="light" data-sidebar="dark"
+      data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" th:href="@{/assets/images/favicon.ico}" />
+</head>
+
+<body>
+<!-- Begin page -->
+<div id="layout-wrapper">
+    <div th:insert="~{admin/fragments/header}"></div>
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+
+        <div class="page-content">
+            <div class="container-fluid">
+                <div class="profile-foreground position-relative mx-n4 mt-n4">
+                    <div class="profile-wid-bg">
+<!--                        <img src="/assets/images/profile-bg.jpg" alt="" class="profile-wid-img">-->
+                    </div>
+                </div>
+                <div class="pt-4 mb-4 mb-lg-3 pb-lg-4 profile-wrapper">
+                    <div class="row g-4">
+                        <div class="col-auto">
+                            <div class="avatar-lg">
+                                <img th:src="${course.image}" alt="user-img" class="img-thumbnail">
+                            </div>
+                        </div>
+                        <!--end col-->
+                        <div class="col">
+                            <div class="p-2">
+                                <h3 class="text-white mb-1" th:text="${course.courseName}"></h3>
+                                <p class="text-white text-opacity-75" th:text="${course.courseType.typeName}"></p>
+                                <div class="hstack text-white-50 gap-1">
+                                    <div class="me-2"><i class="mdi mdi-account-circle-outline"></i> <span th:text="${course.user.fullname}"></span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--end row-->
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div>
+                            <div class="d-flex profile-wrapper">
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-pills animation-nav profile-nav gap-2 gap-lg-3 flex-grow-1" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link fs-14 active" data-bs-toggle="tab" href="#overview-tab" role="tab" aria-selected="true">
+                                            <i class="ri-airplay-fill d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">Overview</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link fs-14" data-bs-toggle="tab" href="#chapters" role="tab" aria-selected="false" tabindex="-1">
+                                            <i class="ri-folder-4-line d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">Chapters</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link fs-14" data-bs-toggle="tab" href="#exams" role="tab" aria-selected="false" tabindex="-1">
+                                            <i class="ri-price-tag-line d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">Exams</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Tab panes -->
+                            <div class="tab-content pt-4 text-muted">
+                                <div class="tab-pane active show" id="overview-tab" role="tabpanel">
+                                    <div class="row">
+                                        <div class="col-xxl-9">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h5 class="flex-grow-1 card-title mb-3">Description</h5>
+                                                    <p th:text="${course.description}"></p>
+                                                    <div class="row">
+                                                        <div class="col-4 col-md-4 mb-2">
+                                                            <div class="d-flex mt-4">
+                                                                <div class="flex-grow-1 overflow-hidden">
+                                                                    <p class="mb-1">Free Number: <a class="fw-semibold" th:text="${course.freeNumbers}"></a></p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--end col-->
+                                                        <div class="col-4 col-md-4 mb-5">
+                                                            <div class="d-flex mt-4">
+                                                                <div class="flex-grow-1 overflow-hidden">
+                                                                    <p class="mb-1">Document: <a th:href="${course.courseFile}" target="_blank" class="fw-semibold">Click Here</a></p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--end col-->
+                                                        <div class="col-4 col-md-4 mb-5">
+                                                            <div class="d-flex mt-4">
+                                                                <div class="flex-grow-1 overflow-hidden">
+                                                                    <p class="mb-1">Price: <a class="fw-semibold"><span th:text="${course.price}"></span>$</a></p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--end col-->
+                                                        <div class="col-12 col-md-12 mb-5">
+                                                            <div class="flex-grow-1 overflow-hidden">
+                                                                <iframe th:src="${course.courseVideo}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="width: 100%; height: 400px"></iframe>
+                                                            </div>
+                                                        </div>
+                                                        <!--end col-->
+                                                    </div>
+                                                    <!--end row-->
+                                                </div>
+                                                <!--end card-body-->
+                                            </div><!-- end card -->
+
+                                        </div>
+
+
+                                        <!--end col-->
+                                        <div class="col-xxl-3">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div th:if="${course.status==1}" class="card-title text-center text-success fw-bolder">APPROVED</div>
+                                                    <div th:if="${course.status==2}" class="card-title text-center text-primary fw-bolder">NOT APPROVED</div>
+                                                    <div th:if="${course.status==3}" class="card-title text-center text-warning fw-bolder">ASK TO EDIT</div>
+                                                    <div th:if="${course.status==4}" class="card-title text-center text-danger fw-bolder">REJECTED</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="card">
+                                                <form th:action="'/admin/course/changeStatusCourse/'+${course.courseId}" method="post" class="card-title text-center" style="margin: 30px">
+                                                    <label for="sta" class="form-label">Status</label>
+                                                    <select class="form-select mb-4" id="sta" name="sta">
+                                                        <option class="text-success fw-bolder" value="1" th:selected="${course.status==1?'selected':'false'}">APPROVED</option>
+                                                        <option class="text-primary fw-bolder" value="2" th:selected="${course.status==2?'selected':'false'}">NOT APPROVED</option>
+                                                        <option class="text-warning fw-bolder" value="3" th:selected="${course.status==3?'selected':'false'}">ASK TO EDIT</option>
+                                                        <option class="text-danger fw-bolder" value="4" th:selected="${course.status==4?'selected':'false'}">REJECTED</option>
+                                                    </select>
+                                                    <label for="description" class="form-label">Description</label>
+                                                    <textarea class="form-control mb-4" aria-label="With textarea" id="description" name="description"></textarea>
+                                                    <button type="submit" class="btn btn-danger">Submit</button>
+                                                </form>
+                                            </div>
+
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h5 class="card-title mb-3">Status</h5>
+                                                    <div class="table-responsive">
+                                                        <table class="table table-borderless mb-0">
+                                                            <tbody>
+                                                            <tr th:each="statusCourse: ${statusCourses}">
+                                                                <th th:class="'ps-0 text-center fw-bolder text-' + ${statusCourse.color}" scope="row"><span th:text="${statusCourse.statusName}"></span> :</th>
+                                                                <td class="text-muted" th:text="${statusCourse.updateAt}"></td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div><!-- end card body -->
+                                            </div><!-- end card -->
+                                            <!--end card-->
+                                        </div>
+                                        <!--end col-->
+                                    </div>
+                                    <!--end row-->
+                                </div>
+                                <!--end tab-pane-->
+                                <div class="tab-pane fade" id="chapters" role="tabpanel">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-xxl-6 col-sm-6" th:each="chapter: ${chapters}">
+                                                    <div class="card profile-project-card shadow-none profile-project-warning material-shadow">
+                                                        <div class="card-body p-4">
+                                                            <div class="d-flex">
+                                                                <div class="flex-grow-1 text-muted overflow-hidden">
+                                                                    <h5 class="fs-14 text-truncate"><a class="text-body" th:text="${chapter.chapterName}"></a></h5>
+                                                                    <div class="text-muted text-truncate mb-2">Document: <a target="_blank" th:href="${chapter.chapterFile}" class="fw-semibold text-body">Click Here</a></div>
+                                                                    <div class="text-muted text-truncate mb-4">Status: <span th:class="'badge bg-'+${chapter.status==1?'success':'danger'}+'-subtle fs-15 text-'+${chapter.status==1?'success':'danger'}" th:text="${chapter.status==1?'OPEN':'LOCK'}"></span></div>
+                                                                    <a th:href="'/admin/course/changeStatusChapter/'+${chapter.chapterId}" th:class="'btn btn-'+${chapter.status==1?'danger':'success'}" th:text="${chapter.status==1?'LOCK':'OPEN'}"></a>
+                                                                </div>
+                                                                <div class="flex-shrink-0 ms-2">
+                                                                    <iframe th:src="${chapter.chapterVideo}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end card body -->
+                                                    </div>
+                                                    <!-- end card -->
+                                                </div>
+                                                <!--end col-->
+<!--                                                <div class="col-lg-12">-->
+<!--                                                    <div class="mt-4">-->
+<!--                                                        <ul class="pagination pagination-separated justify-content-center mb-0">-->
+<!--                                                            <li class="page-item disabled">-->
+<!--                                                                <a href="javascript:void(0);" class="page-link"><i class="mdi mdi-chevron-left"></i></a>-->
+<!--                                                            </li>-->
+<!--                                                            <li class="page-item active">-->
+<!--                                                                <a href="javascript:void(0);" class="page-link">1</a>-->
+<!--                                                            </li>-->
+<!--                                                            <li class="page-item">-->
+<!--                                                                <a href="javascript:void(0);" class="page-link">2</a>-->
+<!--                                                            </li>-->
+<!--                                                            <li class="page-item">-->
+<!--                                                                <a href="javascript:void(0);" class="page-link">3</a>-->
+<!--                                                            </li>-->
+<!--                                                            <li class="page-item">-->
+<!--                                                                <a href="javascript:void(0);" class="page-link">4</a>-->
+<!--                                                            </li>-->
+<!--                                                            <li class="page-item">-->
+<!--                                                                <a href="javascript:void(0);" class="page-link">5</a>-->
+<!--                                                            </li>-->
+<!--                                                            <li class="page-item">-->
+<!--                                                                <a href="javascript:void(0);" class="page-link"><i class="mdi mdi-chevron-right"></i></a>-->
+<!--                                                            </li>-->
+<!--                                                        </ul>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+                                            </div>
+                                            <!--end row-->
+                                        </div>
+                                        <!--end card-body-->
+                                    </div>
+                                    <!--end card-->
+                                </div>
+                                <!--end tab-pane-->
+                                <div class="tab-pane fade" id="exams" role="tabpanel">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-xxl-6 col-sm-6" th:each="exam: ${exams}">
+                                                    <div class="card profile-project-card shadow-none profile-project-warning material-shadow">
+                                                        <div class="card-body p-4">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="flex-grow-1 text-muted overflow-hidden">
+                                                                    <h5 class="fs-14 text-truncate"><a href="#" class="text-body" th:text="${exam.examName}"></a></h5>
+                                                                    <p class="text-muted text-truncate mb-2">Last Update : <span class="fw-semibold text-body" th:text="${exam.createAt}"></span></p>
+                                                                    <p class="text-muted text-truncate mb-0">Status : <span th:class="'badge bg-'+${exam.status==1?'success':'danger'}+'-subtle fs-15 text-'+${exam.status==1?'success':'danger'}" th:text="${exam.status==1?'OPEN':'LOCK'}"></span></p>
+                                                                </div>
+                                                                <div class="flex-shrink-0 ms-2">
+                                                                    <a th:href="'/admin/course/changeStatusExam/'+${exam.examId}" th:class="'btn btn-'+${exam.status==1?'danger':'success'}" th:text="${exam.status==1?'LOCK':'OPEN'}"></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end card body -->
+                                                    </div>
+                                                    <!-- end card -->
+                                                </div>
+                                                <!--end col-->
+<!--                                                <div class="col-lg-12">-->
+<!--                                                    <div class="mt-4">-->
+<!--                                                        <ul class="pagination pagination-separated justify-content-center mb-0">-->
+<!--                                                            <li class="page-item disabled">-->
+<!--                                                                <a href="javascript:void(0);" class="page-link"><i class="mdi mdi-chevron-left"></i></a>-->
+<!--                                                            </li>-->
+<!--                                                            <li class="page-item active">-->
+<!--                                                                <a href="javascript:void(0);" class="page-link">1</a>-->
+<!--                                                            </li>-->
+<!--                                                            <li class="page-item">-->
+<!--                                                                <a href="javascript:void(0);" class="page-link">2</a>-->
+<!--                                                            </li>-->
+<!--                                                            <li class="page-item">-->
+<!--                                                                <a href="javascript:void(0);" class="page-link">3</a>-->
+<!--                                                            </li>-->
+<!--                                                            <li class="page-item">-->
+<!--                                                                <a href="javascript:void(0);" class="page-link">4</a>-->
+<!--                                                            </li>-->
+<!--                                                            <li class="page-item">-->
+<!--                                                                <a href="javascript:void(0);" class="page-link">5</a>-->
+<!--                                                            </li>-->
+<!--                                                            <li class="page-item">-->
+<!--                                                                <a href="javascript:void(0);" class="page-link"><i class="mdi mdi-chevron-right"></i></a>-->
+<!--                                                            </li>-->
+<!--                                                        </ul>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+                                            </div>
+                                            <!--end row-->
+                                        </div>
+                                        <!--end card-body-->
+                                    </div>
+                                    <!--end card-->
+                                </div>
+                                <!--end tab-pane-->
+                            </div>
+                            <!--end tab-content-->
+                        </div>
+                    </div>
+                    <!--end col-->
+                </div>
+                <!--end row-->
+
+            </div><!-- container-fluid -->
+        </div><!-- End Page-content -->
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <script>document.write(new Date().getFullYear())</script>2024 © Velzon.
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text-sm-end d-none d-sm-block">
+                            Design &amp; Develop by Themesbrand
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+<!--start back-to-top-->
+<div th:insert="~{admin/fragments/footer}"></div>
+
+</body>
+
+</html>

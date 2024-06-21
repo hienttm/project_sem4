@@ -42,5 +42,9 @@ public class ExamService implements IExamService{
     public List<Exam> getExamsByCourse(Course course) {
         return examRepository.getExamsByCourse(course);
     }
+    @Override
+    public List<Exam> getExamsByCourseAndStatus(Course course, Integer status) {
+        return examRepository.getExamsByCourseAndStatus(course, 1);
+    }
 
 }

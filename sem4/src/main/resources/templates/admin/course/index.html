@@ -35,34 +35,30 @@
                             <tr>
                                 <th>ID</th>
                                 <th>COURSE NAME</th>
-                                <!--                                <th>COURSE VIDEO</th>-->
-                                <!--                                <th>COURSE FIlE</th>-->
                                 <th>PRICE</th>
-                                <th>FREE NUMBERS</th>
                                 <th>STATUS</th>
                                 <th>USER</th>
-                                <th>CATEGORY</th>
                                 <th>COURSE TYPE</th>
                                 <th>CENSOR</th>
-                                <th style="width: 130px">BUTTON</th>
+                                <th>BUTTON</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr th:each="course: ${courses}">
                                 <td class="align-middle" th:text="${course.courseId}"></td>
                                 <td class="align-middle" th:text="${course.courseName}"></td>
-                                <!--                                <td class="align-middle" th:text="${course.courseVideo}"></td>-->
-                                <!--                                <td class="align-middle" th:text="${course.courseFile}"></td>-->
-                                <td class="align-middle" th:text="${course.price}"></td>
-                                <td class="align-middle" th:text="${course.freeNumbers}"></td>
-                                <td class="align-middle" th:text="${course.status == 0 ? 'LOCK' : 'OPEN'}"></td>
+                                <td class="align-middle"><span th:text="${course.price}"></span>$</td>
+                                <td class="align-middle">
+                                    <div th:if="${course.status==1}" class="align-middle text-success fw-bolder">APPROVED</div>
+                                    <div th:if="${course.status==2}" class="align-middle text-primary fw-bolder">NOT APPROVED</div>
+                                    <div th:if="${course.status==3}" class="align-middle text-warning fw-bolder">ASK TO EDIT</div>
+                                    <div th:if="${course.status==4}" class="align-middle text-danger fw-bolder">REJECTED</div>
+                                </td>
                                 <td class="align-middle" th:text="${course.user.fullname}"></td>
-                                <td class="align-middle" th:text="${course.category.categoryName}"></td>
                                 <td class="align-middle" th:text="${course.courseType.typeName}"></td>
                                 <td class="align-middle" th:text="${course.censor.fullname}"></td>
                                 <td>
-                                    <a th:href="@{edit/{id}(id=${course.courseId})}" class="btn btn-primary">Edit</a>
-                                    <a th:href="@{delete/{id}(id=${course.courseId})}" class="btn btn-danger">Delete</a>
+                                    <a th:href="@{detail/{id}(id=${course.courseId})}" class="btn btn-primary">Detail</a>
                                 </td>
                             </tr>
                             </tbody>
@@ -70,16 +66,12 @@
                             <tr>
                                 <th>ID</th>
                                 <th>COURSE NAME</th>
-                                <!--                                <th>COURSE VIDEO</th>-->
-                                <!--                                <th>COURSE FIlE</th>-->
                                 <th>PRICE</th>
-                                <th>FREE NUMBERS</th>
                                 <th>STATUS</th>
                                 <th>USER</th>
-                                <th>CATEGORY</th>
                                 <th>COURSE TYPE</th>
                                 <th>CENSOR</th>
-                                <th style="width: 130px">BUTTON</th>
+                                <th>BUTTON</th>
                             </tr>
                             </tfoot>
                         </table>

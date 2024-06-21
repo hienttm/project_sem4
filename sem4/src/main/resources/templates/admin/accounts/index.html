@@ -48,8 +48,8 @@
                                 <td class="align-middle" th:text="${user.fullname}"></td>
                                 <td class="align-middle" th:text="${user.email}"></td>
                                 <td class="align-middle" th:text="${user.phoneNumber}"></td>
-                                <td th:if="${user.status == 1}" class="align-middle text-black">OPEN</td>
-                                <td th:unless="${user.status == 1}" class="align-middle text-danger">LOCK</td>
+                                <td th:if="${user.status == 1}" class="align-middle text-success fw-bolder">OPEN</td>
+                                <td th:unless="${user.status == 1}" class="align-middle text-danger fw-bolder">LOCK</td>
                                 <td>
                                     <a th:href="@{detail/{id}(id=${user.userId})}" class="btn btn-primary">Detail</a>
                                     <a th:href="@{hidden/{id}(id=${user.userId})}" class="btn btn-danger" th:text="${user.status==1?'LOCK':'OPEN'}"></a>

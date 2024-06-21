@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface IExamRepository extends JpaRepository<Exam, Integer> {
     List<Exam> getExamsByCourse(Course course);
+    List<Exam> getExamsByCourseAndStatus(Course course, Integer status);
 }

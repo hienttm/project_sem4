@@ -25,6 +25,10 @@ public class StatusCourse {
     @NotNull(message = "updateAt cannot be null")
     private Date updateAt;
 
+    private String description;
+
+    private String color;
+
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;

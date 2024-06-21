@@ -12,4 +12,5 @@ public interface IChapterService {
     void add(Chapter chapter);
     void deleteById(Integer id);
     List<Chapter> getChaptersByCourse(Course course);
+    List<Chapter> getChaptersByCourseAndStatus(Course course, Integer status);
 }

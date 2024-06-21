@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface IChapterRepository extends JpaRepository<Chapter, Integer> {
     List<Chapter> getChaptersByCourse(Course course);
+    List<Chapter> getChaptersByCourseAndStatus(Course course, Integer status);
 }

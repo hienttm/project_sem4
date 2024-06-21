@@ -77,7 +77,7 @@ public class CourseController {
             List<Course> coursesHaveSameName = courseService.getCoursesByUser(course.getUser());
             model.addAttribute("coursesHaveSameName", coursesHaveSameName);
 
-            List<Chapter> chapters = chapterService.getChaptersByCourse(course);
+            List<Chapter> chapters = chapterService.getChaptersByCourseAndStatus(course, 1);
             model.addAttribute("chapters", chapters);
 
             List<Review> reviews = reviewService.getReviewsByCourseId(course.getCourseId());
@@ -121,7 +121,7 @@ public class CourseController {
 
                     model.addAttribute("checkBuy", checkBuy);
 
-                    List<Exam> exams = examService.getExamsByCourse(course);
+                    List<Exam> exams = examService.getExamsByCourseAndStatus(course, 1);
 
                     List<ExamUserDTO> examUserDTOs = new ArrayList<>();
                     for (Exam exam : exams) {
