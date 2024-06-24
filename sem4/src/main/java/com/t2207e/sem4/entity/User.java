@@ -48,7 +48,7 @@ public class User {
     @NotNull(message = "Gender cannot be null")
     private Integer gender;
     @NotNull(message = "Status cannot be null")
-    private Integer status = 1;
+    private Integer status = 0;
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @NotNull(message = "createAt cannot be null")
     private Date createAt = new Date(System.currentTimeMillis());
