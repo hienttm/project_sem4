@@ -64,12 +64,14 @@
                     <div class="tab-pane fade show active" id="v-pills-personal-detail" role="tabpanel" aria-labelledby="v-pills-personal-detail-tab">
                         <form th:action="@{/home/account/updateAccount}" th:object="${user}" method="post" enctype="multipart/form-data">
                             <input type="hidden" th:field="*{userId}" th:value="${user.getUserId()}">
+                            <input type="hidden" th:field="*{image}">
+                            <input type="hidden" th:field="*{password}">
 
                             <div class="row">
                                 <div class="col-lg-12 text-center">
                                     <div class="mb-3">
-                                        <img src="/home/images/NoImage.png" style="width: 200px; height: 200px; margin-right: 30px"/>
-                                        <input type="file" placeholder="Input your File" th:field="*{image}"/>
+                                        <img th:src="${user.image}" style="width: 200px; height: 200px; margin-right: 30px"/>
+                                        <input type="file" placeholder="Input your File" name="fileImage"/>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -105,6 +107,14 @@
                                 <!--end col-->
                                 <div class="col-lg-6">
                                     <div class="mb-3">
+                                        <label for="address" class="form-label">Phone Number</label>
+                                        <input th:field="*{address}" type="text" class="form-control" id="address"
+                                               placeholder="Enter your phone number" th:value="${user.getAddress()}" />
+                                    </div>
+                                </div>
+                                <!--end col-->
+                                <div class="col-lg-6">
+                                    <div class="mb-3">
                                         <label for="email" class="form-label">Email Address</label>
                                         <input th:field="*{email}" type="email" class="form-control" id="email" name="email" placeholder="Enter your email"
                                                th:value="${user.getEmail()}" />
@@ -123,8 +133,17 @@
                                 <!--end col-->
                                 <div class="col-lg-12">
                                     <div class="mb-3">
+                                        <div style="color: red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error"></div>
+                                        <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></div>
+                                        <div style="color: red" th:if="${#fields.hasErrors('fullname')}" th:errors="*{fullname}" class="error"></div>
+                                        <div style="color: red" th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}" class="error"></div>
+                                        <div style="color: red" th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="error"></div>
                                         <div style="color: red" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="error"></div>
                                         <div style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></div>
+                                        <div style="color: red" th:if="${#fields.hasErrors('image')}" th:errors="*{image}" class="error"></div>
+                                        <div style="color: red" th:if="${#fields.hasErrors('status')}" th:errors="*{status}" class="error"></div>
+                                        <div style="color: red" th:if="${#fields.hasErrors('createAt')}" th:errors="*{createAt}" class="error"></div>
+                                        <div style="color: red" th:if="${#fields.hasErrors('updateAt')}" th:errors="*{updateAt}" class="error"></div>
 
                                     </div>
                                 </div>
