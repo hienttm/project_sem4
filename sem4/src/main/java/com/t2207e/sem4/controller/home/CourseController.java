@@ -83,6 +83,9 @@ public class CourseController {
             List<Review> reviews = reviewService.getReviewsByCourseId(course.getCourseId());
             model.addAttribute("reviews", reviews);
 
+            List<Exam> examCounts = examService.getExamsByCourse(course);
+            model.addAttribute("countExam", examCounts.size());
+
             final Double[] starTotal = new Double[1];
             starTotal[0] = 0.0;
             reviews.forEach(review -> {
