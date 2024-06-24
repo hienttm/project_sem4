@@ -32,7 +32,7 @@ public class SecurityConfig {
                         .requestMatchers("/css/**", "/js/**", "/images/**", "/webfonts/**", "/home/**","/assets/**").permitAll()
                         .requestMatchers("/register","/", "/forgotPassword/**","/checkExistMail/**","resetPassworUrl/**","resetForgotPassword","checkResetForgotPassword").permitAll()
                         .requestMatchers("/contactus/**","/sendcontactus/**", "/api/cart/addToCart", "/courseType/**", "/api/course/getVideo").permitAll()
-                        .requestMatchers("/test","/course/list/**", "/course/detail/**", "/api/course/getVideo", "teacher/list", "teacher/detail/**").permitAll()
+                        .requestMatchers("/test","/course/list/**", "/course/detail/**", "/api/course/getVideo", "teacher/list", "teacher/detail/**","confirmAccount/**").permitAll()
                         .requestMatchers("/home/account/**").hasRole("USER")
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest()

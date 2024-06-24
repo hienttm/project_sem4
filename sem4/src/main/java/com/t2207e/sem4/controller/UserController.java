@@ -102,6 +102,7 @@ public class UserController {
             String exception = "Password and Re-Password are different!";
             model.addAttribute("exceptionRP", exception);
             return "register";
+
         }
 
         //Add USER
@@ -115,7 +116,81 @@ public class UserController {
         userRole.setRole(roleService.getRoleByRoleName("ROLE_USER").get());
         userRoleService.add(userRole);
 
+        //SEND MAIL TO confirm account
+        String token= UUID.randomUUID().toString();
+        Token token1 = new Token();
+        token1.setUser(user);
+        token1.setToken(token);
+        tokenService.add(token1);
+        // SEND MAIL:
+        emailService.sendEmailConfirmAccount(user.getEmail(),token1.getToken());
+        String message="Check mail to confirm your account.";
+        model.addAttribute("message",message);
+        model.addAttribute("statusMessage", "success");
         return "redirect:/login";
+    }
+    //check token - confirm account
+    @GetMapping("confirmAccount/{token}")
+    public String confirmAccount(@PathVariable String token, Model model){
+        if (token==null || token.isEmpty()){
+            //token rỗng
+
+            String message_error="The link is not valid, please check again";
+            model.addAttribute("message",message_error);
+            model.addAttribute("statusMessage", "error");
+            System.out.println(" token roongx");
+            return "redirect:/login";
+        }
+        // kiểm tra token
+        Optional<Token> checkToken=tokenService.findByToken(token);
+        if(checkToken.isPresent()){
+            Token tokenEntity = checkToken.get();
+
+            // Lấy thời gian tạo token
+            Date tokenCreationTime = tokenEntity.getCreateAt();
+
+            // Lấy thời gian hiện tại
+            Date currentTime = new Date(System.currentTimeMillis());
+
+            // Tính toán thời gian đã trôi qua từ khi tạo token
+            long durationMillis = currentTime.getTime() - tokenCreationTime.getTime();
+            long minutesPassed = TimeUnit.MILLISECONDS.toMinutes(durationMillis);
+            System.out.println("minutesPassed: " + minutesPassed);
+
+            // Kiểm tra nếu thời gian đã trôi qua vượt quá 2 phút
+            if (minutesPassed > 2) {
+                // Token hết hạn
+                String message_error="The link has expired, please try again";
+                model.addAttribute("message",message_error);
+                model.addAttribute("statusMessage", "error");
+                System.out.println("token heets hanj: " );
+
+                return "redirect:/login";
+                // Xử lý logic khi token hết hạn
+            } else {
+                // Token còn hiệu lực
+                Integer userId=tokenEntity.getUser().getUserId();
+                model.addAttribute("userId", userId);
+                String message="The link has expired, please try again";
+                model.addAttribute("message",message);
+                model.addAttribute("statusMessage", "success");
+                // update status 1
+                User user =checkToken.get().getUser();
+                user.setStatus(1);
+                userService.add(user);
+                System.out.println("token có hiệu lực " );
+
+                return "redirect:/login";
+                // Xử lý logic khi token còn hiệu lực
+            }
+        }else{
+            //token sai
+            System.out.println("Token sai");
+            String message_error="The link is not valid, please check again";
+            model.addAttribute("message",message_error);
+            model.addAttribute("statusMessage", "error");
+            return "redirect:/login";
+        }
     }
 
 //    forgotPassword

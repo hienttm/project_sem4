@@ -53,10 +53,21 @@
         </div>
     </div>
 </div>
-<script src="/js/jquery.min.js"></script>
+<!--<script src="/js/jquery.min.js"></script>-->
 <script src="/js/popper.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/main.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script th:if="${message!= null and !message.isEmpty() and statusMessage!=null and !statusMessage.isEmpty()}" th:inline="javascript">
+    Swal.fire({
+        position: "center",
+        icon: /*[[${statusMessage}]]*/ "",
+        title: /*[[${message}]]*/ "",
+        showConfirmButton: false,
+        timer: 1500
+    });
+</script>
 </body>
 
 </html>

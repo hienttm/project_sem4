@@ -8,6 +8,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -42,11 +43,12 @@ public class User {
     @Email
     private String email;
     @NotNull(message = "image cannot be null")
+
     private String image = "/home/images/NoImage.png";
     @NotNull(message = "Gender cannot be null")
     private Integer gender;
     @NotNull(message = "Status cannot be null")
-    private Integer status = 1;
+    private Integer status = 0;
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @NotNull(message = "createAt cannot be null")
     private Date createAt = new Date(System.currentTimeMillis());

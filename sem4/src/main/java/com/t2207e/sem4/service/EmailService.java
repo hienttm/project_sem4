@@ -27,6 +27,17 @@ public class EmailService {
 
         mailSender.send(message);
     }
+    public void sendEmailConfirmAccount(String to, String token) {
+        String subject = "CONFIRM YOUR ACCOUNT";
+        String body = "Hãy click vào đường link để xác minh tài khoản của bạn: http://localhost:8089/confirmAccount/" + token;
+
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(to);
+        message.setSubject(subject);
+        message.setText(body);
+
+        mailSender.send(message);
+    }
     public void sendMailNotiRegisterTeacherStatus(String to){
 
         SimpleMailMessage message = new SimpleMailMessage();
