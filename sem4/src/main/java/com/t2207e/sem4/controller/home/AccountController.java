@@ -10,6 +10,7 @@ import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,9 +29,12 @@ import java.util.Optional;
 public class AccountController {
     private final UserService userService;
     private final HelperService helperService;
-    public AccountController(UserService userService, HelperService helperService) {
+    private final PasswordEncoder passwordEncoder;
+
+    public AccountController(UserService userService, HelperService helperService, PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.helperService = helperService;
+        this.passwordEncoder = passwordEncoder;
     }
     @InitBinder
     public void initBinder(WebDataBinder dataBinder){
@@ -59,5 +63,36 @@ public class AccountController {
         }
         userService.add(user);
         return "/home/users/accountDetail";
+    }
+    @PostMapping("changePassword")
+    public String changePassword(@RequestParam String oldpasswordInput, @RequestParam String newpasswordInput,@RequestParam String confirmpasswordInput,@RequestParam String username, Model model) {
+        System.out.println(oldpasswordInput);
+        System.out.println(newpasswordInput);
+        System.out.println(confirmpasswordInput);
+        System.out.println(username);
+
+        if(!confirmpasswordInput.equals(newpasswordInput)) {
+            model.addAttribute("message", "Password and Re-Password are different!");
+            model.addAttribute("statusMessage", "error");
+            System.out.println("Password and Re-Password are different!");
+            return "redirect:/home/account/detail";
+        }
+        User user=userService.getUserByUsername(username).get();
+
+        if(!passwordEncoder.matches(oldpasswordInput,user.getPassword())) {
+            model.addAttribute("message", "Old password is wrong!");
+            model.addAttribute("statusMessage", "error");
+            System.out.println("Old password is incorrect!");
+            return "redirect:/home/account/detail";
+        }else{
+            String encodedNewpasswordInput =passwordEncoder.encode(newpasswordInput);
+            user.setPassword(encodedNewpasswordInput);
+            userService.add(user);
+            model.addAttribute("message", "New password has been changed!");
+            model.addAttribute("statusMessage", "success");
+            System.out.println("Change password is success");
+            return "redirect:/home/account/detail";
+        }
+
     }
 }
