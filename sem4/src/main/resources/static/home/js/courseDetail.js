@@ -15,5 +15,5 @@ function getVideo(id, index) {
 
 function displayResults(results) {
     let Results = document.getElementById('display-video');
-    Results.innerHTML = `<iframe src="${results}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>`;
+    Results.innerHTML = `<video controls src="${results}">`;
 }

@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -20,14 +21,14 @@ public class StatusCourse {
     private int statusId;
 
     @NotNull(message = "statusName cannot be null")
-    private String statusName;
+    private String statusName = "CREATE";
 
     @NotNull(message = "updateAt cannot be null")
-    private Date updateAt;
+    private Date updateAt = new Date(System.currentTimeMillis());
 
-    private String description;
+    private String description = "Creating...";
 
-    private String color;
+    private String color = "secondary";
 
     @ManyToOne
     @JoinColumn(name = "course_id")

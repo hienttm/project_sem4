@@ -9,6 +9,6 @@ public interface ITeacherRegisterService {
     List<TeacherRegister> listTeacherRegisters();
     Optional<TeacherRegister> getTeacherRegisterById(Integer id);
     void save(TeacherRegister teacherRegister);
-
+    Optional<TeacherRegister> getTeacherRegisterByUser_UserId(int id);
 
 }

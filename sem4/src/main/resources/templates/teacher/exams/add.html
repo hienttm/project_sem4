@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" th:href="@{/assets/images/favicon.ico}" />
+</head>
+
+<body>
+<!-- Begin page -->
+<div id="layout-wrapper">
+    <div th:insert="~{admin/fragments/header}"></div>
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xxl-12">
+                        <form th:action="'/roleTeacher/exam/add/'+${courseId}" method="post" th:object="${exam}">
+                            <input type="hidden" th:field="*{examId}">
+                            <input type="hidden" th:field="*{status}">
+                            <input type="hidden" th:field="*{course}">
+                            <input type="hidden" th:field="*{createAt}">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="examName" class="form-label">Exam Name</label>
+                                        <input th:field="*{examName}" type="text" class="form-control" id="examName" name="examName" placeholder="Exam Name">
+                                        <div style="color: red" th:if="${#fields.hasErrors('examName')}" th:errors="*{examName}" class="error"></div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="time" class="form-label">Time</label>
+                                        <input th:field="*{time}" type="number" class="form-control" id="time" name="time" placeholder="Time">
+                                        <div style="color: red" th:if="${#fields.hasErrors('time')}" th:errors="*{time}" class="error"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea th:field="*{description}" class="form-control" id="description" name="description" placeholder="Description"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-danger" style="margin-bottom: 30px">Add Exam</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- container-fluid -->
+        </div>
+        <!-- End Page-content -->
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script>
+                        © Velzon.
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text-sm-end d-none d-sm-block">
+                            Design & Develop by Themesbrand
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+<!--start back-to-top-->
+<div th:insert="~{admin/fragments/footer}"></div>
+
+<script>
+
+</script>
+</body>
+
+</html>

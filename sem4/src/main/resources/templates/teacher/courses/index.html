@@ -28,6 +28,8 @@
 
                 <div class="row">
                     <div class="col-xxl-12">
+                        <a th:href="@{add}" class="btn btn-primary mb-2">Add</a>
+
                         <table id="table1" class="table table-striped" style="width:100%">
                             <thead>
                             <tr>
@@ -51,12 +53,14 @@
                                     <div th:if="${course.status==2}" class="align-middle text-primary fw-bolder">NOT APPROVED</div>
                                     <div th:if="${course.status==3}" class="align-middle text-warning fw-bolder">ASK TO EDIT</div>
                                     <div th:if="${course.status==4}" class="align-middle text-danger fw-bolder">REJECTED</div>
+                                    <div th:if="${course.status==5}" class="align-middle text-secondary fw-bolder">CREATE</div>
                                 </td>
                                 <td class="align-middle" th:text="${course.user.fullname}"></td>
                                 <td class="align-middle" th:text="${course.courseType.typeName}"></td>
-                                <td class="align-middle" th:text="${course.censor.fullname}"></td>
+                                <td class="align-middle" th:text="${course.censor!=null?course.censor.fullname:'NoBody'}"></td>
                                 <td>
-                                    <a th:href="@{detail/{id}(id=${course.courseId})}" class="btn btn-primary">Detail</a>
+                                    <a th:href="@{edit/{id}(id=${course.courseId})}" class="btn btn-primary">Edit</a>
+                                    <a th:href="@{delete/{id}(id=${course.courseId})}" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
                             </tbody>

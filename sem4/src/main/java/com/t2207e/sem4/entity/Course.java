@@ -27,7 +27,7 @@ public class Course {
 
     @Column(name = "courseVideo")
     @NotNull(message = "CourseVideo cannot be null")
-    private String courseVideo;
+    private String courseVideo = "/home/images/NoVideo.mp4";
 
     @Column(name = "courseFile")
     @NotNull(message = "CourseFile cannot be null")
@@ -43,12 +43,12 @@ public class Course {
     private int freeNumbers;
 
     @Column(name = "image")
-    @NotNull(message = "image cannot be null")
-    private String image;
+    @NotNull(message = "Image cannot be null")
+    private String image = "/home/images/NoImage.png";
 
     @Column(name = "status")
     @NotNull(message = "FreeNumbers cannot be null")
-    private int status=1;
+    private int status=5;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)

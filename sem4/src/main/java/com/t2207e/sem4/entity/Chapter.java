@@ -21,13 +21,13 @@ public class Chapter {
     @Column(name = "chapterId")
     private int chapterId;
 
-    @Column(name = "chapterName",unique = true)
+    @Column(name = "chapterName")
     @NotNull(message = "ChapterName cannot be null")
     private String chapterName;
 
     @Column(name = "chapterVideo")
     @NotNull(message = "ChapterVideo cannot be null")
-    private String chapterVideo;
+    private String chapterVideo = "/home/images/NoVideo.mp4";
 
     @Column(name = "chapterFile")
     @NotNull(message = "ChapterFile cannot be null")
@@ -42,8 +42,7 @@ public class Chapter {
     @NotNull(message = "Status cannot be null")
     private int status=1;
 
-    @Column(name = "description", columnDefinition = "TEXT")
-    @NotNull(message = "Description cannot be null")
+    @Column(name = "description")
     private String description;
 
     @ManyToOne

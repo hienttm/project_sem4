@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" th:href="@{/assets/images/favicon.ico}" />
+</head>
+
+<body>
+<!-- Begin page -->
+<div id="layout-wrapper">
+    <div th:insert="~{admin/fragments/header}"></div>
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xxl-12">
+                        <form th:action="@{/roleTeacher/course/add}" method="post" th:object="${course}" enctype="multipart/form-data">
+                            <input type="hidden" th:field="*{courseId}">
+                            <input type="hidden" th:field="*{image}">
+                            <input type="hidden" th:field="*{courseVideo}">
+                            <input type="hidden" th:field="*{user}">
+                            <input type="hidden" th:field="*{status}">
+                            <input type="hidden" th:field="*{censor}">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="fileImage" class="form-label">Image</label>
+                                        <input type="file" class="form-control" id="fileImage" name="fileImage" placeholder="Image">
+                                    </div>
+                                    <div class="mb-3 text-center">
+                                        <img id="displayImage" th:src="${'/home/images/NoImage.png'}" style="width: 200px; height: 200px"  alt="image"/>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="fileVideo" class="form-label">Video</label>
+                                        <input type="file" class="form-control" id="fileVideo" name="fileVideo" placeholder="Video">
+                                    </div>
+                                    <div class="mb-3 text-center">
+                                        <video controls id="displayVideo" th:src="${'/home/images/NoVideo.mp4'}" style="width: 300px"  alt="video"></video>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 col">
+                                    <label for="courseName" class="form-label">Course Name</label>
+                                    <input th:field="*{courseName}" type="text" class="form-control" id="courseName" name="courseName" placeholder="Course Name">
+                                    <div style="color: red" th:if="${#fields.hasErrors('courseName')}" th:errors="*{courseName}" class="error"></div>
+                                </div>
+                                <div class="mb-3 col">
+                                    <label for="courseFile" class="form-label">Course File</label>
+                                    <input th:field="*{courseFile}" type="text" class="form-control" id="courseFile" name="courseFile" placeholder="Link of File ...">
+                                    <div style="color: red" th:if="${#fields.hasErrors('courseFile')}" th:errors="*{courseFile}" class="error"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 col">
+                                    <label for="freeNumbers" class="form-label">Free Number</label>
+                                    <input th:field="*{freeNumbers}" type="number" class="form-control" id="freeNumbers" name="freeNumbers" placeholder="Free Number">
+                                    <div style="color: red" th:if="${#fields.hasErrors('freeNumbers')}" th:errors="*{freeNumbers}" class="error"></div>
+                                </div>
+                                <div class="mb-3 col">
+                                    <label for="price" class="form-label">Price</label>
+                                    <input th:field="*{price}" type="number" class="form-control" id="price" name="price" placeholder="Price">
+                                    <div style="color: red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 col">
+                                    <label for="courseType" class="form-label">Course Type</label>
+                                    <select th:field="*{courseType}" class="form-select" id="courseType">
+                                        <option th:value="${courseType.courseTypeId}" th:each="courseType: ${courseTypes}" th:text="${courseType.typeName}"></option>
+                                    </select>
+                                    <div style="color: red" th:if="${#fields.hasErrors('courseType')}" th:errors="*{courseType}" class="error"></div>
+                                </div>
+                                <div class="mb-3 col">
+                                    <label for="category" class="form-label">Course Type</label>
+                                    <select th:field="*{category}" class="form-select" id="category">
+                                        <option th:value="${category.categoryId}" th:each="category: ${categories}" th:text="${category.categoryName}"></option>
+                                    </select>
+                                    <div style="color: red" th:if="${#fields.hasErrors('category')}" th:errors="*{category}" class="error"></div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea th:field="*{description}" class="form-control" id="description" name="description" placeholder="Description"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-danger" style="margin-bottom: 30px">Add Course</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- container-fluid -->
+        </div>
+        <!-- End Page-content -->
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script>
+                        © Velzon.
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text-sm-end d-none d-sm-block">
+                            Design & Develop by Themesbrand
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+<!--start back-to-top-->
+<div th:insert="~{admin/fragments/footer}"></div>
+
+<script>
+    document.getElementById("fileImage").addEventListener("change", function (event){
+        let file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imageDisplay = document.getElementById('displayImage');
+                imageDisplay.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    })
+
+    document.getElementById("fileVideo").addEventListener("change", function (event) {
+        let file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const videoDisplay = document.getElementById('displayVideo');
+                videoDisplay.src = e.target.result;
+                videoDisplay.load(); // Reload the video
+                videoDisplay.play(); // Play the video (optional)
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+</script>
+</body>
+
+</html>

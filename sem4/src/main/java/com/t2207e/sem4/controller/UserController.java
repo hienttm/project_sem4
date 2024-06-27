@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -51,8 +52,9 @@ public class UserController {
     }
 
     @GetMapping("login")
-    public String Login(){
-
+    public String Login(Model model){
+        String message = (String) model.getAttribute("message");
+        model.addAttribute("message", message);
         return "loginPage";
     }
 
@@ -64,7 +66,7 @@ public class UserController {
     }
 
     @PostMapping("register")
-    public String Register(@Valid @ModelAttribute User user, BindingResult bindingResult, Model model, @RequestParam String rePassword){
+    public String Register(@Valid @ModelAttribute User user, BindingResult bindingResult, Model model, @RequestParam String rePassword, RedirectAttributes redirectAttributes){
 
 
         //Validated
@@ -125,19 +127,19 @@ public class UserController {
         // SEND MAIL:
         emailService.sendEmailConfirmAccount(user.getEmail(),token1.getToken());
         String message="Check mail to confirm your account.";
-        model.addAttribute("message",message);
-        model.addAttribute("statusMessage", "success");
+        redirectAttributes.addFlashAttribute("message", message);
+        redirectAttributes.addFlashAttribute("statusMessage", "success");
         return "redirect:/login";
     }
     //check token - confirm account
     @GetMapping("confirmAccount/{token}")
-    public String confirmAccount(@PathVariable String token, Model model){
+    public String confirmAccount(@PathVariable String token, Model model, RedirectAttributes redirectAttributes){
         if (token==null || token.isEmpty()){
             //token rỗng
 
             String message_error="The link is not valid, please check again";
-            model.addAttribute("message",message_error);
-            model.addAttribute("statusMessage", "error");
+            redirectAttributes.addFlashAttribute("message",message_error);
+            redirectAttributes.addFlashAttribute("statusMessage", "error");
             System.out.println(" token roongx");
             return "redirect:/login";
         }
@@ -161,8 +163,8 @@ public class UserController {
             if (minutesPassed > 2) {
                 // Token hết hạn
                 String message_error="The link has expired, please try again";
-                model.addAttribute("message",message_error);
-                model.addAttribute("statusMessage", "error");
+                redirectAttributes.addFlashAttribute("message",message_error);
+                redirectAttributes.addFlashAttribute("statusMessage", "error");
                 System.out.println("token heets hanj: " );
 
                 return "redirect:/login";
@@ -171,9 +173,9 @@ public class UserController {
                 // Token còn hiệu lực
                 Integer userId=tokenEntity.getUser().getUserId();
                 model.addAttribute("userId", userId);
-                String message="The link has expired, please try again";
-                model.addAttribute("message",message);
-                model.addAttribute("statusMessage", "success");
+                String message="Your account has been confirmed";
+                redirectAttributes.addFlashAttribute("message",message);
+                redirectAttributes.addFlashAttribute("statusMessage", "success");
                 // update status 1
                 User user =checkToken.get().getUser();
                 user.setStatus(1);
@@ -187,8 +189,8 @@ public class UserController {
             //token sai
             System.out.println("Token sai");
             String message_error="The link is not valid, please check again";
-            model.addAttribute("message",message_error);
-            model.addAttribute("statusMessage", "error");
+            redirectAttributes.addFlashAttribute("message",message_error);
+            redirectAttributes.addFlashAttribute("statusMessage", "error");
             return "redirect:/login";
         }
     }

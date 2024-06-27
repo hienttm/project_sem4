@@ -1,5 +1,8 @@
 package com.t2207e.sem4.config;
 
+import org.apache.catalina.connector.Connector;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -33,8 +36,9 @@ public class SecurityConfig {
                         .requestMatchers("/register","/", "/forgotPassword/**","/checkExistMail/**","resetPassworUrl/**","resetForgotPassword","checkResetForgotPassword").permitAll()
                         .requestMatchers("/contactus/**","/sendcontactus/**", "/api/cart/addToCart", "/courseType/**", "/api/course/getVideo").permitAll()
                         .requestMatchers("/test","/course/list/**", "/course/detail/**", "/api/course/getVideo", "teacher/list", "teacher/detail/**","confirmAccount/**").permitAll()
-                        .requestMatchers("/home/account/**").hasRole("USER")
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/home/account/**").permitAll()
+                        .requestMatchers("/admin/**").hasAnyRole("ADMIN")
+                        .requestMatchers("/roleTeacher/**").hasAnyRole("ADMIN", "TEACHER")
                         .anyRequest()
                         .authenticated();
                 })
@@ -62,5 +66,12 @@ public class SecurityConfig {
     @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();
+    }
+
+    @Bean
+    public WebServerFactoryCustomizer<TomcatServletWebServerFactory> tomcatCustomizer() {
+        return factory -> factory.addConnectorCustomizers((Connector connector) -> {
+            connector.setMaxPostSize(500 * 1024 * 1024); // 500MB
+        });
     }
 }

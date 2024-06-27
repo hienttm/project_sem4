@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" th:href="@{/assets/images/favicon.ico}" />
+</head>
+
+<body>
+<!-- Begin page -->
+<div id="layout-wrapper">
+    <div th:insert="~{admin/fragments/header}"></div>
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xxl-12">
+                        <form th:action="'/roleTeacher/chapter/edit'" method="post" th:object="${chapter}" enctype="multipart/form-data">
+                            <input type="hidden" th:field="*{chapterId}">
+                            <input type="hidden" th:field="*{chapterVideo}">
+                            <input type="hidden" th:field="*{status}">
+                            <input type="hidden" th:field="*{course}">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="chapterName" class="form-label">Chapter Name</label>
+                                        <input th:field="*{chapterName}" type="text" class="form-control" id="chapterName" name="chapterName" placeholder="Chapter Name">
+                                        <div style="color: red" th:if="${#fields.hasErrors('chapterName')}" th:errors="*{chapterName}" class="error"></div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="chapterFile" class="form-label">Chapter File</label>
+                                        <input th:field="*{chapterFile}" type="text" class="form-control" id="chapterFile" name="chapterFile" placeholder="Chapter File Link ...">
+                                        <div style="color: red" th:if="${#fields.hasErrors('chapterFile')}" th:errors="*{chapterFile}" class="error"></div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="description" class="form-label">Description</label>
+                                        <textarea th:field="*{description}" class="form-control" id="description" name="description" placeholder="Description"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <label for="fileVideo" class="form-label">Video</label>
+                                        <input type="file" class="form-control" id="fileVideo" name="fileVideo" placeholder="Video">
+                                    </div>
+                                    <div class="mb-3 text-center">
+                                        <video controls id="displayVideo" th:src="${chapter.chapterVideo}" style="width: 300px"  alt="video"></video>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-danger" style="margin-bottom: 30px">Edit Chapter</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- container-fluid -->
+        </div>
+        <!-- End Page-content -->
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script>
+                        © Velzon.
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text-sm-end d-none d-sm-block">
+                            Design & Develop by Themesbrand
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+<!--start back-to-top-->
+<div th:insert="~{admin/fragments/footer}"></div>
+
+<script>
+
+
+    document.getElementById("fileVideo").addEventListener("change", function (event) {
+        let file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const videoDisplay = document.getElementById('displayVideo');
+                videoDisplay.src = e.target.result;
+                videoDisplay.load();
+                videoDisplay.play();
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+</script>
+</body>
+
+</html>

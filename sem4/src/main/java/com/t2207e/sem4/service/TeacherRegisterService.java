@@ -28,4 +28,9 @@ public class TeacherRegisterService implements ITeacherRegisterService{
     public void save(TeacherRegister teacherRegister) {
         teacherRegisterReponsitory.save(teacherRegister);
     }
+
+    @Override
+    public Optional<TeacherRegister> getTeacherRegisterByUser_UserId(int id) {
+        return teacherRegisterReponsitory.getTeacherRegisterByUser_UserId(id);
+    }
 }

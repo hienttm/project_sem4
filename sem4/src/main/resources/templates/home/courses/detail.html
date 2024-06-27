@@ -54,7 +54,7 @@
             <div class="col-lg-8">
                 <div class="tl-event-details-left">
                     <div class="tl-event-details-video">
-                        <iframe th:src="${course.courseVideo}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <video controls th:src="${course.courseVideo}" style="width: 100%"></video>
 
                         <h2 class="tl-event-details-title" th:text="${course.courseName}"></h2>
                     </div>
@@ -398,7 +398,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" id="display-video">
-                <iframe src="https://player.vimeo.com/video/952271629" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <video controls src="/home/images/NoVideo.mp4"></video>
             </div>
         </div>
     </div>

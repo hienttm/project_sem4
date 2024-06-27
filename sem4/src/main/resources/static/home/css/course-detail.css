@@ -60,7 +60,7 @@ input[type="radio"]:checked ~ label:hover ~ label {
     color: darkorange;
 }
 
-.modal-body iframe{
+.modal-body video{
     width: 100%;
     aspect-ratio: 16 / 9;
 }

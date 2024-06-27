@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-layout="vertical" data-topbar="light" data-sidebar="dark"
+      data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" th:href="@{/assets/images/favicon.ico}" />
+</head>
+
+<body>
+<!-- Begin page -->
+<div id="layout-wrapper">
+    <div th:insert="~{admin/fragments/header}"></div>
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+
+        <div class="page-content">
+            <div class="container-fluid">
+                <div class="profile-foreground position-relative mx-n4 mt-n4">
+                    <div class="profile-wid-bg">
+                        <!--                        <img src="/assets/images/profile-bg.jpg" alt="" class="profile-wid-img">-->
+                    </div>
+                </div>
+                <div class="pt-4 mb-4 mb-lg-3 pb-lg-4 profile-wrapper">
+                    <div class="row g-4">
+                        <div class="col-auto">
+                            <div class="avatar-lg">
+                                <img th:src="${course.image}" alt="user-img" class="img-thumbnail">
+                            </div>
+                        </div>
+                        <!--end col-->
+                        <div class="col">
+                            <div class="p-2">
+                                <h3 class="text-white mb-1" th:text="${course.courseName}"></h3>
+                                <p class="text-white text-opacity-75" th:text="${course.courseType.typeName}"></p>
+                                <div class="hstack text-white-50 gap-1">
+                                    <div class="me-2"><i class="mdi mdi-account-circle-outline"></i> <span th:text="${course.user.fullname}"></span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--end row-->
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div>
+                            <div class="d-flex profile-wrapper">
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-pills animation-nav profile-nav gap-2 gap-lg-3 flex-grow-1" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link fs-14 active" data-bs-toggle="tab" href="#overview-tab" role="tab" aria-selected="true">
+                                            <i class="ri-airplay-fill d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">Overview</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link fs-14" data-bs-toggle="tab" href="#chapters" role="tab" aria-selected="false" tabindex="-1">
+                                            <i class="ri-folder-4-line d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">Chapters</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link fs-14" data-bs-toggle="tab" href="#exams" role="tab" aria-selected="false" tabindex="-1">
+                                            <i class="ri-price-tag-line d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">Exams</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Tab panes -->
+                            <div class="tab-content pt-4 text-muted">
+                                <div class="tab-pane active show" id="overview-tab" role="tabpanel">
+                                    <div class="row">
+                                        <div class="col-xxl-7">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h5 class="flex-grow-1 card-title mb-3">Description</h5>
+                                                    <p th:text="${course.description!=null?course.description:''}"></p>
+                                                    <div class="row">
+                                                        <form th:action="@{/roleTeacher/course/edit}" method="post" th:object="${course}" enctype="multipart/form-data">
+                                                            <input type="hidden" th:field="*{courseId}">
+                                                            <input type="hidden" th:field="*{image}">
+                                                            <input type="hidden" th:field="*{courseVideo}">
+                                                            <input type="hidden" th:field="*{user}">
+                                                            <input type="hidden" th:field="*{status}">
+                                                            <input type="hidden" th:field="*{censor}">
+                                                            <div class="row">
+                                                                <div class="col">
+                                                                    <div class="mb-3">
+                                                                        <label for="fileImage" class="form-label">Image</label>
+                                                                        <input type="file" class="form-control" id="fileImage" name="fileImage" placeholder="Image">
+                                                                    </div>
+                                                                    <div class="mb-3 text-center">
+                                                                        <img id="displayImage" th:src="${'/home/images/NoImage.png'}" style="width: 200px; height: 200px"  alt="image"/>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <div class="mb-3">
+                                                                        <label for="fileVideo" class="form-label">Video</label>
+                                                                        <input type="file" class="form-control" id="fileVideo" name="fileVideo" placeholder="Video">
+                                                                    </div>
+                                                                    <div class="mb-3 text-center">
+                                                                        <video controls id="displayVideo" th:src="${course.courseVideo}" style="width: 300px"  alt="video"></video>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="mb-3 col">
+                                                                    <label for="courseName" class="form-label">Course Name</label>
+                                                                    <input th:field="*{courseName}" type="text" class="form-control" id="courseName" name="courseName" placeholder="Course Name">
+                                                                    <div style="color: red" th:if="${#fields.hasErrors('courseName')}" th:errors="*{courseName}" class="error"></div>
+                                                                </div>
+                                                                <div class="mb-3 col">
+                                                                    <label for="courseFile" class="form-label">Course File</label>
+                                                                    <input th:field="*{courseFile}" type="text" class="form-control" id="courseFile" name="courseFile" placeholder="Link of File ...">
+                                                                    <div style="color: red" th:if="${#fields.hasErrors('courseFile')}" th:errors="*{courseFile}" class="error"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="mb-3 col">
+                                                                    <label for="freeNumbers" class="form-label">Free Number</label>
+                                                                    <input th:field="*{freeNumbers}" type="number" class="form-control" id="freeNumbers" name="freeNumbers" placeholder="Free Number">
+                                                                    <div style="color: red" th:if="${#fields.hasErrors('freeNumbers')}" th:errors="*{freeNumbers}" class="error"></div>
+                                                                </div>
+                                                                <div class="mb-3 col">
+                                                                    <label for="price" class="form-label">Price</label>
+                                                                    <input th:field="*{price}" type="number" class="form-control" id="price" name="price" placeholder="Price">
+                                                                    <div style="color: red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="mb-3 col">
+                                                                    <label for="courseType" class="form-label">Course Type</label>
+                                                                    <select th:field="*{courseType}" class="form-select" id="courseType">
+                                                                        <option th:value="${courseType.courseTypeId}" th:each="courseType: ${courseTypes}" th:text="${courseType.typeName}"></option>
+                                                                    </select>
+                                                                    <div style="color: red" th:if="${#fields.hasErrors('courseType')}" th:errors="*{courseType}" class="error"></div>
+                                                                </div>
+                                                                <div class="mb-3 col">
+                                                                    <label for="category" class="form-label">Course Type</label>
+                                                                    <select th:field="*{category}" class="form-select" id="category">
+                                                                        <option th:value="${category.categoryId}" th:each="category: ${categories}" th:text="${category.categoryName}"></option>
+                                                                    </select>
+                                                                    <div style="color: red" th:if="${#fields.hasErrors('category')}" th:errors="*{category}" class="error"></div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="mb-3">
+                                                                <label for="description" class="form-label">Description</label>
+                                                                <textarea th:field="*{description}" class="form-control" id="description" name="description" placeholder="Description"></textarea>
+                                                            </div>
+                                                            <button type="submit" class="btn btn-danger" style="margin-bottom: 30px">Edit Information</button>
+                                                        </form>
+                                                    </div>
+                                                    <!--end row-->
+                                                </div>
+                                                <!--end card-body-->
+                                            </div><!-- end card -->
+                                        </div>
+
+
+                                        <!--end col-->
+                                        <div class="col-xxl-5">
+                                            <div class="card" th:if="${course.status==5 or course.status == 3}">
+                                                <form th:action="'/roleTeacher/course/submitCourse/'+${course.courseId}" method="post" class="card-title text-center" style="margin: 30px">
+                                                    <h2 class="mb-3">Send course to ADMIN</h2>
+                                                    <label for="descriptionStatus" class="form-label">Description</label>
+                                                    <textarea class="form-control mb-4" aria-label="With textarea" id="descriptionStatus" name="descriptionStatus"></textarea>
+                                                    <button type="submit" class="btn btn-danger">Submit</button>
+                                                </form>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div th:if="${course.status==1}" class="card-title text-center text-success fw-bolder">APPROVED</div>
+                                                    <div th:if="${course.status==2}" class="card-title text-center text-primary fw-bolder">NOT APPROVED</div>
+                                                    <div th:if="${course.status==3}" class="card-title text-center text-warning fw-bolder">ASK TO EDIT</div>
+                                                    <div th:if="${course.status==4}" class="card-title text-center text-danger fw-bolder">REJECTED</div>
+                                                    <div th:if="${course.status==5}" class="card-title text-center text-secondary fw-bolder">CREATE</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <h5 class="card-title mb-3">Status</h5>
+                                                    <div class="table-responsive">
+                                                        <table class="table table-borderless mb-0">
+                                                            <tbody>
+                                                            <tr th:each="statusCourse: ${statusCourses}">
+                                                                <th th:class="'ps-0 text-center fw-bolder text-' + ${statusCourse.color}" scope="row"><span th:text="${statusCourse.statusName}"></span> :</th>
+                                                                <td class="text-muted" th:text="${statusCourse.updateAt}"></td>
+                                                                <td class="text-muted" th:text="${statusCourse.description}"></td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div><!-- end card body -->
+                                            </div><!-- end card -->
+                                            <!--end card-->
+                                        </div>
+                                        <!--end col-->
+                                    </div>
+                                    <!--end row-->
+                                </div>
+                                <!--end tab-pane-->
+                                <div class="tab-pane fade" id="chapters" role="tabpanel">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="mb-3">
+                                                <a th:href="'/roleTeacher/chapter/add/'+${course.courseId}" class="btn btn-secondary">Add Chapter</a>
+                                            </div>
+                                            <div class="row" th:if="${chapters!=null and !chapters.isEmpty()}">
+                                                <div class="col-xxl-6 col-sm-12" th:each="chapter: ${chapters}">
+                                                    <div class="card profile-project-card shadow-none profile-project-warning material-shadow">
+                                                        <div class="card-body p-4">
+                                                            <div class="d-flex">
+                                                                <div class="flex-grow-1 text-muted overflow-hidden">
+                                                                    <h5 class="fs-14 text-truncate"><a class="text-body" th:text="${chapter.chapterName}"></a></h5>
+                                                                    <div class="text-muted text-truncate mb-2">Document: <a target="_blank" th:href="${chapter.chapterFile}" class="fw-semibold text-body">Click Here</a></div>
+                                                                    <div class="text-muted text-truncate mb-4">Status: <span th:class="'badge bg-'+${chapter.status==1?'success':'danger'}+'-subtle fs-15 text-'+${chapter.status==1?'success':'danger'}" th:text="${chapter.status==1?'OPEN':'LOCK'}"></span></div>
+                                                                    <a th:href="'/roleTeacher/chapter/edit/'+${chapter.chapterId}" class="btn btn-warning">EDIT</a>
+                                                                    <a th:href="'/roleTeacher/chapter/delete/'+${chapter.chapterId}" class="btn btn-danger">DELETE</a>
+                                                                </div>
+                                                                <div class="flex-shrink-0 ms-2">
+                                                                    <video controls th:src="${chapter.chapterVideo}" alt="video" style="width: 250px"></video>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end card body -->
+                                                    </div>
+                                                    <!-- end card -->
+                                                </div>
+                                                <!--end col-->
+                                            </div>
+                                            <!--end row-->
+                                        </div>
+                                        <!--end card-body-->
+                                    </div>
+                                    <!--end card-->
+                                </div>
+                                <!--end tab-pane-->
+                                <div class="tab-pane fade" id="exams" role="tabpanel">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="mb-3">
+                                                <a th:href="'/roleTeacher/exam/add/'+${course.courseId}" class="btn btn-secondary">Add Exam</a>
+                                            </div>
+                                            <div class="row" th:if="${exams!=null and !exams.isEmpty()}">
+                                                <div class="col-xxl-6 col-sm-6" th:each="exam: ${exams}">
+                                                    <div class="card profile-project-card shadow-none profile-project-warning material-shadow">
+                                                        <div class="card-body p-4">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="flex-grow-1 text-muted overflow-hidden">
+                                                                    <h5 class="fs-14 text-truncate"><a class="text-body" th:text="${exam.examName}"></a></h5>
+                                                                    <p class="text-muted text-truncate mb-2">Last Update : <span class="fw-semibold text-body" th:text="${exam.createAt}"></span></p>
+                                                                    <p class="text-muted text-truncate mb-0">Status : <span th:class="'badge bg-'+${exam.status==1?'success':'danger'}+'-subtle fs-15 text-'+${exam.status==1?'success':'danger'}" th:text="${exam.status==1?'OPEN':'LOCK'}"></span></p>
+                                                                </div>
+                                                                <div class="flex-shrink-0 ms-2">
+                                                                    <a th:href="'/roleTeacher/exam/edit/'+${exam.examId}" class="btn btn-warning">EDIT</a>
+                                                                    <a th:href="'/roleTeacher/exam/delete/'+${exam.examId}" class="btn btn-danger">DELETE</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- end card body -->
+                                                    </div>
+                                                    <!-- end card -->
+                                                </div>
+                                            </div>
+                                            <!--end row-->
+                                        </div>
+                                        <!--end card-body-->
+                                    </div>
+                                    <!--end card-->
+                                </div>
+                                <!--end tab-pane-->
+                            </div>
+                            <!--end tab-content-->
+                        </div>
+                    </div>
+                    <!--end col-->
+                </div>
+                <!--end row-->
+
+            </div><!-- container-fluid -->
+        </div><!-- End Page-content -->
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <script>document.write(new Date().getFullYear())</script>2024 © Velzon.
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text-sm-end d-none d-sm-block">
+                            Design &amp; Develop by Themesbrand
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+<!--start back-to-top-->
+<div th:insert="~{admin/fragments/footer}"></div>
+<script>
+    document.getElementById("fileImage").addEventListener("change", function (event){
+        let file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imageDisplay = document.getElementById('displayImage');
+                imageDisplay.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    })
+
+    document.getElementById("fileVideo").addEventListener("change", function (event) {
+        let file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const videoDisplay = document.getElementById('displayVideo');
+                videoDisplay.src = e.target.result;
+                videoDisplay.load(); // Reload the video
+                videoDisplay.play(); // Play the video (optional)
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
+</body>
+
+</html>
