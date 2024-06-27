@@ -299,8 +299,8 @@ public class UserController {
         if (userCheckOptional.isPresent()) {
             User user = userCheckOptional.get();
             user.setPassword(encodedPassword);
-            String message_success = "Password change successful, Please log in again!";
-            model.addAttribute("message_success", message_success);
+            String message = "Password change successful, Please log in again!";
+            model.addAttribute("message",message);
             model.addAttribute("statusMessage", "success");
             userService.add(user);
 

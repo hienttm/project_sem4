@@ -63,7 +63,6 @@
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="v-pills-personal-detail" role="tabpanel" aria-labelledby="v-pills-personal-detail-tab">
                         <form th:action="@{/home/account/updateAccount}" th:object="${user}" method="post" enctype="multipart/form-data">
-                            <input type="hidden" th:field="*{userId}" th:value="${user.getUserId()}">
                             <input type="hidden" th:field="*{image}">
                             <input type="hidden" th:field="*{password}">
 
@@ -164,12 +163,14 @@
                         </form>
                     </div>
                     <div class="tab-pane fade" id="v-pills-change-password" role="tabpanel" aria-labelledby="v-pills-change-password-tab">
-                        <form action="javascript:void(0);">
+                        <form th:action="@{/home/account/changePassword}" method="post">
+                            <input type="hidden" name="username" th:value="${#authentication.getName()}">
+
                             <div class="row g-2">
                                 <div class="col-lg-4">
                                     <div>
                                         <label for="oldpasswordInput" class="form-label">Old Password*</label>
-                                        <input type="password" class="form-control" id="oldpasswordInput"
+                                        <input type="password" class="form-control" id="oldpasswordInput" name="oldpasswordInput"
                                                placeholder="Enter current password" />
                                     </div>
                                 </div>
@@ -177,7 +178,7 @@
                                 <div class="col-lg-4">
                                     <div>
                                         <label for="newpasswordInput" class="form-label">New Password*</label>
-                                        <input type="password" class="form-control" id="newpasswordInput"
+                                        <input type="password" class="form-control" id="newpasswordInput" name="newpasswordInput"
                                                placeholder="Enter new password" />
                                     </div>
                                 </div>
@@ -185,15 +186,8 @@
                                 <div class="col-lg-4">
                                     <div>
                                         <label for="confirmpasswordInput" class="form-label">Confirm Password*</label>
-                                        <input type="password" class="form-control" id="confirmpasswordInput"
+                                        <input type="password" class="form-control" id="confirmpasswordInput" name="confirmpasswordInput"
                                                placeholder="Confirm password" />
-                                    </div>
-                                </div>
-                                <!--end col-->
-                                <div class="col-lg-12">
-                                    <div class="mb-3">
-                                        <a href="javascript:void(0);" class="link-primary text-decoration-underline">Forgot
-                                            Password ?</a>
                                     </div>
                                 </div>
                                 <!--end col-->
