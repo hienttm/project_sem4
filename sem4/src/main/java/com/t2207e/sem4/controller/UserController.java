@@ -334,7 +334,6 @@ public class UserController {
     @PostMapping("registerTeacher")
     public String registerTeacher(@Valid @ModelAttribute TeacherRegister teacherRegister, BindingResult bindingResult, Model model, @RequestParam("username") String username) {
         if(bindingResult.hasErrors()){
-            System.out.println("BBBB");
             return "/home/users/registerTeacher";
         }
         Optional<User>user1 = userService.getUserByUsername(username);

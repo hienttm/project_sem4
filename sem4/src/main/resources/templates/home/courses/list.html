@@ -45,9 +45,9 @@
 <div class="searching">
     <div class="searching-inner">
         <div class="searching-left">
-            <div th:if="${searchInput != null and !searchInput.isEmpty()}" class="searching-text">Kết quả tìm kiếm cho: "<span th:text="${searchInput}"></span>" </div>
-            <div th:if="${course_type_name != null and !course_type_name.isEmpty()}" class="searching-text">Loại khóa học: "<span th:text="${course_type_name}"></span>" </div>
-            <div th:unless="${(searchInput != null and !searchInput.isEmpty()) or (course_type_name != null and !course_type_name.isEmpty())}" class="searching-text">Danh sách khóa học </div>
+            <div th:if="${searchInput != null and !searchInput.isEmpty()}" class="searching-text">Search: "<span th:text="${searchInput}"></span>" </div>
+            <div th:if="${course_type_name != null and !course_type_name.isEmpty()}" class="searching-text">Course Type: "<span th:text="${course_type_name}"></span>" </div>
+            <div th:unless="${(searchInput != null and !searchInput.isEmpty()) or (course_type_name != null and !course_type_name.isEmpty())}" class="searching-text">Course List</div>
         </div>
         <div class="searching-right">
             <form th:action="@{/course/list/1}" class="tl-13-banner-search-form" method="get">
@@ -67,7 +67,8 @@
                 <div class="tl-1-course">
                     <div class="tl-1-course-img">
                         <img th:src="${courseDTO.image}" alt="Course Image">
-                        <span class="tl-1-course-price">$ <span th:text="${courseDTO.price}"></span></span>
+                        <span th:if="${courseDTO.salePrice!=0}" class="tl-1-course-price" style="font-size: 16px;">$<span th:text="${courseDTO.salePrice}"></span> <del style="font-size: 12px; color: yellow; padding-left: 10px">$<del th:text="${courseDTO.price}"></del></del></span>
+                        <span th:unless="${courseDTO.salePrice!=0}" class="tl-1-course-price" style="font-size: 16px;">$<span th:text="${courseDTO.price}"></span></span>
                     </div>
 
                     <div class="tl-1-course-txt">

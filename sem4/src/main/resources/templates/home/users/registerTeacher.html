@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/iofrm-theme30.css}" />
     <style>
         #description {
-            height: 120px; /* hoặc điều chỉnh chiều cao theo ý muốn */
+            height: 120px;
         }
     </style>
 </head>
@@ -57,7 +57,7 @@
 <!--                    thông tin cá nhân-->
                     <form class="container-custom-padding" th:action="@{/updateUser}" method="post" th:object="${user}">
                         <p class="text-black">
-                            Thông tin cá nhân
+                            Your Information
                         </p>
                         <input type="hidden" th:field="*{userId}">
                         <input type="hidden" th:field="*{status}">
@@ -109,7 +109,7 @@
                             <div class="col-12">
                                 <div class="form-button text-right">
                                     <button id="submit" type="submit" class="ibtn less-padding">
-                                        Cập nhật tài khoản
+                                        Update Information
                                     </button>
                                 </div>
                             </div>
@@ -120,7 +120,7 @@
                     <!--                    Thông tin tài khoản ngân hàng-->
                     <form class="container-custom-padding" th:action="@{/registerTeacher}" method="post" th:object="${teacherRegister}">
                         <p class="text-black">
-                            Thông tin tài khoản ngân hàng
+                            Registration information
                         </p>
                         <input type="hidden" name="username" th:value="*{#authentication.getName()}">
 
@@ -146,7 +146,7 @@
                         <div class="row top-padding">
                             <div class="col-12">
                                 <div class="form-button text-right">
-                                    <button id="submit" type="submit" class="ibtn less-padding">
+                                    <button type="submit" class="ibtn less-padding">
                                         Register Teacher
                                     </button>
                                 </div>

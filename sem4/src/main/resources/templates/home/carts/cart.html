@@ -82,8 +82,11 @@
                                     </div>
                                 </td>
                                 <td style="text-align: center">
-                                    <div class="tabel-text">
+                                    <div class="tabel-text" th:if="${cartCourse.course.salePrice==0}">
                                         <h6>$<span th:text="${cartCourse.course.price}"></span></h6>
+                                    </div>
+                                    <div class="tabel-text" th:unless="${cartCourse.course.salePrice==0}">
+                                        <h6>$<span th:text="${cartCourse.course.salePrice}"></span></h6> <del th:text="${cartCourse.course.price}"></del>
                                     </div>
                                 </td>
                                 <td>

@@ -55,7 +55,10 @@ public class CartController {
 
                 AtomicReference<Double> total = new AtomicReference<>((double) 0);
                 cartCourses.forEach(cartCourse -> {
-                    total.updateAndGet(v -> v + cartCourse.getCourse().getPrice());
+                    if(cartCourse.getCourse().getSalePrice()==0)
+                        total.updateAndGet(v -> v + cartCourse.getCourse().getPrice());
+                    else
+                        total.updateAndGet(v -> v + cartCourse.getCourse().getSalePrice());
                 });
 
                 model.addAttribute("total", total);

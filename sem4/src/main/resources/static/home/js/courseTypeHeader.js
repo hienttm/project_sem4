@@ -14,7 +14,7 @@ function getCourseTypes() {
 function displayCourseTypeResults(results) {
     var Results = document.getElementById('courseTypeResult');
     if(results === ""){
-        Results.innerHTML="<li> Chưa có loại khóa học nào!</li>";
+        Results.innerHTML="<li> There are no course types!</li>";
     }
     else{
         Results.innerHTML = "";

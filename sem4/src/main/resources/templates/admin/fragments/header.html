@@ -785,61 +785,63 @@
             <div class="container-fluid">
                 <div id="two-column-menu"></div>
                 <ul class="navbar-nav" id="navbar-nav">
-                    <li class="menu-title"><span data-key="t-menu">Menu</span></li>
-                    <li class="nav-item">
-                        <a class="nav-link menu-link" th:href="@{/admin/dashboard}">
-                            <i class="mdi mdi-speedometer"></i>
-                            <span data-key="t-dashboards">Dashboards</span>
-                        </a>
-                    </li>
-                    <!-- end Dashboard Menu -->
+                    <div sec:authorize="hasRole('ADMIN')">
+                        <li class="menu-title"><span data-key="t-menu">Menu</span></li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" th:href="@{/admin/dashboard}">
+                                <i class="mdi mdi-speedometer"></i>
+                                <span data-key="t-dashboards">Dashboards</span>
+                            </a>
+                        </li>
+                        <!-- end Dashboard Menu -->
+                        <li class="menu-title">
+                            <i class="ri-more-fill"></i>
+                            <span data-key="t-pages">Pages</span>
+                        </li>
 
-                    <li class="menu-title">
-                        <i class="ri-more-fill"></i>
-                        <span data-key="t-pages">Pages</span>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" th:href="@{/admin/account/list}">
+                                <i class="mdi mdi-account-circle-outline"></i>
+                                <span data-key="t-authentication">Accounts</span>
+                            </a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link menu-link" th:href="@{/admin/account/list}">
-                            <i class="mdi mdi-account-circle-outline"></i>
-                            <span data-key="t-authentication">Accounts</span>
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" th:href="@{/admin/course/list}">
+                                <i class="mdi mdi-account-circle-outline"></i>
+                                <span data-key="t-authentication">Courses</span>
+                            </a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link menu-link" th:href="@{/admin/course/list}">
-                            <i class="mdi mdi-account-circle-outline"></i>
-                            <span data-key="t-authentication">Courses</span>
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" th:href="@{/admin/exam/list}">
+                                <i class="mdi mdi-account-circle-outline"></i>
+                                <span data-key="t-authentication">Exams</span>
+                            </a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link menu-link" th:href="@{/admin/exam/list}">
-                            <i class="mdi mdi-account-circle-outline"></i>
-                            <span data-key="t-authentication">Exams</span>
-                        </a>
-                    </li>
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link menu-link" th:href="@{/admin/category/list}">-->
+<!--                                <i class="mdi mdi-account-circle-outline"></i>-->
+<!--                                <span data-key="t-authentication">Categories</span>-->
+<!--                            </a>-->
+<!--                        </li>-->
 
-                    <li class="nav-item">
-                        <a class="nav-link menu-link" th:href="@{/admin/category/list}">
-                            <i class="mdi mdi-account-circle-outline"></i>
-                            <span data-key="t-authentication">Categories</span>
-                        </a>
-                    </li>
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link menu-link" th:href="@{/admin/role/list}">-->
+<!--                                <i class="mdi mdi-account-circle-outline"></i>-->
+<!--                                <span data-key="t-authentication">Roles</span>-->
+<!--                            </a>-->
+<!--                        </li>-->
 
-                    <li class="nav-item">
-                        <a class="nav-link menu-link" th:href="@{/admin/role/list}">
-                            <i class="mdi mdi-account-circle-outline"></i>
-                            <span data-key="t-authentication">Roles</span>
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" th:href="@{/admin/courseType/list}">
+                                <i class="mdi mdi-account-circle-outline"></i>
+                                <span data-key="t-authentication">Course Types</span>
+                            </a>
+                        </li>
+                    </div>
 
-                    <li class="nav-item">
-                        <a class="nav-link menu-link" th:href="@{/admin/courseType/list}">
-                            <i class="mdi mdi-account-circle-outline"></i>
-                            <span data-key="t-authentication">Course Types</span>
-                        </a>
-                    </li>
 
 <!--                    <li class="nav-item">-->
 <!--                        <a class="nav-link menu-link" th:href="@{/admin/product/list}">-->
@@ -860,12 +862,6 @@
                         <span data-key="t-pages">Teachers</span>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link menu-link" th:href="@{/roleTeacher/information}">
-                            <i class="mdi mdi-account-circle-outline"></i>
-                            <span data-key="t-authentication">Detail</span>
-                        </a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link menu-link" th:href="@{/roleTeacher/course/list}">
                             <i class="mdi mdi-account-circle-outline"></i>

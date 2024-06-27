@@ -98,11 +98,12 @@ public class CourseService implements  ICourseService{
                     courseDTO.setFreeNumbers((Integer) result[4]);
                     courseDTO.setImage((String) result[5]);
                     courseDTO.setPrice((Double) result[6]);
-                    courseDTO.setStatus((Integer) result[7]);
-                    courseDTO.setUsername((String) result[8]);
-                    courseDTO.setCensorName((String) result[9]);
-                    courseDTO.setCategoryName((String) result[10]);
-                    courseDTO.setCourseTypeName((String) result[11]);
+                    courseDTO.setSalePrice((Double) result[7]);
+                    courseDTO.setStatus((Integer) result[8]);
+                    courseDTO.setUsername((String) result[9]);
+                    courseDTO.setCensorName((String) result[10]);
+                    courseDTO.setCategoryName((String) result[11]);
+                    courseDTO.setCourseTypeName((String) result[12]);
                     return courseDTO;
                 })
                 .collect(Collectors.toList());

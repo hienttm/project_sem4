@@ -58,33 +58,33 @@
                                 </div>
 
                                 <div class="shopping-cart-new-address-from">
-                                    <div class="shopping-cart-new-address-from-item">
-                                        <div class="shopping-cart-new-address-from-inner">
-                                            <label for="exampleFormControlInput9" class="form-label">Full Name</label>
-                                            <input type="text" class="form-control" id="exampleFormControlInput9" placeholder="Full Name" />
-                                        </div>
-                                    </div>
-                                    <div class="shopping-cart-new-address-from-item">
-                                        <div class="shopping-cart-new-address-from-inner">
-                                            <label for="exampleFormControlInput11" class="form-label">Country</label>
-                                            <select class="form-select" aria-label="Default select example" id="exampleFormControlInput11">
-                                                <option value="1">Vietnam</option>
-                                                <option value="2">Others</option>
-                                            </select>
-                                        </div>
-                                        <div class="shopping-cart-new-address-from-inner">
-                                            <label for="exampleFormControlInput12" class="form-label">City</label>
-                                            <select class="form-select" aria-label="Default select example" id="exampleFormControlInput12">
-                                                <option value="1">Hanoi</option>
-                                                <option value="2">Ho Chi Minh City</option>
-                                                <option value="3">Others</option>
-                                            </select>
-                                        </div>
-                                    </div>
+<!--                                    <div class="shopping-cart-new-address-from-item">-->
+<!--                                        <div class="shopping-cart-new-address-from-inner">-->
+<!--                                            <label for="exampleFormControlInput9" class="form-label">Full Name</label>-->
+<!--                                            <input type="text" class="form-control" id="exampleFormControlInput9" placeholder="Full Name" />-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="shopping-cart-new-address-from-item">-->
+<!--                                        <div class="shopping-cart-new-address-from-inner">-->
+<!--                                            <label for="exampleFormControlInput11" class="form-label">Country</label>-->
+<!--                                            <select class="form-select" aria-label="Default select example" id="exampleFormControlInput11">-->
+<!--                                                <option value="1">Vietnam</option>-->
+<!--                                                <option value="2">Others</option>-->
+<!--                                            </select>-->
+<!--                                        </div>-->
+<!--                                        <div class="shopping-cart-new-address-from-inner">-->
+<!--                                            <label for="exampleFormControlInput12" class="form-label">City</label>-->
+<!--                                            <select class="form-select" aria-label="Default select example" id="exampleFormControlInput12">-->
+<!--                                                <option value="1">Hanoi</option>-->
+<!--                                                <option value="2">Ho Chi Minh City</option>-->
+<!--                                                <option value="3">Others</option>-->
+<!--                                            </select>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
                                     <div class="shopping-cart-new-address-from-item">
                                         <div class="shopping-cart-new-address-from-inner">
                                             <label for="exampleFormControlInput14" class="form-label">Description</label>
-                                            <textarea class="form-control" id="exampleFormControlInput14"></textarea>
+                                            <textarea name="description" class="form-control" id="exampleFormControlInput14" style="height: 300px"></textarea>
                                         </div>
                                     </div>
 
@@ -107,14 +107,15 @@
                                 <div class="cart-summary-box-item" th:each="cartCourse: ${cartCourses}">
                                     <a href="#">
                                         <div class="cart-summary-box-inner">
-                                            <div class="cart-summary-box-img">
-                                                <img th:src="'/home/images/' + ${cartCourse.course.image}" alt="img" width="80px"/>
+                                            <div class="cart-summary-box-img mr-3">
+                                                <img th:src="${cartCourse.course.image}" alt="img" width="150px"/>
                                             </div>
                                             <div class="cart-summary-box-text-two">
                                                 <h3 th:text="${cartCourse.course.courseName}"></h3>
                                                 <h6><span>Teacher :</span> <span th:text="${cartCourse.course.user.fullname}"></span></h6>
                                                 <h5><span>Course's Type :</span> <span th:text="${cartCourse.course.courseType.typeName}"></span></h5>
-                                                <p>Price: $<span th:text="${cartCourse.course.price}"></span></p>
+                                                <p th:if="${cartCourse.course.salePrice==0}">Price: $<span th:text="${cartCourse.course.price}"></span></p>
+                                                <p th:unless="${cartCourse.course.salePrice==0}">Price: <del th:text="${cartCourse.course.price}"></del> $<span th:text="${cartCourse.course.salePrice}"></span></p>
                                             </div>
                                         </div>
                                     </a>

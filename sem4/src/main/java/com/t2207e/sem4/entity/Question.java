@@ -18,6 +18,9 @@ public class Question {
     @Column(nullable = false)
     private String question;
 
+    @Column(name = "status")
+    private Integer status;
+
     @ManyToOne
     @JoinColumn(name = "exam_id", nullable = false)
     private Exam exam;

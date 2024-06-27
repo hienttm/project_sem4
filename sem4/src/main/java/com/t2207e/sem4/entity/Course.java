@@ -38,6 +38,8 @@ public class Course {
     @Min(value = 1, message = "Price must > 0")
     private double price;
 
+    private double salePrice=0;
+
     @Column(name = "freeNumbers")
     @NotNull(message = "FreeNumbers cannot be null")
     private int freeNumbers;

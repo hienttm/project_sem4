@@ -1,0 +1,19 @@
+<div th:if="${questions!=null and !questions.isEmpty()}" class="col-xxl-12 col-sm-12" th:each="question: ${questions}">
+    <div class="card profile-project-card shadow-none profile-project-warning material-shadow">
+        <div class="card-body p-4">
+            <div class="text-muted overflow-hidden mb-3 row">
+                <h5 class=" col-8 fs-14 text-truncate"><a class="text-body" th:text="${question.question}"></a></h5>
+                <div class="col-4 d-flex justify-content-end">
+                    <button type="button" th:onclick="'hiddenQuestion(' +${question.questionId}+ ')'" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+            <div class="row row-cols-2 g-lg-3">
+                <div class="col" th:each="answer: ${question.answers}">
+                    <span th:class="'fs-15 p-3 text-'+${answer.tof==false?'danger':'success'}" th:text="${answer.answerContent}"></span>
+                </div>
+            </div>
+        </div>
+        <!-- end card body -->
+    </div>
+    <!-- end card -->
+</div>

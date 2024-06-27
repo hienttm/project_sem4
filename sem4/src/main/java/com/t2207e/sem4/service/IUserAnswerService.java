@@ -1,5 +1,6 @@
 package com.t2207e.sem4.service;
 
+import com.t2207e.sem4.entity.Exam;
 import com.t2207e.sem4.entity.User;
 import com.t2207e.sem4.entity.UserAnswer;
 
@@ -15,4 +16,6 @@ public interface IUserAnswerService {
     Integer countUserAnswerByUserAndExam_ExamId(User user, Integer examId);
 
     List<UserAnswer> getUserAnswersByUserAndExam_ExamId(User user, Integer examId);
+
+    void deleteUserAnswersByUserAndExam(User user, Exam exam);
 }

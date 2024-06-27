@@ -21,6 +21,8 @@ public class CourseDTO {
 
     private double price;
 
+    private double salePrice;
+
     private int freeNumbers;
 
     private String image;

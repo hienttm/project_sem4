@@ -1,16 +1,15 @@
 package com.t2207e.sem4.controller.teacher;
 
-import com.t2207e.sem4.entity.Chapter;
-import com.t2207e.sem4.entity.Course;
-import com.t2207e.sem4.entity.Exam;
-import com.t2207e.sem4.entity.User;
+import com.t2207e.sem4.entity.*;
 import com.t2207e.sem4.service.CourseService;
 import com.t2207e.sem4.service.ExamService;
+import com.t2207e.sem4.service.QuestionService;
 import com.t2207e.sem4.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -27,11 +27,13 @@ public class ExamTeacherController {
     private final ExamService examService;
     private final CourseService courseService;
     private final UserService userService;
+    private final QuestionService questionService;
 
-    public ExamTeacherController(ExamService examService, CourseService courseService, UserService userService) {
+    public ExamTeacherController(ExamService examService, CourseService courseService, UserService userService, QuestionService questionService) {
         this.examService = examService;
         this.courseService = courseService;
         this.userService = userService;
+        this.questionService = questionService;
     }
 
     @InitBinder
@@ -74,7 +76,7 @@ public class ExamTeacherController {
     }
 
     @GetMapping("edit/{id}")
-    public String editChapter(@PathVariable int id, Model model){
+    public String editExam(@PathVariable int id, Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.isAuthenticated()) {
             String username = authentication.getName();
@@ -93,14 +95,32 @@ public class ExamTeacherController {
     }
 
     @PostMapping("edit")
-    public String editChapterPost(@Valid @ModelAttribute Exam exam, BindingResult bindingResult, Model model){
+    public String editExamPost(@Valid @ModelAttribute Exam exam, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){
-            System.out.println(bindingResult);
-            System.out.println(bindingResult);
-            System.out.println(bindingResult);
             return "teacher/exams/edit";
         }
         examService.add(exam);
         return "redirect:/roleTeacher/exam/edit/" + exam.getExamId();
+    }
+
+    @GetMapping("listQuestion/{examId}")
+    public String listQuestion(@PathVariable int examId, Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated()) {
+            String username = authentication.getName();
+            User user = userService.getUserByUsername(username).get();
+            Optional<Exam> examOptional = examService.getExamById(examId);
+            if (examOptional.isPresent()){
+                Exam exam = examOptional.get();
+                if(user == exam.getCourse().getUser()){
+                    List<Question> questions = questionService.getQuestionsByExamAndStatus(exam, 1);
+
+                    model.addAttribute("questions", questions);
+                    return "teacher/questions/questionsInExam";
+                }
+            }
+            return "teacher/exams/edit";
+        }
+        return "teacher/exams/edit";
     }
 }

@@ -2,9 +2,7 @@
     <img th:src="${cartCourse.course.image}" alt="event image" class="image-cart">
     <div class="cart-item-main-info">
         <a th:href="'/course/detail/'+${cartCourse.course.courseId}"><span class="name-course-cart" th:text="${cartCourse.course.courseName}"></span></a>
-        <p class="price-course-cart"><span th:text="${cartCourse.course.price}"></span>$</p>
+        <p th:if="${cartCourse.course.salePrice==0}" class="price-course-cart"><span th:text="${cartCourse.course.price}"></span>$</p>
+        <p th:unless="${cartCourse.course.salePrice==0}" class="price-course-cart"><del th:text="${cartCourse.course.price}"></del> <span th:text="${cartCourse.course.salePrice}"></span>$</p>
     </div>
-<!--    <div class="quantity-course-cart">-->
-<!--        x<span th:text="${cartCourse.quantity}"></span>-->
-<!--    </div>-->
 </li>

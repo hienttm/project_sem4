@@ -30,7 +30,7 @@
                 </tr>
                 <tr>
                     <td>Total:</td>
-                    <td><span th:text="${totalPrice.substring(0, totalPrice.length() - 2)}">[total price]</span> VND</td>
+                    <td><span id="total" th:text="${totalPrice.substring(0, totalPrice.length() - 2)}">[total price]</span> VND</td>
                 </tr>
                 <tr>
                     <td>Payment's Time:</td>
@@ -49,6 +49,17 @@
 
 <!--FOOTER HOME-->
 <div th:insert="~{/home/fragments/footer}"></div>
+<script>
+    function formatNumber(num) {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        var numElement = document.getElementById("total");
+        var formattedNumber = formatNumber(numElement.textContent);
+        numElement.textContent = formattedNumber;
+    });
+</script>
 
 </body>
 </html>

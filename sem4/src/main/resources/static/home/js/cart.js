@@ -14,7 +14,7 @@ function getCart() {
 function displayCartResults(results) {
     var Results = document.getElementById('cartResult');
     if(results === ""){
-        Results.innerHTML="<li class=\"cart-2-li\"> Chưa có sản phẩm nào trong giỏ hàng! </li>";
+        Results.innerHTML="<li class=\"cart-2-li\"> There are no products in the cart! </li>";
     }
     else{
         Results.innerHTML = "";

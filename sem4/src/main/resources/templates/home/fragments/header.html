@@ -177,8 +177,7 @@
                                     </div>
                                     <ul class="tl-submenu">
                                         <li><a th:href="@{/home/account/detail}">My Account</a></li>
-                                        <li><a href="blog-details.html">My Courses</a></li>
-                                        <li><a class="text-danger" href="/admin/roleTeacher/coursesByTeacher">Teacher</a></li>
+                                        <li sec:authorize="hasAnyRole('ADMIN', 'TEACHER')"><a class="text-danger" href="/roleTeacher/course/list">Teacher</a></li>
                                         <li>
                                             <form th:action="@{/logout}" method="post">
                                                 <button type="submit">Log Out</button>

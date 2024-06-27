@@ -49,7 +49,10 @@ public class PaymentController {
 
                 AtomicReference<Integer> total = new AtomicReference<>(0);
                 cartCourses.forEach(cartCourse -> {
-                    total.updateAndGet(v -> v + (int) cartCourse.getCourse().getPrice());
+                    if(cartCourse.getCourse().getSalePrice()==0)
+                        total.updateAndGet(v -> v + (int) cartCourse.getCourse().getPrice());
+                    else
+                        total.updateAndGet(v -> v + (int) cartCourse.getCourse().getSalePrice());
                 });
 
                 Order order =new Order();
@@ -74,6 +77,7 @@ public class PaymentController {
     public String submidOrder(@RequestParam("amount") int orderTotal,
                               @RequestParam("orderInfo") String orderInfo,
                               @RequestParam("orderInfo") int orderId,
+                              @RequestParam(value = "description", required = false) String description,
                               HttpServletRequest request){
         Optional<Order> orderOptional = orderService.getOrderById(orderId);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -81,6 +85,9 @@ public class PaymentController {
             String username = authentication.getName();
             Optional<User> userOptional = userService.getUserByUsername(username);
             List<CartCourse> cartCourses = cartCourseService.getCartCoursesByUser(userOptional.get());
+
+            orderOptional.get().setDescription(description);
+            orderService.add(orderOptional.get());
             cartCourses.forEach(cartCourse -> {
                 OrderDetail orderDetail = new OrderDetail();
                 orderDetail.setOrder(orderOptional.get());
@@ -88,8 +95,6 @@ public class PaymentController {
                 orderDetail.setPrice(cartCourse.getCourse().getPrice());
                 orderDetailService.add(orderDetail);
             });
-
-            cartCourseService.deleteAll();
         }
 
         String baseUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
@@ -114,6 +119,8 @@ public class PaymentController {
                 order.setStatus(1);
                 order.setPaymentCode(transactionId);
                 orderService.add(order);
+
+                cartCourseService.deleteAll();
             }
         }
 

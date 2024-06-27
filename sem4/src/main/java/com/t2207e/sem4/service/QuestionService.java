@@ -1,5 +1,6 @@
 package com.t2207e.sem4.service;
 
+import com.t2207e.sem4.entity.Exam;
 import com.t2207e.sem4.entity.Question;
 import com.t2207e.sem4.repository.IQuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +36,10 @@ public class QuestionService implements IQuestionService{
     @Override
     public void deleteById(Integer id) {
         questionRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Question> getQuestionsByExamAndStatus(Exam exam, Integer status) {
+        return questionRepository.getQuestionsByExamAndStatus(exam, status);
     }
 }

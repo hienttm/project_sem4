@@ -295,9 +295,11 @@
                     </div>
                     <div class="tl-event-details-right" th:unless="${checkBuy}">
                         <div class="tl-course-details-sidebar-heading">
-                            <h3 class="tl-course-details-price">
+                            <h3 th:if="${course.salePrice==0}" class="tl-course-details-price">
                                 <span th:text="${course.price}"></span> $
-                                <!--                            <span class="prev-price text-decoration-line-through">$200</span>-->
+                            </h3>
+                            <h3 th:unless="${course.salePrice==0}" class="tl-course-details-price">
+                                <del th:text="${course.price}" style="color: #f4b826"></del> <span th:text="${course.salePrice}"></span> $
                             </h3>
                         </div>
 

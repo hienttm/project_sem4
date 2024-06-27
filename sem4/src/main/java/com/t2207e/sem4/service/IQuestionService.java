@@ -1,5 +1,6 @@
 package com.t2207e.sem4.service;
 
+import com.t2207e.sem4.entity.Exam;
 import com.t2207e.sem4.entity.Question;
 
 import java.util.List;
@@ -10,4 +11,5 @@ public interface IQuestionService {
     Optional<Question> getQuestionById(Integer id);
     void add(Question question);
     void deleteById(Integer id);
+    List<Question> getQuestionsByExamAndStatus(Exam exam, Integer status);
 }

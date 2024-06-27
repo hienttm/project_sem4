@@ -36,7 +36,7 @@
                                 <th>NUMBER QUESTION</th>
                                 <th>TIME</th>
                                 <th>UPDATED AT</th>
-                                <th>DESCRIPTION</th>
+                                <th>COURSE</th>
                                 <th>STATUS</th>
                                 <th>BUTTON</th>
                             </tr>
@@ -48,7 +48,7 @@
                                 <td class="align-middle" th:text="${exam.numberQuestion}"></td>
                                 <td class="align-middle"><span th:text="${exam.time}"></span>'</td>
                                 <td class="align-middle" th:text="${exam.createAt}"></td>
-                                <td class="align-middle" th:text="${exam.description}"></td>
+                                <td class="align-middle" th:text="${exam.course.courseName}"></td>
                                 <td th:if="${exam.status == 1}" class="align-middle text-success fw-bolder">OPEN</td>
                                 <td th:unless="${exam.status == 1}" class="align-middle text-danger fw-bolder">LOCK</td>
                                 <td>
