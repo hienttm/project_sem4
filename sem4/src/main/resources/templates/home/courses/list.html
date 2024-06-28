@@ -67,7 +67,7 @@
                 <div class="tl-1-course">
                     <div class="tl-1-course-img">
                         <img th:src="${courseDTO.image}" alt="Course Image">
-                        <span th:if="${courseDTO.salePrice!=0}" class="tl-1-course-price" style="font-size: 16px;">$<span th:text="${courseDTO.salePrice}"></span> <del style="font-size: 12px; color: yellow; padding-left: 10px">$<del th:text="${courseDTO.price}"></del></del></span>
+                        <span th:if="${courseDTO.salePrice!=0}" class="tl-1-course-price" style="font-size: 16px;">$<span th:text="${courseDTO.salePrice}"></span> <del style="font-size: 12px; color: #f4b826; padding-left: 10px">$<del th:text="${courseDTO.price}"></del></del></span>
                         <span th:unless="${courseDTO.salePrice!=0}" class="tl-1-course-price" style="font-size: 16px;">$<span th:text="${courseDTO.price}"></span></span>
                     </div>
 

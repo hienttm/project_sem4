@@ -18,5 +18,6 @@ public interface ICourseService {
     List<CourseDTO> GetAllCourseProcedurePaging(String searchName, Integer page, Integer pageSize, String course_type_name);
     Integer countCoursesByCourseNameContainingAndStatusAndCourseType_TypeNameContaining(String courseName, Integer status, String courseTypeName);
     List<Course> getCoursesByUser(User user);
+    List<Course> getCoursesByUserAndStatus(User user, Integer status);
     List<OrderDetailByUserDTO> GetOrderDetailByUserIdProcedure(Integer userIdSearch);
 }

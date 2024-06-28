@@ -41,4 +41,9 @@ public class OrderDetailService implements IOrderDetailService{
     public Integer countOrderDetailsByCourse_CourseId(Integer courseId) {
         return orderDetailRepository.countOrderDetailsByCourse_CourseId(courseId);
     }
+
+    @Override
+    public List<OrderDetail> getOrderDetailsByCourse_CourseId(Integer courseId) {
+        return orderDetailRepository.getOrderDetailsByCourse_CourseId(courseId);
+    }
 }

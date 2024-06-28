@@ -92,7 +92,10 @@ public class PaymentController {
                 OrderDetail orderDetail = new OrderDetail();
                 orderDetail.setOrder(orderOptional.get());
                 orderDetail.setCourse(cartCourse.getCourse());
-                orderDetail.setPrice(cartCourse.getCourse().getPrice());
+                if(cartCourse.getCourse().getSalePrice()==0)
+                    orderDetail.setPrice(cartCourse.getCourse().getPrice());
+                else
+                    orderDetail.setPrice(cartCourse.getCourse().getSalePrice());
                 orderDetailService.add(orderDetail);
             });
         }

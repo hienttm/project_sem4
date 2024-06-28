@@ -175,8 +175,9 @@
                                         <span> </span> <span> </span>
                                         <i class="fa-regular fa-angle-down"></i>
                                     </div>
-                                    <ul class="tl-submenu">
+                                    <ul class="tl-submenu" style="min-width: 200px">
                                         <li><a th:href="@{/home/account/detail}">My Account</a></li>
+                                        <li><a th:href="@{/registerTeacher}">Teacher Register</a></li>
                                         <li sec:authorize="hasAnyRole('ADMIN', 'TEACHER')"><a class="text-danger" href="/roleTeacher/course/list">Teacher</a></li>
                                         <li>
                                             <form th:action="@{/logout}" method="post">

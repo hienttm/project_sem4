@@ -30,8 +30,9 @@ public class DetailTeacherController {
     private final StatusCourseService statusCourseService;
     private final ChapterService chapterService;
     private final ExamService examService;
+    private final OrderDetailService orderDetailService;
 
-    public DetailTeacherController(TeacherRegisterService teacherRegisterService, UserService userService, CourseService courseService, CourseTypeService courseTypeService, CategoryService categoryService, HelperService helperService, StatusCourseService statusCourseService, ChapterService chapterService, ExamService examService) {
+    public DetailTeacherController(TeacherRegisterService teacherRegisterService, UserService userService, CourseService courseService, CourseTypeService courseTypeService, CategoryService categoryService, HelperService helperService, StatusCourseService statusCourseService, ChapterService chapterService, ExamService examService, OrderDetailService orderDetailService) {
         this.teacherRegisterService = teacherRegisterService;
         this.userService = userService;
         this.courseService = courseService;
@@ -41,6 +42,7 @@ public class DetailTeacherController {
         this.statusCourseService = statusCourseService;
         this.chapterService = chapterService;
         this.examService = examService;
+        this.orderDetailService = orderDetailService;
     }
 
     @InitBinder
@@ -151,6 +153,9 @@ public class DetailTeacherController {
 
                     List<Category> categories = categoryService.getAllCategory();
                     model.addAttribute("categories", categories);
+
+                    List<OrderDetail> orderDetails = orderDetailService.getOrderDetailsByCourse_CourseId(course.getCourseId());
+                    model.addAttribute("orderDetails", orderDetails);
 
                     return "teacher/courses/edit";
                 }

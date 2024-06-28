@@ -1,10 +1,8 @@
 package com.t2207e.sem4.controller.teacher;
 
+import com.t2207e.sem4.dto.UserDoExamDTO;
 import com.t2207e.sem4.entity.*;
-import com.t2207e.sem4.service.CourseService;
-import com.t2207e.sem4.service.ExamService;
-import com.t2207e.sem4.service.QuestionService;
-import com.t2207e.sem4.service.UserService;
+import com.t2207e.sem4.service.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.security.core.Authentication;
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,12 +27,14 @@ public class ExamTeacherController {
     private final CourseService courseService;
     private final UserService userService;
     private final QuestionService questionService;
+    private final UserAnswerService userAnswerService;
 
-    public ExamTeacherController(ExamService examService, CourseService courseService, UserService userService, QuestionService questionService) {
+    public ExamTeacherController(ExamService examService, CourseService courseService, UserService userService, QuestionService questionService, UserAnswerService userAnswerService) {
         this.examService = examService;
         this.courseService = courseService;
         this.userService = userService;
         this.questionService = questionService;
+        this.userAnswerService = userAnswerService;
     }
 
     @InitBinder
@@ -86,6 +87,9 @@ public class ExamTeacherController {
                 Exam exam = examOptional.get();
                 if(user == exam.getCourse().getUser()){
                     model.addAttribute("exam", exam);
+
+                    List<UserDoExamDTO> userDoExamDTOs = userAnswerService.GetUserDoExamProcedure(exam.getExamId());
+                    model.addAttribute("userDoExamDTOs", userDoExamDTOs);
                     return "teacher/exams/edit";
                 }
             }

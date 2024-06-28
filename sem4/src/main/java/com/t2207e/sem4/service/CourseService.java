@@ -70,6 +70,12 @@ public class CourseService implements  ICourseService{
     }
 
     @Override
+    public List<Course> getCoursesByUserAndStatus(User user, Integer status) {
+        return courseRepository.getCoursesByUserAndStatus(user, status);
+    }
+
+
+    @Override
     @Transactional
     public List<OrderDetailByUserDTO> GetOrderDetailByUserIdProcedure(Integer userIdSearch) {
         List<Object[]> resultList = courseRepository.GetOrderDetailByUserIdProcedure(userIdSearch);

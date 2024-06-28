@@ -31,6 +31,7 @@
                             <input type="hidden" th:field="*{user}">
                             <input type="hidden" th:field="*{status}">
                             <input type="hidden" th:field="*{censor}">
+                            <input type="hidden" th:field="*{salePrice}">
                             <div class="row">
                                 <div class="col">
                                     <div class="mb-3">
@@ -70,7 +71,7 @@
                                     <div style="color: red" th:if="${#fields.hasErrors('freeNumbers')}" th:errors="*{freeNumbers}" class="error"></div>
                                 </div>
                                 <div class="mb-3 col">
-                                    <label for="price" class="form-label">Price</label>
+                                    <label for="price" class="form-label">Price ($)</label>
                                     <input th:field="*{price}" type="number" class="form-control" id="price" name="price" placeholder="Price">
                                     <div style="color: red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error"></div>
                                 </div>

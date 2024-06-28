@@ -39,7 +39,7 @@ public class TeacherController {
         if (userOptional.isPresent()) {
             User teacher = userOptional.get();
             model.addAttribute("teacher", teacher);
-            List<Course> getTeacherCourses = courseService.getCoursesByUser(teacher);
+            List<Course> getTeacherCourses = courseService.getCoursesByUserAndStatus(teacher, 1);
             model.addAttribute("teacher_courses", getTeacherCourses);
             return "home/teacher/detail";
         } else {

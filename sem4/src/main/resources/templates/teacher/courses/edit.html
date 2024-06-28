@@ -72,6 +72,11 @@
                                             <i class="ri-price-tag-line d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">Exams</span>
                                         </a>
                                     </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link fs-14" data-bs-toggle="tab" href="#students" role="tab" aria-selected="false" tabindex="-1">
+                                            <i class="ri-price-tag-line d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">Students</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                             <!-- Tab panes -->
@@ -111,6 +116,11 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <div class="mb-3 col">
+                                                                <label for="courseFile" class="form-label">Course File</label>
+                                                                <input th:field="*{courseFile}" type="text" class="form-control" id="courseFile" name="courseFile" placeholder="Link of File ...">
+                                                                <div style="color: red" th:if="${#fields.hasErrors('courseFile')}" th:errors="*{courseFile}" class="error"></div>
+                                                            </div>
                                                             <div class="row">
                                                                 <div class="mb-3 col">
                                                                     <label for="courseName" class="form-label">Course Name</label>
@@ -118,21 +128,21 @@
                                                                     <div style="color: red" th:if="${#fields.hasErrors('courseName')}" th:errors="*{courseName}" class="error"></div>
                                                                 </div>
                                                                 <div class="mb-3 col">
-                                                                    <label for="courseFile" class="form-label">Course File</label>
-                                                                    <input th:field="*{courseFile}" type="text" class="form-control" id="courseFile" name="courseFile" placeholder="Link of File ...">
-                                                                    <div style="color: red" th:if="${#fields.hasErrors('courseFile')}" th:errors="*{courseFile}" class="error"></div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="mb-3 col">
                                                                     <label for="freeNumbers" class="form-label">Free Number</label>
                                                                     <input th:field="*{freeNumbers}" type="number" class="form-control" id="freeNumbers" name="freeNumbers" placeholder="Free Number">
                                                                     <div style="color: red" th:if="${#fields.hasErrors('freeNumbers')}" th:errors="*{freeNumbers}" class="error"></div>
                                                                 </div>
+                                                            </div>
+                                                            <div class="row">
                                                                 <div class="mb-3 col">
-                                                                    <label for="price" class="form-label">Price</label>
+                                                                    <label for="price" class="form-label">Price ($)</label>
                                                                     <input th:field="*{price}" type="number" class="form-control" id="price" name="price" placeholder="Price">
                                                                     <div style="color: red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error"></div>
+                                                                </div>
+                                                                <div class="mb-3 col">
+                                                                    <label for="salePrice" class="form-label">Sale Price ($) [Default = 0]</label>
+                                                                    <input th:field="*{salePrice}" type="number" class="form-control" id="salePrice" name="salePrice" placeholder="Sale Price">
+                                                                    <div style="color: red" th:if="${#fields.hasErrors('salePrice')}" th:errors="*{salePrice}" class="error"></div>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
@@ -277,6 +287,47 @@
                                         <!--end card-body-->
                                     </div>
                                     <!--end card-->
+                                </div>
+                                <!--end tab-pane-->
+                                <div class="tab-pane fade" id="students" role="tabpanel">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-xxl-12">
+                                                    <table id="table1" class="table table-striped" style="width:100%">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>FULL NAME</th>
+                                                            <th>PRICE</th>
+                                                            <th>BUY AT</th>
+                                                            <th>EMAIL</th>
+                                                            <th>PHONE</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr th:each="orderDetail: ${orderDetails}">
+                                                            <td class="align-middle" th:text="${orderDetail.order.user.fullname}"></td>
+                                                            <td class="align-middle"><span th:text="${orderDetail.price}"></span>$</td>
+                                                            <td class="align-middle" th:text="${orderDetail.order.updateAt}"></td>
+                                                            <td class="align-middle" th:text="${orderDetail.order.user.email}"></td>
+                                                            <td class="align-middle" th:text="${orderDetail.order.user.phoneNumber}"></td>
+                                                        </tr>
+                                                        </tbody>
+                                                        <tfoot>
+                                                        <tr>
+                                                            <th>FULL NAME</th>
+                                                            <th>PRICE</th>
+                                                            <th>BUY AT</th>
+                                                            <th>EMAIL</th>
+                                                            <th>PHONE</th>
+                                                        </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <!-- end row -->
+                                        </div>
+                                    </div>
                                 </div>
                                 <!--end tab-pane-->
                             </div>

@@ -19,6 +19,7 @@ public interface ICourseRepository extends JpaRepository<Course, Integer> {
     Integer countCoursesByCourseNameContainingAndStatusAndCourseType_TypeNameContaining(String courseName, Integer status, String courseTypeName);
 
     List<Course> getCoursesByUser(User user);
+    List<Course> getCoursesByUserAndStatus(User user, Integer status);
 
     @Procedure(name = "GetOrderDetailByUserIdProcedure")
     List<Object[]> GetOrderDetailByUserIdProcedure(@Param("user_id_search") Integer userIdSearch);

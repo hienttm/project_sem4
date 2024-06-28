@@ -36,7 +36,7 @@ public class Exam {
 
     @Column(name = "numberQuestion")
     @NotNull(message = "Number Question cannot be null")
-    private int numberQuestion;
+    private int numberQuestion=0;
 
     @Column(name = "ratioPass")
     private int ratioPass;

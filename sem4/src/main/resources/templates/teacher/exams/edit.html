@@ -62,11 +62,11 @@
                                             <i class="ri-folder-4-line d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">Detail</span>
                                         </a>
                                     </li>
-<!--                                    <li class="nav-item" role="presentation">-->
-<!--                                        <a class="nav-link fs-14" data-bs-toggle="tab" href="#student" role="tab" aria-selected="false" tabindex="-1">-->
-<!--                                            <i class="ri-folder-4-line d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">Student</span>-->
-<!--                                        </a>-->
-<!--                                    </li>-->
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link fs-14" data-bs-toggle="tab" href="#students" role="tab" aria-selected="false" tabindex="-1">
+                                            <i class="ri-folder-4-line d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">Students</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                             <!-- Tab panes -->
@@ -131,16 +131,46 @@
                                     <!--end card-->
                                 </div>
                                 <!--end tab-pane-->
-                                <div class="tab-pane fade" id="student" role="tabpanel">
+                                <div class="tab-pane fade" id="students" role="tabpanel">
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="row">
+                                                <div class="col-xxl-12">
+                                                    <table id="table1" class="table table-striped" style="width:100%">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>FULL NAME</th>
+                                                            <th>TRUE/TOTAL</th>
+                                                            <th>EMAIL</th>
+                                                            <th>PHONE</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr th:each="userDoExamDTO: ${userDoExamDTOs}">
+                                                                <td class="align-middle" th:text="${userDoExamDTO.fullName}"></td>
+                                                                <td class="align-middle">
+                                                                    <span th:text="${userDoExamDTO.trueNumber}"></span>
+                                                                    /
+                                                                    <span th:text="${userDoExamDTO.totalNumber}"></span>
+                                                                </td>
+                                                                <td class="align-middle" th:text="${userDoExamDTO.email}"></td>
+                                                                <td class="align-middle" th:text="${userDoExamDTO.phoneNumber}"></td>
+                                                            </tr>
+                                                        </tbody>
+                                                        <tfoot>
+                                                        <tr>
+                                                            <th>FULL NAME</th>
+                                                            <th>TRUE/TOTAL</th>
+                                                            <th>EMAIL</th>
+                                                            <th>PHONE</th>
+                                                        </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
                                             </div>
-                                            <!--end row-->
+                                            <!-- end row -->
                                         </div>
-                                        <!--end card-body-->
                                     </div>
-                                    <!--end card-->
                                 </div>
                                 <!--end tab-pane-->
                             </div>

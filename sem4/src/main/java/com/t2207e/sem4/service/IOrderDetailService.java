@@ -11,4 +11,5 @@ public interface IOrderDetailService {
     void add(OrderDetail orderDetail);
     void deleteById(Integer id);
     Integer countOrderDetailsByCourse_CourseId(Integer courseId);
+    List<OrderDetail> getOrderDetailsByCourse_CourseId(Integer courseId);
 }
