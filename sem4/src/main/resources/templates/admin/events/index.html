@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
+      data-sidebar-image="none" data-preloader="disable">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" th:href="@{assets/images/favicon.ico}" />
+</head>
+
+<body>
+<!-- Begin page -->
+<div id="layout-wrapper">
+    <div th:insert="~{admin/fragments/header}"></div>
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <!-- start page title -->
+                <!-- end page title -->
+
+                <div class="row">
+                    <div class="col-xxl-12">
+                        <a th:href="@{add}" class="btn btn-primary mb-2">Add</a>
+
+                        <table id="table1" class="table table-striped" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>EVENT NAME</th>
+                                <th>CODE</th>
+                                <th>SALE</th>
+                                <th>CATEGORY</th>
+                                <th>START AT</th>
+                                <th>END AT</th>
+                                <th>AREA</th>
+                                <th>Status</th>
+                                <th>BUTTON</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="event: ${events}">
+                                <td class="align-middle" th:text="${event.eventId}"></td>
+                                <td class="align-middle" th:text="${event.eventName}"></td>
+                                <td class="align-middle" th:text="${event.code}"></td>
+                                <td class="align-middle" th:text="${event.sale}"></td>
+                                <td class="align-middle" th:text="${event.categorySale.categorySaleName}"></td>
+                                <td class="align-middle" th:text="${event.startAt}"></td>
+                                <td class="align-middle" th:text="${event.endAt}"></td>
+                                <td th:if="${event.area == 1}" class="align-middle text-primary fw-bolder">All</td>
+                                <td th:unless="${event.area == 1}" class="align-middle text-secondary fw-bolder">Internal</td>
+                                <td th:if="${event.status == 1}" class="align-middle text-success fw-bolder">OPEN</td>
+                                <td th:unless="${event.status == 1}" class="align-middle text-danger fw-bolder">LOCK</td>
+                                <td>
+                                    <a th:href="@{edit/{id}(id=${event.eventId})}" class="btn btn-primary">Edit</a>
+                                    <a th:href="@{hidden/{id}(id=${event.eventId})}" class="btn btn-danger" th:text="${event.status==1?'LOCK':'OPEN'}"></a>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>ROLE NAME</th>
+                                <th>DESCRIPTION</th>
+                                <th>UPDATE AT</th>
+                                <th>STATUS</th>
+                                <th>BUTTON</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- end row -->
+            </div>
+            <!-- container-fluid -->
+        </div>
+        <!-- End Page-content -->
+    </div>
+    <!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+<!--start back-to-top-->
+<div th:insert="~{admin/fragments/footer}"></div>
+</body>
+
+</html>

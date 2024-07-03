@@ -23,6 +23,10 @@ public class TeacherRegister {
     private String bankNumber;
     @NotNull(message = "bankName cannot null")
     private String bankName;
+
+    private String git;
+
+    private String website;
     @Column(columnDefinition = "TEXT")
     private String description;
 

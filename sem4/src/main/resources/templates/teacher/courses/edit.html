@@ -89,7 +89,7 @@
                                                     <h5 class="flex-grow-1 card-title mb-3">Description</h5>
                                                     <p th:text="${course.description!=null?course.description:''}"></p>
                                                     <div class="row">
-                                                        <form th:action="@{/roleTeacher/course/edit}" method="post" th:object="${course}" enctype="multipart/form-data">
+                                                        <form id="courseForm" th:action="@{/roleTeacher/course/edit}" method="post" th:object="${course}" enctype="multipart/form-data">
                                                             <input type="hidden" th:field="*{courseId}">
                                                             <input type="hidden" th:field="*{image}">
                                                             <input type="hidden" th:field="*{courseVideo}">
@@ -143,6 +143,7 @@
                                                                     <label for="salePrice" class="form-label">Sale Price ($) [Default = 0]</label>
                                                                     <input th:field="*{salePrice}" type="number" class="form-control" id="salePrice" name="salePrice" placeholder="Sale Price">
                                                                     <div style="color: red" th:if="${#fields.hasErrors('salePrice')}" th:errors="*{salePrice}" class="error"></div>
+                                                                    <div style="color: red" id="validateSalePrice" class="error"></div>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
@@ -387,6 +388,20 @@
             };
             reader.readAsDataURL(file);
         }
+    });
+
+    document.getElementById('courseForm').addEventListener('submit', function (event) {
+        let price = document.getElementById('price').value;
+        let salePrice = document.getElementById('salePrice').value;
+
+        // Check if sale is less than 100 when categorySale is 1
+        if (salePrice >= price) {
+            let validateSale = document.getElementById("validateSalePrice");
+            validateSale.innerHTML = "Sale Price must be less than Price.";
+            event.preventDefault();
+            return;
+        }
+
     });
 </script>
 </body>

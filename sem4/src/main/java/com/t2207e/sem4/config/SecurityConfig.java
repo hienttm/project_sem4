@@ -37,10 +37,9 @@ public class SecurityConfig {
                         .requestMatchers("/contactus/**","/sendcontactus/**", "/api/cart/addToCart", "/courseType/**", "/api/course/getVideo").permitAll()
                         .requestMatchers("/test","/course/list/**", "/course/detail/**", "/api/course/getVideo", "teacher/list", "teacher/detail/**","confirmAccount/**").permitAll()
                         .requestMatchers("/home/account/**").permitAll()
-                        .requestMatchers("/admin/**").hasAnyRole("ADMIN")
-                        .requestMatchers("/roleTeacher/**").hasAnyRole("ADMIN", "TEACHER")
-                        .anyRequest()
-                        .authenticated();
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/roleTeacher/**").hasRole("TEACHER")
+                        .anyRequest().authenticated();
                 })
                 .formLogin(form -> form
                         .loginPage("/login")

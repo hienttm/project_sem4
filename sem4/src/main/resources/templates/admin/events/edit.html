@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" th:href="@{/assets/images/favicon.ico}" />
+</head>
+
+<body>
+<!-- Begin page -->
+<div id="layout-wrapper">
+    <div th:insert="~{admin/fragments/header}"></div>
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xxl-12">
+                        <form id="eventForm" th:action="@{/admin/event/edit}" method="post" th:object="${event}">
+                            <input type="hidden" th:field="*{eventId}">
+                            <input type="hidden" th:field="*{status}">
+                            <div class="row">
+                                <div class="mb-3 col">
+                                    <label for="eventName" class="form-label">Event Name</label>
+                                    <input th:field="*{eventName}" type="text" class="form-control" id="eventName" name="eventName" placeholder="Event Name">
+                                    <div style="color: red" th:if="${#fields.hasErrors('eventName')}" th:errors="*{eventName}" class="error"></div>
+                                </div>
+                                <div class="mb-3 col">
+                                    <label for="code" class="form-label">CODE</label>
+                                    <input th:field="*{code}" type="text" class="form-control" id="code" name="code" placeholder="CODE">
+                                    <div style="color: red" th:if="${#fields.hasErrors('code')}" th:errors="*{code}" class="error"></div>
+                                    <div style="color: red" th:if="${exception != null and !exception.isEmpty()}" th:text="${exception}" class="error"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 col">
+                                    <label for="sale" class="form-label">Sale</label>
+                                    <input th:field="*{sale}" type="number" class="form-control" id="sale" name="sale" placeholder="Sale">
+                                    <div style="color: red" th:if="${#fields.hasErrors('sale')}" th:errors="*{sale}" class="error"></div>
+                                    <div style="color: red" id="validateSale" class="error"></div>
+                                </div>
+                                <div class="mb-3 col">
+                                    <label for="categorySale" class="form-label">Category Sale</label>
+                                    <select th:field="*{categorySale}" class="form-select" id="categorySale">
+                                        <option th:each="categorySale: ${categorySales}" th:value="${categorySale.categorySaleId}" th:text="${categorySale.categorySaleName}"></option>
+                                    </select>
+                                    <div style="color: red" th:if="${#fields.hasErrors('categorySale')}" th:errors="*{categorySale}" class="error"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 col">
+                                    <label for="minPrice" class="form-label">Min Price</label>
+                                    <input th:field="*{minPrice}" type="text" class="form-control" id="minPrice" name="minPrice" placeholder="Min Price">
+                                    <div style="color: red" th:if="${#fields.hasErrors('minPrice')}" th:errors="*{minPrice}" class="error"></div>
+                                </div>
+                                <div class="mb-3 col">
+                                    <label for="maxSale" class="form-label">Max Sale</label>
+                                    <input th:field="*{maxSale}" type="text" class="form-control" id="maxSale" name="maxSale" placeholder="Max Sale">
+                                    <div style="color: red" th:if="${#fields.hasErrors('maxSale')}" th:errors="*{maxSale}" class="error"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 col">
+                                    <label for="startAt" class="form-label">Start At</label>
+                                    <input th:field="*{startAt}" type="date" class="form-control" id="startAt" name="startAt" placeholder="Start At">
+                                    <div style="color: red" th:if="${#fields.hasErrors('startAt')}" th:errors="*{startAt}" class="error"></div>
+                                    <div style="color: red" id="validateStartAt" class="error"></div>
+                                </div>
+                                <div class="mb-3 col">
+                                    <label for="endAt" class="form-label">End At</label>
+                                    <input th:field="*{endAt}" type="date" class="form-control" id="endAt" name="endAt" placeholder="End At">
+                                    <div style="color: red" th:if="${#fields.hasErrors('endAt')}" th:errors="*{endAt}" class="error"></div>
+                                    <div style="color: red" id="validateEndAt" class="error"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-3 col">
+                                    <label for="quantity" class="form-label">Quantity</label>
+                                    <input th:field="*{quantity}" type="number" class="form-control" id="quantity" name="quantity" placeholder="Quantity">
+                                    <div style="color: red" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}" class="error"></div>
+                                </div>
+                                <div class="mb-3 col">
+                                    <label for="area" class="form-label">Area</label>
+                                    <select th:field="*{area}" class="form-select" id="area">
+                                        <option value="1">All</option>
+                                        <option value="2">Internal</option>
+                                    </select>
+                                    <div style="color: red" th:if="${#fields.hasErrors('area')}" th:errors="*{area}" class="error"></div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea th:field="*{description}" class="form-control" id="description" name="description" placeholder="Description"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-danger" style="margin-bottom: 30px">Edit Event</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- container-fluid -->
+        </div>
+        <!-- End Page-content -->
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script>
+                        © Velzon.
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text-sm-end d-none d-sm-block">
+                            Design & Develop by Themesbrand
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+<!--start back-to-top-->
+<div th:insert="~{admin/fragments/footer}"></div>
+<script>
+    document.getElementById('eventForm').addEventListener('submit', function (event) {
+        let sale = document.getElementById('sale').value;
+        let categorySale = document.getElementById('categorySale').value;
+        let startAt = document.getElementById('startAt').value;
+        let endAt = document.getElementById('endAt').value;
+        let today = new Date().toISOString().split('T')[0];
+
+        // Check if sale is less than 100 when categorySale is 1
+        if (categorySale === "1" && sale >= 100) {
+            let validateSale = document.getElementById("validateSale");
+            validateSale.innerHTML = "Sale must be less than 100 for Category Sale if categorySale is Ratio.";
+            event.preventDefault();
+            return;
+        }
+
+        // Check if start date is today or later
+        if (startAt < today) {
+            let validateStartAt = document.getElementById("validateStartAt");
+            validateStartAt.innerHTML = "Start date must be today or later.";
+            event.preventDefault();
+            return;
+        }
+
+        // Check if end date is after start date
+        if (endAt <= startAt) {
+            let validateEndAt = document.getElementById("validateEndAt");
+            validateEndAt.innerHTML = "End date must be after the start date.";
+            event.preventDefault();
+            return;
+        }
+    });
+</script>
+</body>
+
+</html>

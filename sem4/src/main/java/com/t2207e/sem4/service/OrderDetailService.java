@@ -1,12 +1,17 @@
 package com.t2207e.sem4.service;
 
+import com.t2207e.sem4.dto.RevenueDTO;
+import com.t2207e.sem4.dto.UserDoExamDTO;
 import com.t2207e.sem4.entity.OrderDetail;
 import com.t2207e.sem4.repository.IOrderDetailRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderDetailService implements IOrderDetailService{
@@ -46,4 +51,66 @@ public class OrderDetailService implements IOrderDetailService{
     public List<OrderDetail> getOrderDetailsByCourse_CourseId(Integer courseId) {
         return orderDetailRepository.getOrderDetailsByCourse_CourseId(courseId);
     }
+
+    @Override
+    public List<OrderDetail> getOrderDetailsByCourse_User_UserId(Integer userId) {
+        return orderDetailRepository.getOrderDetailsByCourse_User_UserId(userId);
+    }
+
+    @Override
+    @Transactional
+    public List<RevenueDTO> RevenueChartDayTeacherProcedure(Integer userId) {
+        List<Object[]> resultList = orderDetailRepository.RevenueChartDayTeacherProcedure(userId);
+        return resultList.stream()
+                .map(result -> {
+                    RevenueDTO revenueDTO = new RevenueDTO();
+                    revenueDTO.setCount((Integer) result[0]);
+                    revenueDTO.setPrice((Double) result[1]);
+                    return revenueDTO;
+                })
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional
+    public List<RevenueDTO> RevenueChartWeekTeacherProcedure(Integer userId) {
+        List<Object[]> resultList = orderDetailRepository.RevenueChartWeekTeacherProcedure(userId);
+        return resultList.stream()
+                .map(result -> {
+                    RevenueDTO revenueDTO = new RevenueDTO();
+                    revenueDTO.setCount((Integer) result[0]);
+                    revenueDTO.setPrice((Double) result[1]);
+                    return revenueDTO;
+                })
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional
+    public List<RevenueDTO> RevenueChartMonthTeacherProcedure(Integer userId) {
+        List<Object[]> resultList = orderDetailRepository.RevenueChartMonthTeacherProcedure(userId);
+        return resultList.stream()
+                .map(result -> {
+                    RevenueDTO revenueDTO = new RevenueDTO();
+                    revenueDTO.setCount((Integer) result[0]);
+                    revenueDTO.setPrice((Double) result[1]);
+                    return revenueDTO;
+                })
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional
+    public List<RevenueDTO> RevenueChartYearTeacherProcedure(Integer userId) {
+        List<Object[]> resultList = orderDetailRepository.RevenueChartYearTeacherProcedure(userId);
+        return resultList.stream()
+                .map(result -> {
+                    RevenueDTO revenueDTO = new RevenueDTO();
+                    revenueDTO.setCount((Integer) result[0]);
+                    revenueDTO.setPrice((Double) result[1]);
+                    return revenueDTO;
+                })
+                .collect(Collectors.toList());
+    }
+
 }

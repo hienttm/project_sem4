@@ -31,7 +31,7 @@
 
 <h2 style="color: red; text-align: center; margin-top: 40px" th:if="${error != null and !error.isEmpty()}" th:text="${error}" class="error"></h2>
 
-<form th:action="@{/submitOrder}" method="post">
+<form th:action="@{/submitOrder}" method="post" th:object="${order}">
     <div class="row g-0 tl-event-details-row">
         <section class="shopping-cart-two shopping-cart-new-address">
             <div class="container">
@@ -58,29 +58,6 @@
                                 </div>
 
                                 <div class="shopping-cart-new-address-from">
-<!--                                    <div class="shopping-cart-new-address-from-item">-->
-<!--                                        <div class="shopping-cart-new-address-from-inner">-->
-<!--                                            <label for="exampleFormControlInput9" class="form-label">Full Name</label>-->
-<!--                                            <input type="text" class="form-control" id="exampleFormControlInput9" placeholder="Full Name" />-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                    <div class="shopping-cart-new-address-from-item">-->
-<!--                                        <div class="shopping-cart-new-address-from-inner">-->
-<!--                                            <label for="exampleFormControlInput11" class="form-label">Country</label>-->
-<!--                                            <select class="form-select" aria-label="Default select example" id="exampleFormControlInput11">-->
-<!--                                                <option value="1">Vietnam</option>-->
-<!--                                                <option value="2">Others</option>-->
-<!--                                            </select>-->
-<!--                                        </div>-->
-<!--                                        <div class="shopping-cart-new-address-from-inner">-->
-<!--                                            <label for="exampleFormControlInput12" class="form-label">City</label>-->
-<!--                                            <select class="form-select" aria-label="Default select example" id="exampleFormControlInput12">-->
-<!--                                                <option value="1">Hanoi</option>-->
-<!--                                                <option value="2">Ho Chi Minh City</option>-->
-<!--                                                <option value="3">Others</option>-->
-<!--                                            </select>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
                                     <div class="shopping-cart-new-address-from-item">
                                         <div class="shopping-cart-new-address-from-inner">
                                             <label for="exampleFormControlInput14" class="form-label">Description</label>
@@ -123,18 +100,19 @@
                             </div>
 
                             <div class="apply-coupon">
-                                <!--                            <div class="apply-coupon-taitel">-->
-                                <!--                                <h4>Apply Coupon</h4>-->
-                                <!--                            </div>-->
+                                <div class="apply-coupon-taitel">
+                                    <h4>Apply Coupon</h4>
+                                </div>
 
-                                <!--                            <div class="apply-coupon-btn">-->
-                                <!--                                <div class="apply-coupon-form">-->
-                                <!--                                    <input type="email" class="form-control" id="" placeholder="Coupon" />-->
-                                <!--                                </div>-->
-                                <!--                                <div class="apply-coupon-btn-two">-->
-                                <!--                                    <a href="#">Apply</a>-->
-                                <!--                                </div>-->
-                                <!--                            </div>-->
+                                <div class="apply-coupon-btn">
+                                    <div class="apply-coupon-form">
+                                        <div style="color: red" th:if="${validateCoupon != null and !validateCoupon.isEmpty()}" th:text="${validateCoupon}" class="error"></div>
+                                        <input type="text" name="coupon" class="form-control" id="coupon" placeholder="Enter your coupon" list="couponList"/>
+                                        <datalist id="couponList">
+                                            <option th:each="coupon: ${events}" th:value="${coupon.code}">
+                                        </datalist>
+                                    </div>
+                                </div>
 
                                 <div class="apply-coupon-box">
                                     <!--                                <div class="shopping-cart-list">-->
@@ -161,6 +139,9 @@
                                     <div class="shopping-cart-list-btn">
                                         <input type="hidden" name="amount" th:value="${total}">
                                         <input type="hidden" name="orderInfo" th:value="${order.orderId}">
+                                        <input type="hidden" th:field="*{paymentMethod}">
+                                        <input type="hidden" th:field="*{status}">
+                                        <input type="hidden" th:field="*{user}">
 
                                         <button type="submit" class="main-btn-six">
                                             Checkout

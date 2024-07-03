@@ -1,12 +1,8 @@
 package com.t2207e.sem4.controller.home;
 
-import com.t2207e.sem4.entity.CartCourse;
-import com.t2207e.sem4.entity.Order;
-import com.t2207e.sem4.entity.OrderDetail;
-import com.t2207e.sem4.entity.User;
+import com.t2207e.sem4.entity.*;
 import com.t2207e.sem4.service.*;
 import jakarta.servlet.http.HttpServletRequest;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -15,7 +11,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -27,18 +27,20 @@ public class PaymentController {
     private final PaymentMethodService paymentMethodService;
     private final OrderService orderService;
     private final OrderDetailService orderDetailService;
+    private final EventService eventService;
 
-    public PaymentController(VNPAYService vnPayService, UserService userService, CartCourseService cartCourseService, PaymentMethodService paymentMethodService, OrderService orderService, OrderDetailService orderDetailService) {
+    public PaymentController(VNPAYService vnPayService, UserService userService, CartCourseService cartCourseService, PaymentMethodService paymentMethodService, OrderService orderService, OrderDetailService orderDetailService, EventService eventService) {
         this.vnPayService = vnPayService;
         this.userService = userService;
         this.cartCourseService = cartCourseService;
         this.paymentMethodService = paymentMethodService;
         this.orderService = orderService;
         this.orderDetailService = orderDetailService;
+        this.eventService = eventService;
     }
 
     @GetMapping("/payment")
-    public String payment(Model model){
+    public String payment(Model model, @RequestParam(required = false) Integer id){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.isAuthenticated()) {
             String username = authentication.getName();
@@ -54,15 +56,29 @@ public class PaymentController {
                     else
                         total.updateAndGet(v -> v + (int) cartCourse.getCourse().getSalePrice());
                 });
-
                 Order order =new Order();
-                order.setStatus(2);
-                order.setPaymentMethod(paymentMethodService.getPaymentMethodById(2).get());
-                order.setUser(userService.getUserByUsername(authentication.getName()).get());
+                if (id==null) {
+                    order.setStatus(2);
+                    order.setPaymentMethod(paymentMethodService.getPaymentMethodById(2).get());
+                    order.setUser(userService.getUserByUsername(authentication.getName()).get());
 
-                orderService.add(order);
+                    orderService.add(order);
+                }
+                else {
+                    Optional<Order> orderOptional = orderService.getOrderById(id);
+                    if(orderOptional.isPresent()){
+                        order = orderOptional.get();
+                        model.addAttribute("validateCoupon", "Coupon is error or has been used");
+                    }
+                    else {
+                        return "redirect:/cart/list";
+                    }
+                }
 
 
+                List<Event> events = eventService.getEventsByAreaAndStatus(1, 1);
+
+                model.addAttribute("events", events);
                 model.addAttribute("order", order);
                 model.addAttribute("total", total);
                 model.addAttribute("cartCourses", cartCourses);
@@ -74,10 +90,11 @@ public class PaymentController {
 
     // Chuyển hướng người dùng đến cổng thanh toán VNPAY
     @PostMapping("/submitOrder")
-    public String submidOrder(@RequestParam("amount") int orderTotal,
+    public String submitOrder(@RequestParam("amount") int orderTotal,
                               @RequestParam("orderInfo") String orderInfo,
                               @RequestParam("orderInfo") int orderId,
                               @RequestParam(value = "description", required = false) String description,
+                              @RequestParam(value = "coupon", required = false) String coupon,
                               HttpServletRequest request){
         Optional<Order> orderOptional = orderService.getOrderById(orderId);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -86,6 +103,53 @@ public class PaymentController {
             Optional<User> userOptional = userService.getUserByUsername(username);
             List<CartCourse> cartCourses = cartCourseService.getCartCoursesByUser(userOptional.get());
 
+            Optional<Event> eventOptional = eventService.getEventByCode(coupon);
+
+            if(eventOptional.isPresent()){
+                Event event = eventOptional.get();
+
+                Optional<Order> orderCheckOptional = orderService.getOrderByUserAndEventAndStatus(userOptional.get(), event, 1);
+                if(orderCheckOptional.isPresent()){
+                    return "redirect:/payment?id=" + orderInfo;
+                }
+
+                LocalDateTime now = LocalDateTime.now();
+
+                LocalDateTime eventEndAt = Instant.ofEpochMilli(event.getEndAt().getTime())
+                        .atZone(ZoneId.systemDefault())
+                        .toLocalDateTime();
+
+                LocalDateTime eventStartAt = Instant.ofEpochMilli(event.getStartAt().getTime())
+                        .atZone(ZoneId.systemDefault())
+                        .toLocalDateTime();
+
+                if(now.isBefore(eventEndAt) && eventStartAt.isBefore(now) && event.getQuantity()>0 && orderTotal > event.getMinPrice()){
+                    if(Objects.equals(event.getCategorySale().getCategorySaleName(), "Ratio")){
+                        int saleNumber = (int) (orderTotal * (event.getSale()/100));
+                        if(saleNumber>event.getMaxSale()){
+                            orderTotal = orderTotal - (int)event.getMaxSale();
+                        }
+                        else {
+                            orderTotal = orderTotal - saleNumber;
+                        }
+                    }
+                    else {
+                        if(event.getSale()>orderTotal){
+                            orderTotal = 0;
+                        }
+                        else {
+                            orderTotal = (int) (orderTotal - event.getSale());
+                        }
+                    }
+                    orderOptional.get().setEvent(event);
+                }
+                else {
+                    return "redirect:/payment?id=" + orderInfo;
+                }
+            }
+            else {
+                return "redirect:/payment?id=" + orderInfo;
+            }
             orderOptional.get().setDescription(description);
             orderService.add(orderOptional.get());
             cartCourses.forEach(cartCourse -> {
@@ -134,7 +198,7 @@ public class PaymentController {
 
         model.addAttribute("error", "Lỗi thanh toán!!!!");
 
-        String s = paymentStatus == 1 ? "home/orders/orderSuccess" : "home/orders/createOrder";
+        String s = paymentStatus == 1 ? "home/orders/orderSuccess" : "redirect:/cart/list";
         return s;
     }
 }

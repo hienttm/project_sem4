@@ -116,7 +116,7 @@
                         </div>
                     </div>
 
-                    <div class="tabel-main-btn">
+                    <div class="tabel-main-btn" th:if="${!cartCourses.isEmpty() and cartCourses!=null}">
                         <a th:href="@{/payment}" class="main-btn-six">
                             Process to Checkout
                             <span>

@@ -1,6 +1,8 @@
 package com.t2207e.sem4.service;
 
+import com.t2207e.sem4.entity.Event;
 import com.t2207e.sem4.entity.Order;
+import com.t2207e.sem4.entity.User;
 import com.t2207e.sem4.repository.IOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,4 +38,10 @@ public class OrderService implements IOrderService{
     public void deleteById(Integer id) {
         orderRepository.deleteById(id);
     }
+
+    @Override
+    public Optional<Order> getOrderByUserAndEventAndStatus(User user, Event event, int status) {
+        return orderRepository.getOrderByUserAndEventAndStatus(user, event, status);
+    }
+
 }
