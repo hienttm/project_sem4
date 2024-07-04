@@ -43,17 +43,16 @@
 <div class="tl-staff-profile pt-120 pb-120">
     <div class="container">
         <div class="tl-staff-profile-top">
-            <img th:src="${teacher.image}" alt="staff image">
+            <img th:src="${teacher.user.image}" alt="staff image">
 
             <div class="tl-staff-profile-txt">
                 <div class="tl-staff-profile-intro">
                     <div>
-                        <h4 class="tl-staff-profile-name" th:text="${teacher.getFullname()}"></h4>
+                        <h4 class="tl-staff-profile-name" th:text="${teacher.user.getFullname()}"></h4>
                     </div>
                     <ul class="tl-3-footer-socials tl-staff-profile-socials">
-                        <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
-                        <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                        <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                        <li><a th:href="${teacher.git}"><i class="fa-brands fa-github"></i></a></li>
+                        <li><a th:href="${teacher.website}"><i class="fa-solid fa-globe"></i></a></li>
                     </ul>
                 </div>
 

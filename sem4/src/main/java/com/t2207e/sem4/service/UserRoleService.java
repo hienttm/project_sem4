@@ -38,4 +38,10 @@ public class UserRoleService implements IUserRoleService{
     public Optional<UserRole> getUserRoleByUserAndRole_RoleName(User user, String roleName) {
         return userRoleRepository.getUserRoleByUserAndRole_RoleName(user, roleName);
     }
+
+    @Override
+    public int countUserRoleByRole_RoleName(String roleName) {
+        return userRoleRepository.countUserRoleByUser_StatusAndRole_RoleName(1 ,roleName);
+    }
+
 }

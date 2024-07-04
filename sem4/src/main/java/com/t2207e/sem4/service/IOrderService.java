@@ -1,5 +1,6 @@
 package com.t2207e.sem4.service;
 
+import com.t2207e.sem4.dto.RevenueDTO;
 import com.t2207e.sem4.entity.Course;
 import com.t2207e.sem4.entity.Event;
 import com.t2207e.sem4.entity.Order;
@@ -14,4 +15,10 @@ public interface IOrderService {
     void add(Order order);
     void deleteById(Integer id);
     Optional<Order> getOrderByUserAndEventAndStatus(User user, Event event, int status);
+    List<Order> getOrdersByStatus(Integer status);
+    List<RevenueDTO> TotalDayProcedure();
+    List<RevenueDTO> TotalWeekProcedure();
+    List<RevenueDTO> TotalMonthProcedure();
+    List<RevenueDTO> TotalYearProcedure();
+
 }

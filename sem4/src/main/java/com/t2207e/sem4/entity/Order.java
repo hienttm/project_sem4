@@ -35,6 +35,8 @@ public class Order {
     @JoinColumn(name = "payment_method_id", nullable = false)
     private PaymentMethod paymentMethod;
 
+    private Double total;
+
     @Column(nullable = false)
     private int status;
 

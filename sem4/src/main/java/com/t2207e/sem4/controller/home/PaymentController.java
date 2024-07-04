@@ -147,10 +147,9 @@ public class PaymentController {
                     return "redirect:/payment?id=" + orderInfo;
                 }
             }
-            else {
-                return "redirect:/payment?id=" + orderInfo;
-            }
+
             orderOptional.get().setDescription(description);
+            orderOptional.get().setTotal((double)orderTotal);
             orderService.add(orderOptional.get());
             cartCourses.forEach(cartCourse -> {
                 OrderDetail orderDetail = new OrderDetail();
@@ -186,6 +185,11 @@ public class PaymentController {
                 order.setStatus(1);
                 order.setPaymentCode(transactionId);
                 orderService.add(order);
+
+                Event event = order.getEvent();
+                event.setQuantity(event.getQuantity()-1);
+
+                eventService.add(event);
 
                 cartCourseService.deleteAll();
             }

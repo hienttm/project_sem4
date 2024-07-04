@@ -28,9 +28,9 @@ public class CourseController {
     private final UserAnswerService userAnswerService;
     private final OrderDetailService orderDetailService;
     private final ReviewService reviewService;
+    private final TeacherRegisterService teacherRegisterService;
 
-
-    public CourseController(CourseService courseService, ChapterService chapterService, UserService userService, ExamService examService, UserAnswerService userAnswerService, OrderDetailService orderDetailService, ReviewService reviewService) {
+    public CourseController(CourseService courseService, ChapterService chapterService, UserService userService, ExamService examService, UserAnswerService userAnswerService, OrderDetailService orderDetailService, ReviewService reviewService, TeacherRegisterService teacherRegisterService) {
         this.courseService = courseService;
         this.chapterService = chapterService;
         this.userService = userService;
@@ -38,6 +38,7 @@ public class CourseController {
         this.userAnswerService = userAnswerService;
         this.orderDetailService = orderDetailService;
         this.reviewService = reviewService;
+        this.teacherRegisterService = teacherRegisterService;
     }
 
     @GetMapping("/list/{page}")
@@ -73,6 +74,12 @@ public class CourseController {
         if(courseOptional.isPresent()){
             Course course = courseOptional.get();
             model.addAttribute("course", course);
+
+            Optional<TeacherRegister> teacherRegisterOptional = teacherRegisterService.getTeacherRegisterByUser_UserId(course.getUser().getUserId());
+            if(teacherRegisterOptional.isPresent()){
+                TeacherRegister teacherRegister = teacherRegisterOptional.get();
+                model.addAttribute("teacherRegister", teacherRegister);
+            }
 
             List<Course> coursesHaveSameName = courseService.getCoursesByUser(course.getUser());
             model.addAttribute("coursesHaveSameName", coursesHaveSameName);
@@ -123,6 +130,9 @@ public class CourseController {
                     boolean checkBuy = orderDetailByUserDTOs.stream().anyMatch(dto -> dto.getCourseId() == course.getCourseId());
 
                     model.addAttribute("checkBuy", checkBuy);
+                    if(!checkBuy && course.getStatus()!=1){
+                        return "redirect:/course/list/1";
+                    }
 
                     List<Exam> exams = examService.getExamsByCourseAndStatus(course, 1);
 

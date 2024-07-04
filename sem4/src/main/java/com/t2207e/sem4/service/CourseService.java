@@ -53,6 +53,11 @@ public class CourseService implements  ICourseService{
     }
 
     @Override
+    public Integer countCoursesByStatus(Integer status) {
+        return courseRepository.countCoursesByStatus(status);
+    }
+
+    @Override
     @Transactional
     public List<CourseDTO> GetAllCourseProcedurePaging(String searchName, Integer page, Integer pageSize,String course_type_name) {
         List<Object[]> resultList = courseRepository.GetAllCourseProcedurePaging(searchName, page, pageSize, course_type_name);

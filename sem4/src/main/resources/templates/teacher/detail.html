@@ -257,7 +257,7 @@
 
 <script th:inline="javascript">
     // Lấy dữ liệu từ Thymeleaf
-    let profit = 60;
+    let profit = /*[[${profit}]]*/ 0;
     let revenueDays = /*[[${revenueDays}]]*/ '[]';
     let revenueWeeks = /*[[${revenueWeeks}]]*/ '[]';
     let revenueMonths = /*[[${revenueMonths}]]*/ '[]';
@@ -304,11 +304,11 @@
 
 
     revenueMonths.forEach(item => {
-        data.month.revenue[item.count] = item.price;
+        data.month.revenue[item.count-1] = item.price;
     });
 
     revenueYears.forEach(item => {
-        data.year.revenue[item.count] = item.price;
+        data.year.revenue[item.count-1] = item.price;
     });
 
     let options = {

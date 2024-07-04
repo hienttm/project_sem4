@@ -12,4 +12,5 @@ public interface IUserRoleService {
     void deleteById(Integer id);
     List<UserRole> getUserRolesByUser(User user);
     Optional<UserRole> getUserRoleByUserAndRole_RoleName(User user, String roleName);
+    int countUserRoleByRole_RoleName(String roleName);
 }

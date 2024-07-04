@@ -2,9 +2,11 @@ package com.t2207e.sem4.controller.teacher;
 
 import com.t2207e.sem4.dto.RevenueDTO;
 import com.t2207e.sem4.entity.OrderDetail;
+import com.t2207e.sem4.entity.Policy;
 import com.t2207e.sem4.entity.TeacherRegister;
 import com.t2207e.sem4.entity.User;
 import com.t2207e.sem4.service.OrderDetailService;
+import com.t2207e.sem4.service.PolicyService;
 import com.t2207e.sem4.service.TeacherRegisterService;
 import com.t2207e.sem4.service.UserService;
 import jakarta.validation.Valid;
@@ -27,11 +29,13 @@ public class DetailTeacherController {
     private final UserService userService;
     private final TeacherRegisterService teacherRegisterService;
     private final OrderDetailService orderDetailService;
+    private final PolicyService policyService;
 
-    public DetailTeacherController(UserService userService, TeacherRegisterService teacherRegisterService, OrderDetailService orderDetailService) {
+    public DetailTeacherController(UserService userService, TeacherRegisterService teacherRegisterService, OrderDetailService orderDetailService, PolicyService policyService) {
         this.userService = userService;
         this.teacherRegisterService = teacherRegisterService;
         this.orderDetailService = orderDetailService;
+        this.policyService = policyService;
     }
 
     @InitBinder
@@ -87,6 +91,9 @@ public class DetailTeacherController {
                 model.addAttribute("totalWeek", totalWeek.get());
                 model.addAttribute("totalMonth", totalMonth.get());
                 model.addAttribute("totalYear", totalYear.get());
+
+                Policy policy = policyService.getAllPolicy().getFirst();
+                model.addAttribute("profit", policy.getRatio());
 
                 return "teacher/detail";
             }

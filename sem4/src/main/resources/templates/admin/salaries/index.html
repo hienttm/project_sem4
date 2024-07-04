@@ -31,40 +31,27 @@
                         <table id="table1" class="table table-striped" style="width:100%">
                             <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>USER</th>
-                                <th>PAYMENT CODE</th>
-                                <th>PAYMENT METHOD</th>
-                                <th>CREATE AT</th>
-                                <th>TOTAL</th>
-                                <th>STATUS</th>
+                                <th>USERNAME</th>
+                                <th>FULL NAME</th>
+                                <th>SALARY</th>
                                 <th>BUTTON</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="order: ${orders}">
-                                <td class="align-middle" th:text="${order.orderId}"></td>
-                                <td class="align-middle" th:text="${order.user.fullname}"></td>
-                                <td class="align-middle" th:text="${order.paymentCode}"></td>
-                                <td class="align-middle" th:text="${order.paymentMethod.paymentMethodName}"></td>
-                                <td class="align-middle" th:text="${order.createAt}"></td>
-                                <td class="align-middle"><span th:text="${order.total}"></span> $</td>
-                                <td th:if="${order.status == 1}" class="align-middle text-success fw-bolder">Success</td>
-                                <td th:unless="${order.status == 1}" class="align-middle text-danger fw-bolder">Unsuccess</td>
+                            <tr th:each="teacherSalaryDTO: ${teacherSalaryDTOs}">
+                                <td class="align-middle" th:text="${teacherSalaryDTO.username}"></td>
+                                <td class="align-middle" th:text="${teacherSalaryDTO.fullName}"></td>
+                                <td class="align-middle"><span th:text="${teacherSalaryDTO.salary}"></span> $</td>
                                 <td>
-                                    <a th:href="@{detail/{id}(id=${order.orderId})}" class="btn btn-primary">Detail</a>
+                                    <a th:href="@{detail/{id}(id=${teacherSalaryDTO.userId})}" class="btn btn-primary">Detail</a>
                                 </td>
                             </tr>
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>ID</th>
-                                <th>USER</th>
-                                <th>PAYMENT CODE</th>
-                                <th>PAYMENT METHOD</th>
-                                <th>CREATE AT</th>
-                                <th>TOTAL</th>
-                                <th>STATUS</th>
+                                <th>USERNAME</th>
+                                <th>FULL NAME</th>
+                                <th>SALARY</th>
                                 <th>BUTTON</th>
                             </tr>
                             </tfoot>

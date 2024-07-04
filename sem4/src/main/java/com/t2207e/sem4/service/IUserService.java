@@ -1,5 +1,6 @@
 package com.t2207e.sem4.service;
 
+import com.t2207e.sem4.dto.TeacherSalaryDTO;
 import com.t2207e.sem4.entity.User;
 
 import java.util.List;
@@ -16,5 +17,5 @@ public interface IUserService {
     void add(User user);
     void deleteById(Integer id);
     Optional<User> findFirstByEmail(String email);
-
+    List<TeacherSalaryDTO> GetAllSalaryTeacher();
 }

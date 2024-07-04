@@ -99,12 +99,12 @@
 <!--                                    class="mdi mdi-lifebuoy text-muted fs-16 align-middle me-1"></i>-->
 <!--                                <span class="align-middle">Help</span></a>-->
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item"><i
-                                    class="mdi mdi-wallet text-muted fs-16 align-middle me-1"></i>
-                                <span class="align-middle">Balance : <b>$5971.67</b></span></a>
-                            <a class="dropdown-item" href="pages-profile-settings.html"><i
-                                    class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i>
-                                <span class="align-middle">Settings</span></a>
+<!--                            <a class="dropdown-item"><i-->
+<!--                                    class="mdi mdi-wallet text-muted fs-16 align-middle me-1"></i>-->
+<!--                                <span class="align-middle">Balance : <b>$5971.67</b></span></a>-->
+<!--                            <a class="dropdown-item" href="pages-profile-settings.html"><i-->
+<!--                                    class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i>-->
+<!--                                <span class="align-middle">Settings</span></a>-->
                             <form th:action="@{/logout}" method="post">
                                 <button class="btn btn-outline-light me-2 dropdown-item" type="submit"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> Log Out</button>
                             </form>
@@ -231,6 +231,18 @@
                             <a class="nav-link menu-link" th:href="@{/admin/order/list}">
                                 <i class="mdi mdi-account-circle-outline"></i>
                                 <span data-key="t-authentication">Orders</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" th:href="@{/admin/event/list}">
+                                <i class="mdi mdi-account-circle-outline"></i>
+                                <span data-key="t-authentication">Events</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" th:href="@{/admin/salary/list}">
+                                <i class="mdi mdi-account-circle-outline"></i>
+                                <span data-key="t-authentication">Teacher Salaries</span>
                             </a>
                         </li>
                     </div>
