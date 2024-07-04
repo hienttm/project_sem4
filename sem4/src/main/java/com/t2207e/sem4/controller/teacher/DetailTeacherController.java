@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Controller
 @RequestMapping("roleTeacher")
@@ -62,6 +63,30 @@ public class DetailTeacherController {
                 model.addAttribute("revenueWeeks", revenueWeeks);
                 model.addAttribute("revenueMonths", revenueMonths);
                 model.addAttribute("revenueYears", revenueYears);
+
+                AtomicReference<Double> totalDay = new AtomicReference<>((double) 0);
+                AtomicReference<Double> totalWeek = new AtomicReference<>((double) 0);
+                AtomicReference<Double> totalMonth = new AtomicReference<>((double) 0);
+                AtomicReference<Double> totalYear = new AtomicReference<>((double) 0);
+                revenueDays.forEach(revenueDay -> {
+                    totalDay.updateAndGet(v -> v + revenueDay.getPrice());
+                });
+
+                revenueWeeks.forEach(revenueWeek -> {
+                    totalWeek.updateAndGet(v -> v + revenueWeek.getPrice());
+                });
+
+                revenueMonths.forEach(revenueMonth -> {
+                    totalMonth.updateAndGet(v -> v + revenueMonth.getPrice());
+                });
+                revenueYears.forEach(revenueYear -> {
+                    totalYear.updateAndGet(v -> v + revenueYear.getPrice());
+                });
+
+                model.addAttribute("totalDay", totalDay.get());
+                model.addAttribute("totalWeek", totalWeek.get());
+                model.addAttribute("totalMonth", totalMonth.get());
+                model.addAttribute("totalYear", totalYear.get());
 
                 return "teacher/detail";
             }

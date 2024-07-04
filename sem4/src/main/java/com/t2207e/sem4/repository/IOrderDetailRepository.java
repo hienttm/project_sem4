@@ -1,5 +1,6 @@
 package com.t2207e.sem4.repository;
 
+import com.t2207e.sem4.entity.Order;
 import com.t2207e.sem4.entity.OrderDetail;
 import com.t2207e.sem4.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,6 +13,7 @@ public interface IOrderDetailRepository extends JpaRepository<OrderDetail, Integ
     Integer countOrderDetailsByCourse_CourseId(Integer courseId);
     List<OrderDetail> getOrderDetailsByCourse_CourseId(Integer courseId);
     List<OrderDetail> getOrderDetailsByCourse_User_UserId(Integer userId);
+    List<OrderDetail> getOrderDetailsByOrder(Order order);
     @Procedure(name = "RevenueChartDayTeacherProcedure")
     List<Object[]> RevenueChartDayTeacherProcedure(@Param("userId") Integer userId);
     @Procedure(name = "RevenueChartWeekTeacherProcedure")

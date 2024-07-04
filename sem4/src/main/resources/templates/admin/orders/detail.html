@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-layout="vertical" data-topbar="light" data-sidebar="dark"
+      data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" th:href="@{/assets/images/favicon.ico}" />
+</head>
+
+<body>
+<!-- Begin page -->
+<div id="layout-wrapper">
+    <div th:insert="~{admin/fragments/header}"></div>
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+            <div class="page-content" style="padding-top: 70px">
+                <div class="container-fluid" style="padding-top: 70px">
+                    <div class="row">
+                        <div class="col-xxl-12">
+                            <div class="card mt-xxl-n5">
+                                <div class="card-header">
+                                    <ul class="nav nav-tabs-custom rounded card-header-tabs border-bottom-0" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link active" data-bs-toggle="tab" href="#information" role="tab" aria-selected="true">
+                                                <i class="fas fa-home"></i>Information
+                                            </a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link" data-bs-toggle="tab" href="#detail" role="tab" aria-selected="false" tabindex="-1">
+                                                <i class="far fa-user"></i> Orders
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="card-body p-4">
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="information" role="tabpanel">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label for="user" class="form-label">User</label>
+                                                        <div class="form-control" id="user" th:text="${order.user.fullname}"></div>
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label for="createAt" class="form-label">Create At</label>
+                                                        <div class="form-control" id="createAt" th:text="${order.createAt}"></div>
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                            </div>
+                                            <!--end row-->
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label for="sta" class="form-label">Status</label>
+                                                        <div th:class="'form-control ' + ${order.status==1?'text-success':'text-danger'}" id="sta" th:text="${order.status==1?'SUCCESS':'UNSUCCESS'}"></div>
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label for="coupon" class="form-label">Coupon</label>
+                                                        <div class="form-control" id="coupon" th:text="${order.event!=null?order.event.code:'No Coupon'}"></div>
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                            </div>
+                                            <!--end row-->
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label for="paymentCode" class="form-label">Payment Code</label>
+                                                        <div class="form-control" id="paymentCode" th:text="${order.paymentCode!=null?order.paymentCode:'No Payment Code'}"></div>
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label for="paymentMethod" class="form-label">Payment Method</label>
+                                                        <div class="form-control" id="paymentMethod" th:text="${order.paymentMethod.paymentMethodName}"></div>
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                            </div>
+                                            <!--end row-->
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="mb-3">
+                                                        <label for="description" class="form-label">Description</label>
+                                                        <div class="form-control" id="description" th:text="${order.description}"></div>
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                            </div>
+                                            <!--end row-->
+                                        </div>
+                                        <!--end tab-pane-->
+                                        <div class="tab-pane" id="detail" role="tabpanel">
+                                            <table id="table1" class="table table-striped" style="width:100%">
+                                                <thead>
+                                                <tr>
+                                                    <th>COURSE NAME</th>
+                                                    <th>PRICE</th>
+                                                    <th>USER</th>
+                                                    <th>BUY AT</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr th:each="orderDetail: ${orderDetails}">
+                                                    <td class="align-middle" th:text="${orderDetail.course.courseName}"></td>
+                                                    <td class="align-middle"><span th:text="${orderDetail.price}"></span> $</td>
+                                                    <td class="align-middle" th:text="${orderDetail.order.user.fullname}"></td>
+                                                    <td class="align-middle" th:text="${orderDetail.order.updateAt}"></td>
+                                                </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                <tr>
+                                                    <th>COURSE NAME</th>
+                                                    <th>PRICE</th>
+                                                    <th>USER</th>
+                                                    <th>CREATE AT</th>
+                                                </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                        <!--end tab-pane-->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end col-->
+                    </div>
+                    <!--end row-->
+
+                </div>
+                <!-- container-fluid -->
+            </div><!-- End Page-content -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <script>document.write(new Date().getFullYear())</script>2024 © Velzon.
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text-sm-end d-none d-sm-block">
+                            Design &amp; Develop by Themesbrand
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+</div>
+<!-- END layout-wrapper -->
+<!-- Add ApexCharts script -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+<script th:inline="javascript">
+    // Lấy dữ liệu từ Thymeleaf
+    let profit = 60;
+    let revenueDays = /*[[${revenueDays}]]*/ '[]';
+    let revenueWeeks = /*[[${revenueWeeks}]]*/ '[]';
+    let revenueMonths = /*[[${revenueMonths}]]*/ '[]';
+    let revenueYears = /*[[${revenueYears}]]*/ '[]';
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth();
+    const nextMonth = new Date(year, month + 1, 1);
+    const lastDayOfCurrentMonth = new Date(nextMonth - 1);
+    const daysInCurrentMonth = lastDayOfCurrentMonth.getDate();
+    console.log(daysInCurrentMonth);
+
+    let totalDay = /*[[${totalDay}]]*/ 0;
+    let totalWeek = /*[[${totalWeek}]]*/ 0;
+    let totalMonth = /*[[${totalMonth}]]*/ 0;
+    let totalYear = /*[[${totalYear}]]*/ 0;
+
+    var data = {
+        day: {
+            revenue: new Array(24).fill(0),
+            categories: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00']
+        },
+        week: {
+            revenue: new Array(7).fill(0),
+            categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        },
+        month: {
+            revenue: new Array(daysInCurrentMonth).fill(0),
+            categories: Array.from({length: daysInCurrentMonth}, (_, i) => i + 1),
+        },
+        year: {
+            revenue: new Array(12).fill(0),
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        }
+    };
+
+    revenueDays.forEach(item => {
+        data.day.revenue[item.count] = item.price;
+    });
+
+    revenueWeeks.forEach(item => {
+        data.week.revenue[item.count-2] = item.price;
+    });
+
+
+    revenueMonths.forEach(item => {
+        data.month.revenue[item.count] = item.price;
+    });
+
+    revenueYears.forEach(item => {
+        data.year.revenue[item.count] = item.price;
+    });
+
+    let options = {
+        series: [{
+            name: 'Revenue',
+            data: data.year.revenue
+        }],
+        chart: {
+            height: 350,
+            type: 'line',
+            toolbar: {
+                show: false
+            }
+        },
+        stroke: {
+            width: [3, 3],
+            curve: 'smooth'
+        },
+        xaxis: {
+            categories: data.year.categories
+        },
+        colors: ['#34c38f'],
+        dataLabels: {
+            enabled: false
+        },
+        legend: {
+            position: 'top'
+        }
+    };
+
+    let chart = new ApexCharts(document.querySelector("#revenue-expenses-charts"), options);
+    chart.render();
+
+    function updateChart(timeframe, period) {
+        document.getElementById('current-period').innerHTML = `${period} <i class="mdi mdi-chevron-down ms-1"></i>`;
+        let revenue = 0.0;
+        if(timeframe==="day"){
+            revenue = totalDay;
+        } else if(timeframe === "week"){
+            revenue = totalWeek;
+        } else if(timeframe === "month"){
+            revenue = totalMonth;
+        } else if(timeframe === "year"){
+            revenue = totalYear;
+        }
+
+        document.getElementById("revenueNumber").innerHTML = revenue.toString();
+        document.getElementById("profit-ratio").innerHTML = profit.toString();
+        document.getElementById("profitNumber").innerHTML = (revenue*profit/100).toString();
+        chart.updateOptions({
+            xaxis: {
+                categories: data[timeframe].categories
+            },
+            series: [{
+                name: 'Revenue',
+                data: data[timeframe].revenue
+            }]
+        });
+    }
+</script>
+<!--start back-to-top-->
+<div th:insert="~{admin/fragments/footer}"></div>
+
+</body>
+
+</html>

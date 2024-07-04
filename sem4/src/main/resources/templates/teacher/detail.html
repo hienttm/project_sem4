@@ -196,7 +196,25 @@
                                             </div>
                                             <!-- end card header -->
                                             <div class="card-body px-0">
-
+                                                <ul class="list-inline main-chart text-center mb-0">
+                                                    <li class="list-inline-item chart-border-left me-0 border-0">
+                                                        <h4>
+                                                            <span id="revenueNumber" th:text="${totalYear}"></span>$
+                                                            <span class="text-muted d-inline-block fs-13 align-middle ms-2">Revenue</span>
+                                                        </h4>
+                                                    </li>
+                                                    <li class="list-inline-item chart-border-left me-0">
+                                                        <h4>
+                                                            <span data-plugin="counterup" id="profit-ratio">60</span>%<span class="text-muted d-inline-block fs-13 align-middle ms-2">Profit Ratio</span>
+                                                        </h4>
+                                                    </li>
+                                                    <li class="list-inline-item chart-border-left me-0">
+                                                        <h4 class="text-primary">
+                                                            <span id="profitNumber" th:text="${totalYear*0.6}"></span>$
+                                                            <span class="text-muted d-inline-block fs-13 align-middle ms-2">Your Profits</span>
+                                                        </h4>
+                                                    </li>
+                                                </ul>
                                                 <div id="revenue-expenses-charts" class="apex-charts" dir="ltr"></div>
                                             </div>
                                         </div>
@@ -239,6 +257,7 @@
 
 <script th:inline="javascript">
     // Lấy dữ liệu từ Thymeleaf
+    let profit = 60;
     let revenueDays = /*[[${revenueDays}]]*/ '[]';
     let revenueWeeks = /*[[${revenueWeeks}]]*/ '[]';
     let revenueMonths = /*[[${revenueMonths}]]*/ '[]';
@@ -250,6 +269,11 @@
     const lastDayOfCurrentMonth = new Date(nextMonth - 1);
     const daysInCurrentMonth = lastDayOfCurrentMonth.getDate();
     console.log(daysInCurrentMonth);
+
+    let totalDay = /*[[${totalDay}]]*/ 0;
+    let totalWeek = /*[[${totalWeek}]]*/ 0;
+    let totalMonth = /*[[${totalMonth}]]*/ 0;
+    let totalYear = /*[[${totalYear}]]*/ 0;
 
     var data = {
         day: {
@@ -287,26 +311,6 @@
         data.year.revenue[item.count] = item.price;
     });
 
-    // // Example data
-    // const data = {
-    //     day: {
-    //         revenue: [80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 240, 10, 20, 30, 40, 50, 60, 70],
-    //         categories: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00']
-    //     },
-    //     week: {
-    //         revenue: [70, 80, 110, 120, 130, 90, 100],
-    //         categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-    //     },
-    //     month: {
-    //         revenue: [150, 160, 170, 180, 190, 290, 300, 310, 320, 330, 340, 350, 360, 370, 380, 390, 400, 410, 420, 430, 440, 200, 210, 220, 230, 240, 250, 260, 270, 280],
-    //         categories: Array.from({length: 30}, (_, i) => i + 1)
-    //     },
-    //     year: {
-    //         revenue: [200, 300, 400, 1000, 1100, 1200, 1300, 500, 600, 700, 800, 900],
-    //         categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-    //     }
-    // };
-
     let options = {
         series: [{
             name: 'Revenue',
@@ -340,6 +344,20 @@
 
     function updateChart(timeframe, period) {
         document.getElementById('current-period').innerHTML = `${period} <i class="mdi mdi-chevron-down ms-1"></i>`;
+        let revenue = 0.0;
+        if(timeframe==="day"){
+            revenue = totalDay;
+        } else if(timeframe === "week"){
+            revenue = totalWeek;
+        } else if(timeframe === "month"){
+            revenue = totalMonth;
+        } else if(timeframe === "year"){
+            revenue = totalYear;
+        }
+
+        document.getElementById("revenueNumber").innerHTML = revenue.toString();
+        document.getElementById("profit-ratio").innerHTML = profit.toString();
+        document.getElementById("profitNumber").innerHTML = (revenue*profit/100).toString();
         chart.updateOptions({
             xaxis: {
                 categories: data[timeframe].categories

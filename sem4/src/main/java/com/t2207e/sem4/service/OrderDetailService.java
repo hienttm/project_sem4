@@ -2,6 +2,7 @@ package com.t2207e.sem4.service;
 
 import com.t2207e.sem4.dto.RevenueDTO;
 import com.t2207e.sem4.dto.UserDoExamDTO;
+import com.t2207e.sem4.entity.Order;
 import com.t2207e.sem4.entity.OrderDetail;
 import com.t2207e.sem4.repository.IOrderDetailRepository;
 import jakarta.transaction.Transactional;
@@ -45,6 +46,11 @@ public class OrderDetailService implements IOrderDetailService{
     @Override
     public Integer countOrderDetailsByCourse_CourseId(Integer courseId) {
         return orderDetailRepository.countOrderDetailsByCourse_CourseId(courseId);
+    }
+
+    @Override
+    public List<OrderDetail> getOrderDetailsByOrder(Order order) {
+        return orderDetailRepository.getOrderDetailsByOrder(order);
     }
 
     @Override

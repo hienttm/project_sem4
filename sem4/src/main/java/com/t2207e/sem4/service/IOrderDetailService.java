@@ -1,6 +1,7 @@
 package com.t2207e.sem4.service;
 
 import com.t2207e.sem4.dto.RevenueDTO;
+import com.t2207e.sem4.entity.Order;
 import com.t2207e.sem4.entity.OrderDetail;
 import com.t2207e.sem4.entity.User;
 import org.springframework.data.repository.query.Param;
@@ -14,6 +15,7 @@ public interface IOrderDetailService {
     void add(OrderDetail orderDetail);
     void deleteById(Integer id);
     Integer countOrderDetailsByCourse_CourseId(Integer courseId);
+    List<OrderDetail> getOrderDetailsByOrder(Order order);
     List<OrderDetail> getOrderDetailsByCourse_CourseId(Integer courseId);
     List<OrderDetail> getOrderDetailsByCourse_User_UserId(Integer userId);
     List<RevenueDTO> RevenueChartDayTeacherProcedure(Integer userId);
