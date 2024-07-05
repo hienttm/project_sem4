@@ -20,9 +20,9 @@ public class TeacherRegister {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @NotNull(message = "bankNumber cannot null")
-    private String bankNumber;
+    private String bankNumber="Not Bank Number";
     @NotNull(message = "bankName cannot null")
-    private String bankName;
+    private String bankName="BANK";
 
     private String git;
 

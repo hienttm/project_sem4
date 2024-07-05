@@ -57,9 +57,10 @@ public class PaymentController {
                         total.updateAndGet(v -> v + (int) cartCourse.getCourse().getSalePrice());
                 });
                 Order order =new Order();
-                if (id==null) {
+                Optional<PaymentMethod> paymentMethodOptional = paymentMethodService.getPaymentMethodById(2);
+                if (id==null && paymentMethodOptional.isPresent()) {
                     order.setStatus(2);
-                    order.setPaymentMethod(paymentMethodService.getPaymentMethodById(2).get());
+                    order.setPaymentMethod(paymentMethodOptional.get());
                     order.setUser(userService.getUserByUsername(authentication.getName()).get());
 
                     orderService.add(order);
@@ -103,45 +104,50 @@ public class PaymentController {
             Optional<User> userOptional = userService.getUserByUsername(username);
             List<CartCourse> cartCourses = cartCourseService.getCartCoursesByUser(userOptional.get());
 
-            Optional<Event> eventOptional = eventService.getEventByCode(coupon);
+            if(!coupon.isEmpty()){
+                Optional<Event> eventOptional = eventService.getEventByCode(coupon);
 
-            if(eventOptional.isPresent()){
-                Event event = eventOptional.get();
+                if(eventOptional.isPresent()){
+                    Event event = eventOptional.get();
 
-                Optional<Order> orderCheckOptional = orderService.getOrderByUserAndEventAndStatus(userOptional.get(), event, 1);
-                if(orderCheckOptional.isPresent()){
-                    return "redirect:/payment?id=" + orderInfo;
-                }
+                    Optional<Order> orderCheckOptional = orderService.getOrderByUserAndEventAndStatus(userOptional.get(), event, 1);
+                    if(orderCheckOptional.isPresent()){
+                        return "redirect:/payment?id=" + orderInfo;
+                    }
 
-                LocalDateTime now = LocalDateTime.now();
+                    LocalDateTime now = LocalDateTime.now();
 
-                LocalDateTime eventEndAt = Instant.ofEpochMilli(event.getEndAt().getTime())
-                        .atZone(ZoneId.systemDefault())
-                        .toLocalDateTime();
+                    LocalDateTime eventEndAt = Instant.ofEpochMilli(event.getEndAt().getTime())
+                            .atZone(ZoneId.systemDefault())
+                            .toLocalDateTime();
 
-                LocalDateTime eventStartAt = Instant.ofEpochMilli(event.getStartAt().getTime())
-                        .atZone(ZoneId.systemDefault())
-                        .toLocalDateTime();
+                    LocalDateTime eventStartAt = Instant.ofEpochMilli(event.getStartAt().getTime())
+                            .atZone(ZoneId.systemDefault())
+                            .toLocalDateTime();
 
-                if(now.isBefore(eventEndAt) && eventStartAt.isBefore(now) && event.getQuantity()>0 && orderTotal > event.getMinPrice()){
-                    if(Objects.equals(event.getCategorySale().getCategorySaleName(), "Ratio")){
-                        int saleNumber = (int) (orderTotal * (event.getSale()/100));
-                        if(saleNumber>event.getMaxSale()){
-                            orderTotal = orderTotal - (int)event.getMaxSale();
+                    if(now.isBefore(eventEndAt) && eventStartAt.isBefore(now) && event.getQuantity()>0 && orderTotal > event.getMinPrice()){
+                        if(Objects.equals(event.getCategorySale().getCategorySaleName(), "Ratio")){
+                            int saleNumber = (int) (orderTotal * (event.getSale()/100));
+                            if(saleNumber>event.getMaxSale()){
+                                orderTotal = orderTotal - (int)event.getMaxSale();
+                            }
+                            else {
+                                orderTotal = orderTotal - saleNumber;
+                            }
                         }
                         else {
-                            orderTotal = orderTotal - saleNumber;
+                            if(event.getSale()>orderTotal){
+                                orderTotal = 0;
+                            }
+                            else {
+                                orderTotal = (int) (orderTotal - event.getSale());
+                            }
                         }
+                        orderOptional.get().setEvent(event);
                     }
                     else {
-                        if(event.getSale()>orderTotal){
-                            orderTotal = 0;
-                        }
-                        else {
-                            orderTotal = (int) (orderTotal - event.getSale());
-                        }
+                        return "redirect:/payment?id=" + orderInfo;
                     }
-                    orderOptional.get().setEvent(event);
                 }
                 else {
                     return "redirect:/payment?id=" + orderInfo;
@@ -186,10 +192,12 @@ public class PaymentController {
                 order.setPaymentCode(transactionId);
                 orderService.add(order);
 
-                Event event = order.getEvent();
-                event.setQuantity(event.getQuantity()-1);
+                if(order.getEvent()!=null){
+                    Event event = order.getEvent();
+                    event.setQuantity(event.getQuantity()-1);
+                    eventService.add(event);
+                }
 
-                eventService.add(event);
 
                 cartCourseService.deleteAll();
             }

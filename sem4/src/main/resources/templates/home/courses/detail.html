@@ -280,7 +280,7 @@
             <div class="col-lg-4">
                 <div sec:authorize="isAuthenticated()">
                     <div class="tl-event-details-right" th:if="${checkBuy}">
-                        <a th:href="${course.courseFile}" class="tl-def-btn tl-3-def-btn tl-event-details-book-btn" style="background-color: cornflowerblue">Get Study Materials</a>
+                        <a th:href="${course.courseFile}" target="_blank" class="tl-def-btn tl-3-def-btn tl-event-details-book-btn" style="background-color: cornflowerblue">Get Study Materials</a>
                         <span class="tl-event-details-book-btn" th:each="examUserDTO: ${examUserDTOs}">
                         <a th:if="${examUserDTO.getCountTrueAnswers() == -1}" th:href="'/course/exam/'+${examUserDTO.exam.getExamId()}" class="tl-def-btn tl-3-def-btn tl-event-details-book-btn">
                             <span th:text="${examUserDTO.exam.getExamName()}"></span>

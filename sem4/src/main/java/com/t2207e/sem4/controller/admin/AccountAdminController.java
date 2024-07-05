@@ -1,10 +1,7 @@
 package com.t2207e.sem4.controller.admin;
 
 import com.t2207e.sem4.entity.*;
-import com.t2207e.sem4.service.HelperService;
-import com.t2207e.sem4.service.RoleService;
-import com.t2207e.sem4.service.UserRoleService;
-import com.t2207e.sem4.service.UserService;
+import com.t2207e.sem4.service.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
@@ -17,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Controller
@@ -26,12 +24,14 @@ public class AccountAdminController {
     private final RoleService roleService;
     private final UserRoleService userRoleService;
     private final HelperService helperService;
+    private final TeacherRegisterService teacherRegisterService;
 
-    public AccountAdminController(UserService userService, RoleService roleService, UserRoleService userRoleService, HelperService helperService) {
+    public AccountAdminController(UserService userService, RoleService roleService, UserRoleService userRoleService, HelperService helperService, TeacherRegisterService teacherRegisterService) {
         this.userService = userService;
         this.roleService = roleService;
         this.userRoleService = userRoleService;
         this.helperService = helperService;
+        this.teacherRegisterService = teacherRegisterService;
     }
 
     @InitBinder
@@ -95,9 +95,29 @@ public class AccountAdminController {
             return "admin/accounts/detail";
         }
         else {
+            List<UserRole> currentRoles = userRoleService.getUserRolesByUser(user);
+
+            List<String> currentRoleNames = currentRoles.stream()
+                    .map(userRole -> userRole.getRole().getRoleName())
+                    .toList();
+
+            for (UserRole userRole : currentRoles) {
+                if (!rolesUpdate.contains(userRole.getRole().getRoleName())) {
+                    userRoleService.deleteById(userRole.getId());
+                }
+            }
+
             for (String roleName : rolesUpdate) {
-                Optional<UserRole> userRoleOptional = userRoleService.getUserRoleByUserAndRole_RoleName(user, roleName);
-                if(userRoleOptional.isEmpty()){
+                if (!currentRoleNames.contains(roleName)) {
+                    if (Objects.equals(roleName, "ROLE_TEACHER")) {
+                        Optional<TeacherRegister> teacherRegisterOptional = teacherRegisterService.getTeacherRegisterByUser_UserId(user.getUserId());
+                        if (teacherRegisterOptional.isEmpty()){
+                            TeacherRegister teacherRegister = new TeacherRegister();
+                            teacherRegister.setStatus(1);
+                            teacherRegister.setUser(user);
+                            teacherRegisterService.save(teacherRegister);
+                        }
+                    }
                     UserRole userRole = new UserRole();
                     userRole.setUser(user);
                     userRole.setRole(roleService.getRoleByRoleName(roleName).get());

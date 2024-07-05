@@ -191,7 +191,7 @@ public class CourseTeacherController {
     }
 
     @PostMapping("submitCourse/{id}")
-    public String submitCourse(@PathVariable int id, @RequestParam String descriptionStatus){
+    public String submitCourse(@PathVariable int id, @RequestParam(required = false) String descriptionStatus){
         Optional<Course> courseOptional = courseService.getCourseById(id);
         if(courseOptional.isPresent()){
             Course course = courseOptional.get();
