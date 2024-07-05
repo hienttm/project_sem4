@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
+      data-sidebar-image="none" data-preloader="disable">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" th:href="@{assets/images/favicon.ico}" />
+</head>
+
+<body>
+<!-- Begin page -->
+<div id="layout-wrapper">
+    <div th:insert="~{admin/fragments/header}"></div>
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 text-center mb-3">
+                        <img th:src="${teacherRegister.user.image}" alt="img" style="width: 200px">
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <div class="form-control" id="username" th:text="${teacherRegister.user.username}"></div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="mb-3">
+                            <label for="fullname" class="form-label">Full Name</label>
+                            <div class="form-control" id="fullname" th:text="${teacherRegister.user.fullname}"></div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="mb-3">
+                            <label for="phoneNumber" class="form-label">Phone Number</label>
+                            <div class="form-control" id="phoneNumber" th:text="${teacherRegister.user.phoneNumber}"></div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <div class="form-control" id="email" th:text="${teacherRegister.user.email}"></div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="mb-3">
+                            <label for="bankName" class="form-label">Bank Name</label>
+                            <div class="form-control" id="bankName" th:text="${teacherRegister.bankName}"></div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="mb-3">
+                            <label for="bankNumber" class="form-label">Bank Number</label>
+                            <div class="form-control" id="bankNumber" th:text="${teacherRegister.bankNumber}"></div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <div class="form-control" id="description" th:text="${teacherRegister.description}"></div>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="text-center mb-4 mt-4">Orders of this teacher</h3>
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="mb-3">
+                            <label for="startDate" class="form-label">Start Date</label>
+                            <input type="date" class="form-control" id="startDate" name="startDate">
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="mb-3">
+                            <label for="endDate" class="form-label">End Date</label>
+                            <input type="date" class="form-control" id="endDate" name="endDate">
+                        </div>
+                    </div>
+                </div>
+                <div style="color: red" id="validateStartAndEndDate"></div>
+
+                <div class="row">
+                    <div class="col-xxl-12">
+                        <table id="table1" class="table table-striped" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th>COURSE NAME</th>
+                                <th>PRICE</th>
+                                <th>USERNAME STUDENT</th>
+                                <th>FULL NAME</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th>COURSE NAME</th>
+                                <th>PRICE</th>
+                                <th>USERNAME STUDENT</th>
+                                <th>FULL NAME</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- end row -->
+            </div>
+            <!-- container-fluid -->
+        </div>
+        <!-- End Page-content -->
+    </div>
+    <!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+<!--start back-to-top-->
+<div th:insert="~{admin/fragments/footer}"></div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const startDateInput = document.getElementById('startDate');
+        const endDateInput = document.getElementById('endDate');
+
+        const today = new Date();
+        const oneMonthAgo = new Date();
+        oneMonthAgo.setMonth(today.getMonth() - 1);
+
+        const formatDate = (date) => {
+            let month = date.getMonth() + 1;
+            let day = date.getDate();
+            const year = date.getFullYear();
+
+            if(month < 10) month = '0' + month;
+            if(day < 10) day = '0' + day;
+
+            return `${year}-${month}-${day}`;
+        }
+
+        startDateInput.value = formatDate(oneMonthAgo);
+        endDateInput.value = formatDate(today);
+
+        AjaxQueryData([[${userId}]], formatDate(oneMonthAgo), formatDate(today), $('#table1').DataTable());
+    });
+
+    $(document).ready(function() {
+        let table = $('#table1').DataTable();
+
+        $('#startDate, #endDate').change(function() {
+            let userId = [[${userId}]];
+            let startDate = $('#startDate').val();
+            let endDate = $('#endDate').val();
+            let validate = document.getElementById("validateStartAndEndDate");
+
+            if (startDate >= endDate) {
+                validate.innerHTML = "End date must be greater than start date.";
+                table.clear();
+            }
+            else{
+                validate.innerHTML = "";
+                AjaxQueryData(userId, startDate, endDate, table);
+            }
+        });
+    });
+
+    function AjaxQueryData(userId, startDate, endDate, table){
+        $.ajax({
+            url: `/admin/api/teacher/getOrderDetails/${userId}`,
+            method: 'GET',
+            data: {
+                startAt: startDate,
+                endAt: endDate
+            },
+            success: function(response) {
+                console.log(response);
+                table.clear();
+
+                if (response.length > 0) {
+                    response.forEach(function(orderDetail) {
+                        table.row.add([
+                            orderDetail[4],
+                            orderDetail[1] + '$',
+                            orderDetail[5],
+                            orderDetail[6],
+                        ]).draw();
+                    });
+                } else {
+                    console.log('No order details found.');
+                }
+            },
+            error: function(error) {
+                console.error('Error fetching order details', error);
+            }
+        });
+
+    }
+
+</script>
+</body>
+
+</html>

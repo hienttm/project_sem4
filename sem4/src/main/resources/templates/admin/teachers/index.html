@@ -33,17 +33,26 @@
                             <tr>
                                 <th>USERNAME</th>
                                 <th>FULL NAME</th>
-                                <th>SALARY</th>
+                                <th>GIT</th>
+                                <th>WEBSITE</th>
+                                <th>DESCRIPTION</th>
+                                <th>STATUS</th>
                                 <th>BUTTON</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="teacherSalaryDTO: ${teacherSalaryDTOs}">
-                                <td class="align-middle" th:text="${teacherSalaryDTO.username}"></td>
-                                <td class="align-middle" th:text="${teacherSalaryDTO.fullName}"></td>
-                                <td class="align-middle"><span th:text="${teacherSalaryDTO.salary}"></span> $</td>
+                            <tr th:each="teacherRegister: ${teacherRegisters}">
+                                <td class="align-middle" th:text="${teacherRegister.user.username}"></td>
+                                <td class="align-middle" th:text="${teacherRegister.user.fullname}"></td>
+                                <td class="align-middle"><a th:href="${teacherRegister.git}" target="_blank">Click Here</a></td>
+                                <td class="align-middle"><a th:href="${teacherRegister.website}" target="_blank">Click Here</a></td>
+                                <td class="align-middle" th:text="${teacherRegister.description}" style="white-space: nowrap; max-width: 150px; overflow: hidden; text-overflow: ellipsis"></td>
+                                <td th:if="${teacherRegister.status==1}" class="align-middle text-success fw-semibold">Accept</td>
+                                <td th:if="${teacherRegister.status==2}" class="align-middle text-danger fw-semibold">Not Accept</td>
                                 <td>
-                                    <a th:href="@{detail/{id}(id=${teacherSalaryDTO.userId})}" class="btn btn-primary">Detail</a>
+                                    <a th:href="@{detail/{id}(id=${teacherRegister.user.userId})}" class="btn btn-primary">Detail</a>
+                                    <a th:if="${teacherRegister.status==1}" th:href="@{status/{id}(id=${teacherRegister.id})}" class="btn btn-danger">Lock</a>
+                                    <a th:if="${teacherRegister.status==2}" th:href="@{status/{id}(id=${teacherRegister.id})}" class="btn btn-success">Accept</a>
                                 </td>
                             </tr>
                             </tbody>
@@ -51,7 +60,10 @@
                             <tr>
                                 <th>USERNAME</th>
                                 <th>FULL NAME</th>
-                                <th>SALARY</th>
+                                <th>GIT</th>
+                                <th>WEBSITE</th>
+                                <th>DESCRIPTION</th>
+                                <th>STATUS</th>
                                 <th>BUTTON</th>
                             </tr>
                             </tfoot>

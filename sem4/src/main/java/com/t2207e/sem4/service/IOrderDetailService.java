@@ -6,6 +6,7 @@ import com.t2207e.sem4.entity.OrderDetail;
 import com.t2207e.sem4.entity.User;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,4 +23,5 @@ public interface IOrderDetailService {
     List<RevenueDTO> RevenueChartWeekTeacherProcedure(Integer userId);
     List<RevenueDTO> RevenueChartMonthTeacherProcedure(Integer userId);
     List<RevenueDTO> RevenueChartYearTeacherProcedure(Integer userId);
+    List<Object[]> getOrderDetailsByUserAndDate(Integer userId, Date startDate, Date endDate);
 }

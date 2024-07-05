@@ -4,12 +4,14 @@ import com.t2207e.sem4.dto.RevenueDTO;
 import com.t2207e.sem4.dto.UserDoExamDTO;
 import com.t2207e.sem4.entity.Order;
 import com.t2207e.sem4.entity.OrderDetail;
+import com.t2207e.sem4.entity.User;
 import com.t2207e.sem4.repository.IOrderDetailRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -119,4 +121,9 @@ public class OrderDetailService implements IOrderDetailService{
                 .collect(Collectors.toList());
     }
 
+    @Override
+    @Transactional
+    public List<Object[]> getOrderDetailsByUserAndDate(Integer userId, Date startDate, Date endDate) {
+        return orderDetailRepository.getOrderDetailsByUserAndDateProcedure(userId, startDate, endDate);
+    }
 }

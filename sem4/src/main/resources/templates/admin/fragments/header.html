@@ -38,27 +38,6 @@
                 </div>
 
                 <div class="d-flex align-items-center">
-                    <div class="dropdown d-md-none topbar-head-dropdown header-item">
-                        <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle shadow-none"
-                                id="page-header-search-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="bx bx-search fs-22"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
-                             aria-labelledby="page-header-search-dropdown">
-                            <form class="p-3">
-                                <div class="form-group m-0">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search ..."
-                                               aria-label="Recipient's username" />
-                                        <button class="btn btn-primary" type="submit">
-                                            <i class="mdi mdi-magnify"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
                     <div class="ms-1 header-item d-none d-sm-flex">
                         <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle shadow-none"
                                 data-toggle="fullscreen">
@@ -86,7 +65,7 @@
                   </span>
                 </span>
                         </button>
-                        <div class="dropdown-menu dropdown-menu-end">i
+                        <div class="dropdown-menu dropdown-menu-end">
                             <!-- item-->
                             <h6 class="dropdown-header">Welcome <span th:text="${#authentication.name}"></span>!</h6>
                             <a class="dropdown-item" th:href="@{/roleTeacher/detail}"><i
@@ -240,9 +219,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link menu-link" th:href="@{/admin/salary/list}">
+                            <a class="nav-link menu-link" th:href="@{/admin/teacherRegister/list}">
                                 <i class="mdi mdi-account-circle-outline"></i>
-                                <span data-key="t-authentication">Teacher Salaries</span>
+                                <span data-key="t-authentication">Teacher Register</span>
                             </a>
                         </li>
                     </div>
