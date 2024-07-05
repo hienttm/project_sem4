@@ -13,6 +13,6 @@ public interface IReviewService {
     void add(Review review);
     void deleteById(Integer id);
     List<Review> getReviewsByCourseId(int courseId);
-
     List<Review> getReviewsByUserAndCourse(User user, Course course);
+    List<Review> getReviewsByFeatured(Integer featured);
 }

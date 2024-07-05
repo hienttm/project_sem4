@@ -43,13 +43,13 @@
 
 
 <div class="searching">
-    <div class="searching-inner">
-        <div class="searching-left">
+    <div class="searching-inner row">
+        <div class="searching-left col-sm-12">
             <div th:if="${searchInput != null and !searchInput.isEmpty()}" class="searching-text">Search: "<span th:text="${searchInput}"></span>" </div>
             <div th:if="${course_type_name != null and !course_type_name.isEmpty()}" class="searching-text">Course Type: "<span th:text="${course_type_name}"></span>" </div>
             <div th:unless="${(searchInput != null and !searchInput.isEmpty()) or (course_type_name != null and !course_type_name.isEmpty())}" class="searching-text">Course List</div>
         </div>
-        <div class="searching-right">
+        <div class="searching-right col-sm-12">
             <form th:action="@{/course/list/1}" class="tl-13-banner-search-form" method="get">
                 <input type="search" onkeyup="search()" name="searchInput" id="searchInput" placeholder="Search your course">
                 <button type="submit">Find course</button>

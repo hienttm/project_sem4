@@ -205,12 +205,12 @@
                                                     </li>
                                                     <li class="list-inline-item chart-border-left me-0">
                                                         <h4>
-                                                            <span data-plugin="counterup" id="profit-ratio">60</span>%<span class="text-muted d-inline-block fs-13 align-middle ms-2">Profit Ratio</span>
+                                                            <span data-plugin="counterup" id="profit-ratio" th:text="${profit}"></span>%<span class="text-muted d-inline-block fs-13 align-middle ms-2">Profit Ratio</span>
                                                         </h4>
                                                     </li>
                                                     <li class="list-inline-item chart-border-left me-0">
                                                         <h4 class="text-primary">
-                                                            <span id="profitNumber" th:text="${totalYear*0.6}"></span>$
+                                                            <span id="profitNumber" th:text="${totalYear*profit/100}"></span>$
                                                             <span class="text-muted d-inline-block fs-13 align-middle ms-2">Your Profits</span>
                                                         </h4>
                                                     </li>

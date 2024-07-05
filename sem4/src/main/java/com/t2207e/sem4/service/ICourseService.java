@@ -3,7 +3,6 @@ package com.t2207e.sem4.service;
 import com.t2207e.sem4.dto.CourseDTO;
 import com.t2207e.sem4.dto.OrderDetailByUserDTO;
 import com.t2207e.sem4.entity.Course;
-import com.t2207e.sem4.entity.CourseType;
 import com.t2207e.sem4.entity.User;
 
 import java.util.List;
@@ -21,4 +20,5 @@ public interface ICourseService {
     List<Course> getCoursesByUser(User user);
     List<Course> getCoursesByUserAndStatus(User user, Integer status);
     List<OrderDetailByUserDTO> GetOrderDetailByUserIdProcedure(Integer userIdSearch);
+    List<Course> findTopCourses();
 }

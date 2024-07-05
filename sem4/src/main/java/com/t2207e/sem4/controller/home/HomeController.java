@@ -1,10 +1,11 @@
 package com.t2207e.sem4.controller.home;
 
 import com.t2207e.sem4.dto.CourseDTO;
+import com.t2207e.sem4.entity.Course;
 import com.t2207e.sem4.entity.CourseType;
-import com.t2207e.sem4.service.CourseService;
-import com.t2207e.sem4.service.CourseTypeService;
-import com.t2207e.sem4.service.EmailService;
+import com.t2207e.sem4.entity.Review;
+import com.t2207e.sem4.entity.TeacherRegister;
+import com.t2207e.sem4.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,20 +19,30 @@ public class HomeController {
     private final CourseService courseService;
     private final CourseTypeService courseTypeService;
     private final EmailService emailService;
+    private final ReviewService reviewService;
+    private final TeacherRegisterService teacherRegisterService;
 
-    public HomeController(CourseService courseService, CourseTypeService courseTypeService, EmailService emailService) {
+    public HomeController(CourseService courseService, CourseTypeService courseTypeService, EmailService emailService, ReviewService reviewService, TeacherRegisterService teacherRegisterService) {
         this.courseService = courseService;
         this.courseTypeService = courseTypeService;
         this.emailService = emailService;
+        this.reviewService = reviewService;
+        this.teacherRegisterService = teacherRegisterService;
     }
 
     @GetMapping("/")
     public String home(Model model){
-        List<CourseDTO> courseDTOs = courseService.GetAllCourseProcedure("");
-        model.addAttribute("courseDTOs", courseDTOs);
+        List<Course> courses = courseService.findTopCourses();
+        model.addAttribute("courses", courses);
 
         List<CourseType> courseTypes = courseTypeService.getAllCourseType();
         model.addAttribute("courseTypes", courseTypes);
+
+        List<Review> reviews = reviewService.getReviewsByFeatured(1);
+        model.addAttribute("reviews", reviews);
+
+        List<TeacherRegister> teacherRegisters = teacherRegisterService.listTeacherRegisters();
+        model.addAttribute("teacherRegisters", teacherRegisters);
         return "home/index";
     }
 

@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 
 @Controller
@@ -47,8 +48,14 @@ public class AdminController {
 
     @GetMapping("dashboard")
     public String dashboard(Model model){
-        Policy policy = policyService.getAllPolicy().getFirst();
-        model.addAttribute("policy" ,policy);
+        List<Policy> policies = policyService.getAllPolicy();
+        Optional<Policy> optionalPolicy = policies.stream().findFirst();
+
+        if (optionalPolicy.isPresent()) {
+            model.addAttribute("policy", optionalPolicy.get());
+        } else {
+            model.addAttribute("policy", new Policy());
+        }
 
         Integer countUser = userRoleService.countUserRoleByRole_RoleName("ROLE_USER");
         model.addAttribute("countUser", countUser);

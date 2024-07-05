@@ -1,9 +1,10 @@
 package com.t2207e.sem4.repository;
 
 import com.t2207e.sem4.entity.Course;
-import com.t2207e.sem4.entity.CourseType;
 import com.t2207e.sem4.entity.User;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
 
@@ -25,4 +26,7 @@ public interface ICourseRepository extends JpaRepository<Course, Integer> {
 
     @Procedure(name = "GetOrderDetailByUserIdProcedure")
     List<Object[]> GetOrderDetailByUserIdProcedure(@Param("user_id_search") Integer userIdSearch);
+
+    @Query("SELECT c FROM Course c ORDER BY c.courseId DESC")
+    List<Course> findTopCourses(Pageable pageable);
 }

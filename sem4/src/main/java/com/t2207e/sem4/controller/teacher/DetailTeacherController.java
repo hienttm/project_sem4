@@ -92,8 +92,14 @@ public class DetailTeacherController {
                 model.addAttribute("totalMonth", totalMonth.get());
                 model.addAttribute("totalYear", totalYear.get());
 
-                Policy policy = policyService.getAllPolicy().getFirst();
-                model.addAttribute("profit", policy.getRatio());
+                List<Policy> policies = policyService.getAllPolicy();
+                Optional<Policy> optionalPolicy = policies.stream().findFirst();
+
+                if (optionalPolicy.isPresent()) {
+                    model.addAttribute("profit", optionalPolicy.get().getRatio());
+                } else {
+                    model.addAttribute("profit", new Policy().getRatio());
+                }
 
                 return "teacher/detail";
             }

@@ -97,32 +97,31 @@
 <section class="tl-13-courses pt-120 pb-120" data-bg-color="#F2EFE8">
     <div class="container">
         <div class="tl-13-section-heading">
-            <h2 class="tl-13-section-title">Explore <span class="last-word">Courses</span></h2>
+            <h2 class="tl-13-section-title">New <span class="last-word">Courses</span></h2>
             <div class="tl-13-courses-slider-nav"></div>
         </div>
 
         <div class="tl-13-courses-slider owl-carousel">
-            <div class="tl-9-class tl-13-course" th:each="courseDTO: ${courseDTOs}">
-                <span th:if="${courseDTO.salePrice!=0}" class="tl-9-class-tag" style="font-size: 16px;">$<span th:text="${courseDTO.salePrice}"></span> <del style="font-size: 12px; color: yellow; padding-left: 10px">$<del th:text="${courseDTO.price}"></del></del></span>
-                <span th:unless="${courseDTO.salePrice!=0}" class="tl-9-class-tag" style="font-size: 16px;">$<span th:text="${courseDTO.price}"></span></span>
-                <img th:src="${courseDTO.image}" alt="class image" class="tl-9-class-img">
-                <h3 class="tl-13-course-title"><a th:href="'/course/detail/' + ${courseDTO.courseId}" th:text="${courseDTO.courseName}"></a></h3>
+            <div class="tl-9-class tl-13-course" th:each="course: ${courses}">
+                <span th:if="${course.salePrice!=0}" class="tl-9-class-tag" style="font-size: 16px;">$<span th:text="${course.salePrice}"></span> <del style="font-size: 12px; color: yellow; padding-left: 10px">$<del th:text="${course.price}"></del></del></span>
+                <span th:unless="${course.salePrice!=0}" class="tl-9-class-tag" style="font-size: 16px;">$<span th:text="${course.price}"></span></span>
+                <img th:src="${course.image}" alt="class image" class="tl-9-class-img">
+                <h3 class="tl-13-course-title"><a th:href="'/course/detail/' + ${course.courseId}" th:text="${course.courseName}"></a></h3>
                 <div class="tl-12-course-stats">
                     <div class="tl-12-course-stat">
                         <span class="tl-12-course-stat-icon"><i class="fa-regular fa-book-blank"></i></span>
-                        <span class="tl-12-course-stat-txt"><span th:text="${courseDTO.freeNumbers}"></span> Free Lessons</span>
+                        <span class="tl-12-course-stat-txt"><span th:text="${course.freeNumbers}"></span> Free Lessons</span>
                     </div>
                     <div class="tl-12-course-stat">
                         <span class="tl-12-course-stat-icon"><i class="fa-regular fa-user-group"></i></span>
-                        <span class="tl-12-course-stat-txt">Teacher: <span th:text="${courseDTO.username}"></span></span>
+                        <span class="tl-12-course-stat-txt">Teacher: <span th:text="${course.user.username}"></span></span>
                     </div>
                 </div>
                 <div class="tl-13-course-actions">
-                    <span href="#" class="tl-9-program-btn" th:text="${courseDTO.courseTypeName}"></span>
-                    <span href="#" class="tl-9-program-btn" th:text="${courseDTO.categoryName}"></span>
+                    <span href="#" class="tl-9-program-btn" th:text="${course.courseType.typeName}"></span>
+                    <span href="#" class="tl-9-program-btn" th:text="${course.category.categoryName}"></span>
                 </div>
             </div>
-
         </div>
     </div>
 </section>
@@ -137,8 +136,7 @@
             <div class="col-lg-5">
                 <div class="tl-13-testimonial-img">
                     <div class="tl-13-testimonial-user-slider">
-                        <img src="home/images/tl-4/testimony-1.jpg" alt="User Image">
-                        <img src="home/images/tl-4/testimony-2.jpg" alt="User Image">
+                        <img th:src="${review.user.image}" alt="User Image" th:each="review: ${reviews}">
                     </div>
 
                     <img src="home/images/tl-13/quote-icon.png" alt="icon" class="tl-13-testimonial-quote-icon">
@@ -147,27 +145,21 @@
 
             <div class="col-lg-7">
                 <div class="tl-13-testimonial-slider">
-                    <div class="tl-4-testimony-txt">
-                        <p class="tl-4-testimony-review">Morbi consectetur elementum purus mattis cursus purus vel metus iaculis sagittis. Vestibulum molestie bibendum turpis luctus sem lacinia quis. Quisque amet velit sit amet dui hendrerit ultricies a id ipsum Mauris sit amet lacinia est, vitae tristique metus tempor nibh ultricies.</p>
+                    <div class="tl-4-testimony-txt" th:each="review: ${reviews}">
+                        <div class="tl-course-details-stars mb-10 d-flex justify-content-center align-items-center" style="font-size: 35px">
+                                    <span th:each="i : ${#numbers.sequence(1, 5)}">
+                                        <i th:if="${i<=review.starNumber}" class="fa-solid fa-star"></i>
+                                        <i th:if="${i>review.starNumber}" class="fa-regular fa-star"></i>
+                                    </span>
+                        </div>
+                        <p class="tl-4-testimony-review" th:text="${review.comment}">.</p>
 
                         <div class="tl-4-reviewer">
-                            <img src="home/images/tl-4/user-1.jpg" alt="User Image" class="tl-4-reviewer-img">
+                            <img th:src="${review.user.image}" alt="User Image" class="tl-4-reviewer-img">
 
                             <div class="tl-4-reviewer-txt">
                                 <h6 class="tl-4-reviewer-name">Russell Sprout</h6>
                                 <span class="tl-4-reviewer-label">Student, CSE</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tl-4-testimony-txt">
-                        <p class="tl-4-testimony-review">Morbi consectetur elementum purus mattis cursus purus vel metus iaculis sagittis. Vestibulum molestie bibendum turpis luctus sem lacinia quis. Quisque amet velit sit amet dui hendrerit ultricies a id ipsum Mauris sit amet lacinia est, vitae tristique metus tempor nibh ultricies.</p>
-
-                        <div class="tl-4-reviewer">
-                            <img src="home/images/tl-4/user-2.jpg" alt="User Image" class="tl-4-reviewer-img">
-
-                            <div class="tl-4-reviewer-txt">
-                                <h6 class="tl-4-reviewer-name">Thomas R. Toe</h6>
-                                <span class="tl-4-reviewer-label">B.Tech (CSE) , 2018-2023</span>
                             </div>
                         </div>
                     </div>
@@ -186,66 +178,36 @@
     <div class="container">
         <h2 class="tl-13-section-title">My <span class="last-word">Teachers</span></h2>
 
-        <div class="row g-4 justify-content-center">
-            <div class="col-lg-4 col-md-6">
+        <div class="owl-carousel owl-theme row g-4 justify-content-center">
+            <div class="col-lg-4 col-md-6" style="width: 90%" th:each="teacherRegister: ${teacherRegisters}">
                 <div class="tl-9-event tl-13-event">
                     <div class="tl-11-latest-article-img">
-                        <img src="home/images/tl-12/event-1.jpg" alt="Article Image">
+                        <img th:src="${teacherRegister.user.image}" alt="Article Image">
                     </div>
 
                     <div class="tl-11-latest-article-txt">
+                        <h3 class="tl-11-latest-article-title"><a th:href="'/teacher/detail/'+${teacherRegister.user.userId}" th:text="${teacherRegister.user.fullname}"></a></h3>
                         <div class="tl-3-single-event-info">
-                            <h6 class="tl-3-single-event-location">
-                                <i class="fa-regular fa-location-dot"></i> London, UK
-                            </h6>
                             <h6 class="tl-3-single-event-time">
-                                <i class="fa-regular fa-clock"></i> 6.00 am - 8.00 pm
+                                <i class="fas fa-envelope"></i> <span th:text="${teacherRegister.user.email}"></span>
                             </h6>
                         </div>
-                        <h3 class="tl-11-latest-article-title"><a href="#">Bridging Platforms Seamless Learning Experiences.</a></h3>
-                        <a href="#" class="tl-13-event-btn">Get Ticket <i class="fa-regular fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="tl-9-event tl-13-event">
-                    <div class="tl-11-latest-article-img">
-                        <img src="home/images/tl-12/event-2.jpg" alt="Article Image">
-                    </div>
-
-                    <div class="tl-11-latest-article-txt">
                         <div class="tl-3-single-event-info">
                             <h6 class="tl-3-single-event-location">
-                                <i class="fa-regular fa-location-dot"></i> London, UK
-                            </h6>
-                            <h6 class="tl-3-single-event-time">
-                                <i class="fa-regular fa-clock"></i> 6.00 am - 8.00 pm
+                                <i class="fas fa-phone"></i> <span th:text="${teacherRegister.user.phoneNumber}"></span>
                             </h6>
                         </div>
-                        <h3 class="tl-11-latest-article-title"><a href="#">Empowering Administrators in Driving Online Education.</a></h3>
-                        <a href="#" class="tl-13-event-btn">Get Ticket <i class="fa-regular fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="tl-9-event tl-13-event">
-                    <div class="tl-11-latest-article-img">
-                        <img src="home/images/tl-12/event-3.jpg" alt="Article Image">
-                    </div>
-
-                    <div class="tl-11-latest-article-txt">
-                        <div class="tl-3-single-event-info">
-                            <h6 class="tl-3-single-event-location">
-                                <i class="fa-regular fa-location-dot"></i> London, UK
-                            </h6>
-                            <h6 class="tl-3-single-event-time">
-                                <i class="fa-regular fa-clock"></i> 6.00 am - 8.00 pm
-                            </h6>
+                        <div class="tl-1-course-stats">
+                            <div class="tl-1-course-stat">
+                                <span class="tl-1-course-stat-txt" th:text="${teacherRegister.description}" style="display: -webkit-box;
+                                        -webkit-line-clamp: 1;
+                                        -webkit-box-orient: vertical;
+                                        overflow: hidden;
+                                        text-overflow: ellipsis;
+                                        line-height: 1.5;
+                                    "></span>
+                            </div>
                         </div>
-                        <h3 class="tl-11-latest-article-title"><a href="#">Optimizing Employee Learning and Development.</a></h3>
-                        <a href="#" class="tl-13-event-btn">Get Ticket <i class="fa-regular fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -257,6 +219,26 @@
 
 <!--FOOTER HOME-->
 <div th:insert="~{/home/fragments/footer}"></div>
+<script>
+    $(document).ready(function(){
+        $(".owl-carousel").owlCarousel({
+            loop: true,
+            nav: true,
+            dots: false,
+            responsive:{
+                0:{
+                    items: 1
+                },
+                600:{
+                    items: 2
+                },
+                1000:{
+                    items: 3
+                }
+            }
+        });
+    });
+</script>
 
 </body>
 

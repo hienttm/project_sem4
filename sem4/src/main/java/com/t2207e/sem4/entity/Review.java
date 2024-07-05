@@ -1,6 +1,7 @@
 package com.t2207e.sem4.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,13 +29,17 @@ public class Review {
     private Course course;
 
     @Column(nullable = false)
+    @NotNull(message = "starNumber cannot be null")
     private int starNumber;
 
     @Column(columnDefinition = "TEXT")
     private String comment;
 
     @Column(nullable = false)
+    @NotNull(message = "status cannot be null")
     private int status = 1;
+
+    private int featured = 2;
 
     @Column(nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")

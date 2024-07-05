@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
+      data-sidebar-image="none" data-preloader="disable">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" th:href="@{assets/images/favicon.ico}" />
+</head>
+
+<body>
+<!-- Begin page -->
+<div id="layout-wrapper">
+    <div th:insert="~{admin/fragments/header}"></div>
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <!-- start page title -->
+                <!-- end page title -->
+
+                <div class="row">
+                    <div class="col-xxl-12">
+                        <a th:href="@{add}" class="btn btn-primary mb-2">Add</a>
+
+                        <table id="table1" class="table table-striped" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th>USERNAME</th>
+                                <th>COURSE</th>
+                                <th>STAR</th>
+                                <th>COMMENT</th>
+                                <th>CREATE AT</th>
+                                <th>UPDATE AT</th>
+                                <th>STATUS</th>
+                                <th>FEATURED</th>
+                                <th>BUTTON</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="review: ${reviews}">
+                                <td class="align-middle" th:text="${review.user.username}"></td>
+                                <td class="align-middle" th:text="${review.course.courseName}+'(id='+ ${review.course.courseId} + ')'"></td>
+                                <td class="align-middle text-center fw-semibold" th:text="${review.starNumber}"></td>
+                                <td class="align-middle" th:text="${review.comment}"></td>
+                                <td class="align-middle" th:text="${review.createAt}"></td>
+                                <td class="align-middle" th:text="${review.updateAt}"></td>
+                                <td th:if="${review.status == 1}" class="align-middle text-success fw-bolder">OPEN</td>
+                                <td th:unless="${review.status == 1}" class="align-middle text-danger fw-bolder">LOCK</td>
+                                <td th:if="${review.featured == 1}" class="align-middle text-success fw-bolder">FEATURED</td>
+                                <td th:unless="${review.featured == 1}" class="align-middle text-danger fw-bolder">UNFEATURED</td>
+                                <td class="align-middle">
+                                    <a th:href="@{hidden/{id}(id=${review.reviewId})}" class="btn btn-danger mb-2" th:text="${review.status==1?'LOCK':'OPEN'}"></a>
+                                    <a th:href="@{featured/{id}(id=${review.reviewId})}" class="btn btn-primary" th:text="${review.featured==1?'UNFEATURED':'FEATURED'}"></a>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th>USERNAME</th>
+                                <th>COURSE</th>
+                                <th>STAR</th>
+                                <th>COMMENT</th>
+                                <th>CREATE AT</th>
+                                <th>UPDATE AT</th>
+                                <th>STATUS</th>
+                                <th>FEATURED</th>
+                                <th>BUTTON</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- end row -->
+            </div>
+            <!-- container-fluid -->
+        </div>
+        <!-- End Page-content -->
+    </div>
+    <!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+<!--start back-to-top-->
+<div th:insert="~{admin/fragments/footer}"></div>
+</body>
+
+</html>

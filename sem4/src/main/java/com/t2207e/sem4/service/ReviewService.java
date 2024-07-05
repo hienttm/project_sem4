@@ -48,4 +48,9 @@ public class ReviewService implements IReviewService{
     public List<Review> getReviewsByUserAndCourse(User user, Course course) {
         return reviewRepository.getReviewsByUserAndCourse(user, course);
     }
+
+    @Override
+    public List<Review> getReviewsByFeatured(Integer featured) {
+        return reviewRepository.getReviewsByFeaturedAndStatus(featured, 1);
+    }
 }

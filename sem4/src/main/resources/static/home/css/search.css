@@ -30,14 +30,13 @@
 .searching {
     margin-left: 51.5px;
     margin-right: 51.5px;
-    padding-top: 100px;
+    padding-top: 4rem;
 }
 
-.searching-inner{
-    padding-left: 12px;
-    padding-right: 12px;
-    display: flex;
-    align-items: center;
+@media (max-width: 768px) {
+    .searching-left{
+        display: none;
+    }
 }
 
 .searching-text{

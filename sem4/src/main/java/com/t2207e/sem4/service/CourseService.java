@@ -3,14 +3,13 @@ package com.t2207e.sem4.service;
 import com.t2207e.sem4.dto.CourseDTO;
 import com.t2207e.sem4.dto.OrderDetailByUserDTO;
 import com.t2207e.sem4.entity.Course;
-import com.t2207e.sem4.entity.CourseType;
 import com.t2207e.sem4.entity.User;
 import com.t2207e.sem4.repository.ICourseRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -95,6 +94,11 @@ public class CourseService implements  ICourseService{
                     return orderDetailByUserDTO;
                 })
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Course> findTopCourses() {
+        return courseRepository.findTopCourses(PageRequest.of(0, 8));
     }
 
 
