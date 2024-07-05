@@ -18992,22 +18992,22 @@ textarea::placeholder {
   padding: 5px 15px;
   background-color: #9428EA;
   position: absolute;
-  right: 0;
-  top: 28px;
+  right: 40px;
+  top: 40px;
   font-weight: 700;
   color: var(--white);
   line-height: 1;
 }
-@media screen and (max-width: 1399px) {
-  .tl-9-class-tag {
-    top: 18px;
-  }
-}
-@media screen and (max-width: 1199px) {
-  .tl-9-class-tag {
-    top: 12px;
-  }
-}
+/*@media screen and (max-width: 1399px) {*/
+/*  .tl-9-class-tag {*/
+/*    top: 18px;*/
+/*  }*/
+/*}*/
+/*@media screen and (max-width: 1199px) {*/
+/*  .tl-9-class-tag {*/
+/*    top: 12px;*/
+/*  }*/
+/*}*/
 .tl-9-class-img {
   margin-bottom: 50px;
 }
