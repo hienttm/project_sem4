@@ -17,11 +17,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Optional;
+
 
 @Controller
 @RequestMapping("home/account")
@@ -53,43 +55,53 @@ public class AccountController {
         return "/home/users/accountDetail";
     }
     @PostMapping("updateAccount")
-    public String update(Model model, @Valid @ModelAttribute User user, BindingResult bindingResult, @RequestBody(required = false) MultipartFile fileImage) throws IOException {
+    public String update(Model model, @Valid @ModelAttribute User user, BindingResult bindingResult, MultipartFile fileImage) {
         if(bindingResult.hasErrors()){
             return "/home/users/accountDetail";
         }
-        user.setUpdateAt(new Date(System.currentTimeMillis()));
         if(fileImage != null && !fileImage.isEmpty()) {
-            user.setImage(helperService.ConvertFromImageToBase64String(fileImage));
+            try {
+                user.setImage(helperService.ConvertFromImageToBase64String(fileImage));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
+        user.setUpdateAt(new Date(System.currentTimeMillis()));
         userService.add(user);
         return "/home/users/accountDetail";
     }
     @PostMapping("changePassword")
-    public String changePassword(@RequestParam String oldpasswordInput, @RequestParam String newpasswordInput,@RequestParam String confirmpasswordInput,@RequestParam String username, Model model) {
+    public String changePassword(@RequestParam String oldpasswordInput, @RequestParam String newpasswordInput, @RequestParam String confirmpasswordInput, @RequestParam String username, Model model, RedirectAttributes redirectAttributes) {
         System.out.println(oldpasswordInput);
         System.out.println(newpasswordInput);
         System.out.println(confirmpasswordInput);
         System.out.println(username);
 
         if(!confirmpasswordInput.equals(newpasswordInput)) {
-            model.addAttribute("message", "Password and Re-Password are different!");
-            model.addAttribute("statusMessage", "error");
+            redirectAttributes.addFlashAttribute("message", "Password and Re-Password are different!");
+            redirectAttributes.addFlashAttribute("statusMessage", "error");
             System.out.println("Password and Re-Password are different!");
+            return "redirect:/home/account/detail";
+        }
+        System.out.println(newpasswordInput.length());
+        if(newpasswordInput.length()<6) {
+            redirectAttributes.addFlashAttribute("message", "New password should be at least 6 characters!");
+            redirectAttributes.addFlashAttribute("statusMessage", "error");
             return "redirect:/home/account/detail";
         }
         User user=userService.getUserByUsername(username).get();
 
         if(!passwordEncoder.matches(oldpasswordInput,user.getPassword())) {
-            model.addAttribute("message", "Old password is wrong!");
-            model.addAttribute("statusMessage", "error");
+            redirectAttributes.addFlashAttribute("message", "Old password is wrong!");
+            redirectAttributes.addFlashAttribute("statusMessage", "error");
             System.out.println("Old password is incorrect!");
             return "redirect:/home/account/detail";
         }else{
             String encodedNewpasswordInput =passwordEncoder.encode(newpasswordInput);
             user.setPassword(encodedNewpasswordInput);
             userService.add(user);
-            model.addAttribute("message", "New password has been changed!");
-            model.addAttribute("statusMessage", "success");
+            redirectAttributes.addFlashAttribute("message", "New password has been changed!");
+            redirectAttributes.addFlashAttribute("statusMessage", "success");
             System.out.println("Change password is success");
             return "redirect:/home/account/detail";
         }

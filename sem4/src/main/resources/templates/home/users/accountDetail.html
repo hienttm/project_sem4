@@ -63,6 +63,7 @@
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="v-pills-personal-detail" role="tabpanel" aria-labelledby="v-pills-personal-detail-tab">
                         <form th:action="@{/home/account/updateAccount}" th:object="${user}" method="post" enctype="multipart/form-data">
+                            <input type="hidden" th:field="*{userId}">
                             <input type="hidden" th:field="*{image}">
                             <input type="hidden" th:field="*{password}">
 
