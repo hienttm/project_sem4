@@ -4,12 +4,11 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Admin</title>
+    <title>Teacher - Edit Exam</title>
+    <link rel="icon" th:href="@{/assets/images/logo-sm.png}" sizes="64x64">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
-    <!-- App favicon -->
-    <link rel="shortcut icon" th:href="@{/assets/images/favicon.ico}" />
 </head>
 
 <body>
@@ -30,15 +29,12 @@
                 </div>
                 <div class="pt-4 mb-4 mb-lg-3 pb-lg-4 profile-wrapper">
                     <div class="row g-4">
-                        <div class="col-auto">
-                            <div class="avatar-lg">
-                                <img src="/home/images/NoImage.png" alt="user-img" class="img-thumbnail">
-                            </div>
-                        </div>
-                        <!--end col-->
                         <div class="col">
                             <div class="p-2">
                                 <h3 class="text-white mb-1" th:text="${exam.examName}"></h3>
+                            </div>
+                            <div class="p-2">
+                                <a class="text-white mb-1 btn btn-danger" th:href="'/roleTeacher/course/edit/' + ${exam.course.courseId}">Back to course</a>
                             </div>
                         </div>
 
@@ -157,7 +153,7 @@
                                                                 <td class="align-middle" th:text="${userDoExamDTO.phoneNumber}"></td>
                                                             </tr>
                                                         </tbody>
-                                                        <tfoot>
+                                                        <tfoot th:if="${userDoExamDTOs.size()>5}">
                                                         <tr>
                                                             <th>FULL NAME</th>
                                                             <th>TRUE/TOTAL</th>

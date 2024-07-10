@@ -4,12 +4,11 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Admin</title>
+    <title>Admin - Review List</title>
+    <link rel="icon" th:href="@{/assets/images/logo-sm.png}" sizes="64x64">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
-    <!-- App favicon -->
-    <link rel="shortcut icon" th:href="@{assets/images/favicon.ico}" />
 </head>
 
 <body>
@@ -62,7 +61,7 @@
                                 </td>
                             </tr>
                             </tbody>
-                            <tfoot>
+                            <tfoot  th:if="${reviews.size()>5}">
                             <tr>
                                 <th>USERNAME</th>
                                 <th>COURSE</th>

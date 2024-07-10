@@ -4,12 +4,10 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Admin</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin - Course Type Detail</title>
+    <link rel="icon" th:href="@{/assets/images/logo-sm.png}" sizes="64x64">    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
-    <!-- App favicon -->
-    <link rel="shortcut icon" th:href="@{assets/images/favicon.ico}" />
 </head>
 
 <body>
@@ -55,7 +53,7 @@
                                 </td>
                             </tr>
                             </tbody>
-                            <tfoot>
+                            <tfoot th:if="${courseTypes.size()>5}">
                             <tr>
                                 <th>ID</th>
                                 <th>ROLE NAME</th>

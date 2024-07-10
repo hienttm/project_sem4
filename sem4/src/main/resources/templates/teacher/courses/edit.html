@@ -4,12 +4,11 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Admin</title>
+    <title>Teacher - Edit Course</title>
+    <link rel="icon" th:href="@{/assets/images/logo-sm.png}" sizes="64x64">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
-    <!-- App favicon -->
-    <link rel="shortcut icon" th:href="@{/assets/images/favicon.ico}" />
 </head>
 
 <body>
@@ -128,8 +127,8 @@
                                                                     <div style="color: red" th:if="${#fields.hasErrors('courseName')}" th:errors="*{courseName}" class="error"></div>
                                                                 </div>
                                                                 <div class="mb-3 col">
-                                                                    <label for="freeNumbers" class="form-label">Free Number</label>
-                                                                    <input th:field="*{freeNumbers}" type="number" class="form-control" id="freeNumbers" name="freeNumbers" placeholder="Free Number">
+                                                                    <label for="freeNumbers" class="form-label">Number of free Chapters</label>
+                                                                    <input th:field="*{freeNumbers}" type="number" class="form-control" id="freeNumbers" name="freeNumbers" placeholder="Number of free Chapters">
                                                                     <div style="color: red" th:if="${#fields.hasErrors('freeNumbers')}" th:errors="*{freeNumbers}" class="error"></div>
                                                                 </div>
                                                             </div>
@@ -314,7 +313,7 @@
                                                             <td class="align-middle" th:text="${orderDetail.order.user.phoneNumber}"></td>
                                                         </tr>
                                                         </tbody>
-                                                        <tfoot>
+                                                        <tfoot th:if="${orderDetails.size()>5}">
                                                         <tr>
                                                             <th>FULL NAME</th>
                                                             <th>PRICE</th>

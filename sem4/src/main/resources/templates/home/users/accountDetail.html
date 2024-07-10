@@ -225,8 +225,8 @@
                                 <td><a th:href="'/course/detail/' +${orderDetail.course.courseId}" style="text-decoration: underline">Go to your course</a></td>
                             </tr>
                             </tbody>
-                            <tfoot>
-                            <tr th:if="${orderDetails.size()>5}">
+                            <tfoot th:if="${orderDetails.size()>5}">
+                            <tr>
                                 <th>COURSE NAME</th>
                                 <th>BUY AT</th>
                                 <th>PRICE</th>
@@ -247,6 +247,15 @@
 <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.js"></script>
 <script>
     new DataTable('#table1');
+
+    var table = $('#table1').DataTable();
+
+    var pageInfo = table.page.info();
+    var totalPages = pageInfo.pages;
+
+    if (totalPages <= 1) {
+        $('.paging_full_numbers').hide();
+    }
 </script>
 <!-- CONTACT SECTION ENDS HERE -->
 </body>

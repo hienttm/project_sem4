@@ -62,4 +62,12 @@
 
 <script>
     new DataTable('#table1');
+
+    var table = $('#table1').DataTable();
+    var pageInfo = table.page.info();
+    var totalPages = pageInfo.pages;
+
+    if (totalPages <= 1) {
+        $('#table1_paginate').hide();
+    }
 </script>
