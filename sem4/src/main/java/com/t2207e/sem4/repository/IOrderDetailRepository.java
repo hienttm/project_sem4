@@ -16,6 +16,7 @@ public interface IOrderDetailRepository extends JpaRepository<OrderDetail, Integ
     List<OrderDetail> getOrderDetailsByCourse_CourseId(Integer courseId);
     List<OrderDetail> getOrderDetailsByCourse_User_UserId(Integer userId);
     List<OrderDetail> getOrderDetailsByOrder(Order order);
+    List<OrderDetail> getOrderDetailsByOrder_StatusAndOrder_User(Integer status ,User user);
     @Procedure(name = "RevenueChartDayTeacherProcedure")
     List<Object[]> RevenueChartDayTeacherProcedure(@Param("userId") Integer userId);
     @Procedure(name = "RevenueChartWeekTeacherProcedure")

@@ -61,6 +61,7 @@
 
                         <div class="row">
                             <div class="col-12 col-sm-12">
+                                <label class="text-black" for="fullname">Full Name</label>
                                 <input th:field="*{fullname}" id="fullname" name="fullname" type="text" class="form-control" placeholder="Full Name" required/>
                             </div>
                         </div>
@@ -69,24 +70,94 @@
                         <div style="color: red" th:if="${exceptionE != null and !exceptionE.isEmpty()}" th:text="${exceptionE}" class="error"></div>
                         <div class="row">
                             <div class="col-12 col-sm-6">
+                                <label class="text-black" for="phone">Phone Number</label>
                                 <input th:field="*{phoneNumber}" id="phone" name="phone" type="text" class="form-control" placeholder="Phone Number" required/>
                             </div>
                             <div class="col-12 col-sm-6">
+                                <label class="text-black" for="email">Email</label>
                                 <input th:field="*{email}" id="email" name="email" type="email" class="form-control" placeholder="E-mail Address" required/>
                             </div>
                         </div>
+                        <div style="color: red" th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}" class="error"></div>
+                        <div style="color: red" th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="error"></div>
                         <div class="row">
                             <div class="col-12 col-sm-6">
-                                <div style="color: red" th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="error"></div>
-                                <input th:field="*{address}" id="address" name="address" type="text" class="form-control" placeholder="Address" required/>
+                                <label class="text-black" for="address">Address</label>
+                                <select class="form-control form-select form-select-sm mb-3" id="address" name="address" aria-label=".form-select-sm" th:field="*{address}">
+                                    <option value="" selected="selected">--Select your city--</option>
+                                    <option value="Thành phố Hà Nội">Thành phố Hà Nội</option>
+                                    <option value="Tỉnh Hà Giang">Tỉnh Hà Giang</option>
+                                    <option value="Tỉnh Cao Bằng">Tỉnh Cao Bằng</option>
+                                    <option value="Tỉnh Bắc Kạn">Tỉnh Bắc Kạn</option>
+                                    <option value="Tỉnh Tuyên Quang">Tỉnh Tuyên Quang</option>
+                                    <option value="Tỉnh Lào Cai">Tỉnh Lào Cai</option>
+                                    <option value="Tỉnh Điện Biên">Tỉnh Điện Biên</option>
+                                    <option value="Tỉnh Lai Châu">Tỉnh Lai Châu</option>
+                                    <option value="Tỉnh Sơn La">Tỉnh Sơn La</option>
+                                    <option value="Tỉnh Yên Bái">Tỉnh Yên Bái</option>
+                                    <option value="Tỉnh Hoà Bình">Tỉnh Hoà Bình</option>
+                                    <option value="Tỉnh Thái Nguyên">Tỉnh Thái Nguyên</option>
+                                    <option value="Tỉnh Lạng Sơn">Tỉnh Lạng Sơn</option>
+                                    <option value="Tỉnh Quảng Ninh">Tỉnh Quảng Ninh</option>
+                                    <option value="Tỉnh Bắc Giang">Tỉnh Bắc Giang</option>
+                                    <option value="Tỉnh Phú Thọ">Tỉnh Phú Thọ</option>
+                                    <option value="Tỉnh Vĩnh Phúc">Tỉnh Vĩnh Phúc</option>
+                                    <option value="Tỉnh Bắc Ninh">Tỉnh Bắc Ninh</option>
+                                    <option value="Tỉnh Hải Dương">Tỉnh Hải Dương</option>
+                                    <option value="Thành phố Hải Phòng">Thành phố Hải Phòng</option>
+                                    <option value="Tỉnh Hưng Yên">Tỉnh Hưng Yên</option>
+                                    <option value="Tỉnh Thái Bình">Tỉnh Thái Bình</option>
+                                    <option value="Tỉnh Hà Nam">Tỉnh Hà Nam</option>
+                                    <option value="Tỉnh Nam Định">Tỉnh Nam Định</option>
+                                    <option value="Tỉnh Ninh Bình">Tỉnh Ninh Bình</option>
+                                    <option value="Tỉnh Thanh Hóa">Tỉnh Thanh Hóa</option>
+                                    <option value="Tỉnh Nghệ An">Tỉnh Nghệ An</option>
+                                    <option value="Tỉnh Hà Tĩnh">Tỉnh Hà Tĩnh</option>
+                                    <option value="Tỉnh Quảng Bình">Tỉnh Quảng Bình</option>
+                                    <option value="Tỉnh Quảng Trị">Tỉnh Quảng Trị</option>
+                                    <option value="Tỉnh Thừa Thiên Huế">Tỉnh Thừa Thiên Huế</option>
+                                    <option value="Thành phố Đà Nẵng">Thành phố Đà Nẵng</option>
+                                    <option value="Tỉnh Quảng Nam">Tỉnh Quảng Nam</option>
+                                    <option value="Tỉnh Quảng Ngãi">Tỉnh Quảng Ngãi</option>
+                                    <option value="Tỉnh Bình Định">Tỉnh Bình Định</option>
+                                    <option value="Tỉnh Phú Yên">Tỉnh Phú Yên</option>
+                                    <option value="Tỉnh Khánh Hòa">Tỉnh Khánh Hòa</option>
+                                    <option value="Tỉnh Ninh Thuận">Tỉnh Ninh Thuận</option>
+                                    <option value="Tỉnh Bình Thuận">Tỉnh Bình Thuận</option>
+                                    <option value="Tỉnh Kon Tum">Tỉnh Kon Tum</option>
+                                    <option value="Tỉnh Gia Lai">Tỉnh Gia Lai</option>
+                                    <option value="Tỉnh Đắk Lắk">Tỉnh Đắk Lắk</option>
+                                    <option value="Tỉnh Đắk Nông">Tỉnh Đắk Nông</option>
+                                    <option value="Tỉnh Lâm Đồng">Tỉnh Lâm Đồng</option>
+                                    <option value="Tỉnh Bình Phước">Tỉnh Bình Phước</option>
+                                    <option value="Tỉnh Tây Ninh">Tỉnh Tây Ninh</option>
+                                    <option value="Tỉnh Bình Dương">Tỉnh Bình Dương</option>
+                                    <option value="Tỉnh Đồng Nai">Tỉnh Đồng Nai</option>
+                                    <option value="Tỉnh Bà Rịa - Vũng Tàu">Tỉnh Bà Rịa - Vũng Tàu</option>
+                                    <option value="Thành phố Hồ Chí Minh">Thành phố Hồ Chí Minh</option>
+                                    <option value="Tỉnh Long An">Tỉnh Long An</option>
+                                    <option value="Tỉnh Tiền Giang">Tỉnh Tiền Giang</option>
+                                    <option value="Tỉnh Bến Tre">Tỉnh Bến Tre</option>
+                                    <option value="Tỉnh Trà Vinh">Tỉnh Trà Vinh</option>
+                                    <option value="Tỉnh Vĩnh Long">Tỉnh Vĩnh Long</option>
+                                    <option value="Tỉnh Đồng Tháp">Tỉnh Đồng Tháp</option>
+                                    <option value="Tỉnh An Giang">Tỉnh An Giang</option>
+                                    <option value="Tỉnh Kiên Giang">Tỉnh Kiên Giang</option>
+                                    <option value="Thành phố Cần Thơ">Thành phố Cần Thơ</option>
+                                    <option value="Tỉnh Hậu Giang">Tỉnh Hậu Giang</option>
+                                    <option value="Tỉnh Sóc Trăng">Tỉnh Sóc Trăng</option>
+                                    <option value="Tỉnh Bạc Liêu">Tỉnh Bạc Liêu</option>
+                                    <option value="Tỉnh Cà Mau">Tỉnh Cà Mau</option>
+                                </select>
                             </div>
                             <div class="col-12 col-sm-6">
-                                <div style="color: red" th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}" class="error"></div>
-                                <input th:field="*{birthday}" id="birthday" name="birthday" type="date" class="form-control" placeholder="E-mail Address" required/>
+                                <label class="text-black" for="birthday">Birth Day</label>
+                                <input th:field="*{birthday}" id="birthday" name="birthday" type="date" class="form-control" value="" required/>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12 col-sm-12">
+                                <label class="text-black" for="gender">Gender</label>
                                 <select th:field="*{gender}" id="gender" name="gender" class="form-control">
                                     <option value="1">Male</option>
                                     <option value="2">Female</option>
@@ -97,18 +168,22 @@
                         <div style="color: red" th:if="${exception != null and !exception.isEmpty()}" th:text="${exception}" class="error"></div>
                         <div class="row">
                             <div class="col-12 col-sm-12">
+                                <label class="text-black" for="username">Username</label>
                                 <input th:field="*{username}" id="username" name="username" type="text" class="form-control" placeholder="Username" required/>
                             </div>
                         </div>
                         <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></div>
                         <div class="row">
                             <div class="col-12 col-sm-12">
+                                <label class="text-black" for="password">Password</label>
                                 <input th:field="*{password}" id="password" name="password" type="password" class="form-control" placeholder="Password" required/>
                             </div>
                         </div>
                         <div style="color: red" th:if="${exceptionRP != null and !exceptionRP.isEmpty()}" th:text="${exceptionRP}" class="error"></div>
+                        <div style="color: red" id="errorRP"></div>
                         <div class="row">
                             <div class="col-12 col-sm-12">
+                                <label class="text-black" for="rePassword">Re-Password</label>
                                 <input id="rePassword" name="rePassword" type="password" class="form-control" placeholder="Re-password" required/>
                             </div>
                         </div>
@@ -137,19 +212,17 @@
 </html>
 
 <script th:inline="javascript">
-    /*<![CDATA[*/
     document.addEventListener('DOMContentLoaded', function () {
         const password = document.getElementById('password');
         const rePassword = document.getElementById('rePassword');
-        const error = document.getElementById('error');
+        const error = document.getElementById('errorRP');
 
         rePassword.addEventListener('keyup', function () {
             if (password.value !== rePassword.value) {
-                error.textContent = 'Mật khẩu không khớp!';
+                error.textContent = 'Password and RePassword are different!';
             } else {
                 error.textContent = '';
             }
         });
     });
-    /*]]>*/
 </script>

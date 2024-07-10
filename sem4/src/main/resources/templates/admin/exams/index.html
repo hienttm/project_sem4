@@ -33,7 +33,6 @@
                             <tr>
                                 <th>ID</th>
                                 <th>EXAM NAME</th>
-                                <th>NUMBER QUESTION</th>
                                 <th>TIME</th>
                                 <th>UPDATED AT</th>
                                 <th>COURSE</th>
@@ -45,7 +44,6 @@
                             <tr th:each="exam: ${exams}">
                                 <td class="align-middle" th:text="${exam.examId}"></td>
                                 <td class="align-middle" th:text="${exam.examName}"></td>
-                                <td class="align-middle" th:text="${exam.numberQuestion}"></td>
                                 <td class="align-middle"><span th:text="${exam.time}"></span>'</td>
                                 <td class="align-middle" th:text="${exam.createAt}"></td>
                                 <td class="align-middle" th:text="${exam.course.courseName}"></td>
@@ -61,7 +59,6 @@
                             <tr>
                                 <th>ID</th>
                                 <th>EXAM NAME</th>
-                                <th>NUMBER QUESTION</th>
                                 <th>TIME</th>
                                 <th>UPDATED AT</th>
                                 <th>DESCRIPTION</th>

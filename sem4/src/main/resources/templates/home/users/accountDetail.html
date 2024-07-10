@@ -7,7 +7,9 @@
 
 </head>
 <body style="background-color: #f1f1f1;">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <div th:insert="~{home/fragments/header}"></div>
+<link rel="stylesheet" th:href="@{/home/css/account-detail.css}">
 <!-- BREADCRUMB STARTS HERE -->
 <div class="tl-breadcrumb border-0 pt-120 pb-120">
     <div class="container">
@@ -48,8 +50,7 @@
                 <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                     <button class="detail2 active " id="v-pills-personal-detail-tab" data-bs-toggle="pill" data-bs-target="#v-pills-personal-detail" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Account Detail</button>
                     <button class=" detail2" id="v-pills-change-password-tab" data-bs-toggle="pill" data-bs-target="#v-pills-change-password" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Change Password</button>
-                    <button class=" detail2" id="v-pills-my-orders-tab" data-bs-toggle="pill" data-bs-target="#v-pills-my-orders" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">My Orders</button>
-                    <button class=" detail2" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</button>
+                    <button class=" detail2" id="v-pills-my-courses-tab" data-bs-toggle="pill" data-bs-target="#v-pills-my-courses" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">My Courses</button>
                 </div>
             </div>
 
@@ -204,14 +205,49 @@
                             <!--end row-->
                         </form>
                     </div>
-                    <div class="tab-pane fade" id="v-pills-my-orders " role="tabpanel" aria-labelledby="v-pills-my-orders-tab">aaaaaaa</div>
-                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">fffffff</div>
+                    <div class="tab-pane fade" id="v-pills-my-courses" role="tabpanel" aria-labelledby="v-pills-my-courses-tab">
+                        <table id="table1" class="table" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th>COURSE NAME</th>
+                                <th>BUY AT</th>
+                                <th>PRICE</th>
+                                <th>COURSE TYPE</th>
+                                <th>BUTTON</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="orderDetail: ${orderDetails}">
+                                <td th:text="${orderDetail.course.courseName}"></td>
+                                <td th:text="${orderDetail.order.updateAt}"></td>
+                                <td><span th:text="${orderDetail.price}"></span> $</td>
+                                <td th:text="${orderDetail.course.courseType.typeName}"></td>
+                                <td><a th:href="'/course/detail/' +${orderDetail.course.courseId}" style="text-decoration: underline">Go to your course</a></td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr th:if="${orderDetails.size()>5}">
+                                <th>COURSE NAME</th>
+                                <th>BUY AT</th>
+                                <th>PRICE</th>
+                                <th>COURSE TYPE</th>
+                                <th>BUTTON</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 <div th:insert="~{home/fragments/footer}"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.js"></script>
+<script>
+    new DataTable('#table1');
+</script>
 <!-- CONTACT SECTION ENDS HERE -->
 </body>
 </html>

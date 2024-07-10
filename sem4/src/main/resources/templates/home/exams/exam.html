@@ -92,18 +92,15 @@
 
         <div class='content-wrapper'>
 
+            <h1 class="text-success fw-semibold text-center" id="success-submit"></h1>
 
-            <div class='xl-container'>
+            <div class='xl-container' id="container-exam">
 
 
                 <h1 class='h4 text-center' ><span th:text="${exam.examName}"></span>
-
-                    <a class='btn btn-sky btn-sm' th:href="@{/}">Thoát</a>
-
-
+                    <a class='btn btn-sky btn-sm' th:href="@{/}">Back to Home</a>
                 </h1>
                 <h3 th:text="${exam.description}"></h3>
-
 
                 <form class="test-form" autocomplete="off" th:action="@{submit}"
                       method="POST" id="form-exam">
@@ -229,15 +226,14 @@
                                 <div>
                                     <div class='timeleft-wrapper mb-2'>
 
-                                        Thời gian còn lại:
+                                        Time remaining:
                                         <span th:data-totaltime="${exam.time}" th:data-timeleft-value="${exam.time}" id='timeleft' class='timeleft'></span>
 
                                     </div>
 
-                                    <button type="submit" class='btn btn-outline-primary btn-block mb-3 mt-3' id='submit-test'>NỘP BÀI</button>
+                                    <button type="submit" class='btn btn-outline-primary btn-block mb-3 mt-3' id='submit-test'>SUBMIT</button>
 
-                                    <p class="text-warning font-sm"><i><b>Chú ý: Bạn có thể click vào số thứ tự câu
-                                        hỏi trong bài để đánh dấu review</b></i></p>
+                                    <p class="text-warning font-sm"><i><b>Note: You can click on the question number in the article to mark the review</b></i></p>
 
                                     <div class='test-questions-list'>
 
@@ -461,17 +457,40 @@
 </script>
 
 <script>
+    var submitCheck = false;
     function updateTimeAndSubmit() {
         const span = document.getElementById('timeleft');
         const form = document.getElementById('form-exam');
 
         let timeLeft = span.getAttribute('data-timeleft-value');
 
-        if (timeLeft <= 0) {
+        if (timeLeft <= 0 && submitCheck === false) {
             form.submit();
+            submitCheck = true;
         }
     }
     setInterval(updateTimeAndSubmit, 1000);
+
+
+    window.addEventListener('beforeunload', function (event) {
+        if(submitCheck === false){
+            // Tạo và gửi form tự động
+            var form = document.getElementById('form-exam');
+            var formData = new FormData(form);
+
+            // Sử dụng Fetch API để gửi form mà không cần chặn thoát trang
+            navigator.sendBeacon(form.action, formData);
+            submitCheck = true;
+
+            let successSubmit = document.getElementById("success-submit");
+            successSubmit.innerHTML = "Your exam has been submit!";
+            let containerExam = document.getElementById("container-exam");
+            containerExam.style.display = "none";
+        }
+    });
+
+
+
 </script>
 
 </body>

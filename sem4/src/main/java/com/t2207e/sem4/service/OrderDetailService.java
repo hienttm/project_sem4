@@ -56,6 +56,11 @@ public class OrderDetailService implements IOrderDetailService{
     }
 
     @Override
+    public List<OrderDetail> getOrderDetailsByOrder_User(User user) {
+        return orderDetailRepository.getOrderDetailsByOrder_StatusAndOrder_User(1 ,user);
+    }
+
+    @Override
     public List<OrderDetail> getOrderDetailsByCourse_CourseId(Integer courseId) {
         return orderDetailRepository.getOrderDetailsByCourse_CourseId(courseId);
     }

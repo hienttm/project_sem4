@@ -1,10 +1,7 @@
 package com.t2207e.sem4.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -31,18 +28,19 @@ public class User {
     private String password;
     @NotNull(message = "Fullname cannot be null")
     private String fullname;
+    @Past(message = "Birthday must be in the past")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @NotNull(message = "birthday cannot be null")
+    @NotNull(message = "Birthday cannot be null")
     private Date birthday;
-    @NotNull(message = "address cannot be null")
+    @NotNull(message = "Address cannot be null")
     private String address;
-    @NotNull(message = "phoneNumber cannot be null")
+    @NotNull(message = "Phone Number cannot be null")
     @Pattern(regexp = "0[0-9]{9}", message = "phoneNumber must only have numeric characters and must have 10 characters")
     private String phoneNumber;
     @NotNull(message = "Email cannot be null")
     @Email
     private String email;
-    @NotNull(message = "image cannot be null")
+    @NotNull(message = "Image cannot be null")
 
     private String image = "/home/images/NoImage.png";
     @NotNull(message = "Gender cannot be null")
@@ -56,7 +54,7 @@ public class User {
     @NotNull(message = "updateAt cannot be null")
     private Date updateAt = new Date(System.currentTimeMillis());
 
-    private String description = "Người dùng";
+    private String description = "User";
 
     @OneToMany(mappedBy = "user")
     private List<Order> orders;

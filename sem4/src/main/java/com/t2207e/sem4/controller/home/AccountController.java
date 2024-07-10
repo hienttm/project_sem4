@@ -1,7 +1,9 @@
 package com.t2207e.sem4.controller.home;
 
+import com.t2207e.sem4.entity.OrderDetail;
 import com.t2207e.sem4.entity.User;
 import com.t2207e.sem4.service.HelperService;
+import com.t2207e.sem4.service.OrderDetailService;
 import com.t2207e.sem4.service.UserService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -22,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -32,11 +35,13 @@ public class AccountController {
     private final UserService userService;
     private final HelperService helperService;
     private final PasswordEncoder passwordEncoder;
+    private final OrderDetailService orderDetailService;
 
-    public AccountController(UserService userService, HelperService helperService, PasswordEncoder passwordEncoder) {
+    public AccountController(UserService userService, HelperService helperService, PasswordEncoder passwordEncoder, OrderDetailService orderDetailService) {
         this.userService = userService;
         this.helperService = helperService;
         this.passwordEncoder = passwordEncoder;
+        this.orderDetailService = orderDetailService;
     }
     @InitBinder
     public void initBinder(WebDataBinder dataBinder){
@@ -51,6 +56,9 @@ public class AccountController {
             String username = authentication.getName();
             Optional<User> user=userService.getUserByUsername(username);
             model.addAttribute("user", user.get());
+
+            List<OrderDetail> orderDetails = orderDetailService.getOrderDetailsByOrder_User(user.get());
+            model.addAttribute("orderDetails", orderDetails);
         }
         return "/home/users/accountDetail";
     }

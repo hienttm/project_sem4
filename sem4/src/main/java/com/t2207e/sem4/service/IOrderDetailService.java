@@ -17,6 +17,7 @@ public interface IOrderDetailService {
     void deleteById(Integer id);
     Integer countOrderDetailsByCourse_CourseId(Integer courseId);
     List<OrderDetail> getOrderDetailsByOrder(Order order);
+    List<OrderDetail> getOrderDetailsByOrder_User(User user);
     List<OrderDetail> getOrderDetailsByCourse_CourseId(Integer courseId);
     List<OrderDetail> getOrderDetailsByCourse_User_UserId(Integer userId);
     List<RevenueDTO> RevenueChartDayTeacherProcedure(Integer userId);

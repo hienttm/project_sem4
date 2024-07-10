@@ -92,10 +92,7 @@
                         </div>
                         <div class="row">
                             <div class="col-12 col-sm-12">
-                                <select th:field="*{gender}" id="gender" name="gender" class="form-control" readonly>
-                                    <option value="0">Male</option>
-                                    <option value="1">Female</option>
-                                </select>
+                                <input id="gender" name="gender" class="form-control" th:value="${user.gender==1?'Male':'Female' }" readonly>
                             </div>
                         </div>
                         <hr>
@@ -104,16 +101,6 @@
 
                         <div style="color: red" th:if="${exceptionRP != null and !exceptionRP.isEmpty()}" th:text="${exceptionRP}" class="error"></div>
 
-
-                        <div class="row top-padding">
-                            <div class="col-12">
-                                <div class="form-button text-right">
-                                    <button id="submit" type="submit" class="ibtn less-padding">
-                                        Update Information
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
                     </form>
 
 
@@ -132,6 +119,16 @@
                         <div class="row">
                             <div class="col-12 col-sm-12">
                                 <input th:field="*{bankNumber}" id="bankNumber" name="bankNumber" type="text" class="form-control" placeholder="Bank Number..." />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-sm-12">
+                                <input th:field="*{git}" id="git" name="git" type="text" class="form-control" placeholder="Link Git ..." />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-sm-12">
+                                <input th:field="*{website}" id="website" name="website" type="text" class="form-control" placeholder="Link your social network..." />
                             </div>
                         </div>
                         <div class="row">

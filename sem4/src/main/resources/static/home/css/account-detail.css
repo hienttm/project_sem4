@@ -1,0 +1,34 @@
+#table1 {
+    width: 100%;
+    border-collapse: collapse;
+}
+table, th, td {
+    border: 1px solid black;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+}
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+.page-item.active .page-link{
+    background-color: black;
+    flex: 1 1;
+}
+
+.col-md-auto .dt-length,.dt-search{
+    display: flex;
+    gap: 10px;
+}
+
+.dt-length .form-select-sm{
+    flex: 1 1;
+}

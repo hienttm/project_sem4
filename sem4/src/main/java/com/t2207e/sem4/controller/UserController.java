@@ -326,8 +326,15 @@ public class UserController {
         Optional<User> user1 = userService.getUserByUsername(authentication.getName());
         User user = user1.get();
         model.addAttribute("user", user);
-        //
-        TeacherRegister teacherRegister=new TeacherRegister();
+
+        TeacherRegister teacherRegister = new TeacherRegister();
+        teacherRegister.setBankName("");
+        teacherRegister.setBankNumber("");
+
+        Optional<TeacherRegister> teacherRegisterOptional = teacherRegisterService.getTeacherRegisterByUser_UserId(user.getUserId());
+        if (teacherRegisterOptional.isPresent()){
+            teacherRegister = teacherRegisterOptional.get();
+        }
         model.addAttribute("teacherRegister", teacherRegister);
         return "/home/users/registerTeacher";
     }
