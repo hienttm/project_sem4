@@ -26,9 +26,6 @@ public class TeacherApiAdminController {
             @RequestParam("startAt") @DateTimeFormat(pattern = "yyyy-MM-dd") Date startAt,
             @RequestParam("endAt") @DateTimeFormat(pattern = "yyyy-MM-dd") Date endAt) {
         Optional<User> userOptional = userService.getUserById(id);
-        System.out.println(id);
-        System.out.println(startAt);
-        System.out.println(endAt);
         if (userOptional.isPresent()) {
             User user = userOptional.get();
             List<Object[]> orderDetails = orderDetailService.getOrderDetailsByUserAndDate(user.getUserId(), startAt, endAt);

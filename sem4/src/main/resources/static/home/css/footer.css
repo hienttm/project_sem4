@@ -1,0 +1,40 @@
+footer a.tl-footer-number{
+    color: black;
+}
+
+footer .tl-3-footer-address {
+    color: black;
+}
+
+footer .tl-footer-widget-title {
+    color: black;
+}
+
+footer .tl-footer-links a{
+    color: black;
+}
+
+footer .tl-3-nwsltr-txt{
+    color: black;
+}
+
+footer .tl-3-copyright-txt{
+    color: black;
+}
+
+footer.tl-7-footer{
+    border-top: 1px solid black;
+    background-color: rgb(242, 239, 232);}
+
+footer .tl-footer-bottom{
+    border-top: 1px solid black;
+}
+
+.tl-7-footer .tl-footer-socials a{
+    color: black;
+}
+
+.tl-7-footer .tl-3-nwsltr-mail-input{
+    border: 1px solid black;
+    color: black;
+}

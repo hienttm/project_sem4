@@ -147,6 +147,10 @@
                                     </div>
                                     <!--end tab-pane-->
                                     <div class="tab-pane" id="orders" role="tabpanel">
+                                        <h3 class="total-price text-center fw-semibold mb-5">
+                                            Total Price: <span id="total-price-value"></span> $
+                                        </h3>
+
                                         <table id="table1" class="table table-striped" style="width:100%">
                                             <thead>
                                             <tr>
@@ -367,6 +371,30 @@
             }]
         });
     }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('#table1_filter input').addEventListener('keyup', function() {
+            updateTotalPrice();
+        });
+
+        function updateTotalPrice() {
+            let totalPrice = 0;
+            document.querySelectorAll('#table1 tbody tr').forEach(row => {
+                let priceElement = row.querySelector('td:nth-child(2) span');
+                if (priceElement) {
+                    let price = parseFloat(priceElement.innerText);
+                    if (!isNaN(price)) {
+                        totalPrice += price;
+                    }
+                }
+            });
+
+            let wrapperDiv = document.getElementById('total-price-value');
+            wrapperDiv.innerHTML = totalPrice;
+        }
+
+        updateTotalPrice();
+    });
 </script>
 <!--start back-to-top-->
 <div th:insert="~{admin/fragments/footer}"></div>

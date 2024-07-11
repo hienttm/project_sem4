@@ -24,6 +24,7 @@
     <link rel="stylesheet" th:href="@{/home/css/search.css}">
     <link rel="stylesheet" th:href="@{/home/css/course-detail.css}">
     <link rel="stylesheet" th:href="@{/home/css/cart.css}">
+    <link rel="stylesheet" th:href="@{/home/css/footer.css}">
 
     <!-- dark version css -->
     <link rel="stylesheet" th:href="@{/home/css/dark-v.css}">
@@ -165,7 +166,7 @@
                                     <ul class="tl-submenu" style="min-width: 200px">
                                         <li><a th:href="@{/home/account/detail}">My Account</a></li>
                                         <li><a th:href="@{/registerTeacher}">Teacher Register</a></li>
-                                        <li sec:authorize="hasAnyRole('ADMIN', 'TEACHER')"><a class="text-danger" href="/roleTeacher/course/list">Teacher</a></li>
+                                        <li sec:authorize="hasAnyRole('ADMIN', 'TEACHER')"><a class="text-danger" href="/roleTeacher/detail">Teacher</a></li>
                                         <li>
                                             <form th:action="@{/logout}" method="post">
                                                 <button type="submit">Log Out</button>
