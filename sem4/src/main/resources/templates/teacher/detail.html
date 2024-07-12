@@ -155,7 +155,7 @@
                                             <thead>
                                             <tr>
                                                 <th>COURSE NAME</th>
-                                                <th>PRICE</th>
+                                                <th>PRICE ($)</th>
                                                 <th>USER</th>
                                                 <th>BUY AT</th>
                                             </tr>
@@ -163,7 +163,7 @@
                                             <tbody>
                                             <tr th:each="orderDetail: ${orderDetails}">
                                                 <td class="align-middle" th:text="${orderDetail.course.courseName}"></td>
-                                                <td class="align-middle"><span th:text="${orderDetail.price}"></span> $</td>
+                                                <td class="align-middle" th:text="${orderDetail.price}"></td>
                                                 <td class="align-middle" th:text="${orderDetail.order.user.fullname}"></td>
                                                 <td class="align-middle" th:text="${orderDetail.order.updateAt}"></td>
                                             </tr>
@@ -379,14 +379,16 @@
 
         function updateTotalPrice() {
             let totalPrice = 0;
-            document.querySelectorAll('#table1 tbody tr').forEach(row => {
-                let priceElement = row.querySelector('td:nth-child(2) span');
-                if (priceElement) {
-                    let price = parseFloat(priceElement.innerText);
-                    if (!isNaN(price)) {
-                        totalPrice += price;
-                    }
+
+            let rows = table.rows({ search: 'applied' }).data();
+            console.log(rows);
+            rows.each(function (value, index) {
+                let price = parseFloat(value[1]);
+                console.log("Price: "+price);
+                if (!isNaN(price)) {
+                    totalPrice += price;
                 }
+
             });
 
             let wrapperDiv = document.getElementById('total-price-value');
