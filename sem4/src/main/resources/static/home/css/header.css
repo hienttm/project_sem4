@@ -1,0 +1,53 @@
+.col-7 .tl-nav-item a{
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.menu-toggle-detail {
+    display: none;
+    flex-direction: column;
+    width: 40%;
+    height: 100%;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.menu-toggle-detail li {
+    display: inline;
+}
+
+.menu-toggle-detail li a {
+    color: #f4b826;
+    padding: 14px 20px;
+    display: block;
+}
+
+.menu-toggle-detail li a i{
+    text-align: center;
+    width: 40px;
+}
+
+.menu-toggle-detail li a:hover {
+    background-color: #575757;
+}
+
+.menu-toggle-detail.show {
+    display: flex;
+}
+
+.close-toggle i{
+    color: #f4b826;
+    font-size: 25px;
+    padding: 10px;
+}
+
+.close-toggle i:hover{
+    color: white;
+}
+
+.close-button{
+    text-align: right;
+}

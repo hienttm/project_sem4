@@ -43,20 +43,20 @@
                             </thead>
                             <tbody>
                             <tr th:each="course: ${courses}">
-                                <td class="align-middle" th:text="${course.courseId}"></td>
-                                <td class="align-middle" th:text="${course.courseName}"></td>
-                                <td class="align-middle"><span th:text="${course.price}"></span>$</td>
+                                <td class="align-middle" th:text="${course[0]}"></td>
+                                <td class="align-middle" th:text="${course[1]}"></td>
+                                <td class="align-middle"><span th:text="${course[2]}"></span>$</td>
                                 <td class="align-middle">
-                                    <div th:if="${course.status==1}" class="align-middle text-success fw-bolder">APPROVED</div>
-                                    <div th:if="${course.status==2}" class="align-middle text-primary fw-bolder">NOT APPROVED</div>
-                                    <div th:if="${course.status==3}" class="align-middle text-warning fw-bolder">ASK TO EDIT</div>
-                                    <div th:if="${course.status==4}" class="align-middle text-danger fw-bolder">REJECTED</div>
+                                    <div th:if="${course[3]==1}" class="align-middle text-success fw-bolder">APPROVED</div>
+                                    <div th:if="${course[3]==2}" class="align-middle text-primary fw-bolder">NOT APPROVED</div>
+                                    <div th:if="${course[3]==3}" class="align-middle text-warning fw-bolder">ASK TO EDIT</div>
+                                    <div th:if="${course[3]==4}" class="align-middle text-danger fw-bolder">REJECTED</div>
                                 </td>
-                                <td class="align-middle" th:text="${course.user.fullname}"></td>
-                                <td class="align-middle" th:text="${course.courseType.typeName}"></td>
-                                <td class="align-middle" th:text="${course.censor.fullname}"></td>
+                                <td class="align-middle" th:text="${course[4]}"></td>
+                                <td class="align-middle" th:text="${course[5]}"></td>
+                                <td class="align-middle" th:text="${course[6]}"></td>
                                 <td>
-                                    <a th:href="@{detail/{id}(id=${course.courseId})}" class="btn btn-primary">Detail</a>
+                                    <a th:href="@{detail/{id}(id=${course[0]})}" class="btn btn-primary">Detail</a>
                                 </td>
                             </tr>
                             </tbody>

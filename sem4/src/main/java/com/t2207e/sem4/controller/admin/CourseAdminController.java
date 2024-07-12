@@ -26,7 +26,7 @@ public class CourseAdminController {
     private final ExamService examService;
     @GetMapping("list")
     public String courses(Model model) {
-        List<Course> courses = courseService.getAllCourse();
+        List<Object> courses = courseService.getAllCoursesSelected();
         model.addAttribute("courses", courses);
         return "admin/course/index";
     }

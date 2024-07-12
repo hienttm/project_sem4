@@ -20,6 +20,8 @@ public interface ICourseRepository extends JpaRepository<Course, Integer> {
     Integer countCoursesByCourseNameContainingAndStatusAndCourseType_TypeNameContaining(String courseName, Integer status, String courseTypeName);
 
     List<Course> getCoursesByUser(User user);
+    @Query("SELECT c.courseId, c.courseName, c.price, c.status, c.user.fullname, c.courseType.typeName, c.censor.fullname FROM Course c WHERE c.user = :user")
+    List<Object> getCoursesByUserSelected(@Param("user") User user);
     List<Course> getCoursesByUserAndStatus(User user, Integer status);
 
     Integer countCoursesByStatus(Integer status);
@@ -29,4 +31,7 @@ public interface ICourseRepository extends JpaRepository<Course, Integer> {
 
     @Query("SELECT c FROM Course c ORDER BY c.courseId DESC")
     List<Course> findTopCourses(Pageable pageable);
+
+    @Query("SELECT c.courseId, c.courseName, c.price, c.status, c.user.fullname, c.courseType.typeName, c.censor.fullname FROM Course c")
+    List<Object> getAllCoursesSelected();
 }

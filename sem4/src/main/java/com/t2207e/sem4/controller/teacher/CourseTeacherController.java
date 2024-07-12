@@ -58,7 +58,7 @@ public class CourseTeacherController {
             String username = authentication.getName();
             Optional<User> userOptional = userService.getUserByUsername(username);
             if(userOptional.isPresent()){
-                List<Course> courses = courseService.getCoursesByUser(userOptional.get());
+                List<Object> courses = courseService.getCoursesByUserSelected(userOptional.get());
                 model.addAttribute("courses", courses);
 
                 return "teacher/courses/index";

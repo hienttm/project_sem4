@@ -3617,7 +3617,7 @@ textarea::placeholder {
   line-height: 50px;
   width: 50px;
   font-size: 24px;
-  background: linear-gradient(145deg, #dade1c, #9428EA);
+  background-color: #f4b826;
   color: #fff;
   padding: 0;
 }

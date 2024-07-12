@@ -180,7 +180,7 @@
         <h2 class="tl-13-section-title">My <span class="last-word">Teachers</span></h2>
 
         <div class="owl-carousel owl-theme row g-4 justify-content-center">
-            <div class="col-lg-4 col-md-6" style="width: 90%" th:each="teacherRegister: ${teacherRegisters}">
+            <div class="col-lg-4 col-md-6" style="width: 100%" th:each="teacherRegister: ${teacherRegisters}">
                 <div class="tl-9-event tl-13-event">
                     <div class="tl-11-latest-article-img">
                         <img th:src="${teacherRegister.user.image}" alt="Article Image">
@@ -190,12 +190,12 @@
                         <h3 class="tl-11-latest-article-title"><a th:href="'/teacher/detail/'+${teacherRegister.user.userId}" th:text="${teacherRegister.user.fullname}"></a></h3>
                         <div class="tl-3-single-event-info">
                             <h6 class="tl-3-single-event-time">
-                                <i class="fas fa-envelope"></i> <span th:text="${teacherRegister.user.email}"></span>
+                                <i class="fas fa-envelope"></i> <a  style="max-width: 180px; overflow: hidden; text-overflow: ellipsis" th:href="'mailto:' + ${teacherRegister.user.email}" th:text="${teacherRegister.user.email}"></a>
                             </h6>
                         </div>
                         <div class="tl-3-single-event-info">
                             <h6 class="tl-3-single-event-location">
-                                <i class="fas fa-phone"></i> <span th:text="${teacherRegister.user.phoneNumber}"></span>
+                                <i class="fas fa-phone"></i> <a  style="max-width: 180px; overflow: hidden; text-overflow: ellipsis" th:href="'tel:' + ${teacherRegister.user.phoneNumber}" th:text="${teacherRegister.user.phoneNumber}"></a>
                             </h6>
                         </div>
                     </div>
@@ -213,7 +213,8 @@
     $(document).ready(function(){
         $(".owl-carousel").owlCarousel({
             loop: true,
-            nav: true,
+            margin: 30,
+            nav: false,
             dots: false,
             responsive:{
                 0:{

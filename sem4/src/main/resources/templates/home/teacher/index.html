@@ -55,8 +55,8 @@
                     </ul>
                     <div class="tl-1-teacher-info">
                         <h5 class="tl-1-teacher-title"><a th:href="'/teacher/detail/' + ${teacher.id}" th:text="${teacher.user.getFullname()}"></a></h5>
-                        <h6 class="tl-1-teacher-sub-title" th:text="${teacher.user.getPhoneNumber()}"></h6>
-                        <h6 class="tl-1-teacher-sub-title" th:text="${teacher.user.getEmail()}"></h6>
+                        <h6 class="tl-1-teacher-sub-title"><a th:href="'tel:' + ${teacher.user.phoneNumber}" th:text="${teacher.user.getPhoneNumber()}"></a></h6>
+                        <h6 class="tl-1-teacher-sub-title"><a th:href="'mailto:' + ${teacher.user.email}" th:text="${teacher.user.getEmail()}"></a></h6>
                     </div>
                 </div>
             </div>

@@ -34,207 +34,196 @@
 </div>
 <!-- BREADCRUMB ENDS HERE -->
 <!-- CONTACT SECTION STARTS HERE -->
-<section class="tl-7-contact"
-         style="padding: 76px 0;"
->
+<section class="tl-7-contact">
     <div class="container">
-        <div class="row"
-             style="justify-content: space-between;"
-        >
-            <div class="col-md-3"
-                 style="background-color: #ffffff;
-    padding-top: 30px;
-    border: 1px solid #ffffff;
-    border-radius: 10px;"
-            >
-                <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <button class="detail2 active " id="v-pills-personal-detail-tab" data-bs-toggle="pill" data-bs-target="#v-pills-personal-detail" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Account Detail</button>
-                    <button class=" detail2" id="v-pills-change-password-tab" data-bs-toggle="pill" data-bs-target="#v-pills-change-password" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Change Password</button>
-                    <button class=" detail2" id="v-pills-my-courses-tab" data-bs-toggle="pill" data-bs-target="#v-pills-my-courses" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">My Courses</button>
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <div class="bg-light rounded-4">
+                    <div class="nav flex-column nav-pills p-4" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <button class="detail2 active " id="v-pills-personal-detail-tab" data-bs-toggle="pill" data-bs-target="#v-pills-personal-detail" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Account Detail</button>
+                        <button class=" detail2" id="v-pills-change-password-tab" data-bs-toggle="pill" data-bs-target="#v-pills-change-password" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Change Password</button>
+                        <button class=" detail2" id="v-pills-my-courses-tab" data-bs-toggle="pill" data-bs-target="#v-pills-my-courses" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">My Courses</button>
+                    </div>
                 </div>
             </div>
 
-            <div class="col-md-8"
-                 style="    background-color: #ffffff;
-    padding: 30px;
-    border: 1px solid #ffffff;
-    border-radius: 10px;
-    width: 71.666667%;"
-            >
-                <div class="tab-content" id="v-pills-tabContent">
-                    <div class="tab-pane fade show active" id="v-pills-personal-detail" role="tabpanel" aria-labelledby="v-pills-personal-detail-tab">
-                        <form th:action="@{/home/account/updateAccount}" th:object="${user}" method="post" enctype="multipart/form-data">
-                            <input type="hidden" th:field="*{userId}">
-                            <input type="hidden" th:field="*{image}">
-                            <input type="hidden" th:field="*{password}">
+            <div class="col-md-8">
+                <div class="bg-light rounded-4">
+                    <div class="tab-content p-4" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-personal-detail" role="tabpanel" aria-labelledby="v-pills-personal-detail-tab">
+                            <form th:action="@{/home/account/updateAccount}" th:object="${user}" method="post" enctype="multipart/form-data">
+                                <input type="hidden" th:field="*{userId}">
+                                <input type="hidden" th:field="*{image}">
+                                <input type="hidden" th:field="*{password}">
 
-                            <div class="row">
-                                <div class="col-lg-12 text-center">
-                                    <div class="mb-3">
-                                        <img th:src="${user.image}" style="width: 200px; height: 200px; margin-right: 30px"/>
-                                        <input type="file" placeholder="Input your File" name="fileImage"/>
+                                <div class="row">
+                                    <div class="col-lg-12 text-center">
+                                        <div class="mb-3">
+                                            <img th:src="${user.image}" style="width: 200px; height: 200px; margin-right: 30px"/>
+                                            <input type="file" placeholder="Input your File" name="fileImage"/>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label for="username" class="form-label">Username</label>
-                                        <input th:field="*{username}" type="text" class="form-control" id="username" name="username"
-                                               th:value="${user.getUsername()}" readonly />
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="username" class="form-label">Username</label>
+                                            <input th:field="*{username}" type="text" class="form-control" id="username" name="username"
+                                                   th:value="${user.getUsername()}" readonly />
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label for="fullname" class="form-label">Full Name</label>
-                                        <input th:field="*{fullname}" type="text" class="form-control" id="fullname" name="fullname"
-                                               placeholder="Enter your fulltname" th:value="${user.getFullname()}" />
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="fullname" class="form-label">Full Name</label>
+                                            <input th:field="*{fullname}" type="text" class="form-control" id="fullname" name="fullname"
+                                                   placeholder="Enter your fulltname" th:value="${user.getFullname()}" />
+                                        </div>
                                     </div>
-                                </div>
-                                <!--end col-->
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label for="birthday" class="form-label">Birthday</label>
-                                        <input th:field="*{birthday}" type="date" class="form-control" id="birthday" name="birthday"
-                                               placeholder="Enter your birthday" th:value="${#dates.format(user.getBirthday(), 'yyyy-MM-dd')}" />
+                                    <!--end col-->
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="birthday" class="form-label">Birthday</label>
+                                            <input th:field="*{birthday}" type="date" class="form-control" id="birthday" name="birthday"
+                                                   placeholder="Enter your birthday" th:value="${#dates.format(user.getBirthday(), 'yyyy-MM-dd')}" />
+                                        </div>
                                     </div>
-                                </div>
-                                <!--end col-->
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label for="phoneNumber" class="form-label">Phone Number</label>
-                                        <input th:field="*{phoneNumber}" type="text" class="form-control" id="phoneNumber"
-                                               placeholder="Enter your phone number" th:value="${user.getPhoneNumber()}" />
+                                    <!--end col-->
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="phoneNumber" class="form-label">Phone Number</label>
+                                            <input th:field="*{phoneNumber}" type="text" class="form-control" id="phoneNumber"
+                                                   placeholder="Enter your phone number" th:value="${user.getPhoneNumber()}" />
+                                        </div>
                                     </div>
-                                </div>
-                                <!--end col-->
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label for="address" class="form-label">Phone Number</label>
-                                        <input th:field="*{address}" type="text" class="form-control" id="address"
-                                               placeholder="Enter your phone number" th:value="${user.getAddress()}" />
+                                    <!--end col-->
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="address" class="form-label">Phone Number</label>
+                                            <input th:field="*{address}" type="text" class="form-control" id="address"
+                                                   placeholder="Enter your phone number" th:value="${user.getAddress()}" />
+                                        </div>
                                     </div>
-                                </div>
-                                <!--end col-->
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label for="email" class="form-label">Email Address</label>
-                                        <input th:field="*{email}" type="email" class="form-control" id="email" name="email" placeholder="Enter your email"
-                                               th:value="${user.getEmail()}" />
+                                    <!--end col-->
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">Email Address</label>
+                                            <input th:field="*{email}" type="email" class="form-control" id="email" name="email" placeholder="Enter your email"
+                                                   th:value="${user.getEmail()}" />
+                                        </div>
                                     </div>
-                                </div>
-                                <!--end col-->
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label for="gender" class="form-label">Gender</label>
-                                        <select th:field="*{gender}" id="gender" name="gender" class="form-control" th:value="${user.getGender()}">
-                                            <option value="1">Male</option>
-                                            <option value="2">Female</option>
-                                        </select>
+                                    <!--end col-->
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label for="gender" class="form-label">Gender</label>
+                                            <select th:field="*{gender}" id="gender" name="gender" class="form-control" th:value="${user.getGender()}">
+                                                <option value="1">Male</option>
+                                                <option value="2">Female</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <!--end col-->
-                                <div class="col-lg-12">
-                                    <div class="mb-3">
-                                        <div style="color: red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error"></div>
-                                        <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></div>
-                                        <div style="color: red" th:if="${#fields.hasErrors('fullname')}" th:errors="*{fullname}" class="error"></div>
-                                        <div style="color: red" th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}" class="error"></div>
-                                        <div style="color: red" th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="error"></div>
-                                        <div style="color: red" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="error"></div>
-                                        <div style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></div>
-                                        <div style="color: red" th:if="${#fields.hasErrors('image')}" th:errors="*{image}" class="error"></div>
-                                        <div style="color: red" th:if="${#fields.hasErrors('status')}" th:errors="*{status}" class="error"></div>
-                                        <div style="color: red" th:if="${#fields.hasErrors('createAt')}" th:errors="*{createAt}" class="error"></div>
-                                        <div style="color: red" th:if="${#fields.hasErrors('updateAt')}" th:errors="*{updateAt}" class="error"></div>
+                                    <!--end col-->
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <div style="color: red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error"></div>
+                                            <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></div>
+                                            <div style="color: red" th:if="${#fields.hasErrors('fullname')}" th:errors="*{fullname}" class="error"></div>
+                                            <div style="color: red" th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}" class="error"></div>
+                                            <div style="color: red" th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="error"></div>
+                                            <div style="color: red" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="error"></div>
+                                            <div style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></div>
+                                            <div style="color: red" th:if="${#fields.hasErrors('image')}" th:errors="*{image}" class="error"></div>
+                                            <div style="color: red" th:if="${#fields.hasErrors('status')}" th:errors="*{status}" class="error"></div>
+                                            <div style="color: red" th:if="${#fields.hasErrors('createAt')}" th:errors="*{createAt}" class="error"></div>
+                                            <div style="color: red" th:if="${#fields.hasErrors('updateAt')}" th:errors="*{updateAt}" class="error"></div>
 
+                                        </div>
                                     </div>
-                                </div>
-                                <!--end col-->
-                                <div class="col-lg-12">
-                                    <div class="hstack gap-2 justify-content-end">
-                                        <button type="submit" class="btn btn-warning">
-                                            Updates
-                                        </button>
-                                        <button type="button" class="btn btn-outline-warning">
-                                            Cancel
-                                        </button>
+                                    <!--end col-->
+                                    <div class="col-lg-12">
+                                        <div class="hstack gap-2 justify-content-end">
+                                            <button type="submit" class="btn btn-warning">
+                                                Updates
+                                            </button>
+                                            <button type="button" class="btn btn-outline-warning">
+                                                Cancel
+                                            </button>
+                                        </div>
                                     </div>
+                                    <!--end col-->
                                 </div>
-                                <!--end col-->
-                            </div>
-                            <!--end row-->
-                        </form>
-                    </div>
-                    <div class="tab-pane fade" id="v-pills-change-password" role="tabpanel" aria-labelledby="v-pills-change-password-tab">
-                        <form th:action="@{/home/account/changePassword}" method="post">
-                            <input type="hidden" name="username" th:value="${#authentication.getName()}">
+                                <!--end row-->
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-change-password" role="tabpanel" aria-labelledby="v-pills-change-password-tab">
+                            <form th:action="@{/home/account/changePassword}" method="post">
+                                <input type="hidden" name="username" th:value="${#authentication.getName()}">
 
-                            <div class="row g-2">
-                                <div class="col-lg-4">
-                                    <div>
-                                        <label for="oldpasswordInput" class="form-label">Old Password*</label>
-                                        <input type="password" class="form-control" id="oldpasswordInput" name="oldpasswordInput"
-                                               placeholder="Enter current password" />
+                                <div class="row g-2">
+                                    <div class="col-lg-4">
+                                        <div>
+                                            <label for="oldpasswordInput" class="form-label">Old Password*</label>
+                                            <input type="password" class="form-control" id="oldpasswordInput" name="oldpasswordInput"
+                                                   placeholder="Enter current password" />
+                                        </div>
                                     </div>
-                                </div>
-                                <!--end col-->
-                                <div class="col-lg-4">
-                                    <div>
-                                        <label for="newpasswordInput" class="form-label">New Password*</label>
-                                        <input type="password" class="form-control" id="newpasswordInput" name="newpasswordInput"
-                                               placeholder="Enter new password" />
+                                    <!--end col-->
+                                    <div class="col-lg-4">
+                                        <div>
+                                            <label for="newpasswordInput" class="form-label">New Password*</label>
+                                            <input type="password" class="form-control" id="newpasswordInput" name="newpasswordInput"
+                                                   placeholder="Enter new password" />
+                                        </div>
                                     </div>
-                                </div>
-                                <!--end col-->
-                                <div class="col-lg-4">
-                                    <div>
-                                        <label for="confirmpasswordInput" class="form-label">Confirm Password*</label>
-                                        <input type="password" class="form-control" id="confirmpasswordInput" name="confirmpasswordInput"
-                                               placeholder="Confirm password" />
+                                    <!--end col-->
+                                    <div class="col-lg-4">
+                                        <div>
+                                            <label for="confirmpasswordInput" class="form-label">Confirm Password*</label>
+                                            <input type="password" class="form-control" id="confirmpasswordInput" name="confirmpasswordInput"
+                                                   placeholder="Confirm password" />
+                                        </div>
                                     </div>
-                                </div>
-                                <!--end col-->
-                                <div class="col-lg-12">
-                                    <div class="text-end">
-                                        <button type="submit" class="btn btn-warning">
-                                            Change Password
-                                        </button>
+                                    <!--end col-->
+                                    <div class="col-lg-12">
+                                        <div class="text-end">
+                                            <button type="submit" class="btn btn-warning">
+                                                Change Password
+                                            </button>
+                                        </div>
                                     </div>
+                                    <!--end col-->
                                 </div>
-                                <!--end col-->
-                            </div>
-                            <!--end row-->
-                        </form>
-                    </div>
-                    <div class="tab-pane fade" id="v-pills-my-courses" role="tabpanel" aria-labelledby="v-pills-my-courses-tab">
-                        <table id="table1" class="table" style="width:100%">
-                            <thead>
-                            <tr>
-                                <th>COURSE NAME</th>
-                                <th>BUY AT</th>
-                                <th>PRICE</th>
-                                <th>COURSE TYPE</th>
-                                <th>BUTTON</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="orderDetail: ${orderDetails}">
-                                <td th:text="${orderDetail.course.courseName}"></td>
-                                <td th:text="${orderDetail.order.updateAt}"></td>
-                                <td><span th:text="${orderDetail.price}"></span> $</td>
-                                <td th:text="${orderDetail.course.courseType.typeName}"></td>
-                                <td><a th:href="'/course/detail/' +${orderDetail.course.courseId}" style="text-decoration: underline">Go to your course</a></td>
-                            </tr>
-                            </tbody>
-                            <tfoot th:if="${orderDetails.size()>5}">
-                            <tr>
-                                <th>COURSE NAME</th>
-                                <th>BUY AT</th>
-                                <th>PRICE</th>
-                                <th>COURSE TYPE</th>
-                                <th>BUTTON</th>
-                            </tr>
-                            </tfoot>
-                        </table>
+                                <!--end row-->
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-my-courses" role="tabpanel" aria-labelledby="v-pills-my-courses-tab">
+                            <table id="table1" class="table" style="width:100%">
+                                <thead>
+                                <tr>
+                                    <th>COURSE NAME</th>
+                                    <th>BUY AT</th>
+                                    <th>PRICE</th>
+                                    <th>COURSE TYPE</th>
+                                    <th>BUTTON</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="orderDetail: ${orderDetails}">
+                                    <td th:text="${orderDetail.course.courseName}"></td>
+                                    <td th:text="${orderDetail.order.updateAt}"></td>
+                                    <td><span th:text="${orderDetail.price}"></span> $</td>
+                                    <td th:text="${orderDetail.course.courseType.typeName}"></td>
+                                    <td><a th:href="'/course/detail/' +${orderDetail.course.courseId}" style="text-decoration: underline">Go to your course</a></td>
+                                </tr>
+                                </tbody>
+                                <tfoot th:if="${orderDetails.size()>5}">
+                                <tr>
+                                    <th>COURSE NAME</th>
+                                    <th>BUY AT</th>
+                                    <th>PRICE</th>
+                                    <th>COURSE TYPE</th>
+                                    <th>BUTTON</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

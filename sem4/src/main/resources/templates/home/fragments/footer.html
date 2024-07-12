@@ -15,10 +15,10 @@
                             </a>
 
                             <ul class="tl-footer-links tl-3-footer-contact-infos">
-                                <li><a href="tel:8812354873654" class="tl-footer-number">(88)123 5487 3654</a></li>
+                                <li><a href="tel:8812354873654" class="tl-footer-number">(+84) 098 765 4321</a></li>
                                 <li><a href="mailto:OnlineCourse@gmail.com" class="tl-footer-number">OnlineCourse@gmail.com</a></li>
                                 <li>
-                                    <p class="tl-3-footer-address">681 Pompton Ave, Cedar Grove, NJ 5479 United States</p>
+                                    <p class="tl-3-footer-address">No 8A, Ton That Thuyet, Nam Tu Liem, Ha Noi</p>
                                 </li>
                             </ul>
                         </div>
@@ -93,6 +93,21 @@
 <script th:src="@{/home/js/cart.js}"></script>
 <script th:src="@{/home/js/courseTypeHeader.js}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let menuToggle = document.getElementById("menu-toggle");
+        let menu = document.getElementById("menu-toggle-detail");
+        let close = document.getElementById("close-toggle");
+
+        menuToggle.addEventListener("click", function() {
+            menu.classList.toggle("show");
+        });
+
+        close.addEventListener("click", function() {
+            menu.classList.remove("show");
+        });
+    });
+</script>
 <script th:if="${message!= null and !message.isEmpty() and statusMessage!=null and !statusMessage.isEmpty()}" th:inline="javascript">
     Swal.fire({
         position: "center",

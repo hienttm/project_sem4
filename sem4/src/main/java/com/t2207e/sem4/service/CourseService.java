@@ -30,6 +30,11 @@ public class CourseService implements  ICourseService{
     }
 
     @Override
+    public List<Object> getAllCoursesSelected() {
+        return courseRepository.getAllCoursesSelected();
+    }
+
+    @Override
     public Optional<Course> getCourseById(Integer id) {
         return courseRepository.findById(id);
     }
@@ -71,6 +76,11 @@ public class CourseService implements  ICourseService{
     @Override
     public List<Course> getCoursesByUser(User user) {
         return courseRepository.getCoursesByUser(user);
+    }
+
+    @Override
+    public List<Object> getCoursesByUserSelected(User user) {
+        return courseRepository.getCoursesByUserSelected(user);
     }
 
     @Override

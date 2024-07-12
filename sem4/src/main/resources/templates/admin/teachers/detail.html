@@ -130,6 +130,8 @@
         const endDateInput = document.getElementById('endDate');
 
         const today = new Date();
+        const tomorrow = new Date();
+        tomorrow.setDate(today.getDate() + 1);
         const oneMonthAgo = new Date();
         oneMonthAgo.setMonth(today.getMonth() - 1);
 
@@ -145,9 +147,9 @@
         }
 
         startDateInput.value = formatDate(oneMonthAgo);
-        endDateInput.value = formatDate(today);
+        endDateInput.value = formatDate(tomorrow);
 
-        AjaxQueryData([[${userId}]], formatDate(oneMonthAgo), formatDate(today), $('#table1').DataTable());
+        AjaxQueryData([[${userId}]], formatDate(oneMonthAgo), formatDate(tomorrow), $('#table1').DataTable());
     });
 
     $(document).ready(function() {
@@ -167,6 +169,11 @@
                 validate.innerHTML = "";
                 AjaxQueryData(userId, startDate, endDate, table);
             }
+
+            let pageInfo = table.page.info();
+            console.log('pageInfo: ' + pageInfo);
+            let totalPages = pageInfo.pages;
+            console.log('totalPages: ' + totalPages);
         });
     });
 
@@ -179,7 +186,6 @@
                 endAt: endDate
             },
             success: function(response) {
-                console.log(response);
                 table.clear();
 
                 if (response.length > 0) {
@@ -201,6 +207,9 @@
         });
 
     }
+
+
+    $('#table1_paginate').show();
 
 </script>
 </body>

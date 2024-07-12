@@ -25,6 +25,7 @@
     <link rel="stylesheet" th:href="@{/home/css/course-detail.css}">
     <link rel="stylesheet" th:href="@{/home/css/cart.css}">
     <link rel="stylesheet" th:href="@{/home/css/footer.css}">
+    <link rel="stylesheet" th:href="@{/home/css/header.css}">
 
     <!-- dark version css -->
     <link rel="stylesheet" th:href="@{/home/css/dark-v.css}">
@@ -32,6 +33,8 @@
 <!--    acount-->
     <link rel="shortcut icon" th:href="@{/assets/images/favicon.ico}" />
     <link rel="stylesheet" th:href="@{/home/css/detail2.css}">
+
+
 
 </head>
 <body>
@@ -41,7 +44,7 @@
         <div id="loading-center">
             <div id="loading-center-absolute">
                 <div class="loading-content">
-                    <img class="loading-logo-text" th:src="@{/home/images/logo/logo-text.png}" alt="Kidba">
+                    <img class="loading-logo-text" th:src="@{/home/images/logos/tl-13-logo.png}" alt="Online Courses">
                     <div class="loading-stroke">
                         <img class="loading-logo-icon" th:src="@{/home/images/logo/logo-icon.png}" alt="Pen">
                     </div>
@@ -50,6 +53,24 @@
         </div>
     </div>
     <!-- preloader end 👆-->
+
+    <!--header-responsive-->
+    <ul class="menu-toggle-detail" id="menu-toggle-detail">
+        <li class="close-button">
+            <button class="close-toggle" id="close-toggle">
+                <i class="fas fa-times"></i>
+            </button>
+        </li>
+        <li><a th:href="@{/}"><i class="fas fa-home"></i> Home</a></li>
+        <li><a th:href="@{/course/list/1}"><i class="fas fa-book"></i> Courses</a></li>
+        <li><a th:href="@{/teacher/list}"><i class="fas fa-chalkboard-teacher"></i> Teachers</a></li>
+        <li><a  th:href="@{/contactus}"><i class="fas fa-phone-square"></i> Contact</a></li>
+        <li sec:authorize="hasRole('ROLE_ADMIN')"><a class="text-danger" th:href="@{/admin/dashboard}" role="button">
+            <i class="fas fa-user-shield"></i> Admin
+        </a></li>
+
+
+    </ul>
 
     <!-- HEADER SECTION STARTS HERE 👇-->
     <div class="tl-header tl-13-header" data-bg-color="#F2EFE8" style="background-color: rgb(242, 239, 232);">
@@ -64,8 +85,8 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="d-lg-none d-flex justify-content-end col-6">
-                            <button class="tl-hamburger navbar-toggler">
+                        <div class="d-lg-none d-flex justify-content-end col-6 dropdown">
+                            <button class="tl-hamburger navbar-toggler" id="menu-toggle">
                                 <i class="icofont-navigation-menu"></i>
                             </button>
                         </div>
