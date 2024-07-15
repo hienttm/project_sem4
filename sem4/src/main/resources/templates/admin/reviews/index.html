@@ -46,7 +46,7 @@
                             <tbody>
                             <tr th:each="review: ${reviews}">
                                 <td class="align-middle" th:text="${review.user.username}"></td>
-                                <td class="align-middle" th:text="${review.course.courseName}+'(id='+ ${review.course.courseId} + ')'"></td>
+                                <td class="align-middle"><a th:href="'/admin/course/detail/' + ${review.course.courseId}" th:text="${review.course.courseName}+'(id='+ ${review.course.courseId} + ')'"></a></td>
                                 <td class="align-middle text-center fw-semibold" th:text="${review.starNumber}"></td>
                                 <td class="align-middle" th:text="${review.comment}"></td>
                                 <td class="align-middle" th:text="${review.createAt}"></td>
@@ -56,8 +56,8 @@
                                 <td th:if="${review.featured == 1}" class="align-middle text-success fw-bolder">FEATURED</td>
                                 <td th:unless="${review.featured == 1}" class="align-middle text-danger fw-bolder">UNFEATURED</td>
                                 <td class="align-middle">
-                                    <a th:href="@{hidden/{id}(id=${review.reviewId})}" class="btn btn-danger mb-2" th:text="${review.status==1?'LOCK':'OPEN'}"></a>
-                                    <a th:href="@{featured/{id}(id=${review.reviewId})}" class="btn btn-primary" th:text="${review.featured==1?'UNFEATURED':'FEATURED'}"></a>
+                                    <a th:href="@{hidden/{id}(id=${review.reviewId})}" class="btn btn-danger mb-2 mt-2" th:text="${review.status==1?'LOCK':'OPEN'}"></a>
+                                    <a th:href="@{featured/{id}(id=${review.reviewId})}" class="btn btn-primary mb-2 mt-2" th:text="${review.featured==1?'UNFEATURED':'FEATURED'}"></a>
                                 </td>
                             </tr>
                             </tbody>

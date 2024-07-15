@@ -38,3 +38,11 @@ footer .tl-footer-bottom{
     border: 1px solid black;
     color: black;
 }
+
+#back-to-top{
+    display: none;
+    position: fixed;
+    right: 5%;
+    bottom: 10%;
+    z-index: 1000;
+}
