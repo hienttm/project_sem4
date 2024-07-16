@@ -228,6 +228,7 @@ public class UserController {
         }
         return "/forgotPassword";
     }
+
     @GetMapping("resetPassworUrl/{token}")
     public String resetPassworUrl(@PathVariable String token, Model model){
         if (token==null || token.isEmpty()){

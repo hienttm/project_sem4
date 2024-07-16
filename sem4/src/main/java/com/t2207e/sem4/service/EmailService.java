@@ -18,7 +18,7 @@ public class EmailService {
 
     public void sendEmail(String to, String token) {
         String subject = "RESET PASSWORD";
-        String body = "Hãy click vào đường link để gửi đặt lại mật khẩu: http://localhost:8089/resetPassworUrl/" + token;
+        String body = "Please click on the link to reset your password: http://localhost:8089/resetPassworUrl/" + token;
 
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(to);
@@ -29,7 +29,7 @@ public class EmailService {
     }
     public void sendEmailConfirmAccount(String to, String token) {
         String subject = "CONFIRM YOUR ACCOUNT";
-        String body = "Hãy click vào đường link để xác minh tài khoản của bạn: http://localhost:8089/confirmAccount/" + token;
+        String body = "Please click on the link to verify your account: http://localhost:8089/confirmAccount/" + token;
 
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(to);
@@ -42,8 +42,8 @@ public class EmailService {
 
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(to);
-        message.setSubject("Thông báo");
-        message.setText("Chúng tôi đã nhận được yêu cầu đăng ký trở thành giáo viên của bạn. Vui lòng chờ kết quả đăng ký. Chúng tôi sẽ phản hồi qua Email này trong 2 ngày làm việc.");
+        message.setSubject("Notification");
+        message.setText("We have received your request to become a teacher. Please wait for registration results. We will respond via this Email within 2 working days.");
         ;
 
         mailSender.send(message);
@@ -51,8 +51,8 @@ public class EmailService {
     public void sendMailNotiContactUsStatus(String to){
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(to);
-        message.setSubject("Thông báo");
-        message.setText("Chúng tôi đã nhận được tin nhắn từ bạn. Chúng tôi sẽ phản hồi qua Email này trong 2 ngày làm việc.");
+        message.setSubject("Notification");
+        message.setText("We have received your message. We will respond via this Email within 2 working days.");
         ;
 
         mailSender.send(message);
