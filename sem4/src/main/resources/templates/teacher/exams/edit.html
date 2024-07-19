@@ -267,14 +267,21 @@
                 method: 'POST',
                 data: formData,
                 success: function(response){
-                    let validateElement = document.getElementById("validatedQuestion");
-                    validateElement.innerHTML = response;
+                    if(response!=="Success"){
+                        let validateElement = document.getElementById("validatedQuestion");
+                        validateElement.innerHTML = response;
+                    }
 
                     if(response==="Success"){
+                        let validateElement = document.getElementById("validatedQuestion");
+                        validateElement.innerHTML = "";
+
                         $('#ModalAddQuestion').modal('hide');
 
                         let examId = document.getElementById("examIdHidden");
                         getQuestion(examId.value);
+
+                        document.getElementById("addQuestionForm").reset();
                     }
                 },
                 error: function(jqXHR, textStatus, errorThrown){

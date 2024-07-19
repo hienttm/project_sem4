@@ -5,6 +5,7 @@ import com.t2207e.sem4.dto.ExamUserDTO;
 import com.t2207e.sem4.dto.OrderDetailByUserDTO;
 import com.t2207e.sem4.entity.*;
 import com.t2207e.sem4.service.*;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -113,7 +114,8 @@ public class CourseController {
             model.addAttribute("countUserBuyCourse", countUserBuyCourse);
 
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            if (authentication != null && authentication.isAuthenticated()) {
+            System.out.println(authentication);
+            if (authentication != null && authentication.isAuthenticated() && !(authentication instanceof AnonymousAuthenticationToken)) {
                 String username = authentication.getName();
                 Optional<User> userOptional = userService.getUserByUsername(username);
                 if(userOptional.isPresent()){
@@ -164,9 +166,14 @@ public class CourseController {
                     model.addAttribute("examUserDTOs", examUserDTOs);
                 }
             }
+            else{
+                if(course.getStatus()!=1){
+                    return "redirect:/course/list/1";
+                }
+            }
 
             return "home/courses/detail";
         }
-        return "redirect:course/list/1";
+        return "redirect:/course/list/1";
     }
 }

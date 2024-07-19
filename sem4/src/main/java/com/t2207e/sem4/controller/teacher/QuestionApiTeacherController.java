@@ -12,8 +12,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @RequestMapping("roleTeacher/api/question")
@@ -36,6 +38,10 @@ public class QuestionApiTeacherController {
             return "Question can't be null";
         if(answer.get(0) == null || answer.get(0).isEmpty() || answer.get(1) == null || answer.get(1).isEmpty() || answer.get(2) == null || answer.get(2).isEmpty() || answer.get(3) == null || answer.get(3).isEmpty())
             return "The Answer can't be null";
+        Set<String> uniqueAnswers = new HashSet<>(answer);
+        if (uniqueAnswers.size() < 4) {
+            return "The answers must be different";
+        }
         if(trueAnswer==null)
             return "Please choose the true answer";
         Optional<Exam> examOptional = examService.getExamById(examId);

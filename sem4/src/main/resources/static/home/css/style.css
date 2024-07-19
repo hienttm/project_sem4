@@ -9976,7 +9976,7 @@ textarea::placeholder {
   padding: 1.5px 15px;
   font-weight: 600;
   font-size: 14px;
-  background-color: var(--blue-2);
+  background-color: black;
   color: var(--white);
 }
 @media screen and (max-width: 767px) {
