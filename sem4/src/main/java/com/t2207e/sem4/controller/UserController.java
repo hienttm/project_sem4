@@ -180,10 +180,10 @@ public class UserController {
                 User user =checkToken.get().getUser();
                 user.setStatus(1);
                 userService.add(user);
-                System.out.println("token có hiệu lực " );
-
+                //gửi mail thông báo tài khoản đã được xác nhận
+                emailService.sendMailNotiConfirmAccountSuccess(user.getEmail());
                 return "redirect:/login";
-                // Xử lý logic khi token còn hiệu lực
+
             }
         }else{
             //token sai

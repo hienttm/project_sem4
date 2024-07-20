@@ -38,6 +38,14 @@ public class EmailService {
 
         mailSender.send(message);
     }
+    public void sendMailNotiConfirmAccountSuccess(String to) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(to);
+        message.setSubject("Your account has been successfully authenticated");
+        message.setText("Your account has been successfully authenticated. Wellcome to Online Courses!");
+
+        mailSender.send(message);
+    }
     public void sendMailNotiRegisterTeacherStatus(String to){
 
         SimpleMailMessage message = new SimpleMailMessage();
