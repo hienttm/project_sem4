@@ -59,8 +59,8 @@
                                 <div class="row">
                                     <div class="col-lg-12 text-center">
                                         <div class="mb-3">
-                                            <img th:src="${user.image}" style="width: 200px; height: 200px; margin-right: 30px"/>
-                                            <input type="file" placeholder="Input your File" name="fileImage"/>
+                                            <img id="displayImage" th:src="${user.image}" style="width: 200px; height: 200px; margin-right: 30px"/>
+                                            <input id="fileImage" type="file" placeholder="Input your File" name="fileImage"/>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
@@ -235,6 +235,18 @@
 <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.js"></script>
 <script>
+    document.getElementById("fileImage").addEventListener("change", function (event){
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imageDisplay = document.getElementById('displayImage');
+                imageDisplay.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    })
+
     new DataTable('#table1');
 
     var table = $('#table1').DataTable();

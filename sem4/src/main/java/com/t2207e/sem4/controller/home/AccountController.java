@@ -76,14 +76,10 @@ public class AccountController {
         }
         user.setUpdateAt(new Date(System.currentTimeMillis()));
         userService.add(user);
-        return "/home/users/accountDetail";
+        return "redirect:/home/account/detail";
     }
     @PostMapping("changePassword")
     public String changePassword(@RequestParam String oldpasswordInput, @RequestParam String newpasswordInput, @RequestParam String confirmpasswordInput, @RequestParam String username, Model model, RedirectAttributes redirectAttributes) {
-        System.out.println(oldpasswordInput);
-        System.out.println(newpasswordInput);
-        System.out.println(confirmpasswordInput);
-        System.out.println(username);
 
         if(!confirmpasswordInput.equals(newpasswordInput)) {
             redirectAttributes.addFlashAttribute("message", "Password and Re-Password are different!");
@@ -91,7 +87,6 @@ public class AccountController {
             System.out.println("Password and Re-Password are different!");
             return "redirect:/home/account/detail";
         }
-        System.out.println(newpasswordInput.length());
         if(newpasswordInput.length()<6) {
             redirectAttributes.addFlashAttribute("message", "New password should be at least 6 characters!");
             redirectAttributes.addFlashAttribute("statusMessage", "error");

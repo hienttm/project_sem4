@@ -29,7 +29,7 @@ public interface ICourseRepository extends JpaRepository<Course, Integer> {
     @Procedure(name = "GetOrderDetailByUserIdProcedure")
     List<Object[]> GetOrderDetailByUserIdProcedure(@Param("user_id_search") Integer userIdSearch);
 
-    @Query("SELECT c FROM Course c ORDER BY c.courseId DESC")
+    @Query("SELECT c FROM Course c WHERE c.status = 1 ORDER BY c.courseId DESC")
     List<Course> findTopCourses(Pageable pageable);
 
     @Query("SELECT c.courseId, c.courseName, c.price, c.status, c.user.fullname, c.courseType.typeName, c.censor.fullname FROM Course c")

@@ -140,7 +140,6 @@ public class UserController {
             String message_error="The link is not valid, please check again";
             redirectAttributes.addFlashAttribute("message",message_error);
             redirectAttributes.addFlashAttribute("statusMessage", "error");
-            System.out.println(" token roongx");
             return "redirect:/login";
         }
         // kiểm tra token
@@ -165,7 +164,7 @@ public class UserController {
                 String message_error="The link has expired, please try again";
                 redirectAttributes.addFlashAttribute("message",message_error);
                 redirectAttributes.addFlashAttribute("statusMessage", "error");
-                System.out.println("token heets hanj: " );
+                System.out.println("token hết hạn: " );
 
                 return "redirect:/login";
                 // Xử lý logic khi token hết hạn
@@ -290,6 +289,12 @@ public class UserController {
         System.out.println("userId: " + userId);
         if (!Objects.equals(rePassword, password)) {
             String message_error = "Password and Re-Password are different!";
+            model.addAttribute("message", message_error);
+            model.addAttribute("statusMessage", "error");
+            return "resetForgotPassword";
+        }
+        if(password.length()<6){
+            String message_error = "New password should be at least 6 characters!";
             model.addAttribute("message", message_error);
             model.addAttribute("statusMessage", "error");
             return "resetForgotPassword";
